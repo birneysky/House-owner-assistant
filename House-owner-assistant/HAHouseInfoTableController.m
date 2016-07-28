@@ -9,7 +9,7 @@
 #import "HAHouseInfoTableController.h"
 #import "FloatingButton.h"
 
-@interface HAHouseInfoTableController ()
+@interface HAHouseInfoTableController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
@@ -23,12 +23,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.tableView.contentOffset = CGPointMake(0, 44);
+    //self.tableView.contentOffset = CGPointMake(0, 44);
     //self.tableView.backgroundColor =
     
-    FloatingButton* button = [[FloatingButton alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
-    button.backgroundColor = [UIColor redColor];
-    [self.navigationController.view addSubview:button];
+//    FloatingButton* button = [[FloatingButton alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
+//    button.backgroundColor = [UIColor redColor];
+//    [self.navigationController.view addSubview:button];
 }
 
 - (void)didReceiveMemoryWarning {

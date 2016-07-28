@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74A4F3131D4A6171002C1E14 /* HAHouseInfoTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A4F3121D4A6171002C1E14 /* HAHouseInfoTableController.m */; };
+		74A4F3161D4A6BD5002C1E14 /* FloatingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A4F3151D4A6BD5002C1E14 /* FloatingButton.m */; };
 		DB32CE6F1D48893000F6FDA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE6E1D48893000F6FDA0 /* main.m */; };
 		DB32CE721D48893000F6FDA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE711D48893000F6FDA0 /* AppDelegate.m */; };
-		DB32CE751D48893000F6FDA0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE741D48893000F6FDA0 /* ViewController.m */; };
 		DB32CE781D48893000F6FDA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB32CE761D48893000F6FDA0 /* Main.storyboard */; };
 		DB32CE7B1D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE791D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld */; };
 		DB32CE7D1D48893000F6FDA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */; };
@@ -38,12 +39,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		74A4F3111D4A6171002C1E14 /* HAHouseInfoTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseInfoTableController.h; sourceTree = "<group>"; };
+		74A4F3121D4A6171002C1E14 /* HAHouseInfoTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseInfoTableController.m; sourceTree = "<group>"; };
+		74A4F3141D4A6BD5002C1E14 /* FloatingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingButton.h; sourceTree = "<group>"; };
+		74A4F3151D4A6BD5002C1E14 /* FloatingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingButton.m; sourceTree = "<group>"; };
 		DB32CE6A1D48893000F6FDA0 /* House-owner-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "House-owner-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB32CE6E1D48893000F6FDA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB32CE701D48893000F6FDA0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DB32CE711D48893000F6FDA0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DB32CE731D48893000F6FDA0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DB32CE741D48893000F6FDA0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DB32CE771D48893000F6FDA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB32CE7A1D48893000F6FDA0 /* House_owner_assistant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = House_owner_assistant.xcdatamodel; sourceTree = "<group>"; };
 		DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,10 +113,12 @@
 		DB32CE6C1D48893000F6FDA0 /* House-owner-assistant */ = {
 			isa = PBXGroup;
 			children = (
+				74A4F3141D4A6BD5002C1E14 /* FloatingButton.h */,
+				74A4F3151D4A6BD5002C1E14 /* FloatingButton.m */,
+				74A4F3111D4A6171002C1E14 /* HAHouseInfoTableController.h */,
+				74A4F3121D4A6171002C1E14 /* HAHouseInfoTableController.m */,
 				DB32CE701D48893000F6FDA0 /* AppDelegate.h */,
 				DB32CE711D48893000F6FDA0 /* AppDelegate.m */,
-				DB32CE731D48893000F6FDA0 /* ViewController.h */,
-				DB32CE741D48893000F6FDA0 /* ViewController.m */,
 				DB32CE761D48893000F6FDA0 /* Main.storyboard */,
 				DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */,
 				DB32CE7E1D48893000F6FDA0 /* LaunchScreen.storyboard */,
@@ -289,8 +294,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB32CE751D48893000F6FDA0 /* ViewController.m in Sources */,
+				74A4F3131D4A6171002C1E14 /* HAHouseInfoTableController.m in Sources */,
 				DB32CE7B1D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld in Sources */,
+				74A4F3161D4A6BD5002C1E14 /* FloatingButton.m in Sources */,
 				DB32CE721D48893000F6FDA0 /* AppDelegate.m in Sources */,
 				DB32CE6F1D48893000F6FDA0 /* main.m in Sources */,
 			);

@@ -1,20 +1,30 @@
 //
-//  HAHouseInfoTableController.m
+//  HAPublishHouseInfoTableViewController.m
 //  House-owner-assistant
 //
-//  Created by birneysky on 16/7/28.
+//  Created by zhangguang on 16/7/29.
 //  Copyright © 2016年 HA. All rights reserved.
 //
 
-#import "HAHouseInfoTableController.h"
-#import "HAFloatingButton.h"
+#import "HAPublishHouseInfoTableViewController.h"
 
-@interface HAHouseInfoTableController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet HAFloatingButton *addButton;
+@interface HAPublishHouseInfoTableViewController ()
+
+@property(nonatomic,strong) NSArray* dataSource;
 
 @end
 
-@implementation HAHouseInfoTableController
+@implementation HAPublishHouseInfoTableViewController
+
+#pragma mark - ***Properties ***
+
+- (NSArray*) dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [[NSArray alloc] initWithObjects:@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"设施列表",@"出租方式与房源类型",@"地址", nil];
+    }
+    return _dataSource;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,33 +34,35 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    //self.tableView.contentOffset = CGPointMake(0, 44);
-    //self.tableView.backgroundColor =
-    
-//    FloatingButton* button = [[FloatingButton alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
-//    button.backgroundColor = [UIColor redColor];
-//    [self.navigationController.view addSubview:button];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    UINavigationItem* navItem = self.navigationItem;
+    UIBarButtonItem* backItem = navItem.leftBarButtonItem;
+    
+    self.navigationItem.backBarButtonItem.tintColor = [UIColor blackColor];
 }
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 10;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dataSource.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseSummaryCell" forIndexPath:indexPath];
+    
+    // Configure the cell...
+    cell.textLabel.text = self.dataSource[indexPath.row];
     
     return cell;
 }

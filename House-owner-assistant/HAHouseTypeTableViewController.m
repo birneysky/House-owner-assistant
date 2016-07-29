@@ -1,60 +1,81 @@
 //
-//  HAHouseInfoTableController.m
+//  HAHouseTypeTableViewController.m
 //  House-owner-assistant
 //
-//  Created by birneysky on 16/7/28.
+//  Created by zhangguang on 16/7/29.
 //  Copyright © 2016年 HA. All rights reserved.
 //
 
-#import "HAHouseInfoTableController.h"
-#import "HAFloatingButton.h"
+#import "HAHouseTypeTableViewController.h"
 
-@interface HAHouseInfoTableController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet HAFloatingButton *addButton;
-
+@interface HAHouseTypeTableViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *button;
+@property (nonatomic,strong) NSArray* dataSource;
+@property (nonatomic,assign) NSInteger selectedIndex;
 @end
 
-@implementation HAHouseInfoTableController
+@implementation HAHouseTypeTableViewController
+
+#pragma mark - *** Properties ***
+- (NSArray*)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [[NSArray alloc] initWithObjects:@"具名",@"公寓",@"独栋别墅",@"客栈",@"四合院",@"豪宅",@"树屋", nil];
+    }
+    return _dataSource;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.selectedIndex = -1;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    //self.tableView.contentOffset = CGPointMake(0, 44);
-    //self.tableView.backgroundColor =
-    
-//    FloatingButton* button = [[FloatingButton alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
-//    button.backgroundColor = [UIColor redColor];
-//    [self.navigationController.view addSubview:button];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 10;
+    return 1 ;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dataSource.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseTypeCell" forIndexPath:indexPath];
     return cell;
 }
 
+#pragma mark - *** UITableViewDelegate ***
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.textLabel.text = self.dataSource[indexPath.row];
+    if (self.selectedIndex == indexPath.row) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedIndex = indexPath.row;
+    [tableView reloadData];
+}
 
 /*
 // Override to support conditional editing of the table view.

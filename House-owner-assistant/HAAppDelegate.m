@@ -6,13 +6,13 @@
 //  Copyright © 2016年 HA. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "HAAppDelegate.h"
 
-@interface AppDelegate ()
+@interface HAAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation HAAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

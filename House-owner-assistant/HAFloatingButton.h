@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FloatingButton : UIButton
-
-@property (nonatomic) BOOL dragEnable;
+@interface HAFloatingButton : UIButton
 
 @end

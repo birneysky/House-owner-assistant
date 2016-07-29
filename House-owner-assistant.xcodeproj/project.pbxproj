@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		74A4F3131D4A6171002C1E14 /* HAHouseInfoTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A4F3121D4A6171002C1E14 /* HAHouseInfoTableController.m */; };
-		74A4F3161D4A6BD5002C1E14 /* FloatingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A4F3151D4A6BD5002C1E14 /* FloatingButton.m */; };
+		74A4F3161D4A6BD5002C1E14 /* HAFloatingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A4F3151D4A6BD5002C1E14 /* HAFloatingButton.m */; };
 		DB32CE6F1D48893000F6FDA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE6E1D48893000F6FDA0 /* main.m */; };
-		DB32CE721D48893000F6FDA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE711D48893000F6FDA0 /* AppDelegate.m */; };
+		DB32CE721D48893000F6FDA0 /* HAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE711D48893000F6FDA0 /* HAAppDelegate.m */; };
 		DB32CE781D48893000F6FDA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB32CE761D48893000F6FDA0 /* Main.storyboard */; };
 		DB32CE7B1D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE791D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld */; };
 		DB32CE7D1D48893000F6FDA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */; };
@@ -19,6 +19,10 @@
 		DB32CE961D48893000F6FDA0 /* House_owner_assistantUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE951D48893000F6FDA0 /* House_owner_assistantUITests.m */; };
 		DB32CEA41D488FB200F6FDA0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB32CEA31D488FB200F6FDA0 /* MapKit.framework */; };
 		DB32CEA61D4891AE00F6FDA0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB32CEA51D4891AE00F6FDA0 /* CoreLocation.framework */; };
+		DB3E649D1D4AF74500011EFC /* HAHouseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3E649C1D4AF74500011EFC /* HAHouseLocationViewController.m */; };
+		DB3E64A01D4B2A9500011EFC /* HAHouseTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3E649F1D4B2A9500011EFC /* HAHouseTypeTableViewController.m */; };
+		DB3E64A31D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3E64A21D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.m */; };
+		DB3E64A61D4B51B000011EFC /* HALocationPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3E64A51D4B51B000011EFC /* HALocationPickerTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,12 +45,12 @@
 /* Begin PBXFileReference section */
 		74A4F3111D4A6171002C1E14 /* HAHouseInfoTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseInfoTableController.h; sourceTree = "<group>"; };
 		74A4F3121D4A6171002C1E14 /* HAHouseInfoTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseInfoTableController.m; sourceTree = "<group>"; };
-		74A4F3141D4A6BD5002C1E14 /* FloatingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingButton.h; sourceTree = "<group>"; };
-		74A4F3151D4A6BD5002C1E14 /* FloatingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingButton.m; sourceTree = "<group>"; };
+		74A4F3141D4A6BD5002C1E14 /* HAFloatingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAFloatingButton.h; sourceTree = "<group>"; };
+		74A4F3151D4A6BD5002C1E14 /* HAFloatingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAFloatingButton.m; sourceTree = "<group>"; };
 		DB32CE6A1D48893000F6FDA0 /* House-owner-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "House-owner-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB32CE6E1D48893000F6FDA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DB32CE701D48893000F6FDA0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		DB32CE711D48893000F6FDA0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DB32CE701D48893000F6FDA0 /* HAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAAppDelegate.h; sourceTree = "<group>"; };
+		DB32CE711D48893000F6FDA0 /* HAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HAAppDelegate.m; sourceTree = "<group>"; };
 		DB32CE771D48893000F6FDA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB32CE7A1D48893000F6FDA0 /* House_owner_assistant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = House_owner_assistant.xcdatamodel; sourceTree = "<group>"; };
 		DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,6 +64,14 @@
 		DB32CE971D48893000F6FDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB32CEA31D488FB200F6FDA0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DB32CEA51D4891AE00F6FDA0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		DB3E649B1D4AF74500011EFC /* HAHouseLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseLocationViewController.h; sourceTree = "<group>"; };
+		DB3E649C1D4AF74500011EFC /* HAHouseLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseLocationViewController.m; sourceTree = "<group>"; };
+		DB3E649E1D4B2A9500011EFC /* HAHouseTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseTypeTableViewController.h; sourceTree = "<group>"; };
+		DB3E649F1D4B2A9500011EFC /* HAHouseTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseTypeTableViewController.m; sourceTree = "<group>"; };
+		DB3E64A11D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPublishHouseInfoTableViewController.h; sourceTree = "<group>"; };
+		DB3E64A21D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPublishHouseInfoTableViewController.m; sourceTree = "<group>"; };
+		DB3E64A41D4B51B000011EFC /* HALocationPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HALocationPickerTextField.h; sourceTree = "<group>"; };
+		DB3E64A51D4B51B000011EFC /* HALocationPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HALocationPickerTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,12 +125,20 @@
 		DB32CE6C1D48893000F6FDA0 /* House-owner-assistant */ = {
 			isa = PBXGroup;
 			children = (
-				74A4F3141D4A6BD5002C1E14 /* FloatingButton.h */,
-				74A4F3151D4A6BD5002C1E14 /* FloatingButton.m */,
+				DB3E64A41D4B51B000011EFC /* HALocationPickerTextField.h */,
+				DB3E64A51D4B51B000011EFC /* HALocationPickerTextField.m */,
+				74A4F3141D4A6BD5002C1E14 /* HAFloatingButton.h */,
+				74A4F3151D4A6BD5002C1E14 /* HAFloatingButton.m */,
+				DB3E64A11D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.h */,
+				DB3E64A21D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.m */,
 				74A4F3111D4A6171002C1E14 /* HAHouseInfoTableController.h */,
 				74A4F3121D4A6171002C1E14 /* HAHouseInfoTableController.m */,
-				DB32CE701D48893000F6FDA0 /* AppDelegate.h */,
-				DB32CE711D48893000F6FDA0 /* AppDelegate.m */,
+				DB3E649B1D4AF74500011EFC /* HAHouseLocationViewController.h */,
+				DB3E649C1D4AF74500011EFC /* HAHouseLocationViewController.m */,
+				DB3E649E1D4B2A9500011EFC /* HAHouseTypeTableViewController.h */,
+				DB3E649F1D4B2A9500011EFC /* HAHouseTypeTableViewController.m */,
+				DB32CE701D48893000F6FDA0 /* HAAppDelegate.h */,
+				DB32CE711D48893000F6FDA0 /* HAAppDelegate.m */,
 				DB32CE761D48893000F6FDA0 /* Main.storyboard */,
 				DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */,
 				DB32CE7E1D48893000F6FDA0 /* LaunchScreen.storyboard */,
@@ -295,10 +315,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				74A4F3131D4A6171002C1E14 /* HAHouseInfoTableController.m in Sources */,
+				DB3E64A31D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.m in Sources */,
+				DB3E64A01D4B2A9500011EFC /* HAHouseTypeTableViewController.m in Sources */,
 				DB32CE7B1D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld in Sources */,
-				74A4F3161D4A6BD5002C1E14 /* FloatingButton.m in Sources */,
-				DB32CE721D48893000F6FDA0 /* AppDelegate.m in Sources */,
+				74A4F3161D4A6BD5002C1E14 /* HAFloatingButton.m in Sources */,
+				DB32CE721D48893000F6FDA0 /* HAAppDelegate.m in Sources */,
+				DB3E64A61D4B51B000011EFC /* HALocationPickerTextField.m in Sources */,
 				DB32CE6F1D48893000F6FDA0 /* main.m in Sources */,
+				DB3E649D1D4AF74500011EFC /* HAHouseLocationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +469,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.huseowner.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7b8c7137-1aa5-4677-ba3c-75ad42718c46";
 			};
 			name = Debug;
 		};
@@ -456,6 +481,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.huseowner.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7b8c7137-1aa5-4677-ba3c-75ad42718c46";
 			};
 			name = Release;
 		};

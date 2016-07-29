@@ -550,6 +550,9 @@
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PmT-oK-NPe">
                                 <rect key="frame" x="0.0" y="222" width="600" height="378"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hcb-rF-c85" id="Yqv-LY-1P2"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -580,6 +583,9 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="地理位置"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="mapView" destination="PmT-oK-NPe" id="QZF-iI-KRR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogi-mN-B1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

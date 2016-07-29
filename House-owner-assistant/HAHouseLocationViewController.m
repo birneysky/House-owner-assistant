@@ -7,16 +7,46 @@
 //
 
 #import "HAHouseLocationViewController.h"
+#import <MapKit/MapKit.h>
+#import "HALocationPoint.h"
 
 @interface HAHouseLocationViewController ()
-
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (nonatomic,strong) CLLocationManager* locationManager;
 @end
 
 @implementation HAHouseLocationViewController
 
+#pragma mark - *** Properties ***
+- (CLLocationManager*)locationManager
+{
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+    }
+    return _locationManager;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.locationManager requestWhenInUseAuthorization];
+    
+//    CLLocationCoordinate2D touchMapCoordinate =
+//        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    CLLocation *loc = [[CLLocation alloc]initWithLatitude:39.975535 longitude:116.338525];
+    CLLocationCoordinate2D coord = [loc coordinate];
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
+    [self.mapView setRegion:region animated:YES];
+    
+    HALocationPoint *centerPoint = [[HALocationPoint alloc] initWithCoordinate:coord];
+    [self.mapView addAnnotation:centerPoint];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +59,16 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+//    CLLocationCoordinate2D loc = [userLocation coordinate];
+//    
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 500, 500);
+//    [mapView setRegion:region animated:YES];
+    
+
+    
+}
 /*
 #pragma mark - Navigation
 

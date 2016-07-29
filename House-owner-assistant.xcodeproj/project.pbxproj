@@ -23,6 +23,7 @@
 		DB3E64A01D4B2A9500011EFC /* HAHouseTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3E649F1D4B2A9500011EFC /* HAHouseTypeTableViewController.m */; };
 		DB3E64A31D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3E64A21D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.m */; };
 		DB3E64A61D4B51B000011EFC /* HALocationPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3E64A51D4B51B000011EFC /* HALocationPickerTextField.m */; };
+		DB3E64A91D4B5C2B00011EFC /* HALocationPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3E64A81D4B5C2B00011EFC /* HALocationPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		DB3E64A21D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPublishHouseInfoTableViewController.m; sourceTree = "<group>"; };
 		DB3E64A41D4B51B000011EFC /* HALocationPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HALocationPickerTextField.h; sourceTree = "<group>"; };
 		DB3E64A51D4B51B000011EFC /* HALocationPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HALocationPickerTextField.m; sourceTree = "<group>"; };
+		DB3E64A71D4B5C2B00011EFC /* HALocationPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HALocationPoint.h; sourceTree = "<group>"; };
+		DB3E64A81D4B5C2B00011EFC /* HALocationPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HALocationPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 		DB32CE6C1D48893000F6FDA0 /* House-owner-assistant */ = {
 			isa = PBXGroup;
 			children = (
+				DB3E64A71D4B5C2B00011EFC /* HALocationPoint.h */,
+				DB3E64A81D4B5C2B00011EFC /* HALocationPoint.m */,
 				DB3E64A41D4B51B000011EFC /* HALocationPickerTextField.h */,
 				DB3E64A51D4B51B000011EFC /* HALocationPickerTextField.m */,
 				74A4F3141D4A6BD5002C1E14 /* HAFloatingButton.h */,
@@ -322,6 +327,7 @@
 				DB32CE721D48893000F6FDA0 /* HAAppDelegate.m in Sources */,
 				DB3E64A61D4B51B000011EFC /* HALocationPickerTextField.m in Sources */,
 				DB32CE6F1D48893000F6FDA0 /* main.m in Sources */,
+				DB3E64A91D4B5C2B00011EFC /* HALocationPoint.m in Sources */,
 				DB3E649D1D4AF74500011EFC /* HAHouseLocationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

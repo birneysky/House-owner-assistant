@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		742B91641D4C660E000FF5A1 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91631D4C660E000FF5A1 /* CALayer+Additions.m */; };
+		742B91671D4C84E1000FF5A1 /* HALeapBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91661D4C84E1000FF5A1 /* HALeapBehavior.m */; };
+		742B916A1D4C8CBA000FF5A1 /* HAAddHousePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91691D4C8CBA000FF5A1 /* HAAddHousePhotoViewController.m */; };
 		74A4F3131D4A6171002C1E14 /* HAHouseInfoTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A4F3121D4A6171002C1E14 /* HAHouseInfoTableController.m */; };
 		74A4F3161D4A6BD5002C1E14 /* HAFloatingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A4F3151D4A6BD5002C1E14 /* HAFloatingButton.m */; };
 		DB32CE6F1D48893000F6FDA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE6E1D48893000F6FDA0 /* main.m */; };
@@ -44,6 +47,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		742B91621D4C660E000FF5A1 /* CALayer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
+		742B91631D4C660E000FF5A1 /* CALayer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
+		742B91651D4C84E1000FF5A1 /* HALeapBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HALeapBehavior.h; sourceTree = "<group>"; };
+		742B91661D4C84E1000FF5A1 /* HALeapBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HALeapBehavior.m; sourceTree = "<group>"; };
+		742B91681D4C8CBA000FF5A1 /* HAAddHousePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAAddHousePhotoViewController.h; sourceTree = "<group>"; };
+		742B91691D4C8CBA000FF5A1 /* HAAddHousePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAAddHousePhotoViewController.m; sourceTree = "<group>"; };
 		74A4F3111D4A6171002C1E14 /* HAHouseInfoTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseInfoTableController.h; sourceTree = "<group>"; };
 		74A4F3121D4A6171002C1E14 /* HAHouseInfoTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseInfoTableController.m; sourceTree = "<group>"; };
 		74A4F3141D4A6BD5002C1E14 /* HAFloatingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAFloatingButton.h; sourceTree = "<group>"; };
@@ -128,6 +137,10 @@
 		DB32CE6C1D48893000F6FDA0 /* House-owner-assistant */ = {
 			isa = PBXGroup;
 			children = (
+				742B91651D4C84E1000FF5A1 /* HALeapBehavior.h */,
+				742B91661D4C84E1000FF5A1 /* HALeapBehavior.m */,
+				742B91621D4C660E000FF5A1 /* CALayer+Additions.h */,
+				742B91631D4C660E000FF5A1 /* CALayer+Additions.m */,
 				DB3E64A71D4B5C2B00011EFC /* HALocationPoint.h */,
 				DB3E64A81D4B5C2B00011EFC /* HALocationPoint.m */,
 				DB3E64A41D4B51B000011EFC /* HALocationPickerTextField.h */,
@@ -144,6 +157,8 @@
 				DB3E649F1D4B2A9500011EFC /* HAHouseTypeTableViewController.m */,
 				DB32CE701D48893000F6FDA0 /* HAAppDelegate.h */,
 				DB32CE711D48893000F6FDA0 /* HAAppDelegate.m */,
+				742B91681D4C8CBA000FF5A1 /* HAAddHousePhotoViewController.h */,
+				742B91691D4C8CBA000FF5A1 /* HAAddHousePhotoViewController.m */,
 				DB32CE761D48893000F6FDA0 /* Main.storyboard */,
 				DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */,
 				DB32CE7E1D48893000F6FDA0 /* LaunchScreen.storyboard */,
@@ -321,14 +336,17 @@
 			files = (
 				74A4F3131D4A6171002C1E14 /* HAHouseInfoTableController.m in Sources */,
 				DB3E64A31D4B3D5E00011EFC /* HAPublishHouseInfoTableViewController.m in Sources */,
+				742B91671D4C84E1000FF5A1 /* HALeapBehavior.m in Sources */,
 				DB3E64A01D4B2A9500011EFC /* HAHouseTypeTableViewController.m in Sources */,
 				DB32CE7B1D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld in Sources */,
 				74A4F3161D4A6BD5002C1E14 /* HAFloatingButton.m in Sources */,
+				742B91641D4C660E000FF5A1 /* CALayer+Additions.m in Sources */,
 				DB32CE721D48893000F6FDA0 /* HAAppDelegate.m in Sources */,
 				DB3E64A61D4B51B000011EFC /* HALocationPickerTextField.m in Sources */,
 				DB32CE6F1D48893000F6FDA0 /* main.m in Sources */,
 				DB3E64A91D4B5C2B00011EFC /* HALocationPoint.m in Sources */,
 				DB3E649D1D4AF74500011EFC /* HAHouseLocationViewController.m in Sources */,
+				742B916A1D4C8CBA000FF5A1 /* HAAddHousePhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "House-owner-assistant/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.huseowner.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,6 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "House-owner-assistant/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.huseowner.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";

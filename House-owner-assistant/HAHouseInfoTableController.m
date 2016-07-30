@@ -18,18 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    //self.tableView.contentOffset = CGPointMake(0, 44);
-    //self.tableView.backgroundColor =
-    
-//    FloatingButton* button = [[FloatingButton alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
-//    button.backgroundColor = [UIColor redColor];
-//    [self.navigationController.view addSubview:button];
 }
 
 - (void)viewDidAppear:(BOOL)animated

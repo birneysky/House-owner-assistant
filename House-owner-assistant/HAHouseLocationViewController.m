@@ -9,10 +9,23 @@
 #import "HAHouseLocationViewController.h"
 #import <MapKit/MapKit.h>
 #import "HALocationPoint.h"
+#import "HALocationPickerTextField.h"
+#import "HALeapBehavior.h"
 
-@interface HAHouseLocationViewController ()
+@interface HAHouseLocationViewController ()<MKMapViewDelegate,HALocationPickerTextFieldDelegate,UIDynamicAnimatorDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,strong) CLLocationManager* locationManager;
+
+@property (weak, nonatomic) IBOutlet HALocationPickerTextField *cityAddressTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *fullAddressTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *houseNumberTextfield;
+@property (weak, nonatomic) IBOutlet UIView *locationView;
+@property (weak, nonatomic) IBOutlet UIView *locationPromptView;
+@property (weak, nonatomic) IBOutlet UIImageView *locationPointImgView;
+
+@property(nonatomic,strong) UIDynamicAnimator* animator;
+@property(nonatomic,strong) HALeapBehavior* behavior;
+
 @end
 
 @implementation HAHouseLocationViewController
@@ -26,10 +39,35 @@
     return _locationManager;
 }
 
+-(UIDynamicAnimator*)animator
+{
+    if (!_animator) {
+        _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.locationView];
+        _animator.delegate = self;
+    }
+    return _animator;
+}
 
+-(HALeapBehavior*)behavior
+{
+    if (!_behavior) {
+        _behavior = [[HALeapBehavior alloc] init];
+        [self.animator addBehavior:_behavior];
+    }
+    
+    return _behavior;
+}
+
+#pragma mark - *** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.locationManager requestWhenInUseAuthorization];
+    self.cityAddressTextfield.pickerDelegate = self;
+    UIImageView* leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"green_location_icon"]];
+    UIImageView* rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_right"]];
+
+    self.cityAddressTextfield.leftView = leftView;
+    self.cityAddressTextfield.rightView = rightView;
     
 //    CLLocationCoordinate2D touchMapCoordinate =
 //        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
@@ -38,15 +76,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    CLLocation *loc = [[CLLocation alloc]initWithLatitude:39.975535 longitude:116.338525];
-    CLLocationCoordinate2D coord = [loc coordinate];
-    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
-    [self.mapView setRegion:region animated:YES];
-    
-    HALocationPoint *centerPoint = [[HALocationPoint alloc] initWithCoordinate:coord];
-    [self.mapView addAnnotation:centerPoint];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,14 +89,52 @@
 }
 
 
+#pragma mark - *** MKMapViewDelegate ***
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
 //    CLLocationCoordinate2D loc = [userLocation coordinate];
 //    
 //    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 500, 500);
 //    [mapView setRegion:region animated:YES];
-    
+}
 
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    NSLog(@"touch begin");
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    NSLog(@"touch end");
+    self.locationPromptView.hidden = YES;
+    [self.behavior addItem:self.locationPointImgView];
+}
+
+
+#pragma mark - *** HALocationPickerTextFieldDelegate ***
+
+- (void)selectedObjectChangedForPickerTextField:(HALocationPickerTextField *)pickerTF
+{
+    CLLocation *loc = [[CLLocation alloc]initWithLatitude:39.975535 longitude:116.338525];
+    CLLocationCoordinate2D coord = [loc coordinate];
     
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
+    [self.mapView setRegion:region animated:YES];
+    
+    self.locationPromptView.hidden = YES;
+    [self.behavior addItem:self.locationPointImgView];
+//    HALocationPoint *centerPoint = [[HALocationPoint alloc] initWithCoordinate:coord];
+//    [self.mapView addAnnotation:centerPoint];
+}
+
+#pragma mark - *** UIDynamicAnimatorDelegate ***
+
+-(void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator
+{
+    self.locationPromptView.hidden = NO;
+    [self.behavior removeItem:self.locationPointImgView];
+    self.behavior = nil;
+    self.animator = nil;
 }
 /*
 #pragma mark - Navigation

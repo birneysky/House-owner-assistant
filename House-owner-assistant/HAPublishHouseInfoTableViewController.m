@@ -40,10 +40,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    UINavigationItem* navItem = self.navigationItem;
-    UIBarButtonItem* backItem = navItem.leftBarButtonItem;
-    
-    self.navigationItem.backBarButtonItem.tintColor = [UIColor blackColor];
 }
 
 

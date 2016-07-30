@@ -8,9 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+@class HALocationPickerTextField;
+
+@protocol HALocationPickerTextFieldDelegate <NSObject>
+
+//- (void)selectedObjectID:(NSManagedObjectID*)objectID changedForPickerTF:(CoreDataPickerTF*)pickerTF;
+
+- (void)selectedObjectChangedForPickerTextField:(HALocationPickerTextField*)pickerTF;
+
+@optional
+
+//- (void)selectedObjectClearedForPickerTF:(CoreDataPickerTF*)pickerTF;
+
+- (void)selectedObjectClearForPickTextField:(HALocationPickerTextField*)pickerTF;
+
+
+@end
+
+
 @interface HALocationPickerTextField : UITextField
 
-
+@property (nonatomic,weak) id<HALocationPickerTextFieldDelegate> pickerDelegate;
 
 @property (nonatomic,assign) BOOL showToolbar;
 

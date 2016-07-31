@@ -63,6 +63,17 @@
     return cell;
 }
 
+#pragma mark - *** TableView Delegate ***
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"test1" sender:nil];
+    }
+    else if (indexPath.row == 1){
+        [self performSegueWithIdentifier:@"test2" sender:nil];
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

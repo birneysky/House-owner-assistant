@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="p9U-dh-1ki">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -245,7 +245,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="leo-hh-fSW" kind="presentation" id="Qju-9l-xA9"/>
+                                    <segue destination="hcb-rF-c85" kind="show" id="l2p-Qb-x5D"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -261,7 +261,11 @@
                             <constraint firstAttribute="trailing" secondItem="3gg-xZ-4Bs" secondAttribute="trailing" constant="8" id="xWl-oN-D0t"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="swQ-ML-rK5"/>
+                    <navigationItem key="navigationItem" id="swQ-ML-rK5">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="伊妹"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="3gg-xZ-4Bs" id="9dy-Lx-HRt"/>
                     </connections>
@@ -269,23 +273,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zZx-6a-AIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2392" y="775"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="L5a-qf-8Mx">
-            <objects>
-                <navigationController id="leo-hh-fSW" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3t9-JT-CZi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="hcb-rF-c85" kind="relationship" relationship="rootViewController" id="Vh1-Pf-i8V"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QZV-KR-kIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3109" y="775"/>
         </scene>
         <!--House Location View Controller-->
         <scene sceneID="iMF-r5-Hny">
@@ -436,12 +423,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rWA-9H-pWG">
-                        <barButtonItem key="leftBarButtonItem" title="取消" id="Okr-Sf-X1J">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="canelBtnAction:" destination="hcb-rF-c85" id="FVI-Jh-XC3"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="下一步" id="Qky-Xv-BmJ">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -464,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogi-mN-B1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3823" y="775"/>
+            <point key="canvasLocation" x="3216" y="781"/>
         </scene>
         <!--House Type Table View Controller-->
         <scene sceneID="NlW-1Z-8nC">
@@ -528,7 +509,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPB-2i-0wa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4599" y="768"/>
+            <point key="canvasLocation" x="4105" y="781"/>
         </scene>
         <!--Publish House Info Table View Controller-->
         <scene sceneID="19p-mC-qfx">
@@ -593,10 +574,33 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="发布房源"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="bXN-Jg-OJg" kind="show" identifier="test1" id="Ekv-zQ-b43"/>
+                        <segue destination="QW0-fo-GGA" kind="push" identifier="test2" id="mnd-fD-4F2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bob-Hx-xez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5269" y="765"/>
+            <point key="canvasLocation" x="5003" y="781"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rn0-of-prt">
+            <objects>
+                <viewController id="QW0-fo-GGA" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dd3-I6-UzD"/>
+                        <viewControllerLayoutGuide type="bottom" id="uSh-X2-Fpt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mB4-bX-zcu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="FZE-V9-wBA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PM0-Hy-sCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4666" y="1557"/>
         </scene>
         <!--Add House Photo View Controller-->
         <scene sceneID="aqi-wZ-DN1">
@@ -635,7 +639,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fc2-Xy-7x8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5936" y="768"/>
+            <point key="canvasLocation" x="5936" y="775"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XVU-P3-s5e">
@@ -657,16 +661,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NmY-4r-iKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5936" y="1525"/>
+            <point key="canvasLocation" x="5344" y="1563"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="X9H-Qi-OP2">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p9U-dh-1ki" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="house_owner_assisnt_nav" automaticallyAdjustsScrollViewInsets="NO" id="p9U-dh-1ki" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KOJ-zq-Nka">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -30,7 +30,6 @@
     return _picker;
 }
 
-
 - (UIToolbar*)toolbar
 {
     if (!_toolbar) {

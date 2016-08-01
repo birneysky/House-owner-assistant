@@ -7,8 +7,10 @@
 //
 
 #import "HAAddHousePhotoViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import "CTAssetsPickerController.h"
 
-@interface HAAddHousePhotoViewController ()<UIActionSheetDelegate>
+@interface HAAddHousePhotoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
 
 @end
 
@@ -33,34 +35,121 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewDidAppear:animated];
     UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil)  destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"拍照", nil),NSLocalizedString(@"从相册选择", nil), nil];
     [sheet showInView:self.view];
+
 }
 
+#pragma mark - *** camera  helper***
+
+- (void) showAssetsPickerController
+{
+    CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
+    picker.assetsFilter         = [ALAssetsFilter allPhotos];
+    picker.showsCancelButton    = YES;
+    picker.delegate             = self;
+    picker.selectedAssets       = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void) showImagePickerController
+{
+    UIImagePickerController* imagepicker = [[UIImagePickerController alloc] init];
+    imagepicker.delegate = self;
+    imagepicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    self.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+    [self presentViewController:imagepicker animated:YES completion:^{
+    }];
+}
+
+- (void)requestAccessCamera
+{
+    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (granted) {
+                //第一次用户接受
+                [self showImagePickerController];
+            }else{
+                //string:UIApplicationOpenSettingsURLString
+                UIAlertView * alart = [[UIAlertView alloc] initWithTitle:nil message:@"请您设置允许APP访问您的相机\n设置>隐私>相机" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alart show];
+            }
+        });
+    }];
+}
+
+
+- (void)cameraAuthorization
+{
+    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    switch (status) {
+        case AVAuthorizationStatusNotDetermined:
+            NSLog(@"camera is Determined");
+            [self requestAccessCamera];
+            break;
+        case AVAuthorizationStatusAuthorized:
+            NSLog(@"camera is Authorized");
+            [self showImagePickerController];
+            break;
+        case AVAuthorizationStatusDenied:
+            NSLog(@"camera is denied");
+             [self requestAccessCamera];
+            break;
+        case AVAuthorizationStatusRestricted:
+            break;
+        default:
+            break;
+    }
+}
 
 #pragma mark - action sheet delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"UIActionSheet clickedButtonAtIndex %ld ",(long)buttonIndex);
-    NSUInteger sourceType = 0;
     switch (buttonIndex) {
         case 0:
-            sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self cameraAuthorization];
             break;
         case 1:
-            sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            [self showAssetsPickerController];
             break;
         case 2:
             return;
         default:
             break;
     }
-    
-    UIImagePickerController* imagepicker = [[UIImagePickerController alloc] init];
-    //imagepicker.delegate = self;
-    imagepicker.sourceType = (UIImagePickerControllerSourceType)sourceType;
-    
-    [self presentViewController:imagepicker animated:YES completion:^{
-    }];
+}
 
+#pragma mark - *** CTAssetsPickerControllerDelegate ***
+
+- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+//    [FileTransManager sendPhotoes:assets toGroupWithType:self.groupType ID:self.groupID remoteUserID:self.remoteUserID];
+//    
+//    if (self.popover) {
+//        [self.popover dismissPopoverAnimated:YES];
+//    }else {
+        [picker dismissViewControllerAnimated:YES completion:nil];
+//    }
+}
+
+#pragma mark - image picker delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //[picker dismissViewControllerAnimated:YES completion:nil];
+    
+    CGRect rect = [[picker valueForKey:@"_cropRect"] CGRectValue];
+    NSLog(@" _cropRect = %@",NSStringFromCGRect(rect));
+    
+//    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+//    ClipImageViewController* clipImgVC = [[ClipImageViewController alloc] initWithImage:image sourceType:picker.sourceType];
+//    clipImgVC.delegate = self;
+//    [picker pushViewController:clipImgVC animated:YES];
+//    [clipImgVC release];
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

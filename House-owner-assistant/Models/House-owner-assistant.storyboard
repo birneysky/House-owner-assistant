@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -23,10 +23,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseInfoCell" rowHeight="180" id="wKA-g4-jgm">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="113.5" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wKA-g4-jgm" id="CLC-ZP-YYv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="179.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncR-uf-eoF">
@@ -142,7 +142,7 @@
                                                                 <constraint firstAttribute="width" constant="1" id="mnH-8n-N3T"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-d8-uVN">
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-d8-uVN">
                                                             <rect key="frame" x="202" y="8" width="178" height="30"/>
                                                             <state key="normal" title="查看评论">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -481,10 +481,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseTypeCell" id="yJ6-gU-tEj">
-                                <rect key="frame" x="0.0" y="307" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="306.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yJ6-gU-tEj" id="Lje-2R-Mbj">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -552,10 +552,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HAHouseSummaryCell" id="HF9-Q7-4I2">
-                                <rect key="frame" x="0.0" y="294" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="293.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HF9-Q7-4I2" id="uR1-dc-qEX">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -631,7 +631,13 @@
                             <outlet property="delegate" destination="B7m-5j-W8P" id="PnD-Gv-f1i"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="zRS-mc-hWn"/>
+                    <navigationItem key="navigationItem" id="zRS-mc-hWn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="82n-7w-Zhz">
+                            <connections>
+                                <action selector="test:" destination="B7m-5j-W8P" id="vsx-K1-XyO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="添加照片"/>
                     </userDefinedRuntimeAttributes>
@@ -651,6 +657,12 @@
                     <view key="view" contentMode="scaleToFill" id="7JA-kc-jQs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1H-sF-WJV">
+                                <rect key="frame" x="122" y="310" width="26" height="22"/>
+                                <state key="normal" title="Button" image="add_icon"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="zCv-wH-aT6"/>
@@ -683,6 +695,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_icon" width="13" height="13"/>
         <image name="bubble" width="161" height="46"/>
         <image name="createRoomDefaultIcon" width="45" height="45"/>
         <image name="createRoomDefaultMain" width="320" height="167"/>

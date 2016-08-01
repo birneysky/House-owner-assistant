@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		742B916C1D4CA603000FF5A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742B916B1D4CA603000FF5A1 /* Main.storyboard */; };
 		742B916F1D4CA7D7000FF5A1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B916E1D4CA7D7000FF5A1 /* ViewController.m */; };
+		742B918C1D4FAA93000FF5A1 /* HOAKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 742B918B1D4FAA93000FF5A1 /* HOAKit.framework */; };
+		742B91921D4FAEA8000FF5A1 /* HOA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742B91911D4FAEA8000FF5A1 /* HOA.xcassets */; };
 		DB32CE6F1D48893000F6FDA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE6E1D48893000F6FDA0 /* main.m */; };
 		DB32CE721D48893000F6FDA0 /* HAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE711D48893000F6FDA0 /* HAAppDelegate.m */; };
 		DB32CE7B1D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE791D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld */; };
@@ -64,6 +66,8 @@
 		742B916B1D4CA603000FF5A1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		742B916D1D4CA7D7000FF5A1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		742B916E1D4CA7D7000FF5A1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		742B918B1D4FAA93000FF5A1 /* HOAKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HOAKit.framework; sourceTree = "<group>"; };
+		742B91911D4FAEA8000FF5A1 /* HOA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HOA.xcassets; sourceTree = "<group>"; };
 		DB32CE6A1D48893000F6FDA0 /* House-owner-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "House-owner-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB32CE6E1D48893000F6FDA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB32CE701D48893000F6FDA0 /* HAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAAppDelegate.h; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				742B918C1D4FAA93000FF5A1 /* HOAKit.framework in Frameworks */,
 				DBAE08FC1D4F291B008A85C4 /* AVFoundation.framework in Frameworks */,
 				DB32CEA61D4891AE00F6FDA0 /* CoreLocation.framework in Frameworks */,
 				DB32CEA41D488FB200F6FDA0 /* MapKit.framework in Frameworks */,
@@ -189,6 +194,7 @@
 				742B916E1D4CA7D7000FF5A1 /* ViewController.m */,
 				742B916B1D4CA603000FF5A1 /* Main.storyboard */,
 				DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */,
+				742B91911D4FAEA8000FF5A1 /* HOA.xcassets */,
 				DB32CE7E1D48893000F6FDA0 /* LaunchScreen.storyboard */,
 				DB32CE811D48893000F6FDA0 /* Info.plist */,
 				DB32CE791D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld */,
@@ -226,6 +232,7 @@
 		DB32CEA71D4891BC00F6FDA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				742B918B1D4FAA93000FF5A1 /* HOAKit.framework */,
 				DBAE08FB1D4F291B008A85C4 /* AVFoundation.framework */,
 				DB32CEA51D4891AE00F6FDA0 /* CoreLocation.framework */,
 				DB32CEA31D488FB200F6FDA0 /* MapKit.framework */,
@@ -454,6 +461,7 @@
 			files = (
 				DBAE08E71D4F1B97008A85C4 /* House-owner-assistant.storyboard in Resources */,
 				DBAE09191D4F4B6D008A85C4 /* Images.xcassets in Resources */,
+				742B91921D4FAEA8000FF5A1 /* HOA.xcassets in Resources */,
 				DB32CE801D48893000F6FDA0 /* LaunchScreen.storyboard in Resources */,
 				742B916C1D4CA603000FF5A1 /* Main.storyboard in Resources */,
 				DB32CE7D1D48893000F6FDA0 /* Assets.xcassets in Resources */,
@@ -640,6 +648,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "House-owner-assistant/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -654,6 +666,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "House-owner-assistant/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

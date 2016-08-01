@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		742B917E1D4FA836000FF5A1 /* HOAKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B917D1D4FA836000FF5A1 /* HOAKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		742B91871D4FA882000FF5A1 /* TestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91851D4FA882000FF5A1 /* TestViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		742B91881D4FA882000FF5A1 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91861D4FA882000FF5A1 /* TestViewController.m */; };
+		742B918A1D4FA89A000FF5A1 /* test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742B91891D4FA89A000FF5A1 /* test.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		742B917A1D4FA836000FF5A1 /* HOAKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HOAKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		742B917D1D4FA836000FF5A1 /* HOAKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HOAKit.h; sourceTree = "<group>"; };
+		742B917F1D4FA836000FF5A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		742B91851D4FA882000FF5A1 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		742B91861D4FA882000FF5A1 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		742B91891D4FA89A000FF5A1 /* test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = test.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		742B91761D4FA836000FF5A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		742B91701D4FA836000FF5A1 = {
+			isa = PBXGroup;
+			children = (
+				742B917C1D4FA836000FF5A1 /* HOAKit */,
+				742B917B1D4FA836000FF5A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		742B917B1D4FA836000FF5A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				742B917A1D4FA836000FF5A1 /* HOAKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		742B917C1D4FA836000FF5A1 /* HOAKit */ = {
+			isa = PBXGroup;
+			children = (
+				742B917D1D4FA836000FF5A1 /* HOAKit.h */,
+				742B917F1D4FA836000FF5A1 /* Info.plist */,
+				742B91851D4FA882000FF5A1 /* TestViewController.h */,
+				742B91861D4FA882000FF5A1 /* TestViewController.m */,
+				742B91891D4FA89A000FF5A1 /* test.storyboard */,
+			);
+			path = HOAKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		742B91771D4FA836000FF5A1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				742B917E1D4FA836000FF5A1 /* HOAKit.h in Headers */,
+				742B91871D4FA882000FF5A1 /* TestViewController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		742B91791D4FA836000FF5A1 /* HOAKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 742B91821D4FA836000FF5A1 /* Build configuration list for PBXNativeTarget "HOAKit" */;
+			buildPhases = (
+				742B91751D4FA836000FF5A1 /* Sources */,
+				742B91761D4FA836000FF5A1 /* Frameworks */,
+				742B91771D4FA836000FF5A1 /* Headers */,
+				742B91781D4FA836000FF5A1 /* Resources */,
+				742B91931D4FB112000FF5A1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HOAKit;
+			productName = HOAKit;
+			productReference = 742B917A1D4FA836000FF5A1 /* HOAKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		742B91711D4FA836000FF5A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = birneysky;
+				TargetAttributes = {
+					742B91791D4FA836000FF5A1 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 742B91741D4FA836000FF5A1 /* Build configuration list for PBXProject "HOAKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 742B91701D4FA836000FF5A1;
+			productRefGroup = 742B917B1D4FA836000FF5A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				742B91791D4FA836000FF5A1 /* HOAKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		742B91781D4FA836000FF5A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				742B918A1D4FA89A000FF5A1 /* test.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		742B91931D4FB112000FF5A1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/\"\n\nTARGET_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.bundle\"\nTARGET_FILE=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/*.storyboardc\"\nrm -rf ${TARGET_PATH}\nmkdir ${TARGET_PATH}\nmv ${TARGET_FILE} ${TARGET_PATH}";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		742B91751D4FA836000FF5A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				742B91881D4FA882000FF5A1 /* TestViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		742B91801D4FA836000FF5A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		742B91811D4FA836000FF5A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		742B91831D4FA836000FF5A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HOAKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.birneysky.HOAKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		742B91841D4FA836000FF5A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HOAKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.birneysky.HOAKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		742B91741D4FA836000FF5A1 /* Build configuration list for PBXProject "HOAKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				742B91801D4FA836000FF5A1 /* Debug */,
+				742B91811D4FA836000FF5A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		742B91821D4FA836000FF5A1 /* Build configuration list for PBXNativeTarget "HOAKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				742B91831D4FA836000FF5A1 /* Debug */,
+				742B91841D4FA836000FF5A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 742B91711D4FA836000FF5A1 /* Project object */;
+}

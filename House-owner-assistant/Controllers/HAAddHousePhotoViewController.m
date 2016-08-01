@@ -9,6 +9,7 @@
 #import "HAAddHousePhotoViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "CTAssetsPickerController.h"
+#import <HOAKit/TestViewController.h>
 
 @interface HAAddHousePhotoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -212,5 +213,14 @@ static NSString * const reuseIdentifier = @"Cell";
 	
 }
 */
+
+#pragma mark - *** Test HOAKit ***
+
+- (IBAction)test:(id)sender {
+    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"test" bundle:nil];
+    TestViewController* nav = [sb instantiateViewControllerWithIdentifier:@"test_contoller"];
+    [self presentViewController:nav animated:YES completion:nil];
+
+}
 
 @end

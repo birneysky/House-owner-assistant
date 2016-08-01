@@ -40,6 +40,7 @@
 		DBAE09181D4F4B6D008A85C4 /* CTAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE090D1D4F4B6D008A85C4 /* CTAssetsViewController.m */; };
 		DBAE09191D4F4B6D008A85C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBAE090E1D4F4B6D008A85C4 /* Images.xcassets */; };
 		DBAE091A1D4F4B6D008A85C4 /* NSDate+timeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE09101D4F4B6D008A85C4 /* NSDate+timeDescription.m */; };
+		DBAE091D1D4F580F008A85C4 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE091C1D4F580F008A85C4 /* Toast+UIView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		DBAE090E1D4F4B6D008A85C4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DBAE090F1D4F4B6D008A85C4 /* NSDate+timeDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timeDescription.h"; sourceTree = "<group>"; };
 		DBAE09101D4F4B6D008A85C4 /* NSDate+timeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timeDescription.m"; sourceTree = "<group>"; };
+		DBAE091B1D4F580F008A85C4 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
+		DBAE091C1D4F580F008A85C4 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +273,8 @@
 		DBAE08E91D4F1B9F008A85C4 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DBAE091B1D4F580F008A85C4 /* Toast+UIView.h */,
+				DBAE091C1D4F580F008A85C4 /* Toast+UIView.m */,
 				DBAE08EA1D4F1B9F008A85C4 /* CALayer+Additions.h */,
 				DBAE08EB1D4F1B9F008A85C4 /* CALayer+Additions.m */,
 			);
@@ -476,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBAE091D1D4F580F008A85C4 /* Toast+UIView.m in Sources */,
 				742B916F1D4CA7D7000FF5A1 /* ViewController.m in Sources */,
 				DBAE08F71D4F1B9F008A85C4 /* HALocationPickerTextField.m in Sources */,
 				DBAE09181D4F4B6D008A85C4 /* CTAssetsViewController.m in Sources */,

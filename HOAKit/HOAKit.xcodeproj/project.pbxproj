@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7425B80D1D50CBDF00288A46 /* province.json in Resources */ = {isa = PBXBuildFile; fileRef = 7425B80C1D50CBDF00288A46 /* province.json */; };
 		742B917E1D4FA836000FF5A1 /* HOAKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B917D1D4FA836000FF5A1 /* HOAKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742B91C61D4FB731000FF5A1 /* HAAddHousePhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91951D4FB731000FF5A1 /* HAAddHousePhotoViewController.h */; };
 		742B91C71D4FB731000FF5A1 /* HAAddHousePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91961D4FB731000FF5A1 /* HAAddHousePhotoViewController.m */; };
@@ -61,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7425B80C1D50CBDF00288A46 /* province.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province.json; sourceTree = "<group>"; };
 		742B917A1D4FA836000FF5A1 /* HOAKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HOAKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		742B917D1D4FA836000FF5A1 /* HOAKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HOAKit.h; sourceTree = "<group>"; };
 		742B917F1D4FA836000FF5A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		742B917C1D4FA836000FF5A1 /* HOAKit */ = {
 			isa = PBXGroup;
 			children = (
+				7425B80C1D50CBDF00288A46 /* province.json */,
 				DBAE09221D5043DF008A85C4 /* HOA.xcassets */,
 				742B91941D4FB731000FF5A1 /* Controllers */,
 				742B919F1D4FB731000FF5A1 /* General */,
@@ -361,6 +364,7 @@
 				DBAE09231D5043DF008A85C4 /* HOA.xcassets in Resources */,
 				742B91ED1D4FB731000FF5A1 /* Images.xcassets in Resources */,
 				742B91DC1D4FB731000FF5A1 /* House-owner-assistant.storyboard in Resources */,
+				7425B80D1D50CBDF00288A46 /* province.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +382,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/\"\necho \"${SRCROOT}/HOA.xcassets\"\n\nTARGET_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.bundle\"\nTARGET_STORYBOARD_FILE=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/*.storyboardc\"\nTARGET_ASSETS_FILE=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Assets.car\"\nTARGET_IMAGE_PATH=\"${SRCROOT}/HOA.xcassets\"\nrm -rf ${TARGET_PATH}\nrm -rf ${TARGET_ASSETS_FILE}\nmkdir ${TARGET_PATH}\nmv ${TARGET_STORYBOARD_FILE} ${TARGET_PATH}\n\n\nfunction scandir() {\n    local cur_dir parent_dir workdir cur_file_name\n    workdir=$1\n    cd ${workdir}\n    if [ ${workdir} = \"/\" ]\n    then\n    cur_dir=\"\"\n    else\n    cur_dir=$(pwd)\n    fi\n    \n    for dirlist in $(ls ${cur_dir})\n    do\n    if test -d ${dirlist};then\n        cd ${dirlist}\n        scandir ${cur_dir}/${dirlist}\n        cd ..\n    else\n        cur_file_name=${cur_dir}/${dirlist}\n        if [[ $cur_file_name =~ \\.png$ ]]\n        then\n            cp ${cur_file_name} ${TARGET_PATH}\n        fi\n    fi\n    done\n}\n\nif test -d ${TARGET_IMAGE_PATH}\nthen\nscandir ${TARGET_IMAGE_PATH}\nelif test -f ${TARGET_IMAGE_PATH}\nthen\necho \"you input a file but not a directory,pls reinput and try again\"\nexit 1\nelse\necho \"the Directory isn't exist which you input,pls input a new one!!\"\nexit 1\nfi\n\n";
+			shellScript = "echo \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/\"\necho \"${SRCROOT}/HOA.xcassets\"\n\nTARGET_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.bundle\"\nTARGET_STORYBOARD_FILE=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/*.storyboardc\"\nTARGET_ASSETS_FILE=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Assets.car\"\nTARGET_IMAGE_PATH=\"${SRCROOT}/HOA.xcassets\"\nTARGET_JSON_FILE=\"${SRCROOT}/HOAKit/province.json\"\nrm -rf ${TARGET_PATH}\nrm -rf ${TARGET_ASSETS_FILE}\nmkdir ${TARGET_PATH}\nmv ${TARGET_STORYBOARD_FILE} ${TARGET_PATH}\ncp ${TARGET_JSON_FILE} ${TARGET_PATH}\n\nfunction scandir() {\n    local cur_dir parent_dir workdir cur_file_name\n    workdir=$1\n    cd ${workdir}\n    if [ ${workdir} = \"/\" ]\n    then\n    cur_dir=\"\"\n    else\n    cur_dir=$(pwd)\n    fi\n    \n    for dirlist in $(ls ${cur_dir})\n    do\n    if test -d ${dirlist};then\n        cd ${dirlist}\n        scandir ${cur_dir}/${dirlist}\n        cd ..\n    else\n        cur_file_name=${cur_dir}/${dirlist}\n        if [[ $cur_file_name =~ \\.png$ ]]\n        then\n            cp ${cur_file_name} ${TARGET_PATH}\n        fi\n    fi\n    done\n}\n\nif test -d ${TARGET_IMAGE_PATH}\nthen\nscandir ${TARGET_IMAGE_PATH}\nelif test -f ${TARGET_IMAGE_PATH}\nthen\necho \"you input a file but not a directory,pls reinput and try again\"\nexit 1\nelse\necho \"the Directory isn't exist which you input,pls input a new one!!\"\nexit 1\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -114,9 +114,10 @@
 
 #pragma mark - *** HALocationPickerTextFieldDelegate ***
 
-- (void)selectedObjectChangedForPickerTextField:(HALocationPickerTextField *)pickerTF
+- (void)selectedObjectChangedForPickerTextField:(HALocationPickerTextField *)pickerTF address:(NSString *)address latitude:(double)lat longitude:(double)lng
 {
-    CLLocation *loc = [[CLLocation alloc]initWithLatitude:39.975535 longitude:116.338525];
+    self.cityAddressTextfield.text = address;
+    CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
     CLLocationCoordinate2D coord = [loc coordinate];
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);

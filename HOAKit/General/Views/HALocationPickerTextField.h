@@ -14,7 +14,7 @@
 
 //- (void)selectedObjectID:(NSManagedObjectID*)objectID changedForPickerTF:(CoreDataPickerTF*)pickerTF;
 
-- (void)selectedObjectChangedForPickerTextField:(HALocationPickerTextField*)pickerTF;
+- (void)selectedObjectChangedForPickerTextField:(HALocationPickerTextField*)pickerTF address:(NSString*)address latitude:(double)lat longitude:(double)lng;
 
 @optional
 

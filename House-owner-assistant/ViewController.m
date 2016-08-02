@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <HOAKit/HOAViewController.h>
+#import <HOAKit/HOAKit.h>
 
 @interface ViewController ()
 
@@ -26,11 +26,8 @@
 }
 - (IBAction)testAction:(id)sender {
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"HOAKit" ofType:@"bundle"];
-    NSBundle* bundle = [NSBundle bundleWithPath:path];
-    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"House-owner-assistant" bundle:bundle];
-    HOAViewController* nav = [sb instantiateViewControllerWithIdentifier:@"house_owner_assisnt_nav"];
-    [self presentViewController:nav animated:YES completion:nil];
+    UINavigationController* hoaRoot = GetHOAKitRootViewController();
+    [self presentViewController:hoaRoot animated:YES completion:nil];
 }
 
 /*

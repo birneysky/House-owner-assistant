@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -23,10 +23,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseInfoCell" rowHeight="180" id="wKA-g4-jgm">
-                                        <rect key="frame" x="0.0" y="113.5" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="114" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wKA-g4-jgm" id="CLC-ZP-YYv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="179.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncR-uf-eoF">
@@ -100,7 +100,7 @@
                                                                 <constraint firstAttribute="width" constant="1" id="4jo-Ue-dpM"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_picture" translatesAutoresizingMaskIntoConstraints="NO" id="gxX-rx-NhF">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HA_Test_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="gxX-rx-NhF">
                                                             <rect key="frame" x="38" y="8" width="114" height="93"/>
                                                         </imageView>
                                                     </subviews>
@@ -142,7 +142,7 @@
                                                                 <constraint firstAttribute="width" constant="1" id="mnH-8n-N3T"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-d8-uVN">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-d8-uVN">
                                                             <rect key="frame" x="202" y="8" width="178" height="30"/>
                                                             <state key="normal" title="查看评论">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -366,7 +366,7 @@
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nCY-Jj-6OV">
                                                 <rect key="frame" x="0.0" y="0.0" width="144" height="44"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bubble" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-zE-ZIY" customClass="buddle">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HA_Bubble" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-zE-ZIY" customClass="buddle">
                                                         <rect key="frame" x="0.0" y="-2" width="144" height="44"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="拖动地图标记房源位置" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eq-yt-f31">
@@ -378,7 +378,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="NJK-CO-oVQ">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HA_Location_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="NJK-CO-oVQ">
                                                 <rect key="frame" x="47" y="47" width="50" height="50"/>
                                             </imageView>
                                         </subviews>
@@ -460,12 +460,12 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGc-8Z-a2c">
                                     <rect key="frame" x="20" y="20" width="276" height="153"/>
-                                    <state key="normal" image="hource_icon"/>
+                                    <state key="normal" image="HA_House_Icon"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCf-dz-cfb">
                                     <rect key="frame" x="304" y="20" width="276" height="153"/>
                                     <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" image="hource_icon"/>
+                                    <state key="normal" image="HA_House_Icon"/>
                                 </button>
                             </subviews>
                             <constraints>
@@ -481,10 +481,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseTypeCell" id="yJ6-gU-tEj">
-                                <rect key="frame" x="0.0" y="306.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="307" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yJ6-gU-tEj" id="Lje-2R-Mbj">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -522,7 +522,7 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="180"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="createRoomDefaultMain" translatesAutoresizingMaskIntoConstraints="NO" id="Fey-Di-g1C">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HA_Room_Default_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="Fey-Di-g1C">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </imageView>
@@ -535,7 +535,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <inset key="titleEdgeInsets" minX="-47" minY="65" maxX="0.0" maxY="0.0"/>
                                     <inset key="imageEdgeInsets" minX="12" minY="-20" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="添加照片" image="createRoomDefaultIcon"/>
+                                    <state key="normal" title="添加照片" image="HA_Camera_Icon"/>
                                     <connections>
                                         <segue destination="B7m-5j-W8P" kind="show" id="W6i-uK-GPt"/>
                                     </connections>
@@ -552,10 +552,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HAHouseSummaryCell" id="HF9-Q7-4I2">
-                                <rect key="frame" x="0.0" y="293.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="294" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HF9-Q7-4I2" id="uR1-dc-qEX">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -651,12 +651,6 @@
                     <view key="view" contentMode="scaleToFill" id="7JA-kc-jQs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1H-sF-WJV">
-                                <rect key="frame" x="122" y="310" width="26" height="22"/>
-                                <state key="normal" title="Button" image="add_icon"/>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="zCv-wH-aT6"/>
@@ -689,12 +683,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add_icon" width="13" height="13"/>
-        <image name="bubble" width="161" height="46"/>
-        <image name="createRoomDefaultIcon" width="45" height="45"/>
-        <image name="createRoomDefaultMain" width="320" height="167"/>
-        <image name="hource_icon" width="85" height="85"/>
-        <image name="location_icon" width="40" height="40"/>
-        <image name="test_picture" width="140" height="96"/>
+        <image name="HA_Bubble" width="161" height="46"/>
+        <image name="HA_Camera_Icon" width="45" height="45"/>
+        <image name="HA_House_Icon" width="42" height="42"/>
+        <image name="HA_Location_Icon" width="40" height="40"/>
+        <image name="HA_Room_Default_Picture" width="320" height="167"/>
+        <image name="HA_Test_Picture" width="140" height="96"/>
     </resources>
 </document>

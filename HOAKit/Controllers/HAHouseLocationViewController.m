@@ -64,8 +64,8 @@
     if([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
         [self.locationManager requestWhenInUseAuthorization];
     self.cityAddressTextfield.pickerDelegate = self;
-    UIImageView* leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"green_location_icon"]];
-    UIImageView* rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_right"]];
+    UIImageView* leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Green_Location_Icon"]];
+    UIImageView* rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Arrow_Right"]];
 
     self.cityAddressTextfield.leftView = leftView;
     self.cityAddressTextfield.rightView = rightView;

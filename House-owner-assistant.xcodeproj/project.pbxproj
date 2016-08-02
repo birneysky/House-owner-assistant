@@ -10,18 +10,17 @@
 		742B916C1D4CA603000FF5A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742B916B1D4CA603000FF5A1 /* Main.storyboard */; };
 		742B916F1D4CA7D7000FF5A1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B916E1D4CA7D7000FF5A1 /* ViewController.m */; };
 		742B918C1D4FAA93000FF5A1 /* HOAKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 742B918B1D4FAA93000FF5A1 /* HOAKit.framework */; };
-		742B91921D4FAEA8000FF5A1 /* HOA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742B91911D4FAEA8000FF5A1 /* HOA.xcassets */; };
 		742B91F51D4FB908000FF5A1 /* HOAKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 742B91F41D4FB908000FF5A1 /* HOAKit.bundle */; };
 		DB32CE6F1D48893000F6FDA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE6E1D48893000F6FDA0 /* main.m */; };
 		DB32CE721D48893000F6FDA0 /* HAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE711D48893000F6FDA0 /* HAAppDelegate.m */; };
 		DB32CE7B1D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE791D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld */; };
-		DB32CE7D1D48893000F6FDA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */; };
 		DB32CE801D48893000F6FDA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB32CE7E1D48893000F6FDA0 /* LaunchScreen.storyboard */; };
 		DB32CE8B1D48893000F6FDA0 /* House_owner_assistantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE8A1D48893000F6FDA0 /* House_owner_assistantTests.m */; };
 		DB32CE961D48893000F6FDA0 /* House_owner_assistantUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32CE951D48893000F6FDA0 /* House_owner_assistantUITests.m */; };
 		DB32CEA41D488FB200F6FDA0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB32CEA31D488FB200F6FDA0 /* MapKit.framework */; };
 		DB32CEA61D4891AE00F6FDA0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB32CEA51D4891AE00F6FDA0 /* CoreLocation.framework */; };
 		DBAE08FC1D4F291B008A85C4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBAE08FB1D4F291B008A85C4 /* AVFoundation.framework */; };
+		DBAE091F1D503D0A008A85C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBAE091E1D503D0A008A85C4 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,14 +45,12 @@
 		742B916D1D4CA7D7000FF5A1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		742B916E1D4CA7D7000FF5A1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		742B918B1D4FAA93000FF5A1 /* HOAKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HOAKit.framework; sourceTree = "<group>"; };
-		742B91911D4FAEA8000FF5A1 /* HOA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HOA.xcassets; sourceTree = "<group>"; };
 		742B91F41D4FB908000FF5A1 /* HOAKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HOAKit.bundle; sourceTree = SOURCE_ROOT; };
 		DB32CE6A1D48893000F6FDA0 /* House-owner-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "House-owner-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB32CE6E1D48893000F6FDA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB32CE701D48893000F6FDA0 /* HAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAAppDelegate.h; sourceTree = "<group>"; };
 		DB32CE711D48893000F6FDA0 /* HAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HAAppDelegate.m; sourceTree = "<group>"; };
 		DB32CE7A1D48893000F6FDA0 /* House_owner_assistant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = House_owner_assistant.xcdatamodel; sourceTree = "<group>"; };
-		DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB32CE7F1D48893000F6FDA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB32CE811D48893000F6FDA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB32CE861D48893000F6FDA0 /* House-owner-assistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "House-owner-assistantTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +62,7 @@
 		DB32CEA31D488FB200F6FDA0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DB32CEA51D4891AE00F6FDA0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DBAE08FB1D4F291B008A85C4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DBAE091E1D503D0A008A85C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,14 +118,13 @@
 		DB32CE6C1D48893000F6FDA0 /* House-owner-assistant */ = {
 			isa = PBXGroup;
 			children = (
+				DBAE091E1D503D0A008A85C4 /* Assets.xcassets */,
 				742B91F41D4FB908000FF5A1 /* HOAKit.bundle */,
 				DB32CE701D48893000F6FDA0 /* HAAppDelegate.h */,
 				DB32CE711D48893000F6FDA0 /* HAAppDelegate.m */,
 				742B916D1D4CA7D7000FF5A1 /* ViewController.h */,
 				742B916E1D4CA7D7000FF5A1 /* ViewController.m */,
 				742B916B1D4CA603000FF5A1 /* Main.storyboard */,
-				DB32CE7C1D48893000F6FDA0 /* Assets.xcassets */,
-				742B91911D4FAEA8000FF5A1 /* HOA.xcassets */,
 				DB32CE7E1D48893000F6FDA0 /* LaunchScreen.storyboard */,
 				DB32CE811D48893000F6FDA0 /* Info.plist */,
 				DB32CE791D48893000F6FDA0 /* House_owner_assistant.xcdatamodeld */,
@@ -276,10 +273,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				742B91921D4FAEA8000FF5A1 /* HOA.xcassets in Resources */,
 				DB32CE801D48893000F6FDA0 /* LaunchScreen.storyboard in Resources */,
 				742B916C1D4CA603000FF5A1 /* Main.storyboard in Resources */,
-				DB32CE7D1D48893000F6FDA0 /* Assets.xcassets in Resources */,
+				DBAE091F1D503D0A008A85C4 /* Assets.xcassets in Resources */,
 				742B91F51D4FB908000FF5A1 /* HOAKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

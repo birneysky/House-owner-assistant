@@ -52,8 +52,12 @@
 		742B91EF1D4FB731000FF5A1 /* NSDate+timeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91C51D4FB731000FF5A1 /* NSDate+timeDescription.m */; };
 		742B91F21D4FB8A9000FF5A1 /* HOAViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91F01D4FB8A9000FF5A1 /* HOAViewController.h */; };
 		742B91F31D4FB8A9000FF5A1 /* HOAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91F11D4FB8A9000FF5A1 /* HOAViewController.m */; };
+		DB8EF91B1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */; };
+		DB8EF91C1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */; };
 		DBAE09231D5043DF008A85C4 /* HOA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBAE09221D5043DF008A85C4 /* HOA.xcassets */; };
 		DBAE09251D504A4F008A85C4 /* HOAKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE09241D504A4F008A85C4 /* HOAKit.m */; };
+		DBAE09281D506275008A85C4 /* HAHouseIntroduceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE09261D506275008A85C4 /* HAHouseIntroduceViewController.h */; };
+		DBAE09291D506275008A85C4 /* HAHouseIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE09271D506275008A85C4 /* HAHouseIntroduceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,8 +108,12 @@
 		742B91C51D4FB731000FF5A1 /* NSDate+timeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timeDescription.m"; sourceTree = "<group>"; };
 		742B91F01D4FB8A9000FF5A1 /* HOAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOAViewController.h; sourceTree = "<group>"; };
 		742B91F11D4FB8A9000FF5A1 /* HOAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOAViewController.m; sourceTree = "<group>"; };
+		DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPriceAndTrandRulesTableController.h; sourceTree = "<group>"; };
+		DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPriceAndTrandRulesTableController.m; sourceTree = "<group>"; };
 		DBAE09221D5043DF008A85C4 /* HOA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HOA.xcassets; sourceTree = SOURCE_ROOT; };
 		DBAE09241D504A4F008A85C4 /* HOAKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOAKit.m; sourceTree = "<group>"; };
+		DBAE09261D506275008A85C4 /* HAHouseIntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseIntroduceViewController.h; sourceTree = "<group>"; };
+		DBAE09271D506275008A85C4 /* HAHouseIntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseIntroduceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +173,10 @@
 				742B919E1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.m */,
 				742B91F01D4FB8A9000FF5A1 /* HOAViewController.h */,
 				742B91F11D4FB8A9000FF5A1 /* HOAViewController.m */,
+				DBAE09261D506275008A85C4 /* HAHouseIntroduceViewController.h */,
+				DBAE09271D506275008A85C4 /* HAHouseIntroduceViewController.m */,
+				DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */,
+				DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */,
 			);
 			path = Controllers;
 			sourceTree = SOURCE_ROOT;
@@ -268,6 +280,7 @@
 				742B917E1D4FA836000FF5A1 /* HOAKit.h in Headers */,
 				742B91EE1D4FB731000FF5A1 /* NSDate+timeDescription.h in Headers */,
 				742B91D21D4FB731000FF5A1 /* Toast+UIView.h in Headers */,
+				DBAE09281D506275008A85C4 /* HAHouseIntroduceViewController.h in Headers */,
 				742B91D41D4FB731000FF5A1 /* HALeapBehavior.h in Headers */,
 				742B91C61D4FB731000FF5A1 /* HAAddHousePhotoViewController.h in Headers */,
 				742B91EB1D4FB731000FF5A1 /* CTAssetsViewController.h in Headers */,
@@ -278,6 +291,7 @@
 				742B91D81D4FB731000FF5A1 /* HALocationPickerTextField.h in Headers */,
 				742B91E11D4FB731000FF5A1 /* CTAssetsGroupViewController.h in Headers */,
 				742B91D61D4FB731000FF5A1 /* HAFloatingButton.h in Headers */,
+				DB8EF91B1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h in Headers */,
 				742B91D01D4FB731000FF5A1 /* CALayer+Additions.h in Headers */,
 				742B91CE1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.h in Headers */,
 				742B91E51D4FB731000FF5A1 /* CTAssetsPickerController.h in Headers */,
@@ -388,8 +402,10 @@
 				742B91CD1D4FB731000FF5A1 /* HAHouseTypeTableViewController.m in Sources */,
 				742B91D91D4FB731000FF5A1 /* HALocationPickerTextField.m in Sources */,
 				742B91F31D4FB8A9000FF5A1 /* HOAViewController.m in Sources */,
+				DB8EF91C1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m in Sources */,
 				742B91E41D4FB731000FF5A1 /* CTAssetsPickerConstants.m in Sources */,
 				742B91D51D4FB731000FF5A1 /* HALeapBehavior.m in Sources */,
+				DBAE09291D506275008A85C4 /* HAHouseIntroduceViewController.m in Sources */,
 				742B91C71D4FB731000FF5A1 /* HAAddHousePhotoViewController.m in Sources */,
 				742B91CB1D4FB731000FF5A1 /* HAHouseLocationViewController.m in Sources */,
 				742B91D71D4FB731000FF5A1 /* HAFloatingButton.m in Sources */,

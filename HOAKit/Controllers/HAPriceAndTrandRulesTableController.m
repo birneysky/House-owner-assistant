@@ -1,79 +1,104 @@
 //
-//  HAPublishHouseInfoTableViewController.m
-//  House-owner-assistant
+//  HAPriceAndTrandRulesTableController.m
+//  HOAKit
 //
-//  Created by zhangguang on 16/7/29.
-//  Copyright © 2016年 HA. All rights reserved.
+//  Created by zhangguang on 16/8/2.
+//  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HAPublishHouseInfoTableViewController.h"
+#import "HAPriceAndTrandRulesTableController.h"
 
-@interface HAPublishHouseInfoTableViewController ()
+@interface HAPriceAndTrandRulesTableController ()
+@property (weak, nonatomic) IBOutlet UILabel *ppLabel;
 
 @property(nonatomic,strong) NSArray* dataSource;
 
 @end
 
-@implementation HAPublishHouseInfoTableViewController
+@implementation HAPriceAndTrandRulesTableController
 
-#pragma mark - ***Properties ***
-
-- (NSArray*) dataSource
+#pragma mark - *** ***
+- (NSArray*)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"设施列表",@"出租方式与房源类型",@"地址", nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金",@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],@[@"是否需要第三方保洁",@"是否平台提供洗漱用品",@"是否平台提供床品"], nil];
     }
     return _dataSource;
 }
 
+#pragma mark - *** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //self.tableView.sectionFooterHeight = 280;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
+//    NSLog(@"footview %p %@,lable %p lableFrame %@",self.tableView.tableFooterView,NSStringFromClass([self.tableView.tableFooterView class]),self.ppLabel,NSStringFromCGRect(self.ppLabel.frame));
+//    self.ppLabel.frame = CGRectMake(0, 0, 600, 300);
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+//    NSLog(@"footview %p %@,lable %p lableFrame %@",self.tableView.tableFooterView,NSStringFromClass([self.tableView.tableFooterView class]),self.ppLabel,NSStringFromCGRect(self.ppLabel.frame));
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+
+    return self.dataSource.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.count;
+
+    NSArray* array = self.dataSource[section];
+    return array.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseSummaryCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAPriceCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = self.dataSource[indexPath.row];
+    
+    cell.textLabel.text = self.dataSource[indexPath.section][indexPath.row];
     
     return cell;
 }
 
-#pragma mark - *** TableView Delegate ***
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (indexPath.row == 0) {
-        [self performSegueWithIdentifier:@"push_house_introduce" sender:nil];
+    if (0 == section) {
+        return nil;
     }
-    else if (indexPath.row == 1){
-        [self performSegueWithIdentifier:@"push_price_trading_rules" sender:nil];
+    else if (1 == section){
+        return @"以下是非必填选项";
     }
+    else{
+        return @"勾选一下部分，将分出部分收益给人员";
+    }
+ 
 }
+
+
+//- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UILabel* lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+//    lable.text = @"fdsafdsafdsafdsasafs";
+//    return lable;
+//}
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -118,5 +143,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - *** Target Action ***
+
+- (IBAction)saveButtonClicked:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end

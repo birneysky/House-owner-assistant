@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="180" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="kPP-ll-249">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="38" width="600" height="562"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseInfoCell" rowHeight="180" id="wKA-g4-jgm">
@@ -209,11 +209,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="point" keyPath="contentOffset">
-                                        <point key="value" x="0.0" y="44"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="pd0-tQ-jb0" id="Xg9-g5-W9c"/>
                                     <outlet property="delegate" destination="pd0-tQ-jb0" id="wRR-Of-ydk"/>
@@ -253,11 +248,9 @@
                         <constraints>
                             <constraint firstItem="3gg-xZ-4Bs" firstAttribute="top" secondItem="qW3-QZ-c8r" secondAttribute="bottom" constant="80" id="6fp-gQ-PhZ"/>
                             <constraint firstItem="kPP-ll-249" firstAttribute="leading" secondItem="jgj-cA-xgN" secondAttribute="leading" id="8UK-mA-oez"/>
-                            <constraint firstItem="kPP-ll-249" firstAttribute="top" secondItem="jgj-cA-xgN" secondAttribute="top" id="YP4-zQ-b1Q"/>
+                            <constraint firstItem="kPP-ll-249" firstAttribute="top" secondItem="jgj-cA-xgN" secondAttribute="top" constant="38" id="YP4-zQ-b1Q"/>
                             <constraint firstItem="XdT-OV-uEp" firstAttribute="top" secondItem="kPP-ll-249" secondAttribute="bottom" id="bJR-eW-f0F"/>
                             <constraint firstAttribute="trailing" secondItem="kPP-ll-249" secondAttribute="trailing" id="cvf-eP-UT2"/>
-                            <constraint firstAttribute="trailing" secondItem="kPP-ll-249" secondAttribute="trailing" id="nXU-JT-bgM"/>
-                            <constraint firstItem="kPP-ll-249" firstAttribute="leading" secondItem="jgj-cA-xgN" secondAttribute="leading" id="nwA-ws-D4l"/>
                             <constraint firstAttribute="trailing" secondItem="3gg-xZ-4Bs" secondAttribute="trailing" constant="8" id="xWl-oN-D0t"/>
                         </constraints>
                     </view>
@@ -266,6 +259,9 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="伊妹"/>
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="automaticallyAdjustsScrollViewInsets" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="addButton" destination="3gg-xZ-4Bs" id="9dy-Lx-HRt"/>
                     </connections>
@@ -292,12 +288,18 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="详细地址 例如：-路-小区-号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dnj-w6-6t3">
                                         <rect key="frame" x="45" y="51" width="535" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="hcb-rF-c85" id="yB4-hu-byX"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="门牌号 （对房客保密）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Gt-cK-Omn">
                                         <rect key="frame" x="45" y="102" width="535" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="hcb-rF-c85" id="CWm-5f-er9"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBW-WR-zBQ">
                                         <rect key="frame" x="45" y="49" width="535" height="1"/>
@@ -874,134 +876,155 @@
                         <viewControllerLayoutGuide type="top" id="cUF-9R-Eji"/>
                         <viewControllerLayoutGuide type="bottom" id="BhN-8A-jsx"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7JA-kc-jQs">
+                    <view key="view" contentMode="scaleToFill" id="7JA-kc-jQs" userLabel="Controller View">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="房源标题：房屋有何特色，地理优势，必填" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4e5-FM-cgU">
-                                <rect key="frame" x="20" y="72" width="560" height="30"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJ9-Hk-aPO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNN-HP-8Qe" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="房源标题：房屋有何特色，地理优势，必填" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4e5-FM-cgU" userLabel="House Title Textfield">
+                                        <rect key="frame" x="20" y="72" width="560" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Mj7-pa-VPx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5-20个字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5r-1v-ux8" userLabel="5-20 Label">
+                                        <rect key="frame" x="504" y="110" width="76" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="76" id="t9G-F0-oCH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="房源描述：周边环境，内置装饰等方面介绍，必填" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="a5X-2k-7B7" userLabel="House Description TextView">
+                                        <rect key="frame" x="20" y="139" width="560" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="uP1-fu-rml"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                <color key="value" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="地理位置描述，可填写周边标志建筑和具体地点" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MJc-Cy-hzv" userLabel="House Location TextView">
+                                        <rect key="frame" x="20" y="276" width="560" height="68"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="GI3-fv-qJ7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="交通描述，可描述周边公交站和地铁线路" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-Vs-o7A" userLabel="House Traffic TextView">
+                                        <rect key="frame" x="20" y="352" width="560" height="68"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="周边生活，可描述周边的商场等" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F7l-UW-xqT" userLabel="House Life TextView">
+                                        <rect key="frame" x="20" y="428" width="560" height="68"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50个字以上" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIa-3A-hGz">
+                                        <rect key="frame" x="490" y="247" width="90" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="82b-zR-MnL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="rEM-06-HT3"/>
+                                    <constraint firstItem="MJc-Cy-hzv" firstAttribute="top" secondItem="eIa-3A-hGz" secondAttribute="bottom" constant="8" id="4jj-JA-GIa"/>
+                                    <constraint firstItem="fNN-HP-8Qe" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" id="5e5-Ws-Rel"/>
+                                    <constraint firstItem="a5X-2k-7B7" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="6bA-b1-dLu"/>
+                                    <constraint firstItem="e9O-Vs-o7A" firstAttribute="height" secondItem="MJc-Cy-hzv" secondAttribute="height" id="8sJ-6K-35d"/>
+                                    <constraint firstItem="e9O-Vs-o7A" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="BCk-qo-Zac"/>
+                                    <constraint firstItem="a5X-2k-7B7" firstAttribute="top" secondItem="f5r-1v-ux8" secondAttribute="bottom" constant="8" id="BJt-Vy-fo9"/>
+                                    <constraint firstItem="eIa-3A-hGz" firstAttribute="top" secondItem="a5X-2k-7B7" secondAttribute="bottom" constant="8" id="Cag-oG-oMJ"/>
+                                    <constraint firstItem="MJc-Cy-hzv" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="E3c-Yy-d77"/>
+                                    <constraint firstItem="F7l-UW-xqT" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="FDt-Se-f3I"/>
+                                    <constraint firstAttribute="trailing" secondItem="fNN-HP-8Qe" secondAttribute="trailing" id="Irb-jU-wD9"/>
+                                    <constraint firstAttribute="trailing" secondItem="f5r-1v-ux8" secondAttribute="trailing" constant="20" id="OJP-Ke-rT7"/>
+                                    <constraint firstAttribute="trailing" secondItem="F7l-UW-xqT" secondAttribute="trailing" constant="20" id="Xfh-CL-hvk"/>
+                                    <constraint firstItem="fNN-HP-8Qe" firstAttribute="height" secondItem="KJ9-Hk-aPO" secondAttribute="height" id="aXb-cX-0K6"/>
+                                    <constraint firstItem="f5r-1v-ux8" firstAttribute="top" secondItem="4e5-FM-cgU" secondAttribute="bottom" constant="8" id="bbr-Ox-rHA"/>
+                                    <constraint firstItem="fNN-HP-8Qe" firstAttribute="width" secondItem="KJ9-Hk-aPO" secondAttribute="width" id="cxT-pD-mzc"/>
+                                    <constraint firstAttribute="trailing" secondItem="e9O-Vs-o7A" secondAttribute="trailing" constant="20" id="eEQ-Xh-Ifv"/>
+                                    <constraint firstAttribute="trailing" secondItem="eIa-3A-hGz" secondAttribute="trailing" constant="20" id="eNs-4n-vEE"/>
+                                    <constraint firstItem="F7l-UW-xqT" firstAttribute="height" secondItem="e9O-Vs-o7A" secondAttribute="height" id="eZC-kO-gJk"/>
+                                    <constraint firstAttribute="trailing" secondItem="MJc-Cy-hzv" secondAttribute="trailing" constant="20" id="gp4-Co-1tB"/>
+                                    <constraint firstItem="e9O-Vs-o7A" firstAttribute="top" secondItem="MJc-Cy-hzv" secondAttribute="bottom" constant="8" id="hu3-L7-UEA"/>
+                                    <constraint firstItem="F7l-UW-xqT" firstAttribute="top" secondItem="e9O-Vs-o7A" secondAttribute="bottom" constant="8" id="iRo-b3-tuX"/>
+                                    <constraint firstAttribute="bottom" secondItem="fNN-HP-8Qe" secondAttribute="bottom" id="ikF-0G-PBO"/>
+                                    <constraint firstItem="4e5-FM-cgU" firstAttribute="top" secondItem="KJ9-Hk-aPO" secondAttribute="top" constant="72" id="kIr-gb-awo"/>
+                                    <constraint firstItem="fNN-HP-8Qe" firstAttribute="top" secondItem="KJ9-Hk-aPO" secondAttribute="top" id="kjD-zD-7qX"/>
+                                    <constraint firstAttribute="trailing" secondItem="4e5-FM-cgU" secondAttribute="trailing" constant="20" id="t1T-Bg-tMV"/>
+                                    <constraint firstItem="4e5-FM-cgU" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="tWz-rq-7HP"/>
+                                    <constraint firstAttribute="trailing" secondItem="a5X-2k-7B7" secondAttribute="trailing" constant="20" id="vpp-bU-rxf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5-20个字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5r-1v-ux8">
-                                <rect key="frame" x="504" y="110" width="76" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="76" id="3Fc-KC-RWt"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="房源描述：周边环境，内置装饰等方面介绍，必填" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="a5X-2k-7B7">
-                                <rect key="frame" x="20" y="139" width="560" height="102"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="102" id="kpF-gU-qFK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
-                                        <color key="value" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="地理位置描述，可填写周边标志建筑和具体地点" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MJc-Cy-hzv">
-                                <rect key="frame" x="20" y="278" width="560" height="68"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="0it-2b-zwO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
-                                        <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="交通描述，可描述周边公交站和地铁线路" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-Vs-o7A">
-                                <rect key="frame" x="20" y="354" width="560" height="68"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
-                                        <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="周边生活，可描述周边的商场等" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F7l-UW-xqT">
-                                <rect key="frame" x="20" y="430" width="560" height="68"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
-                                        <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50个字以上" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIa-3A-hGz">
-                                <rect key="frame" x="490" y="249" width="90" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="03i-Ty-icq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="4e5-FM-cgU" secondAttribute="trailing" constant="20" id="868-8d-aVU"/>
-                            <constraint firstItem="MJc-Cy-hzv" firstAttribute="top" secondItem="eIa-3A-hGz" secondAttribute="bottom" constant="8" id="98f-za-FBP"/>
-                            <constraint firstItem="F7l-UW-xqT" firstAttribute="top" secondItem="e9O-Vs-o7A" secondAttribute="bottom" constant="8" id="AiE-vd-g4F"/>
-                            <constraint firstItem="eIa-3A-hGz" firstAttribute="top" secondItem="a5X-2k-7B7" secondAttribute="bottom" constant="8" id="Hdo-Xa-8Om"/>
-                            <constraint firstItem="e9O-Vs-o7A" firstAttribute="leading" secondItem="7JA-kc-jQs" secondAttribute="leadingMargin" id="IOv-XQ-n6U"/>
-                            <constraint firstItem="F7l-UW-xqT" firstAttribute="trailing" secondItem="7JA-kc-jQs" secondAttribute="trailingMargin" id="OBy-Vw-S1x"/>
-                            <constraint firstItem="a5X-2k-7B7" firstAttribute="top" secondItem="f5r-1v-ux8" secondAttribute="bottom" constant="8" id="Sf1-uf-uPV"/>
-                            <constraint firstItem="MJc-Cy-hzv" firstAttribute="trailing" secondItem="7JA-kc-jQs" secondAttribute="trailingMargin" id="Tes-DE-IHe"/>
-                            <constraint firstAttribute="trailing" secondItem="f5r-1v-ux8" secondAttribute="trailing" constant="20" id="Tvc-5k-1HP"/>
-                            <constraint firstItem="F7l-UW-xqT" firstAttribute="leading" secondItem="7JA-kc-jQs" secondAttribute="leadingMargin" id="WVx-wh-cve"/>
-                            <constraint firstItem="a5X-2k-7B7" firstAttribute="trailing" secondItem="7JA-kc-jQs" secondAttribute="trailingMargin" id="XOy-Yl-uiu"/>
-                            <constraint firstItem="4e5-FM-cgU" firstAttribute="top" secondItem="cUF-9R-Eji" secondAttribute="bottom" constant="8" id="XcX-Uc-VIn"/>
-                            <constraint firstAttribute="trailing" secondItem="eIa-3A-hGz" secondAttribute="trailing" constant="20" id="cF5-ZE-ZpO"/>
-                            <constraint firstItem="f5r-1v-ux8" firstAttribute="top" secondItem="4e5-FM-cgU" secondAttribute="bottom" constant="8" id="cJP-Iu-yEZ"/>
-                            <constraint firstItem="4e5-FM-cgU" firstAttribute="leading" secondItem="7JA-kc-jQs" secondAttribute="leading" constant="20" id="e7v-Ho-Cok"/>
-                            <constraint firstItem="MJc-Cy-hzv" firstAttribute="leading" secondItem="7JA-kc-jQs" secondAttribute="leadingMargin" id="gYA-lT-bbA"/>
-                            <constraint firstItem="e9O-Vs-o7A" firstAttribute="trailing" secondItem="7JA-kc-jQs" secondAttribute="trailingMargin" id="jTz-zk-dPl"/>
-                            <constraint firstItem="a5X-2k-7B7" firstAttribute="leading" secondItem="7JA-kc-jQs" secondAttribute="leadingMargin" id="jdl-0y-BTe"/>
-                            <constraint firstItem="F7l-UW-xqT" firstAttribute="height" secondItem="MJc-Cy-hzv" secondAttribute="height" id="lrK-cT-TMY"/>
-                            <constraint firstItem="e9O-Vs-o7A" firstAttribute="height" secondItem="MJc-Cy-hzv" secondAttribute="height" id="pkW-BM-xhc"/>
-                            <constraint firstItem="e9O-Vs-o7A" firstAttribute="top" secondItem="MJc-Cy-hzv" secondAttribute="bottom" constant="8" id="xwf-Ws-i7q"/>
+                            <constraint firstItem="BhN-8A-jsx" firstAttribute="top" secondItem="KJ9-Hk-aPO" secondAttribute="bottom" id="0IY-9F-xbV"/>
+                            <constraint firstItem="KJ9-Hk-aPO" firstAttribute="top" secondItem="7JA-kc-jQs" secondAttribute="top" id="Aan-64-rWE"/>
+                            <constraint firstItem="KJ9-Hk-aPO" firstAttribute="leading" secondItem="7JA-kc-jQs" secondAttribute="leading" id="dWO-Pn-owE"/>
+                            <constraint firstAttribute="trailing" secondItem="KJ9-Hk-aPO" secondAttribute="trailing" id="tC6-PH-Ufl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zCv-wH-aT6">
@@ -1013,6 +1036,7 @@
                     </navigationItem>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="房屋标题与房屋介绍"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="automaticallyAdjustsScrollViewInsets" value="NO"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NmY-4r-iKf" userLabel="First Responder" sceneMemberID="firstResponder"/>

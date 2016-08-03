@@ -138,6 +138,18 @@
     self.behavior = nil;
     self.animator = nil;
 }
+
+#pragma mark - *** TextField Delegate ***
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (self.fullAddressTextfield == textField) {
+        [self.houseNumberTextfield becomeFirstResponder];
+    }
+    if (self.houseNumberTextfield == textField) {
+        [self.houseNumberTextfield resignFirstResponder];
+    }
+    return YES;
+}
+
 /*
 #pragma mark - Navigation
 

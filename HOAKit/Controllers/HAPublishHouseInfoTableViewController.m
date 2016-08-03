@@ -73,6 +73,14 @@
     else if (indexPath.row == 1){
         [self performSegueWithIdentifier:@"push_price_trading_rules" sender:nil];
     }
+    else if (indexPath.row == 4){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (indexPath.row == 5){
+        NSArray* vcs = self.navigationController.viewControllers;
+        [self.navigationController popToViewController:vcs[vcs.count-3] animated:YES];
+    }
+    
 }
 
 /*

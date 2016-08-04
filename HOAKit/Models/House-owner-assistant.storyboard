@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -23,10 +23,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseInfoCell" rowHeight="180" id="wKA-g4-jgm">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="113.5" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wKA-g4-jgm" id="CLC-ZP-YYv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="179.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncR-uf-eoF">
@@ -142,7 +142,7 @@
                                                                 <constraint firstAttribute="width" constant="1" id="mnH-8n-N3T"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-d8-uVN">
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-d8-uVN">
                                                             <rect key="frame" x="202" y="8" width="178" height="30"/>
                                                             <state key="normal" title="查看评论">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -482,16 +482,16 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="KHS-uK-zPm">
-                            <rect key="frame" x="0.0" y="369" width="600" height="232"/>
+                            <rect key="frame" x="0.0" y="368.5" width="600" height="232"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseTypeCell" id="yJ6-gU-tEj">
-                                <rect key="frame" x="0.0" y="307" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="306.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yJ6-gU-tEj" id="Lje-2R-Mbj">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -559,10 +559,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HAHouseSummaryCell" id="HF9-Q7-4I2">
-                                <rect key="frame" x="0.0" y="294" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="293.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HF9-Q7-4I2" id="uR1-dc-qEX">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -651,175 +651,175 @@
                                     <attributedString key="attributedText">
                                         <fragment content="1.">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="房客在入住前一天">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="18">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="：">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="00">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="之前取消订单，对还全部房租和押金                      ">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="                                                                                           2.">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="房客在入住日前">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="1">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="天">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="18">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="：">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="00">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="之后，入住日的">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="18">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="：">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="00">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="之前取消订单，从收取的租金中扣除第一天的房租">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="                                                                       3.">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="房客入住日">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="18">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="：">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="00">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="之后默认为入住并扣除当日房租，如提前退房，则扣除次日的房租">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="PingFangSC-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="   ">
                                             <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
@@ -844,7 +844,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X3c-x3-hG6" id="qgf-cV-WKM">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -910,16 +910,15 @@
                                             <constraint firstAttribute="width" constant="76" id="t9G-F0-oCH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="房源描述：周边环境，内置装饰等方面介绍，必填" translatesAutoresizingMaskIntoConstraints="NO" id="a5X-2k-7B7" userLabel="House Description TextView">
-                                        <rect key="frame" x="20" y="89" width="560" height="98"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQa-hQ-EMN" userLabel="House Description TextView" customClass="HATextView">
+                                        <rect key="frame" x="20" y="89" width="560" height="68"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="98" id="uP1-fu-rml"/>
+                                            <constraint firstAttribute="height" constant="68" id="MSH-Zr-1Fe"/>
                                         </constraints>
-                                        <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                         <userDefinedRuntimeAttributes>
@@ -930,15 +929,25 @@
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
-                                                <color key="value" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="房源描述：周边环境，内置装饰等方面介绍，必填"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="delegate" destination="bXN-Jg-OJg" id="18g-cL-bKf"/>
+                                            <outlet property="delegate" destination="bXN-Jg-OJg" id="eqK-dZ-vGh"/>
                                         </connections>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="地理位置描述，可填写周边标志建筑和具体地点" translatesAutoresizingMaskIntoConstraints="NO" id="MJc-Cy-hzv" userLabel="House Location TextView">
-                                        <rect key="frame" x="20" y="224" width="560" height="68"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50个字以上" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIa-3A-hGz">
+                                        <rect key="frame" x="490" y="165" width="90" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="82b-zR-MnL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MJc-Cy-hzv" userLabel="House Location TextView" customClass="HATextView">
+                                        <rect key="frame" x="20" y="194" width="560" height="68"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="68" id="GI3-fv-qJ7"/>
@@ -956,14 +965,18 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
                                                 <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="地理位置描述，可填写周边标志建筑和具体地点"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="Blt-To-aue"/>
                                         </connections>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="交通描述，可描述周边公交站和地铁线路" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-Vs-o7A" userLabel="House Traffic TextView">
-                                        <rect key="frame" x="20" y="300" width="560" height="68"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-Vs-o7A" userLabel="House Traffic TextView" customClass="HATextView">
+                                        <rect key="frame" x="20" y="270" width="560" height="68"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="Wt3-Te-1On"/>
+                                        </constraints>
                                         <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
@@ -977,15 +990,44 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
                                                 <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="交通描述，可描述周边公交站和地铁线路"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="HlU-ga-pLj"/>
                                         </connections>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="周边生活，可描述周边的商场等" translatesAutoresizingMaskIntoConstraints="NO" id="F7l-UW-xqT" userLabel="House Life TextView">
-                                        <rect key="frame" x="20" y="376" width="560" height="68"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F7l-UW-xqT" userLabel="House Life TextView" customClass="HATextView">
+                                        <rect key="frame" x="20" y="346" width="560" height="68"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="Gti-oL-GtC"/>
+                                        </constraints>
                                         <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="周边生活，可描述周边的商场等"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="bXN-Jg-OJg" id="kKC-aB-0Dk"/>
+                                        </connections>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUY-Yx-LKH" userLabel="House Comment TextView" customClass="HATextView">
+                                        <rect key="frame" x="20" y="422" width="560" height="68"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="9Js-B1-WkV"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         <userDefinedRuntimeAttributes>
@@ -998,40 +1040,34 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
                                                 <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="备注，此处备注，用户支付后才能看见，例如wifi密码"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="delegate" destination="bXN-Jg-OJg" id="kKC-aB-0Dk"/>
+                                            <outlet property="delegate" destination="bXN-Jg-OJg" id="iUx-6j-cl2"/>
                                         </connections>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50个字以上" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIa-3A-hGz">
-                                        <rect key="frame" x="490" y="195" width="90" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="82b-zR-MnL"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.083725895810000006" green="0.78553109219999995" blue="0.29008639520000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="MJc-Cy-hzv" firstAttribute="top" secondItem="eIa-3A-hGz" secondAttribute="bottom" constant="8" id="4jj-JA-GIa"/>
-                                    <constraint firstItem="a5X-2k-7B7" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="6bA-b1-dLu"/>
-                                    <constraint firstItem="e9O-Vs-o7A" firstAttribute="height" secondItem="MJc-Cy-hzv" secondAttribute="height" id="8sJ-6K-35d"/>
+                                    <constraint firstItem="dUY-Yx-LKH" firstAttribute="top" secondItem="F7l-UW-xqT" secondAttribute="bottom" constant="8" id="4oD-ph-uQz"/>
+                                    <constraint firstAttribute="trailing" secondItem="dUY-Yx-LKH" secondAttribute="trailing" constant="20" id="6AI-pK-AVx"/>
+                                    <constraint firstItem="eIa-3A-hGz" firstAttribute="top" secondItem="rQa-hQ-EMN" secondAttribute="bottom" constant="8" id="A4C-5e-VKH"/>
                                     <constraint firstItem="fNN-HP-8Qe" firstAttribute="height" secondItem="KJ9-Hk-aPO" secondAttribute="height" id="B73-5Y-b94"/>
                                     <constraint firstItem="e9O-Vs-o7A" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="BCk-qo-Zac"/>
-                                    <constraint firstItem="a5X-2k-7B7" firstAttribute="top" secondItem="f5r-1v-ux8" secondAttribute="bottom" constant="8" id="BJt-Vy-fo9"/>
-                                    <constraint firstItem="eIa-3A-hGz" firstAttribute="top" secondItem="a5X-2k-7B7" secondAttribute="bottom" constant="8" id="Cag-oG-oMJ"/>
                                     <constraint firstItem="MJc-Cy-hzv" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="E3c-Yy-d77"/>
                                     <constraint firstItem="F7l-UW-xqT" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="FDt-Se-f3I"/>
+                                    <constraint firstItem="rQa-hQ-EMN" firstAttribute="top" secondItem="f5r-1v-ux8" secondAttribute="bottom" constant="8" id="GiF-0I-9lc"/>
                                     <constraint firstAttribute="bottom" secondItem="fNN-HP-8Qe" secondAttribute="bottom" id="LAL-Do-GwJ"/>
                                     <constraint firstAttribute="trailing" secondItem="f5r-1v-ux8" secondAttribute="trailing" constant="20" id="OJP-Ke-rT7"/>
+                                    <constraint firstItem="rQa-hQ-EMN" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="Owb-2m-DBy"/>
                                     <constraint firstItem="fNN-HP-8Qe" firstAttribute="width" secondItem="KJ9-Hk-aPO" secondAttribute="width" id="QjI-Mp-HI7"/>
+                                    <constraint firstItem="dUY-Yx-LKH" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="ToD-qi-fCr"/>
                                     <constraint firstAttribute="trailing" secondItem="F7l-UW-xqT" secondAttribute="trailing" constant="20" id="Xfh-CL-hvk"/>
+                                    <constraint firstAttribute="trailing" secondItem="rQa-hQ-EMN" secondAttribute="trailing" constant="20" id="XoR-gF-iRG"/>
                                     <constraint firstItem="f5r-1v-ux8" firstAttribute="top" secondItem="4e5-FM-cgU" secondAttribute="bottom" constant="8" id="bbr-Ox-rHA"/>
                                     <constraint firstAttribute="trailing" secondItem="e9O-Vs-o7A" secondAttribute="trailing" constant="20" id="eEQ-Xh-Ifv"/>
                                     <constraint firstAttribute="trailing" secondItem="eIa-3A-hGz" secondAttribute="trailing" constant="20" id="eNs-4n-vEE"/>
-                                    <constraint firstItem="F7l-UW-xqT" firstAttribute="height" secondItem="e9O-Vs-o7A" secondAttribute="height" id="eZC-kO-gJk"/>
                                     <constraint firstItem="fNN-HP-8Qe" firstAttribute="top" secondItem="KJ9-Hk-aPO" secondAttribute="top" id="fp3-Os-6jt"/>
                                     <constraint firstAttribute="trailing" secondItem="MJc-Cy-hzv" secondAttribute="trailing" constant="20" id="gp4-Co-1tB"/>
                                     <constraint firstItem="fNN-HP-8Qe" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" id="hEU-fN-Nix"/>
@@ -1041,7 +1077,6 @@
                                     <constraint firstAttribute="trailing" secondItem="fNN-HP-8Qe" secondAttribute="trailing" id="s57-7p-3zU"/>
                                     <constraint firstAttribute="trailing" secondItem="4e5-FM-cgU" secondAttribute="trailing" constant="20" id="t1T-Bg-tMV"/>
                                     <constraint firstItem="4e5-FM-cgU" firstAttribute="leading" secondItem="KJ9-Hk-aPO" secondAttribute="leading" constant="20" id="tWz-rq-7HP"/>
-                                    <constraint firstAttribute="trailing" secondItem="a5X-2k-7B7" secondAttribute="trailing" constant="20" id="vpp-bU-rxf"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -1054,7 +1089,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zCv-wH-aT6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="EPR-LY-TNI">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="EPR-LY-TNI">
                             <connections>
                                 <action selector="saveButtonClicked:" destination="bXN-Jg-OJg" id="1eH-vs-mRJ"/>
                             </connections>
@@ -1066,7 +1101,8 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="contentViewBottomConstraint" destination="LAL-Do-GwJ" id="PAe-jS-6wD"/>
-                        <outlet property="houseDescriptionTextView" destination="a5X-2k-7B7" id="l8V-Yw-vJl"/>
+                        <outlet property="houseCommentTextView" destination="dUY-Yx-LKH" id="T8f-LP-C5g"/>
+                        <outlet property="houseDescriptionTextView" destination="rQa-hQ-EMN" id="GsS-tn-d3k"/>
                         <outlet property="houseLiftTextView" destination="F7l-UW-xqT" id="67f-7G-jw8"/>
                         <outlet property="houseLocationTextView" destination="MJc-Cy-hzv" id="IGq-Mf-gYi"/>
                         <outlet property="houseTrafficTextView" destination="e9O-Vs-o7A" id="H3g-57-gtd"/>

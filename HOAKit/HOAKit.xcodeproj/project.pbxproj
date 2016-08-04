@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7422D7991D53811C00ACB2B6 /* HATextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7422D7971D53811C00ACB2B6 /* HATextView.h */; };
+		7422D79A1D53811C00ACB2B6 /* HATextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7422D7981D53811C00ACB2B6 /* HATextView.m */; };
 		7425B80D1D50CBDF00288A46 /* province.json in Resources */ = {isa = PBXBuildFile; fileRef = 7425B80C1D50CBDF00288A46 /* province.json */; };
 		742B917E1D4FA836000FF5A1 /* HOAKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B917D1D4FA836000FF5A1 /* HOAKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742B91C61D4FB731000FF5A1 /* HAAddHousePhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91951D4FB731000FF5A1 /* HAAddHousePhotoViewController.h */; };
@@ -62,6 +64,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7422D7971D53811C00ACB2B6 /* HATextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HATextView.h; sourceTree = "<group>"; };
+		7422D7981D53811C00ACB2B6 /* HATextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HATextView.m; sourceTree = "<group>"; };
 		7425B80C1D50CBDF00288A46 /* province.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province.json; sourceTree = "<group>"; };
 		742B917A1D4FA836000FF5A1 /* HOAKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HOAKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		742B917D1D4FA836000FF5A1 /* HOAKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HOAKit.h; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				742B91AA1D4FB731000FF5A1 /* HAFloatingButton.m */,
 				742B91AB1D4FB731000FF5A1 /* HALocationPickerTextField.h */,
 				742B91AC1D4FB731000FF5A1 /* HALocationPickerTextField.m */,
+				7422D7971D53811C00ACB2B6 /* HATextView.h */,
+				7422D7981D53811C00ACB2B6 /* HATextView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 			files = (
 				742B91DF1D4FB731000FF5A1 /* CTAssetsGroupViewCell.h in Headers */,
 				742B91C81D4FB731000FF5A1 /* HAHouseInfoTableController.h in Headers */,
+				7422D7991D53811C00ACB2B6 /* HATextView.h in Headers */,
 				742B91F21D4FB8A9000FF5A1 /* HOAViewController.h in Headers */,
 				742B91E91D4FB731000FF5A1 /* CTAssetsViewCell.h in Headers */,
 				742B917E1D4FA836000FF5A1 /* HOAKit.h in Headers */,
@@ -403,6 +410,7 @@
 				742B91C91D4FB731000FF5A1 /* HAHouseInfoTableController.m in Sources */,
 				742B91E21D4FB731000FF5A1 /* CTAssetsGroupViewController.m in Sources */,
 				742B91D11D4FB731000FF5A1 /* CALayer+Additions.m in Sources */,
+				7422D79A1D53811C00ACB2B6 /* HATextView.m in Sources */,
 				742B91CD1D4FB731000FF5A1 /* HAHouseTypeTableViewController.m in Sources */,
 				742B91D91D4FB731000FF5A1 /* HALocationPickerTextField.m in Sources */,
 				742B91F31D4FB8A9000FF5A1 /* HOAViewController.m in Sources */,

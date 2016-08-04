@@ -81,12 +81,15 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     self.firstResponderView = textView;
+    textView.text = @"";
     return YES;
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     CGRect rect = textView.frame;
     rect.size.height += 5;
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+
     [self.scrollView scrollRectToVisible:rect animated:YES];
 }
 
@@ -115,28 +118,23 @@
 #pragma mark - *** Keyboard Notification Selector ***
 - (void)keyboardDidShow:(NSNotification*)notification
 {
-    /*获取InputView 的区域*/
     CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
     keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
     CGFloat keyboardTop = keyboardRect.origin.y;
     
-    NSLog(@"scrollview origin %@",NSStringFromCGRect(self.scrollView.frame));
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     CGRect newScrollViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, keyboardTop);
-    NSLog(@"scrollview origin %@",NSStringFromCGRect(self.scrollView.frame));
 
     self.scrollView.frame = newScrollViewFrame;
-    self.contentViewBottomConstraint.constant = keyboardTop;
-    [self.scrollView scrollRectToVisible:self.firstResponderView.frame animated:YES];
+
 }
 
 - (void)keyboardWillHide:(NSNotification*)notification
 {
-
     self.scrollView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    self.contentViewBottomConstraint.constant = 0;
+
     CGRect rect = self.titleTextField.frame;
-    rect.origin.y += 56;
+
     [self.scrollView scrollRectToVisible:rect animated:YES];
 
     

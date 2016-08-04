@@ -73,6 +73,9 @@
     // Configure the cell...
     
     cell.textLabel.text = self.dataSource[indexPath.section][indexPath.row];
+    if(2 == indexPath.section){
+        cell.accessoryView = [[UISwitch alloc] init];
+    }
     
     return cell;
 }

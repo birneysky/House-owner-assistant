@@ -913,11 +913,11 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="房源描述：周边环境，内置装饰等方面介绍，必填" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="a5X-2k-7B7" userLabel="House Description TextView">
-                                        <rect key="frame" x="20" y="89" width="560" height="100"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="房源描述：周边环境，内置装饰等方面介绍，必填" translatesAutoresizingMaskIntoConstraints="NO" id="a5X-2k-7B7" userLabel="House Description TextView">
+                                        <rect key="frame" x="20" y="89" width="560" height="98"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="uP1-fu-rml"/>
+                                            <constraint firstAttribute="height" constant="98" id="uP1-fu-rml"/>
                                         </constraints>
                                         <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -937,8 +937,8 @@
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="18g-cL-bKf"/>
                                         </connections>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="地理位置描述，可填写周边标志建筑和具体地点" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MJc-Cy-hzv" userLabel="House Location TextView">
-                                        <rect key="frame" x="20" y="226" width="560" height="68"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="地理位置描述，可填写周边标志建筑和具体地点" translatesAutoresizingMaskIntoConstraints="NO" id="MJc-Cy-hzv" userLabel="House Location TextView">
+                                        <rect key="frame" x="20" y="224" width="560" height="68"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="68" id="GI3-fv-qJ7"/>
@@ -961,8 +961,8 @@
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="Blt-To-aue"/>
                                         </connections>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="交通描述，可描述周边公交站和地铁线路" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-Vs-o7A" userLabel="House Traffic TextView">
-                                        <rect key="frame" x="20" y="302" width="560" height="68"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="交通描述，可描述周边公交站和地铁线路" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-Vs-o7A" userLabel="House Traffic TextView">
+                                        <rect key="frame" x="20" y="300" width="560" height="68"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -982,8 +982,8 @@
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="HlU-ga-pLj"/>
                                         </connections>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="周边生活，可描述周边的商场等" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F7l-UW-xqT" userLabel="House Life TextView">
-                                        <rect key="frame" x="20" y="378" width="560" height="68"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="周边生活，可描述周边的商场等" translatesAutoresizingMaskIntoConstraints="NO" id="F7l-UW-xqT" userLabel="House Life TextView">
+                                        <rect key="frame" x="20" y="376" width="560" height="68"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1004,7 +1004,7 @@
                                         </connections>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50个字以上" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIa-3A-hGz">
-                                        <rect key="frame" x="490" y="197" width="90" height="21"/>
+                                        <rect key="frame" x="490" y="195" width="90" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="82b-zR-MnL"/>
                                         </constraints>

@@ -481,11 +481,6 @@
                                 <constraint firstAttribute="trailing" secondItem="rCf-dz-cfb" secondAttribute="trailing" constant="20" id="zX2-JT-iSi"/>
                             </constraints>
                         </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="KHS-uK-zPm">
-                            <rect key="frame" x="0.0" y="368.5" width="600" height="232"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseTypeCell" id="yJ6-gU-tEj">
                                 <rect key="frame" x="0.0" y="306.5" width="600" height="44"/>
@@ -583,7 +578,7 @@
                     <connections>
                         <segue destination="bXN-Jg-OJg" kind="show" identifier="push_house_introduce" id="Ekv-zQ-b43"/>
                         <segue destination="1zs-ci-zDz" kind="show" identifier="push_price_trading_rules" id="07F-D8-dhg"/>
-                        <segue destination="YKx-6c-Kno" kind="push" identifier="push_house_info" id="Eaw-0C-sBt"/>
+                        <segue destination="YKx-6c-Kno" kind="show" identifier="push_house_info" id="Eaw-0C-sBt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bob-Hx-xez" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -599,20 +594,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b9n-nK-JpP">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="80" height="80"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="P8v-fy-BAy">
-                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HAPictureCell" id="P8v-fy-BAy">
+                                <rect key="frame" x="0.0" y="64" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="0.083725895810000006" green="0.78553109219999995" blue="0.29008639520000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HAAddPictureCell" id="wZ4-To-cCz">
+                                <rect key="frame" x="104" y="64" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✚" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyn-mk-VAr">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="76"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.083725895810000006" green="0.78553109219999995" blue="0.29008639520000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lyn-mk-VAr" firstAttribute="leading" secondItem="wZ4-To-cCz" secondAttribute="leading" id="PuN-tu-aGB"/>
+                                    <constraint firstAttribute="trailing" secondItem="lyn-mk-VAr" secondAttribute="trailing" id="bvt-Dj-M8V"/>
+                                    <constraint firstItem="lyn-mk-VAr" firstAttribute="top" secondItem="wZ4-To-cCz" secondAttribute="top" id="pfw-re-L3O"/>
+                                    <constraint firstAttribute="bottom" secondItem="lyn-mk-VAr" secondAttribute="bottom" id="uy8-9L-49D"/>
+                                </constraints>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -1116,13 +1136,13 @@
         <scene sceneID="hGC-Hd-2PA">
             <objects>
                 <tableViewController id="YKx-6c-Kno" customClass="HAHouseInfoViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="rjY-OE-Pbj">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rjY-OE-Pbj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.083725895810000006" green="0.78553109219999995" blue="0.29008639520000001" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bHD-gM-mf2" customClass="HAHouseGenralInfoCell">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseGenralInfoCell" rowHeight="44" id="bHD-gM-mf2">
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHD-gM-mf2" id="zhn-0N-Emu">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1135,11 +1155,17 @@
                             <outlet property="delegate" destination="YKx-6c-Kno" id="miv-4f-G0p"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="CfD-LG-7vQ"/>
+                    <navigationItem key="navigationItem" id="CfD-LG-7vQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Laf-xx-xmn">
+                            <connections>
+                                <action selector="saveButtonClicked:" destination="YKx-6c-Kno" id="XDc-Vn-pTl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDU-Q3-ysU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6064" y="1570"/>
+            <point key="canvasLocation" x="6084" y="1563"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="X9H-Qi-OP2">

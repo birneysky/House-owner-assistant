@@ -65,6 +65,8 @@
 		743F43531D55F84F00D06D19 /* HADiscountDataSourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43511D55F84F00D06D19 /* HADiscountDataSourceDelegate.m */; };
 		743F43561D5600AA00D06D19 /* HAHouseInfoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43541D5600AA00D06D19 /* HAHouseInfoViewController.h */; };
 		743F43571D5600AA00D06D19 /* HAHouseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43551D5600AA00D06D19 /* HAHouseInfoViewController.m */; };
+		743F435A1D5625CE00D06D19 /* HAEditorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43581D5625CE00D06D19 /* HAEditorCell.h */; };
+		743F435B1D5625CE00D06D19 /* HAEditorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43591D5625CE00D06D19 /* HAEditorCell.m */; };
 		DB8EF91B1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */; };
 		DB8EF91C1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */; };
 		DBAE09231D5043DF008A85C4 /* HOA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBAE09221D5043DF008A85C4 /* HOA.xcassets */; };
@@ -134,6 +136,8 @@
 		743F43511D55F84F00D06D19 /* HADiscountDataSourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HADiscountDataSourceDelegate.m; sourceTree = "<group>"; };
 		743F43541D5600AA00D06D19 /* HAHouseInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseInfoViewController.h; sourceTree = "<group>"; };
 		743F43551D5600AA00D06D19 /* HAHouseInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseInfoViewController.m; sourceTree = "<group>"; };
+		743F43581D5625CE00D06D19 /* HAEditorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAEditorCell.h; sourceTree = "<group>"; };
+		743F43591D5625CE00D06D19 /* HAEditorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAEditorCell.m; sourceTree = "<group>"; };
 		DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPriceAndTrandRulesTableController.h; sourceTree = "<group>"; };
 		DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPriceAndTrandRulesTableController.m; sourceTree = "<group>"; };
 		DBAE09221D5043DF008A85C4 /* HOA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HOA.xcassets; sourceTree = SOURCE_ROOT; };
@@ -309,6 +313,8 @@
 				743F43491D55F0C500D06D19 /* HALocationPickerTextField.m */,
 				743F434C1D55F81500D06D19 /* HADiscountPickerTextField.h */,
 				743F434D1D55F81500D06D19 /* HADiscountPickerTextField.m */,
+				743F43581D5625CE00D06D19 /* HAEditorCell.h */,
+				743F43591D5625CE00D06D19 /* HAEditorCell.m */,
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
@@ -333,6 +339,7 @@
 				DBAE09281D506275008A85C4 /* HAHouseIntroduceViewController.h in Headers */,
 				742B91D41D4FB731000FF5A1 /* HALeapBehavior.h in Headers */,
 				742B91C61D4FB731000FF5A1 /* HAAddHousePhotoViewController.h in Headers */,
+				743F435A1D5625CE00D06D19 /* HAEditorCell.h in Headers */,
 				742B91EB1D4FB731000FF5A1 /* CTAssetsViewController.h in Headers */,
 				742B91E31D4FB731000FF5A1 /* CTAssetsPickerConstants.h in Headers */,
 				742B91E71D4FB731000FF5A1 /* CTAssetsSupplementaryView.h in Headers */,
@@ -446,6 +453,7 @@
 				742B91DE1D4FB731000FF5A1 /* ALAssetsGroup+isEqual.m in Sources */,
 				743F43421D55EBD200D06D19 /* HAProvinceDataSourceDelegate.m in Sources */,
 				743F43571D5600AA00D06D19 /* HAHouseInfoViewController.m in Sources */,
+				743F435B1D5625CE00D06D19 /* HAEditorCell.m in Sources */,
 				742B91DB1D4FB731000FF5A1 /* HALocationPoint.m in Sources */,
 				743F43531D55F84F00D06D19 /* HADiscountDataSourceDelegate.m in Sources */,
 				742B91EA1D4FB731000FF5A1 /* CTAssetsViewCell.m in Sources */,

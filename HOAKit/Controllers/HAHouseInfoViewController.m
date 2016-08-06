@@ -29,11 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+   self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,5 +103,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+#pragma mark - *** Target Action ***
+
+- (IBAction)saveButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end

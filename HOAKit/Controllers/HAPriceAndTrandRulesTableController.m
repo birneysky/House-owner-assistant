@@ -7,6 +7,7 @@
 //
 
 #import "HAPriceAndTrandRulesTableController.h"
+#import "HADiscountPickerTextField.h"
 
 @interface HAPriceAndTrandRulesTableController ()
 @property (weak, nonatomic) IBOutlet UILabel *ppLabel;
@@ -71,10 +72,36 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAPriceCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    
-    cell.textLabel.text = self.dataSource[indexPath.section][indexPath.row];
-    if(2 == indexPath.section){
+    NSString* text = self.dataSource[indexPath.section][indexPath.row];
+    cell.accessoryView = nil;
+    cell.textLabel.text = text;
+    if([text isEqualToString:@"线上收取押金"]        ||
+       [text isEqualToString:@"是否需要第三方保洁"]   ||
+       [text isEqualToString:@"是否平台提供洗漱用品"] ||
+       [text isEqualToString:@"是否平台提供床品"]){
         cell.accessoryView = [[UISwitch alloc] init];
+    }
+    
+    if([text isEqualToString:@"日价"]||
+       [text isEqualToString:@"押金"]){
+        UITextField* textFiled = [[UITextField alloc] initWithFrame:CGRectMake(0, 0,130, 20)];
+        textFiled.textAlignment = NSTextAlignmentRight;
+        textFiled.rightViewMode = UITextFieldViewModeAlways;
+        UILabel* lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, 20)];
+        lable.text = @"元";
+        lable.textAlignment = NSTextAlignmentCenter;
+        textFiled.rightView = lable;
+        
+        cell.accessoryView = textFiled;
+    }
+    ///@"7天折扣",@"15天折扣",@"30天折扣"
+    if([text isEqualToString:@"3天折扣"]||
+       [text isEqualToString:@"7天折扣"] ||
+       [text isEqualToString:@"15天折扣"] ||
+       [text isEqualToString:@"30天折扣"]){
+        HADiscountPickerTextField* textfiedl = [[HADiscountPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 130, 20)];
+        textfiedl.textAlignment = NSTextAlignmentRight;
+        cell.accessoryView = textfiedl;
     }
     
     return cell;

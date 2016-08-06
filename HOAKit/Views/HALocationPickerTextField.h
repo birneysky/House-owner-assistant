@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAPickerTextField.h"
 
 @class HALocationPickerTextField;
 
@@ -26,9 +27,11 @@
 @end
 
 
-@interface HALocationPickerTextField : UITextField
+@interface HALocationPickerTextField : HAPickerTextField
 
-@property (nonatomic,weak) id<HALocationPickerTextFieldDelegate> pickerDelegate;
+@property (nonatomic,weak) id<HALocationPickerTextFieldDelegate> locationPickerDelegate;
+
+@property (nonatomic,readonly) UIPickerView* picker;
 
 @property (nonatomic,assign) BOOL showToolbar;
 

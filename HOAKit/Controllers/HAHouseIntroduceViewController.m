@@ -53,11 +53,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //self.scrollView.translatesAutoresizingMaskIntoConstraints =YES;
-    CGRect rect  = self.houseCommentTextView.frame;
+
+    CGRect rect = [self.view convertRect:self.houseCommentTextView.frame fromView:self.scrollView];
     //NSLog(@"viewframe %@,rect %@",NSStringFromCGRect(self.view.frame),NSStringFromCGRect(rect));
     if (rect.origin.y + rect.size.height > self.view.frame.size.height) {
-        self.contentOffset = (rect.origin.y + rect.size.height - self.view.frame.size.height)*2 ;
+        self.contentOffset = (rect.origin.y + rect.size.height  - self.view.frame.size.height);
         self.contentViewBottomConstraint.constant = self.contentOffset;
         [self.scrollView layoutIfNeeded];
     }

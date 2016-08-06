@@ -1,44 +1,64 @@
 //
-//  HAHouseInfoTableController.m
-//  House-owner-assistant
+//  HAHouseInfoViewController.m
+//  HOAKit
 //
-//  Created by birneysky on 16/7/28.
-//  Copyright © 2016年 HA. All rights reserved.
+//  Created by birneysky on 16/8/6.
+//  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HAHouseInfoTableController.h"
-#import "HAFloatingButton.h"
+#import "HAHouseInfoViewController.h"
 
-@interface HAHouseInfoTableController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet HAFloatingButton *addButton;
+@interface HAHouseInfoViewController ()
+
+@property(nonatomic,strong) NSArray* dataSource;
 
 @end
 
-@implementation HAHouseInfoTableController
+@implementation HAHouseInfoViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+#pragma mark- *** Properties ***
+- (NSArray*) dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [[NSArray alloc] initWithObjects:@"房屋面积",@"户型",@"卫生间数量",@"几位访客", nil];
+    }
+    return _dataSource;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+#pragma mark - *** Init ***
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 10;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dataSource.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseGenralInfoCell" forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    cell.textLabel.text = self.dataSource[indexPath.row];
     
     return cell;
 }

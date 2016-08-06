@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HAHouseInfoTableController : UIViewController
+@interface HAHouseTableController : UIViewController
 
 @end

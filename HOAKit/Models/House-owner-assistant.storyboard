@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--House Info Table Controller-->
+        <!--House Table Controller-->
         <scene sceneID="iYc-6t-8j0">
             <objects>
-                <viewController id="pd0-tQ-jb0" customClass="HAHouseInfoTableController" sceneMemberID="viewController">
+                <viewController id="pd0-tQ-jb0" customClass="HAHouseTableController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qW3-QZ-c8r"/>
                         <viewControllerLayoutGuide type="bottom" id="XdT-OV-uEp"/>
@@ -583,6 +583,7 @@
                     <connections>
                         <segue destination="bXN-Jg-OJg" kind="show" identifier="push_house_introduce" id="Ekv-zQ-b43"/>
                         <segue destination="1zs-ci-zDz" kind="show" identifier="push_price_trading_rules" id="07F-D8-dhg"/>
+                        <segue destination="YKx-6c-Kno" kind="push" identifier="push_house_info" id="Eaw-0C-sBt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bob-Hx-xez" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -620,11 +621,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="zRS-mc-hWn">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="XbP-z4-OLY">
-                            <connections>
-                                <segue destination="m34-Mk-zKb" kind="push" id="AJp-AQ-dTe"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="XbP-z4-OLY"/>
                     </navigationItem>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="添加照片"/>
@@ -1115,54 +1112,34 @@
             </objects>
             <point key="canvasLocation" x="5344" y="1563"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Lr1-K0-r1y">
+        <!--House Info View Controller-->
+        <scene sceneID="hGC-Hd-2PA">
             <objects>
-                <viewController id="m34-Mk-zKb" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fMa-3p-pGQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="Xt0-Yo-8tm"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NNr-Ww-YRk">
+                <tableViewController id="YKx-6c-Kno" customClass="HAHouseInfoViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="rjY-OE-Pbj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DpK-X7-1V2">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="shL-AU-rO1" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qgn-Nw-JJa">
-                                        <rect key="frame" x="32" y="57" width="97" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="shL-AU-rO1" firstAttribute="leading" secondItem="DpK-X7-1V2" secondAttribute="leading" id="5ez-B7-dQQ"/>
-                                    <constraint firstItem="shL-AU-rO1" firstAttribute="width" secondItem="DpK-X7-1V2" secondAttribute="width" id="69Y-gQ-bvK"/>
-                                    <constraint firstAttribute="trailing" secondItem="shL-AU-rO1" secondAttribute="trailing" id="BNf-JW-TOt"/>
-                                    <constraint firstAttribute="bottom" secondItem="shL-AU-rO1" secondAttribute="bottom" id="U6m-1S-pJ4"/>
-                                    <constraint firstItem="shL-AU-rO1" firstAttribute="top" secondItem="DpK-X7-1V2" secondAttribute="top" id="eTn-pU-NJj"/>
-                                    <constraint firstItem="shL-AU-rO1" firstAttribute="height" secondItem="DpK-X7-1V2" secondAttribute="height" id="zV2-MU-tKp"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="DpK-X7-1V2" secondAttribute="trailing" id="A4w-XO-7oa"/>
-                            <constraint firstItem="DpK-X7-1V2" firstAttribute="top" secondItem="fMa-3p-pGQ" secondAttribute="bottom" id="FHf-Ga-gTh"/>
-                            <constraint firstItem="DpK-X7-1V2" firstAttribute="leading" secondItem="NNr-Ww-YRk" secondAttribute="leading" id="bbl-El-d8I"/>
-                            <constraint firstItem="Xt0-Yo-8tm" firstAttribute="top" secondItem="DpK-X7-1V2" secondAttribute="bottom" id="lbd-Dp-27z"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="8QQ-AX-rEp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Iws-i9-dYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bHD-gM-mf2" customClass="HAHouseGenralInfoCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHD-gM-mf2" id="zhn-0N-Emu">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YKx-6c-Kno" id="FJH-KZ-XgW"/>
+                            <outlet property="delegate" destination="YKx-6c-Kno" id="miv-4f-G0p"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="CfD-LG-7vQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xDU-Q3-ysU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6668" y="781"/>
+            <point key="canvasLocation" x="6064" y="1570"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="X9H-Qi-OP2">

@@ -1,40 +1,23 @@
 //
-//  HAPublishHouseInfoTableViewController.m
+//  HAHouseInfoTableController.m
 //  House-owner-assistant
 //
-//  Created by zhangguang on 16/7/29.
+//  Created by birneysky on 16/7/28.
 //  Copyright © 2016年 HA. All rights reserved.
 //
 
-#import "HAPublishHouseInfoTableViewController.h"
+#import "HAHouseTableController.h"
+#import "HAFloatingButton.h"
 
-@interface HAPublishHouseInfoTableViewController ()
-
-@property(nonatomic,strong) NSArray* dataSource;
+@interface HAHouseTableController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet HAFloatingButton *addButton;
 
 @end
 
-@implementation HAPublishHouseInfoTableViewController
-
-#pragma mark - ***Properties ***
-
-- (NSArray*) dataSource
-{
-    if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"设施列表",@"出租方式与房源类型",@"地址", nil];
-    }
-    return _dataSource;
-}
+@implementation HAHouseTableController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -42,49 +25,24 @@
     [super viewDidAppear:animated];
 }
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+
+    return 10;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.count;
+    return 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseSummaryCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    cell.textLabel.text = self.dataSource[indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
     
     return cell;
 }
 
-#pragma mark - *** TableView Delegate ***
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        [self performSegueWithIdentifier:@"push_house_introduce" sender:nil];
-    }
-    else if (indexPath.row == 1){
-        [self performSegueWithIdentifier:@"push_price_trading_rules" sender:nil];
-    }
-    else if (indexPath.row == 2){
-        [self performSegueWithIdentifier:@"push_house_info" sender:nil];
-    }
-    else if (indexPath.row == 4){
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else if (indexPath.row == 5){
-        NSArray* vcs = self.navigationController.viewControllers;
-        [self.navigationController popToViewController:vcs[vcs.count-3] animated:YES];
-    }
-    
-}
 
 /*
 // Override to support conditional editing of the table view.

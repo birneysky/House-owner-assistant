@@ -7,8 +7,9 @@
 //
 
 #import "HADiscountDataSourceDelegate.h"
+#import "PickerViewDidSelectResultDelegate.h"
 
-@interface HADiscountDataSourceDelegate ()
+@interface HADiscountDataSourceDelegate () <PickerViewDidSelectResultDelegate>
 
 @property(nonatomic,strong) NSArray* dataSource;
 
@@ -68,7 +69,22 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-
+    NSUInteger lastIndex = self.dataSource.count - 1;
+    NSMutableString* result = [[NSMutableString alloc] initWithCapacity:100];
+    for (int i = 0; i <= lastIndex; i++) {
+        NSUInteger index = [pickerView selectedRowInComponent:i];
+        [result appendFormat:@"%@.",self.dataSource[i][index]];
+        if (i == lastIndex) {
+            [result deleteCharactersInRange:NSMakeRange(result.length - 1, 1)];
+        }
+    }
+    
+    [result appendString:@" 折"];
+    
+    if ([self.resultDelegate respondsToSelector:@selector(pickerView:didSelectResultText:)]) {
+        //NSString* result = [NSString stringWithFormat:@"%d.%d 折",self.dataSource ]
+        [self.resultDelegate pickerView:pickerView didSelectResultText:[result copy]];
+    }
 }
 
 

@@ -8,8 +8,11 @@
 
 #import "HAPriceAndTrandRulesTableController.h"
 #import "HADiscountPickerTextField.h"
+#import "HAEditorNumberCell.h"
+#import "HASwitchCell.h"
+#import "HADiscountEditorCell.h"
 
-@interface HAPriceAndTrandRulesTableController ()
+@interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *ppLabel;
 
 @property(nonatomic,strong) NSArray* dataSource;
@@ -69,41 +72,38 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAPriceCell" forIndexPath:indexPath];
+    UITableViewCell *cell = nil;
     
     // Configure the cell...
     NSString* text = self.dataSource[indexPath.section][indexPath.row];
     cell.accessoryView = nil;
-    cell.textLabel.text = text;
+
     if([text isEqualToString:@"线上收取押金"]        ||
        [text isEqualToString:@"是否需要第三方保洁"]   ||
        [text isEqualToString:@"是否平台提供洗漱用品"] ||
        [text isEqualToString:@"是否平台提供床品"]){
-        cell.accessoryView = [[UISwitch alloc] init];
+        HASwitchCell* switchCell = [tableView dequeueReusableCellWithIdentifier:@"HAPriceOnOffCell" forIndexPath:indexPath];
+        cell = switchCell;
     }
     
     if([text isEqualToString:@"日价"]||
        [text isEqualToString:@"押金"]){
-        UITextField* textFiled = [[UITextField alloc] initWithFrame:CGRectMake(0, 0,130, 20)];
-        textFiled.textAlignment = NSTextAlignmentRight;
-        textFiled.rightViewMode = UITextFieldViewModeAlways;
-        UILabel* lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, 20)];
-        lable.text = @"元";
-        lable.textAlignment = NSTextAlignmentCenter;
-        textFiled.rightView = lable;
+        HAEditorNumberCell* editorCell = (HAEditorNumberCell*)[tableView dequeueReusableCellWithIdentifier:@"HAPriceNumberCell" forIndexPath:indexPath];
+        editorCell.unitName = @"元";
+        editorCell.textField.delegate = self;
+        cell = editorCell;
         
-        cell.accessoryView = textFiled;
     }
     ///@"7天折扣",@"15天折扣",@"30天折扣"
     if([text isEqualToString:@"3天折扣"]||
        [text isEqualToString:@"7天折扣"] ||
        [text isEqualToString:@"15天折扣"] ||
        [text isEqualToString:@"30天折扣"]){
-        HADiscountPickerTextField* textfiedl = [[HADiscountPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 130, 20)];
-        textfiedl.textAlignment = NSTextAlignmentRight;
-        cell.accessoryView = textfiedl;
+        HADiscountEditorCell* discountCell = [tableView dequeueReusableCellWithIdentifier:@"HADiscountCell" forIndexPath:indexPath];
+        discountCell.textField.delegate = self;
+        cell = discountCell;
     }
-    
+    cell.textLabel.text = text;
     return cell;
 }
 
@@ -119,6 +119,22 @@
         return @"勾选一下部分，将分出部分收益给人员";
     }
  
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell.accessoryView becomeFirstResponder];
+}
+
+
+#pragma mark - *** UITextFieldDelegate ***
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    return YES;
 }
 
 

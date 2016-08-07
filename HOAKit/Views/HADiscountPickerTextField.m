@@ -9,7 +9,7 @@
 #import "HADiscountPickerTextField.h"
 #import "HADiscountDataSourceDelegate.h"
 
-@interface HADiscountPickerTextField ()
+@interface HADiscountPickerTextField () <PickerViewDidSelectResultDelegate>
 
 @property (nonatomic,strong) HADiscountDataSourceDelegate* dataSourceDelegate;
 
@@ -56,6 +56,7 @@
     self.pickerDelegate = self;
     self.pickerView.dataSource = self.dataSourceDelegate;
     self.pickerView.delegate = self.dataSourceDelegate;
+    self.dataSourceDelegate.resultDelegate = self;
 }
 
 #pragma mark - *** HAPickerTextFieldDelegate ***
@@ -63,5 +64,13 @@
 {
 
 }
+
+
+#pragma mark - ***PickerViewDidSelectResultDelegate ***
+- (void)pickerView:(UIPickerView *)pickerView didSelectResultText:(NSString*)text
+{
+    self.text = text;
+}
+
 
 @end

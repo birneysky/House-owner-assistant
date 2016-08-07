@@ -26,6 +26,7 @@
         _textField.textAlignment = NSTextAlignmentRight;
         _textField.returnKeyType = UIReturnKeyNext;
         _textField.keyboardType  = UIKeyboardTypeDecimalPad;
+        _textField.delegate = self;
     }
     return _textField;
 }
@@ -48,6 +49,14 @@
     label.text = unitName;
     label.textAlignment = NSTextAlignmentCenter;
     self.textField.rightView = label;
+}
+
+#pragma mark - *** UITextFieldDelegate ***
+- (void)textFieldDidEndEditing:(UITextField *)textField; 
+{
+    if ([self.delegate respondsToSelector:@selector(textFieldDidEndEditing:fromCell:)]) {
+        [self.delegate textFieldDidEndEditing:textField fromCell:self];
+    }
 }
 
 @end

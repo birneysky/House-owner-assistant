@@ -1,27 +1,26 @@
 //
-//  HADiscountDataSourceDelegate.m
+//  HABedTypeDataSourceDelegate.m
 //  HOAKit
 //
-//  Created by birneysky on 16/8/6.
+//  Created by birneysky on 16/8/7.
 //  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HADiscountDataSourceDelegate.h"
-#import "HAEditPickerDelegate.h"
+#import "HABedTypeDataSourceDelegate.h"
 
-@interface HADiscountDataSourceDelegate () <HAEditPickerDelegate>
+@interface HABedTypeDataSourceDelegate ()
 
 @property(nonatomic,strong) NSArray* dataSource;
 
 @end
 
-@implementation HADiscountDataSourceDelegate
+@implementation HABedTypeDataSourceDelegate
 
 #pragma mark - *** Properties ***
 - (NSArray*) dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@[@"5",@"6",@"7",@"8",@"9"],@[@"0",@"5"], nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@"双人床",@"单人床",@"双层床",@"单人沙发床",@"双人沙发床",@"儿童床",@"园床",@"气垫床", nil];
     }
     return _dataSource;
 }
@@ -42,13 +41,13 @@
 #pragma mark - *** UIPicker DataSource ***
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return self.dataSource.count;
+    return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    NSArray* array = self.dataSource[component];
-    return array.count;
+    
+    return self.dataSource.count;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
@@ -64,29 +63,18 @@
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     
-    return self.dataSource[component][row];
+    return self.dataSource[row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSUInteger lastIndex = self.dataSource.count - 1;
-    NSMutableString* result = [[NSMutableString alloc] initWithCapacity:100];
-    for (int i = 0; i <= lastIndex; i++) {
-        NSUInteger index = [pickerView selectedRowInComponent:i];
-        [result appendFormat:@"%@.",self.dataSource[i][index]];
-        if (i == lastIndex) {
-            [result deleteCharactersInRange:NSMakeRange(result.length - 1, 1)];
-        }
-    }
-    
-    [result appendString:@" 折"];
-    
+
+     NSUInteger index = [pickerView selectedRowInComponent:component];
+    NSString* restult = self.dataSource[index];
     if ([self.resultDelegate respondsToSelector:@selector(pickerView:didSelectResultText:)]) {
         //NSString* result = [NSString stringWithFormat:@"%d.%d 折",self.dataSource ]
-        [self.resultDelegate pickerView:pickerView didSelectResultText:[result copy]];
+        [self.resultDelegate pickerView:pickerView didSelectResultText:restult];
     }
 }
-
-
 
 @end

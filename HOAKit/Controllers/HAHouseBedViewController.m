@@ -1,30 +1,18 @@
 //
-//  HAPublishHouseInfoTableViewController.m
-//  House-owner-assistant
+//  HAHouseBedViewController.m
+//  HOAKit
 //
-//  Created by zhangguang on 16/7/29.
-//  Copyright © 2016年 HA. All rights reserved.
+//  Created by birneysky on 16/8/7.
+//  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HAPublishHouseInfoTableViewController.h"
+#import "HAHouseBedViewController.h"
 
-@interface HAPublishHouseInfoTableViewController ()
-
-@property(nonatomic,strong) NSArray* dataSource;
+@interface HAHouseBedViewController ()
 
 @end
 
-@implementation HAPublishHouseInfoTableViewController
-
-#pragma mark - ***Properties ***
-
-- (NSArray*) dataSource
-{
-    if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"床铺信息",@"位置区域",@"设施列表",@"出租方式与房源类型",@"地址", nil];
-    }
-    return _dataSource;
-}
+@implementation HAHouseBedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,63 +22,34 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+#warning Incomplete implementation, return the number of sections
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.count;
+#warning Incomplete implementation, return the number of rows
+    return 0;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseSummaryCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = self.dataSource[indexPath.row];
     
     return cell;
 }
-
-#pragma mark - *** TableView Delegate ***
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString* text = self.dataSource[indexPath.row];
-    /**@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"床铺信息",@"位置区域",@"设施列表",@"出租方式与房源类型",@"地址"*/
-    if ([text isEqualToString:@"房屋标题与介绍"]) {
-        [self performSegueWithIdentifier:@"push_house_introduce" sender:nil];
-    }
-    else if ([text isEqualToString:@"价格与交易规则"]){
-        [self performSegueWithIdentifier:@"push_price_trading_rules" sender:nil];
-    }
-    else if ([text isEqualToString:@"房源信息"]){
-        [self performSegueWithIdentifier:@"push_house_info" sender:nil];
-    }
-    else if ([text isEqualToString:@"床铺信息"]){
-        [self performSegueWithIdentifier:@"push_house_bed_info" sender:nil];
-    }
-    else if ([text isEqualToString:@"出租方式与房源类型"]){
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else if ([text isEqualToString:@"地址"]){
-        NSArray* vcs = self.navigationController.viewControllers;
-        [self.navigationController popToViewController:vcs[vcs.count-3] animated:YES];
-    }
-    
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.

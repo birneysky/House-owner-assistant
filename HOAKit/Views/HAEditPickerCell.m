@@ -1,24 +1,21 @@
 //
-//  HADiscountEditorCell.m
+//  HAEditPickerCell.m
 //  HOAKit
 //
 //  Created by birneysky on 16/8/7.
 //  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HADiscountEditorCell.h"
+#import "HAEditPickerCell.h"
 #import "HAPickerTextField.h"
-#import "HADiscountDataSourceDelegate.h"
 
-@interface HADiscountEditorCell ()
+@interface HAEditPickerCell ()
 
 @property (nonatomic,strong) HAPickerTextField* textField;
 
-@property (nonatomic,strong) HADiscountDataSourceDelegate* dataSourceDelegate;
-
 @end
 
-@implementation HADiscountEditorCell
+@implementation HAEditPickerCell
 
 #pragma mark - *** Properties ***
 - (HAPickerTextField*)textField
@@ -30,13 +27,13 @@
     return _textField;
 }
 
-- (HADiscountDataSourceDelegate*) dataSourceDelegate
-{
-    if (!_dataSourceDelegate) {
-        _dataSourceDelegate = [[HADiscountDataSourceDelegate alloc] init];
-    }
-    return _dataSourceDelegate;
-}
+//- (HADiscountDataSourceDelegate*) dataSourceDelegate
+//{
+//    if (!_dataSourceDelegate) {
+//        _dataSourceDelegate = [[HADiscountDataSourceDelegate alloc] init];
+//    }
+//    return _dataSourceDelegate;
+//}
 
 
 #pragma mark - *** Init ***
@@ -44,19 +41,26 @@
     [super awakeFromNib];
     // Initialization code
     self.textField.pickerDelegate = self;
-    self.textField.pickerView.dataSource = self.dataSourceDelegate;
-    self.textField.pickerView.delegate = self.dataSourceDelegate;
-    self.dataSourceDelegate.resultDelegate = self;
+//    self.textField.pickerView.dataSource = self.dataSourceDelegate;
+//    self.textField.pickerView.delegate = self.dataSourceDelegate;
+    //self.dataSourceDelegate.resultDelegate = self;
     
     self.accessoryView = self.textField;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
+- (void)setPickerDataSouce:(id<UIPickerViewDelegate,UIPickerViewDataSource>)pickerDataSouce
+{
+    _pickerDataSouce = pickerDataSouce;
+    self.textField.pickerView.dataSource = _pickerDataSouce;
+    self.textField.pickerView.delegate = _pickerDataSouce;
+    _pickerDataSouce.resultDelegate = self;
+}
 
 #pragma mark - *** HAPickerTextFieldDelegate ***
 - (void)selectedObjectDoneForPickerTextField:(HAPickerTextField*)pickerTF
@@ -72,6 +76,7 @@
 {
     self.textField.text = text;
 }
+
 
 
 @end

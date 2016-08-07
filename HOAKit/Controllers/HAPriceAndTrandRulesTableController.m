@@ -7,12 +7,11 @@
 //
 
 #import "HAPriceAndTrandRulesTableController.h"
-#import "HADiscountPickerTextField.h"
 #import "HAEditorNumberCell.h"
 #import "HASwitchCell.h"
 #import "HADiscountEditorCell.h"
 
-@interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate>
+@interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate,HADiscountEditorCellDelegate,HASwitchCellDelegate,HAEditorNumberCellDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *ppLabel;
 
 @property(nonatomic,strong) NSArray* dataSource;
@@ -83,6 +82,7 @@
        [text isEqualToString:@"是否平台提供洗漱用品"] ||
        [text isEqualToString:@"是否平台提供床品"]){
         HASwitchCell* switchCell = [tableView dequeueReusableCellWithIdentifier:@"HAPriceOnOffCell" forIndexPath:indexPath];
+        switchCell.delegate = self;
         cell = switchCell;
     }
     
@@ -90,7 +90,7 @@
        [text isEqualToString:@"押金"]){
         HAEditorNumberCell* editorCell = (HAEditorNumberCell*)[tableView dequeueReusableCellWithIdentifier:@"HAPriceNumberCell" forIndexPath:indexPath];
         editorCell.unitName = @"元";
-        editorCell.textField.delegate = self;
+        editorCell.delegate = self;
         cell = editorCell;
         
     }
@@ -100,7 +100,7 @@
        [text isEqualToString:@"15天折扣"] ||
        [text isEqualToString:@"30天折扣"]){
         HADiscountEditorCell* discountCell = [tableView dequeueReusableCellWithIdentifier:@"HADiscountCell" forIndexPath:indexPath];
-        discountCell.textField.delegate = self;
+        discountCell.delegate = self;
         cell = discountCell;
     }
     cell.textLabel.text = text;
@@ -129,14 +129,21 @@
 }
 
 
-#pragma mark - *** UITextFieldDelegate ***
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+#pragma mark - *** Cells Delegate ***
+- (void)selectItemDoneForPickerTextField:(UITextField *)textfield fromCell:(UITableViewCell *)cell
 {
-    
-    return YES;
+     NSLog(@"selectItemDoneForPickerTextField");
 }
 
+- (void)switchButtonChangedFromCell:(UITableViewCell *)cell sender:(UISwitch *)sender
+{
+    NSLog(@"switchButtonChangedFromCell");
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textfield fromCell:(UITableViewCell *)cell
+{
+   NSLog(@"textFieldDidEndEditing");
+}
 
 //- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 //{

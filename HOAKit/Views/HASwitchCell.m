@@ -21,6 +21,7 @@
 {
     if (!_onOff) {
         _onOff = [[UISwitch alloc] init];
+        [_onOff addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
     }
     return _onOff;
 }
@@ -37,5 +38,14 @@
 
     // Configure the view for the selected state
 }
+
+#pragma mark - *** Target Action ***
+- (void)switchChange:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(switchButtonChangedFromCell:sender:)]) {
+        [self.delegate switchButtonChangedFromCell:self sender:self.onOff];
+    }
+}
+
 
 @end

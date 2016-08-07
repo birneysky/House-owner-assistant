@@ -512,6 +512,88 @@
             </objects>
             <point key="canvasLocation" x="4105" y="781"/>
         </scene>
+        <!--House Bed View Controller-->
+        <scene sceneID="aFa-ge-mrA">
+            <objects>
+                <tableViewController id="GfH-Ua-0Y6" customClass="HAHouseBedViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="24K-9k-FAY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HABedInfoCell" id="6Hj-Mf-hTo">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Hj-Mf-hTo" id="93a-eK-gyW">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="zG7-gM-hU6" kind="show" id="v4F-d4-qQR"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="GfH-Ua-0Y6" id="OFV-Ac-A0P"/>
+                            <outlet property="delegate" destination="GfH-Ua-0Y6" id="bVh-HY-ByA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="aEx-ug-YJZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="yzs-72-9GB">
+                            <color key="tintColor" red="0.083725895810000006" green="0.78553109219999995" blue="0.29008639520000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="zG7-gM-hU6" kind="show" id="plD-48-fM3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ISA-4i-S4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5017" y="46"/>
+        </scene>
+        <!--Edit House Ben View Controller-->
+        <scene sceneID="Xb7-oH-P2C">
+            <objects>
+                <tableViewController id="zG7-gM-hU6" customClass="HAEditHouseBenViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="s1U-St-T5S">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HABedTypeCell" id="EZp-S9-Tu8" customClass="HAEditPickerCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EZp-S9-Tu8" id="8wI-Ll-6lf">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HABedSizeCell" id="XZD-EW-RnS" customClass="HAEditorNumberCell">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XZD-EW-RnS" id="tNZ-jW-oGJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zG7-gM-hU6" id="K8N-US-2ge"/>
+                            <outlet property="delegate" destination="zG7-gM-hU6" id="E5v-qI-sfs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="y1M-jK-JcT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="15P-xE-5h0">
+                            <connections>
+                                <action selector="saveBtnClicked:" destination="zG7-gM-hU6" id="wMj-ZH-kVh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WLo-RS-I6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5719" y="46"/>
+        </scene>
         <!--Publish House Info Table View Controller-->
         <scene sceneID="19p-mC-qfx">
             <objects>
@@ -579,6 +661,7 @@
                         <segue destination="bXN-Jg-OJg" kind="show" identifier="push_house_introduce" id="Ekv-zQ-b43"/>
                         <segue destination="1zs-ci-zDz" kind="show" identifier="push_price_trading_rules" id="07F-D8-dhg"/>
                         <segue destination="YKx-6c-Kno" kind="show" identifier="push_house_info" id="Eaw-0C-sBt"/>
+                        <segue destination="GfH-Ua-0Y6" kind="show" identifier="push_house_bed_info" id="xRE-1b-Y94"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bob-Hx-xez" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1157,7 +1240,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.083725895810000006" green="0.78553109219999995" blue="0.29008639520000001" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseGenralInfoCell" rowHeight="44" id="bHD-gM-mf2" customClass="HASwitchCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseInfoEditorrCell" rowHeight="44" id="bHD-gM-mf2" customClass="HAEditorNumberCell">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHD-gM-mf2" id="zhn-0N-Emu">
@@ -1165,11 +1248,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseEditorCell" rowHeight="44" id="qbP-HV-mJs" customClass="HAEditorCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HAHouseInfoCell" rowHeight="44" id="qbP-HV-mJs">
                                 <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qbP-HV-mJs" id="9P9-Xm-wJz">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1186,10 +1269,32 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="aDK-4U-w2o" kind="show" identifier="push_house_bathroom_edit" id="vPZ-ln-nkg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDU-Q3-ysU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6084" y="1563"/>
+        </scene>
+        <!--House Bath Room Edit View Controller-->
+        <scene sceneID="O73-vY-xaP">
+            <objects>
+                <viewController id="aDK-4U-w2o" customClass="HAHouseBathRoomEditViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JjS-ZR-x9W"/>
+                        <viewControllerLayoutGuide type="bottom" id="WV5-Gm-S3Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8o0-q2-Sog">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Kr-XC-eqt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mtU-NM-f0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6789" y="1563"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="X9H-Qi-OP2">
@@ -1219,4 +1324,7 @@
         <image name="HA_Room_Default_Picture" width="320" height="167"/>
         <image name="HA_Test_Picture" width="140" height="96"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="v4F-d4-qQR"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol HAEditorNumberCellDelegate <NSObject>
+
+@optional
+- (void) textFieldDidEndEditing:(UITextField*)textfield
+                                fromCell:(UITableViewCell*) cell;
+@end
+
 @interface HAEditorNumberCell : UITableViewCell
 
-@property (nonatomic,readonly) UITextField* textField;
+//@property (nonatomic,readonly) UITextField* textField;
+
+@property (nonatomic,weak) id<HAEditorNumberCellDelegate> delegate;
 
 @property (nonatomic,copy) NSString* unitName;
 

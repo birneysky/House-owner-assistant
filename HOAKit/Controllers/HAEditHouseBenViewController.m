@@ -1,30 +1,45 @@
 //
-//  HAPublishHouseInfoTableViewController.m
-//  House-owner-assistant
+//  HAEditHouseBenViewController.m
+//  HOAKit
 //
-//  Created by zhangguang on 16/7/29.
-//  Copyright © 2016年 HA. All rights reserved.
+//  Created by birneysky on 16/8/7.
+//  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HAPublishHouseInfoTableViewController.h"
+#import "HAEditHouseBenViewController.h"
+#import "HAEditorNumberCell.h"
+#import "HAEditPickerCell.h"
+#import "HABedTypeDataSourceDelegate.h"
 
-@interface HAPublishHouseInfoTableViewController ()
+@interface HAEditHouseBenViewController ()
 
 @property(nonatomic,strong) NSArray* dataSource;
 
+@property(nonatomic,strong) HABedTypeDataSourceDelegate* bedTypeDataSouce;
+
 @end
 
-@implementation HAPublishHouseInfoTableViewController
+@implementation HAEditHouseBenViewController
 
-#pragma mark - ***Properties ***
-
-- (NSArray*) dataSource
+#pragma mark - *** Properties ***
+- (NSArray*)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"床铺信息",@"位置区域",@"设施列表",@"出租方式与房源类型",@"地址", nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@"床型",@"长度",@"宽度",@"数量", nil];
     }
     return _dataSource;
 }
+
+
+- (HABedTypeDataSourceDelegate*) bedTypeDataSouce
+{
+    if (!_bedTypeDataSouce) {
+        _bedTypeDataSouce = [[HABedTypeDataSourceDelegate alloc] init];
+    }
+    return _bedTypeDataSouce;
+}
+
+#pragma mark - *** Init **
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,18 +49,17 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
     return 1;
 }
 
@@ -55,41 +69,30 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseSummaryCell" forIndexPath:indexPath];
+    UITableViewCell *cell = nil;
+    
+    NSString* text = self.dataSource[indexPath.row];
+    if ([text isEqualToString:@"床型"]) {
+       HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HABedTypeCell" forIndexPath:indexPath];
+        pickerCell.pickerDataSouce = self.bedTypeDataSouce;
+        cell = pickerCell;
+    }
+    else {
+        HAEditorNumberCell* editCell = [tableView dequeueReusableCellWithIdentifier:@"HABedSizeCell" forIndexPath:indexPath];
+        editCell.unitName = @"m";
+        cell = editCell;
+    }
+    
     
     // Configure the cell...
-    cell.textLabel.text = self.dataSource[indexPath.row];
-    
+    cell.textLabel.text = text;
     return cell;
 }
 
-#pragma mark - *** TableView Delegate ***
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString* text = self.dataSource[indexPath.row];
-    /**@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"床铺信息",@"位置区域",@"设施列表",@"出租方式与房源类型",@"地址"*/
-    if ([text isEqualToString:@"房屋标题与介绍"]) {
-        [self performSegueWithIdentifier:@"push_house_introduce" sender:nil];
-    }
-    else if ([text isEqualToString:@"价格与交易规则"]){
-        [self performSegueWithIdentifier:@"push_price_trading_rules" sender:nil];
-    }
-    else if ([text isEqualToString:@"房源信息"]){
-        [self performSegueWithIdentifier:@"push_house_info" sender:nil];
-    }
-    else if ([text isEqualToString:@"床铺信息"]){
-        [self performSegueWithIdentifier:@"push_house_bed_info" sender:nil];
-    }
-    else if ([text isEqualToString:@"出租方式与房源类型"]){
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else if ([text isEqualToString:@"地址"]){
-        NSArray* vcs = self.navigationController.viewControllers;
-        [self.navigationController popToViewController:vcs[vcs.count-3] animated:YES];
-    }
-    
 }
 
 /*
@@ -135,5 +138,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - ***Target Action  ***
+- (IBAction)saveBtnClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

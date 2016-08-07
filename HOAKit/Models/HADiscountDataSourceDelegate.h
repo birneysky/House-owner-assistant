@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAEditPickerDataSourceDelegate.h"
 
-@protocol PickerViewDidSelectResultDelegate;
+@interface HADiscountDataSourceDelegate : HAEditPickerDataSourceDelegate <UIPickerViewDelegate,UIPickerViewDataSource>
 
-@interface HADiscountDataSourceDelegate : NSObject <UIPickerViewDelegate,UIPickerViewDataSource>
-
-@property(nonatomic,weak) id<PickerViewDidSelectResultDelegate> resultDelegate;
 
 @end

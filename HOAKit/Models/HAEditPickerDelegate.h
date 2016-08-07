@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIkit.h>
 
-@protocol PickerViewDidSelectResultDelegate <NSObject>
+@protocol HAEditPickerDelegate <NSObject>
 
 @optional
 

@@ -7,6 +7,7 @@
 //
 
 #import "HAHouseInfoViewController.h"
+#import "HAEditorNumberCell.h"
 
 @interface HAHouseInfoViewController ()
 
@@ -50,7 +51,26 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseGenralInfoCell" forIndexPath:indexPath];
+    UITableViewCell *cell = nil;
+    UIView* view  = nil;
+    NSString* text = self.dataSource[indexPath.row];
+    if ([text isEqualToString:@"户型"]||
+        [text isEqualToString:@"卫生间数量"] ) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+        view = cell.accessoryView;
+    }
+    else{
+        HAEditorNumberCell* editorCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoEditorrCell" forIndexPath:indexPath];
+        if([text isEqualToString:@"房屋面积"])
+        {
+            editorCell.unitName = @"m2";
+        }
+        else if([text isEqualToString:@"几位访客"]){
+            editorCell.unitName = @"人";
+        }
+        
+        cell = editorCell;
+    }
     
     // Configure the cell...
     
@@ -59,6 +79,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell.accessoryView becomeFirstResponder];
+}
 
 /*
 // Override to support conditional editing of the table view.

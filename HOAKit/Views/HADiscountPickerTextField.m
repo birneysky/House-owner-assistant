@@ -7,9 +7,10 @@
 //
 
 #import "HADiscountPickerTextField.h"
+#import "HAEditPickerDelegate.h"
 #import "HADiscountDataSourceDelegate.h"
 
-@interface HADiscountPickerTextField () <PickerViewDidSelectResultDelegate>
+@interface HADiscountPickerTextField () <HAEditPickerDelegate>
 
 @property (nonatomic,strong) HADiscountDataSourceDelegate* dataSourceDelegate;
 

@@ -69,9 +69,23 @@
 		743F435B1D5625CE00D06D19 /* HAEditorNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43591D5625CE00D06D19 /* HAEditorNumberCell.m */; };
 		743F435E1D56E1AE00D06D19 /* HASwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F435C1D56E1AE00D06D19 /* HASwitchCell.h */; };
 		743F435F1D56E1AE00D06D19 /* HASwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F435D1D56E1AE00D06D19 /* HASwitchCell.m */; };
-		743F43611D57037800D06D19 /* PickerViewDidSelectResultDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43601D57037800D06D19 /* PickerViewDidSelectResultDelegate.h */; };
+		743F43611D57037800D06D19 /* HAEditPickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43601D57037800D06D19 /* HAEditPickerDelegate.h */; };
 		743F43641D570CE700D06D19 /* HADiscountEditorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43621D570CE700D06D19 /* HADiscountEditorCell.h */; };
 		743F43651D570CE700D06D19 /* HADiscountEditorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43631D570CE700D06D19 /* HADiscountEditorCell.m */; };
+		743F43681D571E6100D06D19 /* HAHouseBathRoomEditViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43661D571E6100D06D19 /* HAHouseBathRoomEditViewController.h */; };
+		743F43691D571E6100D06D19 /* HAHouseBathRoomEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43671D571E6100D06D19 /* HAHouseBathRoomEditViewController.m */; };
+		743F436C1D573F8A00D06D19 /* HAHouseBedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F436A1D573F8A00D06D19 /* HAHouseBedViewController.h */; };
+		743F436D1D573F8A00D06D19 /* HAHouseBedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F436B1D573F8A00D06D19 /* HAHouseBedViewController.m */; };
+		743F43701D57413A00D06D19 /* HABed.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F436E1D57413A00D06D19 /* HABed.h */; };
+		743F43711D57413A00D06D19 /* HABed.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F436F1D57413A00D06D19 /* HABed.m */; };
+		743F43741D5742F900D06D19 /* HAEditHouseBenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43721D5742F900D06D19 /* HAEditHouseBenViewController.h */; };
+		743F43751D5742F900D06D19 /* HAEditHouseBenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43731D5742F900D06D19 /* HAEditHouseBenViewController.m */; };
+		743F43781D57440300D06D19 /* HAEditPickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43761D57440300D06D19 /* HAEditPickerCell.h */; };
+		743F43791D57440300D06D19 /* HAEditPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43771D57440300D06D19 /* HAEditPickerCell.m */; };
+		743F437C1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F437A1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.h */; };
+		743F437D1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F437B1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.m */; };
+		743F43801D574A4200D06D19 /* HABedTypeDataSourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F437E1D574A4200D06D19 /* HABedTypeDataSourceDelegate.h */; };
+		743F43811D574A4200D06D19 /* HABedTypeDataSourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F437F1D574A4200D06D19 /* HABedTypeDataSourceDelegate.m */; };
 		DB8EF91B1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */; };
 		DB8EF91C1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */; };
 		DBAE09231D5043DF008A85C4 /* HOA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBAE09221D5043DF008A85C4 /* HOA.xcassets */; };
@@ -145,9 +159,23 @@
 		743F43591D5625CE00D06D19 /* HAEditorNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAEditorNumberCell.m; sourceTree = "<group>"; };
 		743F435C1D56E1AE00D06D19 /* HASwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HASwitchCell.h; sourceTree = "<group>"; };
 		743F435D1D56E1AE00D06D19 /* HASwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HASwitchCell.m; sourceTree = "<group>"; };
-		743F43601D57037800D06D19 /* PickerViewDidSelectResultDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewDidSelectResultDelegate.h; sourceTree = "<group>"; };
+		743F43601D57037800D06D19 /* HAEditPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAEditPickerDelegate.h; sourceTree = "<group>"; };
 		743F43621D570CE700D06D19 /* HADiscountEditorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HADiscountEditorCell.h; sourceTree = "<group>"; };
 		743F43631D570CE700D06D19 /* HADiscountEditorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HADiscountEditorCell.m; sourceTree = "<group>"; };
+		743F43661D571E6100D06D19 /* HAHouseBathRoomEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseBathRoomEditViewController.h; sourceTree = "<group>"; };
+		743F43671D571E6100D06D19 /* HAHouseBathRoomEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseBathRoomEditViewController.m; sourceTree = "<group>"; };
+		743F436A1D573F8A00D06D19 /* HAHouseBedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseBedViewController.h; sourceTree = "<group>"; };
+		743F436B1D573F8A00D06D19 /* HAHouseBedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseBedViewController.m; sourceTree = "<group>"; };
+		743F436E1D57413A00D06D19 /* HABed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABed.h; sourceTree = "<group>"; };
+		743F436F1D57413A00D06D19 /* HABed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HABed.m; sourceTree = "<group>"; };
+		743F43721D5742F900D06D19 /* HAEditHouseBenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAEditHouseBenViewController.h; sourceTree = "<group>"; };
+		743F43731D5742F900D06D19 /* HAEditHouseBenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAEditHouseBenViewController.m; sourceTree = "<group>"; };
+		743F43761D57440300D06D19 /* HAEditPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAEditPickerCell.h; sourceTree = "<group>"; };
+		743F43771D57440300D06D19 /* HAEditPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAEditPickerCell.m; sourceTree = "<group>"; };
+		743F437A1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAEditPickerDataSourceDelegate.h; sourceTree = "<group>"; };
+		743F437B1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAEditPickerDataSourceDelegate.m; sourceTree = "<group>"; };
+		743F437E1D574A4200D06D19 /* HABedTypeDataSourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABedTypeDataSourceDelegate.h; sourceTree = "<group>"; };
+		743F437F1D574A4200D06D19 /* HABedTypeDataSourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HABedTypeDataSourceDelegate.m; sourceTree = "<group>"; };
 		DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPriceAndTrandRulesTableController.h; sourceTree = "<group>"; };
 		DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPriceAndTrandRulesTableController.m; sourceTree = "<group>"; };
 		DBAE09221D5043DF008A85C4 /* HOA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HOA.xcassets; sourceTree = SOURCE_ROOT; };
@@ -221,6 +249,12 @@
 				DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */,
 				743F43541D5600AA00D06D19 /* HAHouseInfoViewController.h */,
 				743F43551D5600AA00D06D19 /* HAHouseInfoViewController.m */,
+				743F43661D571E6100D06D19 /* HAHouseBathRoomEditViewController.h */,
+				743F43671D571E6100D06D19 /* HAHouseBathRoomEditViewController.m */,
+				743F436A1D573F8A00D06D19 /* HAHouseBedViewController.h */,
+				743F436B1D573F8A00D06D19 /* HAHouseBedViewController.m */,
+				743F43721D5742F900D06D19 /* HAEditHouseBenViewController.h */,
+				743F43731D5742F900D06D19 /* HAEditHouseBenViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = SOURCE_ROOT;
@@ -278,7 +312,13 @@
 				743F43401D55EBD200D06D19 /* HAProvinceDataSourceDelegate.m */,
 				743F43501D55F84F00D06D19 /* HADiscountDataSourceDelegate.h */,
 				743F43511D55F84F00D06D19 /* HADiscountDataSourceDelegate.m */,
-				743F43601D57037800D06D19 /* PickerViewDidSelectResultDelegate.h */,
+				743F43601D57037800D06D19 /* HAEditPickerDelegate.h */,
+				743F436E1D57413A00D06D19 /* HABed.h */,
+				743F436F1D57413A00D06D19 /* HABed.m */,
+				743F437A1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.h */,
+				743F437B1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.m */,
+				743F437E1D574A4200D06D19 /* HABedTypeDataSourceDelegate.h */,
+				743F437F1D574A4200D06D19 /* HABedTypeDataSourceDelegate.m */,
 			);
 			path = Models;
 			sourceTree = SOURCE_ROOT;
@@ -330,6 +370,8 @@
 				743F435D1D56E1AE00D06D19 /* HASwitchCell.m */,
 				743F43621D570CE700D06D19 /* HADiscountEditorCell.h */,
 				743F43631D570CE700D06D19 /* HADiscountEditorCell.m */,
+				743F43761D57440300D06D19 /* HAEditPickerCell.h */,
+				743F43771D57440300D06D19 /* HAEditPickerCell.m */,
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
@@ -360,19 +402,26 @@
 				742B91E31D4FB731000FF5A1 /* CTAssetsPickerConstants.h in Headers */,
 				742B91E71D4FB731000FF5A1 /* CTAssetsSupplementaryView.h in Headers */,
 				743F434A1D55F0C500D06D19 /* HALocationPickerTextField.h in Headers */,
+				743F436C1D573F8A00D06D19 /* HAHouseBedViewController.h in Headers */,
 				742B91CA1D4FB731000FF5A1 /* HAHouseLocationViewController.h in Headers */,
 				742B91DA1D4FB731000FF5A1 /* HALocationPoint.h in Headers */,
 				743F43561D5600AA00D06D19 /* HAHouseInfoViewController.h in Headers */,
 				743F434E1D55F81500D06D19 /* HADiscountPickerTextField.h in Headers */,
 				742B91E11D4FB731000FF5A1 /* CTAssetsGroupViewController.h in Headers */,
-				743F43611D57037800D06D19 /* PickerViewDidSelectResultDelegate.h in Headers */,
+				743F43611D57037800D06D19 /* HAEditPickerDelegate.h in Headers */,
+				743F43681D571E6100D06D19 /* HAHouseBathRoomEditViewController.h in Headers */,
+				743F43701D57413A00D06D19 /* HABed.h in Headers */,
 				742B91D61D4FB731000FF5A1 /* HAFloatingButton.h in Headers */,
+				743F43741D5742F900D06D19 /* HAEditHouseBenViewController.h in Headers */,
 				DB8EF91B1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h in Headers */,
 				742B91D01D4FB731000FF5A1 /* CALayer+Additions.h in Headers */,
 				742B91CE1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.h in Headers */,
 				743F43411D55EBD200D06D19 /* HAProvinceDataSourceDelegate.h in Headers */,
+				743F437C1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.h in Headers */,
+				743F43781D57440300D06D19 /* HAEditPickerCell.h in Headers */,
 				742B91E51D4FB731000FF5A1 /* CTAssetsPickerController.h in Headers */,
 				742B91DD1D4FB731000FF5A1 /* ALAssetsGroup+isEqual.h in Headers */,
+				743F43801D574A4200D06D19 /* HABedTypeDataSourceDelegate.h in Headers */,
 				742B91CC1D4FB731000FF5A1 /* HAHouseTypeTableViewController.h in Headers */,
 				743F435E1D56E1AE00D06D19 /* HASwitchCell.h in Headers */,
 			);
@@ -467,13 +516,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				742B91E61D4FB731000FF5A1 /* CTAssetsPickerController.m in Sources */,
+				743F437D1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.m in Sources */,
 				742B91EF1D4FB731000FF5A1 /* NSDate+timeDescription.m in Sources */,
 				742B91DE1D4FB731000FF5A1 /* ALAssetsGroup+isEqual.m in Sources */,
+				743F43811D574A4200D06D19 /* HABedTypeDataSourceDelegate.m in Sources */,
 				743F43421D55EBD200D06D19 /* HAProvinceDataSourceDelegate.m in Sources */,
 				743F435F1D56E1AE00D06D19 /* HASwitchCell.m in Sources */,
 				743F43571D5600AA00D06D19 /* HAHouseInfoViewController.m in Sources */,
 				743F435B1D5625CE00D06D19 /* HAEditorNumberCell.m in Sources */,
+				743F43751D5742F900D06D19 /* HAEditHouseBenViewController.m in Sources */,
 				742B91DB1D4FB731000FF5A1 /* HALocationPoint.m in Sources */,
+				743F43691D571E6100D06D19 /* HAHouseBathRoomEditViewController.m in Sources */,
 				743F43531D55F84F00D06D19 /* HADiscountDataSourceDelegate.m in Sources */,
 				742B91EA1D4FB731000FF5A1 /* CTAssetsViewCell.m in Sources */,
 				DBAE09251D504A4F008A85C4 /* HOAKit.m in Sources */,
@@ -483,6 +536,7 @@
 				742B91E81D4FB731000FF5A1 /* CTAssetsSupplementaryView.m in Sources */,
 				742B91C91D4FB731000FF5A1 /* HAHouseTableController.m in Sources */,
 				742B91E21D4FB731000FF5A1 /* CTAssetsGroupViewController.m in Sources */,
+				743F43711D57413A00D06D19 /* HABed.m in Sources */,
 				742B91D11D4FB731000FF5A1 /* CALayer+Additions.m in Sources */,
 				7422D79A1D53811C00ACB2B6 /* HATextView.m in Sources */,
 				742B91CD1D4FB731000FF5A1 /* HAHouseTypeTableViewController.m in Sources */,
@@ -493,11 +547,13 @@
 				743F43651D570CE700D06D19 /* HADiscountEditorCell.m in Sources */,
 				742B91E41D4FB731000FF5A1 /* CTAssetsPickerConstants.m in Sources */,
 				742B91D51D4FB731000FF5A1 /* HALeapBehavior.m in Sources */,
+				743F43791D57440300D06D19 /* HAEditPickerCell.m in Sources */,
 				DBAE09291D506275008A85C4 /* HAHouseIntroduceViewController.m in Sources */,
 				742B91C71D4FB731000FF5A1 /* HAAddHousePhotoViewController.m in Sources */,
 				742B91CB1D4FB731000FF5A1 /* HAHouseLocationViewController.m in Sources */,
 				742B91D71D4FB731000FF5A1 /* HAFloatingButton.m in Sources */,
 				742B91E01D4FB731000FF5A1 /* CTAssetsGroupViewCell.m in Sources */,
+				743F436D1D573F8A00D06D19 /* HAHouseBedViewController.m in Sources */,
 				742B91CF1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

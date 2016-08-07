@@ -13,4 +13,6 @@
 
 @property(nonatomic,weak) id<HAEditPickerDelegate> resultDelegate;
 
+@property(nonatomic,readonly) NSString* selectResult;
+
 @end

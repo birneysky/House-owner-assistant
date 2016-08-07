@@ -18,7 +18,7 @@
 
 @interface HAEditorNumberCell : UITableViewCell
 
-//@property (nonatomic,readonly) UITextField* textField;
+@property (nonatomic,readonly) UITextField* textField;
 
 @property (nonatomic,weak) id<HAEditorNumberCellDelegate> delegate;
 

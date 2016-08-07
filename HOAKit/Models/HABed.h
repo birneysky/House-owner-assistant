@@ -14,6 +14,6 @@
 @property(nonatomic,copy) NSString* type;
 @property (nonatomic,assign) CGFloat length;
 @property (nonatomic,assign) CGFloat width;
-@property (nonatomic,assign) CGFloat count;
+@property (nonatomic,assign) NSUInteger count;
 
 @end

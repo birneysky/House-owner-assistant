@@ -11,6 +11,7 @@
 @interface HABedTypeDataSourceDelegate ()
 
 @property(nonatomic,strong) NSArray* dataSource;
+@property(nonatomic,weak) UIPickerView* weakPickView;
 
 @end
 
@@ -75,6 +76,12 @@
         //NSString* result = [NSString stringWithFormat:@"%d.%d 折",self.dataSource ]
         [self.resultDelegate pickerView:pickerView didSelectResultText:restult];
     }
+}
+
+- (NSString*)selectResult
+{
+    NSUInteger index = [self.weakPickView selectedRowInComponent:0];
+    return self.dataSource[index];
 }
 
 @end

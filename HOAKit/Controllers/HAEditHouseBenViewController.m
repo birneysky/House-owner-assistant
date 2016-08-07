@@ -10,12 +10,15 @@
 #import "HAEditorNumberCell.h"
 #import "HAEditPickerCell.h"
 #import "HABedTypeDataSourceDelegate.h"
+#import "HABed.h"
 
 @interface HAEditHouseBenViewController ()
 
 @property(nonatomic,strong) NSArray* dataSource;
 
 @property(nonatomic,strong) HABedTypeDataSourceDelegate* bedTypeDataSouce;
+
+//@property (nonatomic,strong) HABed* bed;
 
 @end
 
@@ -39,11 +42,19 @@
     return _bedTypeDataSouce;
 }
 
+- (HABed*)bed
+{
+    if (!_bed) {
+        _bed = [[HABed alloc] init];
+    }
+    return _bed;
+}
+
 #pragma mark - *** Init **
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -51,10 +62,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 
@@ -75,11 +82,26 @@
     if ([text isEqualToString:@"床型"]) {
        HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HABedTypeCell" forIndexPath:indexPath];
         pickerCell.pickerDataSouce = self.bedTypeDataSouce;
+        pickerCell.delegate = self;
+        pickerCell.textField.text = self.bed.type;
         cell = pickerCell;
     }
     else {
         HAEditorNumberCell* editCell = [tableView dequeueReusableCellWithIdentifier:@"HABedSizeCell" forIndexPath:indexPath];
         editCell.unitName = @"m";
+        if([text isEqualToString:@"数量"]){
+            editCell.unitName = @"张";
+            editCell.textField.text = [NSString stringWithFormat:@"%d",self.bed.count];
+        }
+        else if([text isEqualToString:@"长度"]){
+            editCell.textField.text = [NSString stringWithFormat:@"%.1f",self.bed.length];
+        }
+        else if ([text isEqualToString:@"宽度"]){
+            editCell.textField.text = [NSString stringWithFormat:@"%.1f",self.bed.width];
+        }
+        
+       
+        editCell.delegate = self;
         cell = editCell;
     }
     
@@ -93,6 +115,38 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell.accessoryView becomeFirstResponder];
+}
+
+#pragma mark - *** ***
+- (void)selectItemDoneForPickerTextField:(UITextField*)textfield
+                                fromCell:(UITableViewCell*) cell
+{
+    //@"床型",@"长度",@"宽度",@"数量"
+    NSString* text = cell.textLabel.text;
+    if ([text isEqualToString:@"床型"]) {
+        self.bed.type = textfield.text;
+    }
+    
+    
+}
+
+- (void) textFieldDidEndEditing:(UITextField*)textfield
+                       fromCell:(UITableViewCell*) cell
+{
+    //@"床型",@"长度",@"宽度",@"数量"
+    NSString* text = cell.textLabel.text;
+    if ([text isEqualToString:@"长度"]) {
+        self.bed.length = [textfield.text floatValue];
+    }
+    else if ([text isEqualToString:@"宽度"]){
+        self.bed.width = [textfield.text floatValue];
+    }
+    else if ([text isEqualToString:@"数量"]){
+        //CGFloat value = [textfield.text floatValue];
+        self.bed.count = [textfield.text integerValue];
+    }
 }
 
 /*
@@ -141,7 +195,13 @@
 
 #pragma mark - ***Target Action  ***
 - (IBAction)saveBtnClicked:(id)sender {
+    
+    [self.view endEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
+    if ([self.delegate respondsToSelector:@selector(houseBedInfoDidEndEditing:)]) {
+        [self.delegate houseBedInfoDidEndEditing:self.bed];
+    }
+    NSLog(@"bed type  %@ lenght %f,widht %f,count %f",self.bed.type,self.bed.length,self.bed.width,self.bed.count);
 }
 
 @end

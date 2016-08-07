@@ -9,7 +9,7 @@
 #import "HAEditPickerCell.h"
 #import "HAPickerTextField.h"
 
-@interface HAEditPickerCell ()
+@interface HAEditPickerCell ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) HAPickerTextField* textField;
 
@@ -23,6 +23,7 @@
     if (!_textField) {
         _textField = [[HAPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 130, 20)];
         _textField.textAlignment = NSTextAlignmentRight;
+        _textField.delegate = self;
     }
     return _textField;
 }
@@ -65,6 +66,7 @@
 #pragma mark - *** HAPickerTextFieldDelegate ***
 - (void)selectedObjectDoneForPickerTextField:(HAPickerTextField*)pickerTF
 {
+    self.textField.text = self.pickerDataSouce.selectResult;
     if ([self.delegate respondsToSelector:@selector(selectItemDoneForPickerTextField:fromCell:)]) {
         [self.delegate selectItemDoneForPickerTextField:self.textField fromCell:self];
     }
@@ -77,6 +79,10 @@
     self.textField.text = text;
 }
 
-
+#pragma mark - *** UITextFieldDelegate ***
+- (void)textFieldDidEndEditing:(UITextField *)textField;
+{
+  
+}
 
 @end

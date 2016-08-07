@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class HABed;
+
+@protocol HAEditHouseBenViewControllerDelegate <NSObject>
+
+- (void)houseBedInfoDidEndEditing:(HABed*)bed;
+
+@end
+
 @interface HAEditHouseBenViewController : UITableViewController
+
+@property(nonatomic,weak) id<HAEditHouseBenViewControllerDelegate> delegate;
+
+@property(nonatomic,strong) HABed* bed;
 
 @end

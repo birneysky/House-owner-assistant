@@ -7,13 +7,26 @@
 //
 
 #import "HAHouseBedViewController.h"
+#import "HAEditHouseBenViewController.h"
+#import "HABed.h"
 
-@interface HAHouseBedViewController ()
+@interface HAHouseBedViewController ()<HAEditHouseBenViewControllerDelegate>
+
+@property(nonatomic,strong) NSMutableArray* dataSource;
 
 @end
 
 @implementation HAHouseBedViewController
+#pragma mark - *** Properties ***
+- (NSMutableArray*)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [[NSMutableArray alloc] initWithCapacity:100];
+    }
+    return _dataSource;
+}
 
+#pragma mark - *** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -32,24 +45,27 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+
+    return self.dataSource.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HABedInfoCell" forIndexPath:indexPath];
     
+    HABed* bed  = self.dataSource[indexPath.row];
     // Configure the cell...
+    cell.textLabel.text = bed.type;
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f x %.1f",bed.length,bed.width];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -85,14 +101,34 @@
 }
 */
 
-/*
+#pragma mark - *** HAEditHouseBenViewControllerDelegate ***
+- (void)houseBedInfoDidEndEditing:(HABed *)bed
+{
+    [self.dataSource addObject:bed];
+    [self.tableView reloadData];
+}
+
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+     HAEditHouseBenViewController* vc = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"house_add_bed"]) {
+       
+        vc.delegate = self;
+        
+    }
+    else if ([segue.identifier isEqualToString:@"house_edit_bed"])
+    {
+        //UITableViewCell* cell = sender;
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
+        vc.bed = self.dataSource[indexPath.row];
+    }
+    
 }
-*/
+
 
 @end

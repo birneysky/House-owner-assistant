@@ -63,7 +63,7 @@
 }
 
 #pragma mark - *** HAPickerTextFieldDelegate ***
-- (void)selectedObjectDoneForPickerTextField:(HAPickerTextField*)pickerTF
+- (void)selectedObjectDoneForPickerTextField:(HAPickerTextField*)pickerTF 
 {
     NSInteger provinceIndex = [self.pickerView selectedRowInComponent:0];
     NSInteger cityIndex = [self.pickerView selectedRowInComponent:1];
@@ -103,7 +103,7 @@
     }
 }
 
-- (void)selectedObjectCancelForPickTextField:(HAPickerTextField*)pickerTF
+- (void)selectedObjectCancelForPickTextField:(HAPickerTextField*)pickerTF text:(NSString*)result
 {
     
 }

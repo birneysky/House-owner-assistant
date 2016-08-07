@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HAEditPickerDataSourceDelegate.h"
+#import "HAPickerTextField.h"
 
 @protocol HAEditPickerCellDelegate <NSObject>
 
@@ -15,7 +16,11 @@
                                 fromCell:(UITableViewCell*) cell;
 @end
 
+
+
 @interface HAEditPickerCell : UITableViewCell
+
+@property (nonatomic,readonly) HAPickerTextField* textField;
 
 @property (nonatomic,weak) HAEditPickerDataSourceDelegate* pickerDataSouce;
 

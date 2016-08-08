@@ -8,10 +8,18 @@
 
 #import "HAHouseInfoViewController.h"
 #import "HAEditorNumberCell.h"
+#import "HAHouseTypeDataSouceDelegate.h"
+#import "HABathroomDataSourceDelegate.h"
+#import "HAEditPickerCell.h"
+
 
 @interface HAHouseInfoViewController ()
 
 @property(nonatomic,strong) NSArray* dataSource;
+
+@property(nonatomic,strong) HAHouseTypeDataSouceDelegate* houseTypeDataSource;
+
+@property(nonatomic,strong) HABathroomDataSourceDelegate* bathroomDataSource;
 
 @end
 
@@ -24,6 +32,22 @@
         _dataSource = [[NSArray alloc] initWithObjects:@"房屋面积",@"户型",@"卫生间数量",@"几位访客", nil];
     }
     return _dataSource;
+}
+
+- (HAHouseTypeDataSouceDelegate*)houseTypeDataSource
+{
+    if (!_houseTypeDataSource) {
+        _houseTypeDataSource = [[HAHouseTypeDataSouceDelegate alloc] init];
+    }
+    return _houseTypeDataSource;
+}
+
+
+- (HABathroomDataSourceDelegate*)bathroomDataSource{
+    if (!_bathroomDataSource) {
+        _bathroomDataSource = [[HABathroomDataSourceDelegate alloc] init];
+    }
+    return _bathroomDataSource;
 }
 
 #pragma mark - *** Init ***
@@ -54,10 +78,17 @@
     UITableViewCell *cell = nil;
     UIView* view  = nil;
     NSString* text = self.dataSource[indexPath.row];
-    if ([text isEqualToString:@"户型"]||
-        [text isEqualToString:@"卫生间数量"] ) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
-        view = cell.accessoryView;
+    if ([text isEqualToString:@"户型"]) {
+        HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+        pickerCell.pickerDataSouce = self.houseTypeDataSource;
+        //view = cell.accessoryView;
+        cell = pickerCell;
+    }
+    else if([text isEqualToString:@"卫生间数量"] )
+    {
+        HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+        pickerCell.pickerDataSouce = self.bathroomDataSource;
+        cell = pickerCell;
     }
     else{
         HAEditorNumberCell* editorCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoEditorrCell" forIndexPath:indexPath];

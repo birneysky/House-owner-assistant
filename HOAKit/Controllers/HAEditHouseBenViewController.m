@@ -91,13 +91,16 @@
         editCell.unitName = @"m";
         if([text isEqualToString:@"数量"]){
             editCell.unitName = @"张";
-            editCell.textField.text = [NSString stringWithFormat:@"%d",self.bed.count];
+            NSString* value = self.bed.count <= 0 ? @"" : [NSString stringWithFormat:@"%d",self.bed.count];
+            editCell.textField.text = value;
         }
         else if([text isEqualToString:@"长度"]){
-            editCell.textField.text = [NSString stringWithFormat:@"%.1f",self.bed.length];
+            NSString* value = self.bed.length <= 0 ? @"" : [NSString stringWithFormat:@"%.1f",self.bed.length];
+            editCell.textField.text = value;
         }
         else if ([text isEqualToString:@"宽度"]){
-            editCell.textField.text = [NSString stringWithFormat:@"%.1f",self.bed.width];
+            NSString* value = self.bed.width <= 0 ? @"" : [NSString stringWithFormat:@"%.1f",self.bed.width];
+            editCell.textField.text = value;
         }
         
        

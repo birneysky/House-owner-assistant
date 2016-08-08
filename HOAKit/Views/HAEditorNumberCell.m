@@ -25,7 +25,7 @@
         _textField.rightViewMode = UITextFieldViewModeAlways;
         _textField.textAlignment = NSTextAlignmentRight;
         _textField.returnKeyType = UIReturnKeyNext;
-        _textField.keyboardType  = UIKeyboardTypeDecimalPad;
+        _textField.keyboardType  = UIKeyboardTypeNumberPad;
         _textField.delegate = self;
     }
     return _textField;

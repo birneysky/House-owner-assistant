@@ -9,8 +9,9 @@
 #import "HAHouseBedViewController.h"
 #import "HAEditHouseBenViewController.h"
 #import "HABed.h"
+#import "HABedInfoCell.h"
 
-@interface HAHouseBedViewController ()<HAEditHouseBenViewControllerDelegate>
+@interface HAHouseBedViewController ()<HAEditHouseBenViewControllerDelegate,HABedInfoCellDelegate>
 
 @property(nonatomic,strong) NSMutableArray* dataSource;
 
@@ -55,14 +56,16 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HABedInfoCell" forIndexPath:indexPath];
+    HABedInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HABedInfoCell" forIndexPath:indexPath];
     
     HABed* bed  = self.dataSource[indexPath.row];
     // Configure the cell...
-    cell.textLabel.text = bed.type;
-    
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f x %.1f",bed.length,bed.width];
-    
+//    cell.textLabel.text = bed.type;
+//    
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f x %.1f",bed.length,bed.width];
+    cell.typeText = bed.type;
+    cell.sizeText = [NSString stringWithFormat:@"%.1f x %.1f",bed.length,bed.width];
+    cell.delegate = self;
     return cell;
 }
 
@@ -101,6 +104,19 @@
 }
 */
 
+#pragma mark - *** Target Action ***
+- (IBAction)saveBtnClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - *** HABedInfoCellDelegate ***
+- (void)deleteButtonClickedFromCell:(UITableViewCell *)cell sender:(UIButton *)sender
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    [self.dataSource removeObjectAtIndex:indexPath.row];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
 #pragma mark - *** HAEditHouseBenViewControllerDelegate ***
 - (void)houseBedInfoDidEndEditing:(HABed *)bed
 {
@@ -110,7 +126,6 @@
 
 
 #pragma mark - Navigation
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

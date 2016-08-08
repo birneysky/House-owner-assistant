@@ -8,10 +8,10 @@
 
 #import "HAPriceAndTrandRulesTableController.h"
 #import "HAEditorNumberCell.h"
-#import "HASwitchCell.h"
+#import "HAOffOnCell.h"
 #import "HADiscountEditorCell.h"
 
-@interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate,HADiscountEditorCellDelegate,HASwitchCellDelegate,HAEditorNumberCellDelegate>
+@interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate,HADiscountEditorCellDelegate,HAOffOnCellDelegate,HAEditorNumberCellDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *ppLabel;
 
 @property(nonatomic,strong) NSArray* dataSource;
@@ -24,7 +24,7 @@
 - (NSArray*)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金",@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],@[@"是否需要第三方保洁",@"是否平台提供洗漱用品",@"是否平台提供床品"], nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金"],@[@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],@[@"需要第三方保洁",@"平台提供洗漱用品"], nil];
     }
     return _dataSource;
 }
@@ -78,10 +78,10 @@
     cell.accessoryView = nil;
 
     if([text isEqualToString:@"线上收取押金"]        ||
-       [text isEqualToString:@"是否需要第三方保洁"]   ||
-       [text isEqualToString:@"是否平台提供洗漱用品"] ||
-       [text isEqualToString:@"是否平台提供床品"]){
-        HASwitchCell* switchCell = [tableView dequeueReusableCellWithIdentifier:@"HAPriceOnOffCell" forIndexPath:indexPath];
+       [text isEqualToString:@"需要第三方保洁"]   ||
+       [text isEqualToString:@"平台提供洗漱用品"] ||
+       [text isEqualToString:@"平台提供床品"]){
+        HAOffOnCell* switchCell = [tableView dequeueReusableCellWithIdentifier:@"HAPriceOnOffCell" forIndexPath:indexPath];
         switchCell.delegate = self;
         cell = switchCell;
     }
@@ -135,7 +135,7 @@
      NSLog(@"selectItemDoneForPickerTextField");
 }
 
-- (void)switchButtonChangedFromCell:(UITableViewCell *)cell sender:(UISwitch *)sender
+- (void)offONButtonChangedFromCell:(UITableViewCell *)cell sender:(UIButton *)sender
 {
     NSLog(@"switchButtonChangedFromCell");
 }
@@ -145,12 +145,27 @@
    NSLog(@"textFieldDidEndEditing");
 }
 
-//- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UILabel* lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-//    lable.text = @"fdsafdsafdsafdsasafs";
-//    return lable;
-//}
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UILabel* lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    lable.textAlignment  = NSTextAlignmentCenter;
+    if (0 == section) {
+        return nil;
+    }
+    else if (1 == section){
+        lable.text = @"以下是非必填选项";
+    }
+    else if(2 == section){
+        lable.text = @"折扣";
+    }
+
+    return lable;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1;
+}
 
 
 /*

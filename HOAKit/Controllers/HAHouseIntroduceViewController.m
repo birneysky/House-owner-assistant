@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewBottomConstraint;
 
 @property (weak, nonatomic) IBOutlet UITextView *houseLiftTextView;
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextView *titleTextView;
 @property (weak, nonatomic) IBOutlet UITextView *houseDescriptionTextView;
 @property (weak, nonatomic) IBOutlet UITextView *houseLocationTextView;
 @property (weak, nonatomic) IBOutlet UITextView *houseTrafficTextView;
@@ -57,8 +57,8 @@
     CGRect rect = [self.view convertRect:self.houseCommentTextView.frame fromView:self.scrollView];
     //NSLog(@"viewframe %@,rect %@",NSStringFromCGRect(self.view.frame),NSStringFromCGRect(rect));
     if (rect.origin.y + rect.size.height > self.view.frame.size.height) {
-        self.contentOffset = (rect.origin.y + rect.size.height  - self.view.frame.size.height);
-        self.contentViewBottomConstraint.constant = self.contentOffset;
+        self.contentOffset = (rect.origin.y + rect.size.height  - self.view.frame.size.height)  + 64;
+        self.contentViewBottomConstraint.constant = self.contentOffset ;
         [self.scrollView layoutIfNeeded];
     }
        NSLog(@"scroll frame %@,contentsize %@,contentofffset %@,torect %@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize),NSStringFromCGPoint(self.scrollView.contentOffset),NSStringFromCGRect(rect));
@@ -77,21 +77,21 @@
 //    [self.navigationController popToViewController:controllers[controllers.count - 3] animated:YES];
 }
 
-#pragma mark - *** TextField Delegate ***
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if (self.titleTextField == textField) {
-        [self.houseDescriptionTextView becomeFirstResponder];
-        return NO;
-    }
-    return YES;
-}
-
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    self.firstResponderView = textField;
-    return YES;
-}
+//#pragma mark - *** TextField Delegate ***
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+//    if (self.titleTextView == textField) {
+//        [self.houseDescriptionTextView becomeFirstResponder];
+//        return NO;
+//    }
+//    return YES;
+//}
+//
+//
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+//{
+//    self.firstResponderView = textField;
+//    return YES;
+//}
 
 #pragma mark - *** UITextViewDelegate ***
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -114,6 +114,9 @@
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
+        if (self.titleTextView == textView) {
+            [self.houseDescriptionTextView becomeFirstResponder];
+        }
         if (self.houseDescriptionTextView == textView) {
             [self.houseLocationTextView becomeFirstResponder];
         }
@@ -157,15 +160,15 @@
 - (void)keyboardWillHide:(NSNotification*)notification
 {
 //    self.scrollView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    CGRect rect = self.titleTextField.frame;
-    rect.origin.y -= 8;
+    CGRect rect = self.titleTextView.frame;
+    rect.origin.y -= 15;
     [self.scrollView scrollRectToVisible:rect animated:YES];
     
 }
 
 - (void)keyboardDidHide
 {
-    self.contentViewBottomConstraint.constant = 0;
+    self.contentViewBottomConstraint.constant = self.contentOffset;
     
 }
 

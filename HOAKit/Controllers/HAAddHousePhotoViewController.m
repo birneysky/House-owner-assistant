@@ -9,9 +9,11 @@
 #import "HAAddHousePhotoViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "CTAssetsPickerController.h"
+#import "HAPhotoCollectionViewController.h"
 
 @interface HAAddHousePhotoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet HAPhotoCollectionViewController *photoCollectionViewController;
 @end
 
 @implementation HAAddHousePhotoViewController
@@ -27,6 +29,7 @@ static NSString * const reuseIdentifier = @"";
     // Register cell classes
     
     // Do any additional setup after loading the view.
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -60,7 +63,7 @@ static NSString * const reuseIdentifier = @"";
 
 - (void)showActionSheet
 {
-    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil)  destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"拍照", nil),NSLocalizedString(@"从相册选择", nil), nil];
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil)  destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"拍照", nil),NSLocalizedString(@"选择照片", nil), nil];
     [sheet showInView:self.view];
 }
 
@@ -229,7 +232,10 @@ static NSString * const reuseIdentifier = @"";
 }
 */
 
-#pragma mark - *** Test HOAKit ***
+#pragma mark - *** Target Action ***
+- (IBAction)addPhotoBtnClicked:(id)sender {
+    [self showActionSheet];
+}
 
 
 @end

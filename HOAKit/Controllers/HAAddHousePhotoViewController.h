@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HAAddHousePhotoViewController : UICollectionViewController
+@interface HAAddHousePhotoViewController : UIViewController
 
 @end

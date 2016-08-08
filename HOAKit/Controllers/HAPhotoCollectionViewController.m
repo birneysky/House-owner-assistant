@@ -75,7 +75,8 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionViewFlowLayout* flowLayout = collectionViewLayout;
     CGRect rect = [UIScreen mainScreen].bounds;
     if (0 == indexPath.row) {
-       return  CGSizeMake(rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right, 140);
+        CGFloat width = rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right;
+       return  CGSizeMake(width, width * 0.75);
     }
     else{
         CGFloat width = (rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumLineSpacing * 2) / 3;

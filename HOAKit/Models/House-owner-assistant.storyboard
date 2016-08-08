@@ -721,11 +721,11 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="lNQ-MD-jrA">
-                            <rect key="frame" x="0.0" y="355.5" width="600" height="66"/>
+                            <rect key="frame" x="0.0" y="355.5" width="600" height="56"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT8-w9-Pz0">
-                                    <rect key="frame" x="20" y="8" width="560" height="57"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT8-w9-Pz0">
+                                    <rect key="frame" x="20" y="8" width="560" height="40"/>
                                     <color key="tintColor" red="0.85882352941176465" green="0.30588235294117649" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="审     核">
                                         <color key="titleColor" red="0.85882352941176465" green="0.30588235294117649" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>

@@ -25,6 +25,6 @@
  
  */
 #import "CTAssetsPickerConstants.h"
-CGFloat const kThumbnailLength = 100.0f;
+CGFloat const kThumbnailLength = 80.0f;
 CGSize const kThumbnailSize = {kThumbnailLength, kThumbnailLength};
 CGSize const kPopoverContentSize = {320, 480};

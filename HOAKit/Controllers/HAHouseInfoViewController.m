@@ -81,6 +81,7 @@
     if ([text isEqualToString:@"户型"]) {
         HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
         pickerCell.pickerDataSouce = self.houseTypeDataSource;
+        [pickerCell.textField setDefultText:@"1室0厅0厨0阳台"];
         //view = cell.accessoryView;
         cell = pickerCell;
     }
@@ -88,6 +89,7 @@
     {
         HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
         pickerCell.pickerDataSouce = self.bathroomDataSource;
+        [pickerCell.textField setDefultText:@"公共0独立0"];
         cell = pickerCell;
     }
     else{

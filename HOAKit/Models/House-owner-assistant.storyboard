@@ -846,17 +846,17 @@
                                     <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HAAddPictureCell" id="Zd5-pF-m8q" customClass="HAAddPictureCollectionCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HAAddPictureCell" id="Zd5-pF-m8q" customClass="HAAddPictureCollectionViewCell">
                                         <rect key="frame" x="8" y="8" width="130" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HA_Test_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="JWe-J6-r8y">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HA_Test_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="JWe-J6-r8y">
                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgr-Aa-AB0">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgr-Aa-AB0">
                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -864,7 +864,12 @@
                                                         <constraint firstAttribute="width" constant="30" id="gdT-iY-xHg"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <state key="normal" title="ⓧ"/>
+                                                    <state key="normal" title="ⓧ">
+                                                        <color key="titleColor" red="0.82352941180000006" green="0.38431372549999998" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteButtonClicked:" destination="Zd5-pF-m8q" eventType="touchUpInside" id="hn5-Xo-i7N"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -879,11 +884,15 @@
                                             <constraint firstItem="Bgr-Aa-AB0" firstAttribute="leading" secondItem="Zd5-pF-m8q" secondAttribute="leading" id="tFq-Py-p3M"/>
                                         </constraints>
                                         <size key="customSize" width="130" height="130"/>
+                                        <connections>
+                                            <outlet property="deleteButton" destination="Bgr-Aa-AB0" id="jWF-SH-ElQ"/>
+                                            <outlet property="imageView" destination="JWe-J6-r8y" id="P5H-cR-HJi"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="bFD-5U-3dK" id="Wuf-XF-2kz"/>
-                                    <outlet property="delegate" destination="bFD-5U-3dK" id="lGR-Yg-tX6"/>
+                                    <outlet property="dataSource" destination="bFD-5U-3dK" id="tho-YD-bav"/>
+                                    <outlet property="delegate" destination="bFD-5U-3dK" id="Pcc-dW-fW0"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -902,12 +911,13 @@
                         <barButtonItem key="rightBarButtonItem" title="编辑" id="R4t-6O-PF3">
                             <color key="tintColor" red="0.82352941180000006" green="0.38431372549999998" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="editButtonClicked:" destination="bFD-5U-3dK" id="RSO-ho-lgW"/>
+                                <action selector="editButtonClicked:" destination="YnO-r7-TMs" id="s8U-Kd-ieh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="photoCollectionViewController" destination="bFD-5U-3dK" id="ljp-9B-Hym"/>
+                        <outlet property="collectionView" destination="nSL-R1-FaR" id="LSr-PS-d7h"/>
+                        <outlet property="photoCollectionViewController" destination="bFD-5U-3dK" id="vZh-bu-McA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nis-xO-6Wi" userLabel="First Responder" sceneMemberID="firstResponder"/>

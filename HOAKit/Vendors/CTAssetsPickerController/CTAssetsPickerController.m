@@ -199,7 +199,7 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
 
 - (UIImageView *)padlockImageView
 {
-    UIImageView *padlock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CTAssetsPickerLocked"]];
+    UIImageView *padlock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/CTAssetsPickerLocked"]];
     padlock.translatesAutoresizingMaskIntoConstraints = NO;
     
     return padlock;

@@ -7,8 +7,11 @@
 //
 
 #import "HAPhotoCollectionViewController.h"
+#import "HAAddPictureCollectionViewCell.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface HAPhotoCollectionViewController ()
+
 
 @end
 
@@ -53,18 +56,20 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 100;
+    return self.datasource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BOOL lastOneFlag = indexPath.row == 9;
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HAAddPictureCell" forIndexPath:indexPath];
-    
+    //BOOL lastOneFlag = indexPath.row == 9;
+    HAAddPictureCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HAAddPictureCell" forIndexPath:indexPath];
     // Configure the cell
     UIView* selectBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
     selectBackgroundView.backgroundColor = [UIColor redColor];
+ 
+    cell.image = [UIImage imageWithContentsOfFile:self.datasource[indexPath.row]];
     cell.selectedBackgroundView = selectBackgroundView;
-    
+    cell.edited = self.edited ? YES : NO;
+    cell.delegate = self;
     return cell;
 }
 
@@ -116,10 +121,9 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 */
 
-#pragma mark - *** Target Action***
-- (IBAction)editButtonClicked:(id)sender {
-    //[self.collectionView ];
-    
+- (void)setDatasource:(NSArray *)datasource
+{
+    _datasource = datasource;
 }
 
 @end

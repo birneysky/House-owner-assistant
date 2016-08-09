@@ -11,14 +11,44 @@
 #import "CTAssetsPickerController.h"
 #import "HAPhotoCollectionViewController.h"
 
+
+
 @interface HAAddHousePhotoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet HAPhotoCollectionViewController *photoCollectionViewController;
+@property (nonatomic,strong) NSMutableArray* selectedPhotoPathes;
 @end
+
+
+NSString* gen_uuid()
+{
+    CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+    
+    CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
+    
+    
+    CFRelease(uuid_ref);
+    
+    NSString *uuid = [NSString stringWithString:(__bridge NSString*)uuid_string_ref];
+    
+    
+    CFRelease(uuid_string_ref);
+    
+    return uuid;
+    
+}
 
 @implementation HAAddHousePhotoViewController
 
-static NSString * const reuseIdentifier = @"";
+
+- (NSMutableArray*) selectedPhotoPathes
+{
+    if (!_selectedPhotoPathes) {
+        _selectedPhotoPathes = [[NSMutableArray alloc] init];
+    }
+    return _selectedPhotoPathes;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -127,29 +157,39 @@ static NSString * const reuseIdentifier = @"";
 #pragma mark - *** CTAssetsPickerControllerDelegate ***
 
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
-//    [FileTransManager sendPhotoes:assets toGroupWithType:self.groupType ID:self.groupID remoteUserID:self.remoteUserID];
-//    
-//    if (self.popover) {
-//        [self.popover dismissPopoverAnimated:YES];
-//    }else {
-        [picker dismissViewControllerAnimated:YES completion:nil];
-//    }
+    
+    for (ALAsset * asset in assets)
+    {
+        CGImageRef img = [[asset defaultRepresentation] fullScreenImage];
+        NSString * fileID = gen_uuid();
+        const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:img]);
+        NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+        {
+            [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        
+        filePath = [filePath stringByAppendingPathComponent:fileID];
+        [self.selectedPhotoPathes addObject:filePath];
+        dispatch_queue_t globalQueue = dispatch_queue_create("Com.WriteImageFile.Queue", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_async(globalQueue, ^{
+            [pngData writeToFile:filePath atomically:YES];
+        });
+       
+    }
+    
+    
+    self.photoCollectionViewController.datasource = [self.selectedPhotoPathes copy];
+    [self.collectionView reloadData];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - image picker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    //[picker dismissViewControllerAnimated:YES completion:nil];
-    
-    CGRect rect = [[picker valueForKey:@"_cropRect"] CGRectValue];
-    NSLog(@" _cropRect = %@",NSStringFromCGRect(rect));
-    
-//    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-//    ClipImageViewController* clipImgVC = [[ClipImageViewController alloc] initWithImage:image sourceType:picker.sourceType];
-//    clipImgVC.delegate = self;
-//    [picker pushViewController:clipImgVC animated:YES];
-//    [clipImgVC release];
+
 }
 
 
@@ -237,5 +277,24 @@ static NSString * const reuseIdentifier = @"";
     [self showActionSheet];
 }
 
+#pragma mark - *** Target Action***
+- (IBAction)editButtonClicked:(UIBarButtonItem*)sender {
+    //[self.collectionView ];
+    if ([sender.title isEqualToString:@"编辑"]) {
+        sender.title = @"取消";
+        self.photoCollectionViewController.edited = YES;
+    }
+    else{
+        sender.title = @"编辑";
+        self.photoCollectionViewController.edited = NO;
+    }
+    
+    NSArray* array = [self.collectionView indexPathsForVisibleItems];
+    NSArray* arrayCell = [self.collectionView visibleCells];
+
+    [self.collectionView reloadItemsAtIndexPaths:array];//self.collectionView.indexPathsForVisibleItems;
+//     [self.photoCollectionViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
+    //[self.collectionView reloadData];
+}
 
 @end

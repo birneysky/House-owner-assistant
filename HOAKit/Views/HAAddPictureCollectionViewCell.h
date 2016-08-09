@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HAAddPictureCollectionViewCellDelegate <NSObject>
+
+@optional
+- (void)deleteItemFromCell:(UICollectionViewCell*)cell;
+
+@end
+
 @interface HAAddPictureCollectionViewCell : UICollectionViewCell
+
+@property(nonatomic,weak) id<HAAddPictureCollectionViewCellDelegate> delegate;
+
+@property (nonatomic,assign) BOOL edited;
+
+@property (nonatomic,strong) UIImage* image;
+
 
 @end

@@ -21,7 +21,7 @@
 - (HAPickerTextField*)textField
 {
     if (!_textField) {
-        _textField = [[HAPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 130, 20)];
+        _textField = [[HAPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
         _textField.textAlignment = NSTextAlignmentRight;
         _textField.delegate = self;
     }
@@ -48,6 +48,8 @@
     //self.dataSourceDelegate.resultDelegate = self;
     
     UIImageView* rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Arrow_Right"]];
+    CGRect rect = rightView.frame;
+    //rect.origin.x += 5;
     self.textField.rightViewMode = UITextFieldViewModeAlways;
     self.textField.rightView = rightView;
     self.accessoryView = self.textField;

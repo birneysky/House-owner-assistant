@@ -26,4 +26,5 @@
 
 @property (nonatomic,weak) id<HAEditPickerCellDelegate> delegate;
 
+
 @end

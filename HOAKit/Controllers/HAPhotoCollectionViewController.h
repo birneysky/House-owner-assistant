@@ -10,4 +10,8 @@
 
 @interface HAPhotoCollectionViewController : UICollectionViewController
 
+@property(nonatomic,assign) BOOL edited;
+
+@property (nonatomic,strong) NSArray* datasource;
+
 @end

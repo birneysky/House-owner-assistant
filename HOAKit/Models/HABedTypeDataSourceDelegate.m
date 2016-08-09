@@ -42,6 +42,7 @@
 #pragma mark - *** UIPicker DataSource ***
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
+    self.weakPickView = pickerView;
     return 1;
 }
 
@@ -58,7 +59,7 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    return 100.0f;
+    return 150.0f;
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component

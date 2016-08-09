@@ -116,12 +116,28 @@
 
 - (void)selectedObjectChangedForPickerTextField:(HALocationPickerTextField *)pickerTF address:(NSString *)address latitude:(double)lat longitude:(double)lng
 {
-    self.cityAddressTextfield.text = address;
-    CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
-    CLLocationCoordinate2D coord = [loc coordinate];
-    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
-    [self.mapView setRegion:region animated:YES];
+    NSString *oreillyAddress = @"1005 Gravenstein Highway North, Sebastopol, CA 95472, USA";
+    CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
+    [myGeocoder geocodeAddressString:@"北京市海淀区知春路盈都大厦B座" completionHandler:^(NSArray *placemarks, NSError *error) {
+        if ([placemarks count] > 0 && error == nil) {
+            NSLog(@"Found %lu placemark(s).", (unsigned long)[placemarks count]);
+            CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
+            NSLog(@"Longitude = %f", firstPlacemark.location.coordinate.longitude);
+            NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
+            CLLocationDegrees lat = firstPlacemark.location.coordinate.latitude;
+            CLLocationDegrees lng = firstPlacemark.location.coordinate.longitude;
+            self.cityAddressTextfield.text = address;
+            CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
+            CLLocationCoordinate2D coord = [loc coordinate];
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
+            [self.mapView setRegion:region animated:YES];
+        }
+        else if ([placemarks count] == 0 && error == nil) {
+            NSLog(@"Found no placemarks.");
+        } else if (error != nil) {
+            NSLog(@"An error occurred = %@", error);
+        }  
+    }];
     
     self.locationPromptView.hidden = YES;
     [self.behavior addItem:self.locationPointImgView];

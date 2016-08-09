@@ -49,9 +49,9 @@
 
 #define    titleFont        [UIFont systemFontOfSize:12]
 #define    titleHeight      20.0f
-#define    videoIcon        [UIImage imageNamed:@"CTAssetsPickerVideo"]
+#define    videoIcon        [UIImage imageNamed:@"HOAKit.bundle/CTAssetsPickerVideo"]
 #define    titleColor       [UIColor whiteColor]
-#define    checkedIcon      [UIImage imageNamed:@"CTAssetsPickerChecked"]
+#define    checkedIcon      [UIImage imageNamed:@"HOAKit.bundle/CTAssetsPickerChecked"]
 #define    selectedColor    [UIColor colorWithWhite:1 alpha:0.3]
 #define    disabledColor    [UIColor colorWithWhite:1 alpha:0.9]
 
@@ -73,7 +73,7 @@
 {
     self.asset  = asset;
     self.type   = [asset valueForProperty:ALAssetPropertyType];
-    self.image  = (asset.thumbnail == NULL) ? [UIImage imageNamed:@"CTAssetsPickerEmpty"] : [UIImage imageWithCGImage:asset.thumbnail];
+    self.image  = (asset.thumbnail == NULL) ? [UIImage imageNamed:@"HOAKit.bundle/CTAssetsPickerEmpty"] : [UIImage imageWithCGImage:asset.thumbnail];
     
     if ([self.type isEqual:ALAssetTypeVideo])
         self.title = [NSDate timeDescriptionOfTimeInterval:[[asset valueForProperty:ALAssetPropertyDuration] doubleValue]];

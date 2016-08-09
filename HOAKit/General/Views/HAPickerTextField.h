@@ -29,4 +29,6 @@
 
 @property (nonatomic,assign) BOOL showToolbar;
 
+- (void) setDefultText:(NSString*)text;
+
 @end

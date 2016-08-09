@@ -27,6 +27,7 @@
         _pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
         _pickerView.showsSelectionIndicator = YES;
         _pickerView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _pickerView.backgroundColor = [UIColor whiteColor];
     }
     return _pickerView;
 }
@@ -35,18 +36,27 @@
 {
     if (!_toolbar) {
         _toolbar = [[UIToolbar alloc] init];
-        _toolbar.barStyle = UIBarStyleBlackTranslucent;
+        _toolbar.barStyle = UIBarStyleDefault;
         _toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         [_toolbar sizeToFit];
+        
+        //_toolbar.barTintColor = [UIColor whiteColor];
         CGRect frame = self.toolbar.frame;
         frame.size.height = 44.0f;
         _toolbar.frame = frame;
         
-        UIBarButtonItem* clearBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(clear)];
+        UIBarButtonItem* clearBtn = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(clear)];
+        clearBtn.tintColor = [UIColor blackColor];
         UIBarButtonItem* spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         
-        UIBarButtonItem* doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
+        UIBarButtonItem* doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
+        doneBtn.tintColor = [UIColor blackColor];
         _toolbar.items = @[clearBtn,spacer,doneBtn];
+        
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
+        UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, screenSize.width, 0.5)];
+        lineView.backgroundColor = [UIColor colorWithRed:220/255.0f green:220/255.0f blue:220/255.0f alpha:1];
+        [_toolbar addSubview:lineView];
     }
     return _toolbar;
 }
@@ -80,6 +90,28 @@
 {
     self.inputView = self.pickerView;
     self.inputAccessoryView = self.toolbar;
+}
+
+- (void) setDefultText:(NSString*)text
+{
+    self.text = text;
+}
+
+
+- (CGRect)placeholderRectForBounds:(CGRect)bounds
+{
+    return CGRectMake(bounds.origin.x + 10, bounds.origin.y, bounds.size.width - 30, bounds.size.height);
+    
+}
+
+- (CGRect)editingRectForBounds:(CGRect)bounds
+{
+    return CGRectMake(bounds.origin.x + 10, bounds.origin.y, bounds.size.width - 30, bounds.size.height);
+}
+
+- (CGRect)textRectForBounds:(CGRect)bounds
+{
+    return CGRectMake(bounds.origin.x + 10, bounds.origin.y, bounds.size.width - 30, bounds.size.height);
 }
 
 #pragma mark - *** Target Action ***

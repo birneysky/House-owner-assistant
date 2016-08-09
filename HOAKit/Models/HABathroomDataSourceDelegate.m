@@ -52,6 +52,7 @@
 #pragma mark - *** UIPicker DataSource ***
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
+    self.weakPickView = pickerView;
     return self.nameArray.count;
 }
 
@@ -77,22 +78,32 @@
     return text;
 }
 
+- (NSString*)currentResult
+{
+    NSMutableString* result = [[NSMutableString alloc] initWithCapacity:100];
+    for (int i = 0; i < self.nameArray.count; i++) {
+        NSUInteger index = [self.weakPickView selectedRowInComponent:i];
+        [result appendFormat:@"%@%@",self.nameArray[i],self.dataSource[i][index]];
+    }
+    
+    return [result copy];
+}
+
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     
-//    NSUInteger index = [pickerView selectedRowInComponent:component];
-//    NSString* restult = self.dataSource[index];
-//    if ([self.resultDelegate respondsToSelector:@selector(pickerView:didSelectResultText:)]) {
+    NSString* restult = [self currentResult];
+    if ([self.resultDelegate respondsToSelector:@selector(pickerView:didSelectResultText:)]) {
 //        //NSString* result = [NSString stringWithFormat:@"%d.%d 折",self.dataSource ]
-//        [self.resultDelegate pickerView:pickerView didSelectResultText:restult];
-//    }
+        [self.resultDelegate pickerView:pickerView didSelectResultText:restult];
+    }
 }
 
 - (NSString*)selectResult
 {
 //    NSUInteger index = [self.weakPickView selectedRowInComponent:0];
 //    return self.dataSource[index];
-    return nil;
+    return [self currentResult];
 }
 
 @end

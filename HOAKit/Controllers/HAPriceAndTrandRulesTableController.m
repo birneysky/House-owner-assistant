@@ -24,7 +24,8 @@
 - (NSArray*)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金"],@[@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],@[@"需要第三方保洁",@"平台提供洗漱用品"], nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金"],@[@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],[[NSMutableArray alloc] initWithObjects:@"需要第三方保洁", nil], nil];
+        //@"平台提供洗漱用品"
     }
     return _dataSource;
 }
@@ -125,6 +126,31 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString* textString = cell.textLabel.text;
+    //@"平台提供洗漱用品"
+
+    if ([textString isEqualToString:@"需要第三方保洁"]) {
+        HAOffOnCell* offOnCell = cell;
+        NSInteger section = indexPath.section;
+        NSMutableArray* mutableArray = self.dataSource[indexPath.section];
+        if (!offOnCell.accessoryViewSelected) {
+            //offOnCell.accessoryViewSelected = YES;
+            [mutableArray addObject:@"平台提供洗漱用品"];
+            [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
+        }
+        else{
+            //offOnCell.accessoryViewSelected = NO;
+            [mutableArray removeLastObject];
+            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
+        }
+
+    }
+    
+    if ([cell respondsToSelector:@selector(setAccessoryViewSelected:)]) {
+        HAOffOnCell* offOnCell = cell;
+        offOnCell.accessoryViewSelected = ! offOnCell.accessoryViewSelected;
+    }
+    
     [cell.accessoryView becomeFirstResponder];
 }
 
@@ -138,6 +164,24 @@
 - (void)offONButtonChangedFromCell:(UITableViewCell *)cell sender:(UIButton *)sender
 {
     NSLog(@"switchButtonChangedFromCell");
+    NSString* textString = cell.textLabel.text;
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    if ([textString isEqualToString:@"需要第三方保洁"]) {
+        HAOffOnCell* offOnCell = cell;
+        NSInteger section = indexPath.section;
+        NSMutableArray* mutableArray = self.dataSource[indexPath.section];
+        if (!offOnCell.accessoryViewSelected) {
+            offOnCell.accessoryViewSelected = YES;
+            [mutableArray addObject:@"平台提供洗漱用品"];
+            [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
+        }
+        else{
+            offOnCell.accessoryViewSelected = NO;
+            [mutableArray removeLastObject];
+            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
+        }
+        
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textfield fromCell:(UITableViewCell *)cell

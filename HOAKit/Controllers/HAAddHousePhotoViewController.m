@@ -158,35 +158,41 @@ NSString* gen_uuid()
 
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
     
-    for (ALAsset * asset in assets)
-    {
-        CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
-        CGImageRef thumbnailImg = asset.thumbnail;
-        NSString * fileID = gen_uuid();
-        const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
-        
-        NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
-        NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
-        {
-            [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
-        }
-        
-        NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
-        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@",fileID,@"thumbnail"];
-//        NSString* fullThumbnailImgPath = [filePath]
-//        [self.selectedPhotoPathes addObject:fullImgfilePath];
-        dispatch_queue_t globalQueue = dispatch_queue_create("Com.WriteImageFile.Queue", DISPATCH_QUEUE_CONCURRENT);
-        dispatch_async(globalQueue, ^{
-            [pngData writeToFile:fullImgfilePath atomically:YES];
-        });
-       
-    }
-    
-    
-    self.photoCollectionViewController.datasource = [self.selectedPhotoPathes copy];
-    [self.collectionView reloadData];
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    dispatch_queue_t globalQueue = dispatch_queue_create("Com.WriteImageFile.Queue", DISPATCH_QUEUE_SERIAL);
+     dispatch_async(globalQueue, ^{
+         for (ALAsset * asset in assets)
+         {
+             CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
+             CGImageRef thumbnailImg = asset.aspectRatioThumbnail;
+             NSString * fileID = gen_uuid();
+             const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
+             
+             NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
+             NSData* thumbnailData = UIImagePNGRepresentation([UIImage imageWithCGImage:thumbnailImg]);
+             NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
+             if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+             {
+                 [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+             }
+             
+             NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
+             NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@",fileID,@"thumbnail"];
+             NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
+             [self.selectedPhotoPathes addObject:thumbnailImgPath];
+             
+             [pngData writeToFile:fullImgfilePath atomically:YES];
+             [thumbnailData writeToFile:thumbnailImgPath atomically:YES];
+             
+         }
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             self.photoCollectionViewController.datasource = [self.selectedPhotoPathes copy];
+             [self.collectionView reloadData];
+             [picker dismissViewControllerAnimated:YES completion:nil];
+         });
+     
+     });
+
 }
 
 #pragma mark - image picker delegate

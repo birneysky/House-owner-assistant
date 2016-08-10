@@ -160,22 +160,25 @@ NSString* gen_uuid()
     
     for (ALAsset * asset in assets)
     {
-        CGImageRef img = [[asset defaultRepresentation] fullScreenImage];
+        CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
+        CGImageRef thumbnailImg = asset.thumbnail;
         NSString * fileID = gen_uuid();
         const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
         
-        NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:img]);
+        NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
         NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
         if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
         {
             [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
         }
         
-        filePath = [filePath stringByAppendingPathComponent:fileID];
-        [self.selectedPhotoPathes addObject:filePath];
+        NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
+        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@",fileID,@"thumbnail"];
+//        NSString* fullThumbnailImgPath = [filePath]
+//        [self.selectedPhotoPathes addObject:fullImgfilePath];
         dispatch_queue_t globalQueue = dispatch_queue_create("Com.WriteImageFile.Queue", DISPATCH_QUEUE_CONCURRENT);
         dispatch_async(globalQueue, ^{
-            [pngData writeToFile:filePath atomically:YES];
+            [pngData writeToFile:fullImgfilePath atomically:YES];
         });
        
     }

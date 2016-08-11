@@ -60,6 +60,7 @@ NSString* gen_uuid()
     
     // Do any additional setup after loading the view.
 
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -158,40 +159,84 @@ NSString* gen_uuid()
 
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
     
-    dispatch_queue_t globalQueue = dispatch_queue_create("Com.WriteImageFile.Queue", DISPATCH_QUEUE_SERIAL);
-     dispatch_async(globalQueue, ^{
-         for (ALAsset * asset in assets)
-         {
-             CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
-             CGImageRef thumbnailImg = asset.aspectRatioThumbnail;
-             NSString * fileID = gen_uuid();
-             const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
+//    dispatch_queue_t globalQueue = dispatch_queue_create("Com.WriteImageFile.Queue", DISPATCH_QUEUE_SERIAL);
+//     dispatch_async(globalQueue, ^{
+//         for (ALAsset * asset in assets)
+//         {
+//             CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
+//             CGImageRef thumbnailImg = asset.aspectRatioThumbnail;
+//             NSString * fileID = gen_uuid();
+//             const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
+    
+//             NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
+//             NSData* thumbnailData = UIImagePNGRepresentation([UIImage imageWithCGImage:thumbnailImg]);
+//             NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
+//             if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+//             {
+//                 [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+//             }
+//             
+//             NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
+//             NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@",fileID,@"thumbnail"];
+//             NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
+//             [self.selectedPhotoPathes addObject:thumbnailImgPath];
+//             
+//             [pngData writeToFile:fullImgfilePath atomically:YES];
+//             [thumbnailData writeToFile:thumbnailImgPath atomically:YES];
              
-             NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
-             NSData* thumbnailData = UIImagePNGRepresentation([UIImage imageWithCGImage:thumbnailImg]);
-             NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
-             if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
-             {
-                 [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
-             }
-             
-             NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
-             NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@",fileID,@"thumbnail"];
-             NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
-             [self.selectedPhotoPathes addObject:thumbnailImgPath];
-             
-             [pngData writeToFile:fullImgfilePath atomically:YES];
-             [thumbnailData writeToFile:thumbnailImgPath atomically:YES];
-             
-         }
+//         }
          
-         dispatch_async(dispatch_get_main_queue(), ^{
-             self.photoCollectionViewController.datasource = [self.selectedPhotoPathes copy];
-             [self.collectionView reloadData];
-             [picker dismissViewControllerAnimated:YES completion:nil];
-         });
+//         dispatch_async(dispatch_get_main_queue(), ^{
+//             self.photoCollectionViewController.datasource = [self.selectedPhotoPathes copy];
+//             [self.collectionView reloadData];
+//
+//         });
      
-     });
+     //});
+    
+    NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    {
+        [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    
+    for (ALAsset * asset in assets)
+    {
+        CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
+        CGImageRef thumbnailImg = asset.aspectRatioThumbnail;
+        NSString * fileID = gen_uuid();
+        const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
+        NSData* thumbnailData = UIImagePNGRepresentation([UIImage imageWithCGImage:thumbnailImg]);
+        
+        
+        NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
+        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@",fileID,@"thumbnail"];
+        NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
+        [self.selectedPhotoPathes addObject:thumbnailImgPath];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            
+            [pngData writeToFile:fullImgfilePath atomically:YES];
+            [thumbnailData writeToFile:thumbnailImgPath atomically:YES];
+
+        });
+        
+    }
+
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.photoCollectionViewController.datasource = [self.selectedPhotoPathes copy];
+            NSInteger count = self.photoCollectionViewController.datasource.count;
+            //[self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:count - 1 inSection:0]]];
+            [self.collectionView reloadData];
+        });
+
+    }];
 
 }
 

@@ -21,7 +21,7 @@
 - (HAPickerTextField*)textField
 {
     if (!_textField) {
-        _textField = [[HAPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 170, 20)];
+        _textField = [[HAPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
         _textField.textAlignment = NSTextAlignmentRight;
         _textField.delegate = self;
     }

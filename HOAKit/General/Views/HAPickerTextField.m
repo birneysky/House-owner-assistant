@@ -98,21 +98,7 @@
 }
 
 
-- (CGRect)placeholderRectForBounds:(CGRect)bounds
-{
-    return CGRectMake(bounds.origin.x + 10, bounds.origin.y, bounds.size.width - 30, bounds.size.height);
-    
-}
 
-- (CGRect)editingRectForBounds:(CGRect)bounds
-{
-    return CGRectMake(bounds.origin.x + 10, bounds.origin.y, bounds.size.width - 30, bounds.size.height);
-}
-
-- (CGRect)textRectForBounds:(CGRect)bounds
-{
-    return CGRectMake(bounds.origin.x + 10, bounds.origin.y, bounds.size.width - 30, bounds.size.height);
-}
 
 #pragma mark - *** Target Action ***
 - (void)done

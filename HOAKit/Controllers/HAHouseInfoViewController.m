@@ -96,7 +96,7 @@
         HAEditorNumberCell* editorCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoEditorrCell" forIndexPath:indexPath];
         if([text isEqualToString:@"房屋面积"])
         {
-            editorCell.unitName = @"m2";
+            editorCell.unitName = @"平";
         }
         else if([text isEqualToString:@"几位访客"]){
             editorCell.unitName = @"人";

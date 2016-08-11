@@ -52,6 +52,7 @@
 - (void)switchChange:(id)sender
 {
     self.onOff.selected = !self.onOff.selected;
+    _accessoryViewSelected = self.onOff.selected;
     if ([self.delegate respondsToSelector:@selector(offONButtonChangedFromCell:sender:)]) {
         [self.delegate offONButtonChangedFromCell:self sender:self.onOff];
     }

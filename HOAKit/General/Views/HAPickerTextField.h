@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HATextField.h"
 
 @class HAPickerTextField;
 
@@ -21,7 +22,7 @@
 @end
 
 
-@interface HAPickerTextField : UITextField
+@interface HAPickerTextField : HATextField
 
 @property (nonatomic,weak) id<HAPickerTextFieldDelegate> pickerDelegate;
 

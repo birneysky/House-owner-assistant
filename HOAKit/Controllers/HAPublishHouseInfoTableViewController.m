@@ -95,6 +95,9 @@
         NSArray* vcs = self.navigationController.viewControllers;
         [self.navigationController popToViewController:vcs[vcs.count-3] animated:YES];
     }
+    else if([text isEqualToString:@"设施列表"]){
+        [self performSegueWithIdentifier:@"push_house_facilities" sender:nil];
+    }
     
 }
 

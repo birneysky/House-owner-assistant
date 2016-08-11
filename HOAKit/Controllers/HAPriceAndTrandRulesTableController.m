@@ -108,19 +108,19 @@
     return cell;
 }
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (0 == section) {
-        return nil;
-    }
-    else if (1 == section){
-        return @"以下是非必填选项";
-    }
-    else{
-        return @"勾选一下部分，将分出部分收益给人员";
-    }
- 
-}
+//- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    if (0 == section) {
+//        return nil;
+//    }
+//    else if (1 == section){
+//        return @"以下是非必填选项";
+//    }
+//    else{
+//        return @"勾选一下部分，将分出部分收益给人员";
+//    }
+// 
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -197,6 +197,10 @@
         return nil;
     }
     else if (1 == section){
+        lable.font = [UIFont systemFontOfSize:12.0f];
+        CGRect frame = lable.frame;
+        frame.size.height = 21.0f;
+        lable.frame = frame;
         lable.text = @"以下是非必填选项";
     }
     else if(2 == section){

@@ -59,7 +59,7 @@
     
     // Configure the cell...
     cell.textLabel.text = self.dataSource[indexPath.row];
-    
+    cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
     return cell;
 }
 
@@ -97,6 +97,9 @@
     }
     else if([text isEqualToString:@"设施列表"]){
         [self performSegueWithIdentifier:@"push_house_facilities" sender:nil];
+    }
+    else if([text isEqualToString:@"位置区域"]){
+        [self performSegueWithIdentifier:@"push_house_area" sender:nil];
     }
     
 }

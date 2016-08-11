@@ -26,6 +26,7 @@
         _textField.textAlignment = NSTextAlignmentRight;
         _textField.returnKeyType = UIReturnKeyNext;
         _textField.keyboardType  = UIKeyboardTypeNumberPad;
+        _textField.font = [UIFont systemFontOfSize:15.0f];
         _textField.delegate = self;
     }
     return _textField;
@@ -34,6 +35,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.textLabel.font = [UIFont systemFontOfSize:15.0f];
     self.accessoryView = self.textField;    
 }
 

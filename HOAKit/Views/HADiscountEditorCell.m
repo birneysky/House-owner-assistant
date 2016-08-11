@@ -25,6 +25,7 @@
 {
     if (!_textField) {
         _textField = [[HAPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 130, 20)];
+        _textField.font = [UIFont systemFontOfSize:14.0f];
         _textField.textAlignment = NSTextAlignmentRight;
     }
     return _textField;

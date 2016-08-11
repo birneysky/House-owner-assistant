@@ -7,6 +7,7 @@
 //
 
 #import "HAHouseTypeTableViewController.h"
+#import "HAOffOnCell.h"
 
 @interface HAHouseTypeTableViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
@@ -61,12 +62,15 @@
 #pragma mark - *** UITableViewDelegate ***
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    HAOffOnCell* offOnCell = cell;
     cell.textLabel.text = self.dataSource[indexPath.row];
     if (self.selectedIndex == indexPath.row) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        offOnCell.accessoryViewSelected = YES;
+        //cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else{
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        //cell.accessoryType = UITableViewCellAccessoryNone;
+        offOnCell.accessoryViewSelected = NO;
     }
 }
 

@@ -108,6 +108,23 @@
 		DB3B28CD1D5C1AF50007E576 /* HouseFacilitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28CB1D5C1AF50007E576 /* HouseFacilitiesViewController.m */; };
 		DB3B28D21D5C7A2D0007E576 /* HATextField.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28D01D5C7A2D0007E576 /* HATextField.h */; };
 		DB3B28D31D5C7A2D0007E576 /* HATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28D11D5C7A2D0007E576 /* HATextField.m */; };
+		DB3B28EF1D5DC0070007E576 /* NSData+MKBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28DB1D5DC0070007E576 /* NSData+MKBase64.h */; };
+		DB3B28F01D5DC0070007E576 /* NSData+MKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28DC1D5DC0070007E576 /* NSData+MKBase64.m */; };
+		DB3B28F11D5DC0070007E576 /* NSDate+RFC1123.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28DD1D5DC0070007E576 /* NSDate+RFC1123.h */; };
+		DB3B28F21D5DC0070007E576 /* NSDate+RFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28DE1D5DC0070007E576 /* NSDate+RFC1123.m */; };
+		DB3B28F31D5DC0070007E576 /* NSDictionary+RequestEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28DF1D5DC0070007E576 /* NSDictionary+RequestEncoding.h */; };
+		DB3B28F41D5DC0070007E576 /* NSDictionary+RequestEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28E01D5DC0070007E576 /* NSDictionary+RequestEncoding.m */; };
+		DB3B28F51D5DC0070007E576 /* NSString+MKNetworkKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28E11D5DC0070007E576 /* NSString+MKNetworkKitAdditions.h */; };
+		DB3B28F61D5DC0070007E576 /* NSString+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28E21D5DC0070007E576 /* NSString+MKNetworkKitAdditions.m */; };
+		DB3B28F71D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28E31D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.h */; };
+		DB3B28F81D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28E41D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.m */; };
+		DB3B28F91D5DC0070007E576 /* MKNetworkEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28E51D5DC0070007E576 /* MKNetworkEngine.h */; };
+		DB3B28FA1D5DC0070007E576 /* MKNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28E61D5DC0070007E576 /* MKNetworkEngine.m */; };
+		DB3B28FB1D5DC0070007E576 /* MKNetworkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28E71D5DC0070007E576 /* MKNetworkKit.h */; };
+		DB3B28FC1D5DC0070007E576 /* MKNetworkOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28E81D5DC0070007E576 /* MKNetworkOperation.h */; };
+		DB3B28FD1D5DC0070007E576 /* MKNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28E91D5DC0070007E576 /* MKNetworkOperation.m */; };
+		DB3B28FE1D5DC0070007E576 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28EB1D5DC0070007E576 /* Reachability.h */; };
+		DB3B28FF1D5DC0070007E576 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28EC1D5DC0070007E576 /* Reachability.m */; };
 		DB8EF91B1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */; };
 		DB8EF91C1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */; };
 		DBAE09231D5043DF008A85C4 /* HOA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBAE09221D5043DF008A85C4 /* HOA.xcassets */; };
@@ -220,6 +237,23 @@
 		DB3B28CB1D5C1AF50007E576 /* HouseFacilitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseFacilitiesViewController.m; sourceTree = "<group>"; };
 		DB3B28D01D5C7A2D0007E576 /* HATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HATextField.h; sourceTree = "<group>"; };
 		DB3B28D11D5C7A2D0007E576 /* HATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HATextField.m; sourceTree = "<group>"; };
+		DB3B28DB1D5DC0070007E576 /* NSData+MKBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MKBase64.h"; sourceTree = "<group>"; };
+		DB3B28DC1D5DC0070007E576 /* NSData+MKBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKBase64.m"; sourceTree = "<group>"; };
+		DB3B28DD1D5DC0070007E576 /* NSDate+RFC1123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RFC1123.h"; sourceTree = "<group>"; };
+		DB3B28DE1D5DC0070007E576 /* NSDate+RFC1123.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+RFC1123.m"; sourceTree = "<group>"; };
+		DB3B28DF1D5DC0070007E576 /* NSDictionary+RequestEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+RequestEncoding.h"; sourceTree = "<group>"; };
+		DB3B28E01D5DC0070007E576 /* NSDictionary+RequestEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+RequestEncoding.m"; sourceTree = "<group>"; };
+		DB3B28E11D5DC0070007E576 /* NSString+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
+		DB3B28E21D5DC0070007E576 /* NSString+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		DB3B28E31D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
+		DB3B28E41D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		DB3B28E51D5DC0070007E576 /* MKNetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkEngine.h; sourceTree = "<group>"; };
+		DB3B28E61D5DC0070007E576 /* MKNetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNetworkEngine.m; sourceTree = "<group>"; };
+		DB3B28E71D5DC0070007E576 /* MKNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkKit.h; sourceTree = "<group>"; };
+		DB3B28E81D5DC0070007E576 /* MKNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkOperation.h; sourceTree = "<group>"; };
+		DB3B28E91D5DC0070007E576 /* MKNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNetworkOperation.m; sourceTree = "<group>"; };
+		DB3B28EB1D5DC0070007E576 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		DB3B28EC1D5DC0070007E576 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPriceAndTrandRulesTableController.h; sourceTree = "<group>"; };
 		DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPriceAndTrandRulesTableController.m; sourceTree = "<group>"; };
 		DBAE09221D5043DF008A85C4 /* HOA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HOA.xcassets; sourceTree = SOURCE_ROOT; };
@@ -393,6 +427,7 @@
 		742B91B11D4FB731000FF5A1 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				DB3B28D71D5DC0070007E576 /* MKNetworkKit */,
 				74266F5D1D5CA31700A7E4BF /* MultilevelTableview */,
 				742B91B21D4FB731000FF5A1 /* CTAssetsPickerController */,
 			);
@@ -450,6 +485,46 @@
 			path = Views;
 			sourceTree = SOURCE_ROOT;
 		};
+		DB3B28D71D5DC0070007E576 /* MKNetworkKit */ = {
+			isa = PBXGroup;
+			children = (
+				DB3B28D81D5DC0070007E576 /* Categories */,
+				DB3B28E51D5DC0070007E576 /* MKNetworkEngine.h */,
+				DB3B28E61D5DC0070007E576 /* MKNetworkEngine.m */,
+				DB3B28E71D5DC0070007E576 /* MKNetworkKit.h */,
+				DB3B28E81D5DC0070007E576 /* MKNetworkOperation.h */,
+				DB3B28E91D5DC0070007E576 /* MKNetworkOperation.m */,
+				DB3B28EA1D5DC0070007E576 /* Reachability */,
+			);
+			path = MKNetworkKit;
+			sourceTree = "<group>";
+		};
+		DB3B28D81D5DC0070007E576 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DB3B28DB1D5DC0070007E576 /* NSData+MKBase64.h */,
+				DB3B28DC1D5DC0070007E576 /* NSData+MKBase64.m */,
+				DB3B28DD1D5DC0070007E576 /* NSDate+RFC1123.h */,
+				DB3B28DE1D5DC0070007E576 /* NSDate+RFC1123.m */,
+				DB3B28DF1D5DC0070007E576 /* NSDictionary+RequestEncoding.h */,
+				DB3B28E01D5DC0070007E576 /* NSDictionary+RequestEncoding.m */,
+				DB3B28E11D5DC0070007E576 /* NSString+MKNetworkKitAdditions.h */,
+				DB3B28E21D5DC0070007E576 /* NSString+MKNetworkKitAdditions.m */,
+				DB3B28E31D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.h */,
+				DB3B28E41D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DB3B28EA1D5DC0070007E576 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				DB3B28EB1D5DC0070007E576 /* Reachability.h */,
+				DB3B28EC1D5DC0070007E576 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -476,8 +551,11 @@
 				742B91D41D4FB731000FF5A1 /* HALeapBehavior.h in Headers */,
 				742B91C61D4FB731000FF5A1 /* HAAddHousePhotoViewController.h in Headers */,
 				743F435A1D5625CE00D06D19 /* HAEditorNumberCell.h in Headers */,
+				DB3B28FE1D5DC0070007E576 /* Reachability.h in Headers */,
 				742B91EB1D4FB731000FF5A1 /* CTAssetsViewController.h in Headers */,
+				DB3B28FC1D5DC0070007E576 /* MKNetworkOperation.h in Headers */,
 				742B91E31D4FB731000FF5A1 /* CTAssetsPickerConstants.h in Headers */,
+				DB3B28F91D5DC0070007E576 /* MKNetworkEngine.h in Headers */,
 				742B91E71D4FB731000FF5A1 /* CTAssetsSupplementaryView.h in Headers */,
 				743F434A1D55F0C500D06D19 /* HALocationPickerTextField.h in Headers */,
 				743F436C1D573F8A00D06D19 /* HAHouseBedViewController.h in Headers */,
@@ -489,6 +567,7 @@
 				743F43841D58BC8500D06D19 /* HAPhotoCollectionViewController.h in Headers */,
 				743F43611D57037800D06D19 /* HAEditPickerDelegate.h in Headers */,
 				743F43681D571E6100D06D19 /* HAHouseBathRoomEditViewController.h in Headers */,
+				DB3B28F11D5DC0070007E576 /* NSDate+RFC1123.h in Headers */,
 				DB3B28CC1D5C1AF50007E576 /* HouseFacilitiesViewController.h in Headers */,
 				743F43881D58CD9900D06D19 /* HAAddPhotoViewLayout.h in Headers */,
 				743F43701D57413A00D06D19 /* HABed.h in Headers */,
@@ -500,14 +579,19 @@
 				74266F641D5CA6E800A7E4BF /* HAHouseAreaSelectViewController.h in Headers */,
 				742B91CE1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.h in Headers */,
 				743F438C1D58E81F00D06D19 /* HAAddPictureCollectionViewCell.h in Headers */,
+				DB3B28EF1D5DC0070007E576 /* NSData+MKBase64.h in Headers */,
 				743F43411D55EBD200D06D19 /* HAProvinceDataSourceDelegate.h in Headers */,
 				743F437C1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.h in Headers */,
+				DB3B28F71D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.h in Headers */,
 				743F43781D57440300D06D19 /* HAEditPickerCell.h in Headers */,
 				742B91E51D4FB731000FF5A1 /* CTAssetsPickerController.h in Headers */,
 				742B91DD1D4FB731000FF5A1 /* ALAssetsGroup+isEqual.h in Headers */,
 				DB3B28BC1D5851A90007E576 /* HAOffOnCell.h in Headers */,
 				743F43801D574A4200D06D19 /* HABedTypeDataSourceDelegate.h in Headers */,
+				DB3B28F51D5DC0070007E576 /* NSString+MKNetworkKitAdditions.h in Headers */,
 				742B91CC1D4FB731000FF5A1 /* HAHouseTypeTableViewController.h in Headers */,
+				DB3B28F31D5DC0070007E576 /* NSDictionary+RequestEncoding.h in Headers */,
+				DB3B28FB1D5DC0070007E576 /* MKNetworkKit.h in Headers */,
 				743F435E1D56E1AE00D06D19 /* HASwitchCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -608,8 +692,10 @@
 				743F43811D574A4200D06D19 /* HABedTypeDataSourceDelegate.m in Sources */,
 				743F43421D55EBD200D06D19 /* HAProvinceDataSourceDelegate.m in Sources */,
 				743F435F1D56E1AE00D06D19 /* HASwitchCell.m in Sources */,
+				DB3B28F01D5DC0070007E576 /* NSData+MKBase64.m in Sources */,
 				743F43571D5600AA00D06D19 /* HAHouseInfoViewController.m in Sources */,
 				DB3B28C91D5892180007E576 /* HABathroomDataSourceDelegate.m in Sources */,
+				DB3B28F81D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 				743F435B1D5625CE00D06D19 /* HAEditorNumberCell.m in Sources */,
 				743F43751D5742F900D06D19 /* HAEditHouseBenViewController.m in Sources */,
 				DB3B28D31D5C7A2D0007E576 /* HATextField.m in Sources */,
@@ -619,6 +705,8 @@
 				742B91EA1D4FB731000FF5A1 /* CTAssetsViewCell.m in Sources */,
 				743F438D1D58E81F00D06D19 /* HAAddPictureCollectionViewCell.m in Sources */,
 				74266F651D5CA6E800A7E4BF /* HAHouseAreaSelectViewController.m in Sources */,
+				DB3B28F41D5DC0070007E576 /* NSDictionary+RequestEncoding.m in Sources */,
+				DB3B28FA1D5DC0070007E576 /* MKNetworkEngine.m in Sources */,
 				DBAE09251D504A4F008A85C4 /* HOAKit.m in Sources */,
 				743F434F1D55F81500D06D19 /* HADiscountPickerTextField.m in Sources */,
 				742B91EC1D4FB731000FF5A1 /* CTAssetsViewController.m in Sources */,
@@ -628,12 +716,15 @@
 				742B91E21D4FB731000FF5A1 /* CTAssetsGroupViewController.m in Sources */,
 				743F43711D57413A00D06D19 /* HABed.m in Sources */,
 				742B91D11D4FB731000FF5A1 /* CALayer+Additions.m in Sources */,
+				DB3B28F61D5DC0070007E576 /* NSString+MKNetworkKitAdditions.m in Sources */,
 				7422D79A1D53811C00ACB2B6 /* HATextView.m in Sources */,
+				DB3B28FF1D5DC0070007E576 /* Reachability.m in Sources */,
 				742B91CD1D4FB731000FF5A1 /* HAHouseTypeTableViewController.m in Sources */,
 				743F434B1D55F0C500D06D19 /* HALocationPickerTextField.m in Sources */,
 				742B91F31D4FB8A9000FF5A1 /* HOAViewController.m in Sources */,
 				DB8EF91C1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m in Sources */,
 				743F43461D55ED5900D06D19 /* HAPickerTextField.m in Sources */,
+				DB3B28FD1D5DC0070007E576 /* MKNetworkOperation.m in Sources */,
 				DB3B28C51D587F0A0007E576 /* HAHouseTypeDataSouceDelegate.m in Sources */,
 				743F43651D570CE700D06D19 /* HADiscountEditorCell.m in Sources */,
 				742B91E41D4FB731000FF5A1 /* CTAssetsPickerConstants.m in Sources */,
@@ -645,6 +736,7 @@
 				742B91CB1D4FB731000FF5A1 /* HAHouseLocationViewController.m in Sources */,
 				74266F611D5CA31700A7E4BF /* RTArealocationView.m in Sources */,
 				743F43891D58CD9900D06D19 /* HAAddPhotoViewLayout.m in Sources */,
+				DB3B28F21D5DC0070007E576 /* NSDate+RFC1123.m in Sources */,
 				DB3B28CD1D5C1AF50007E576 /* HouseFacilitiesViewController.m in Sources */,
 				DB3B28C11D5866370007E576 /* HABedInfoCell.m in Sources */,
 				742B91D71D4FB731000FF5A1 /* HAFloatingButton.m in Sources */,

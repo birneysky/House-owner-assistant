@@ -79,7 +79,7 @@
         }
     }
     
-    [result appendString:@" 折"];
+    //[result appendString:@" 折"];
     
     if ([self.resultDelegate respondsToSelector:@selector(pickerView:didSelectResultText:)]) {
         //NSString* result = [NSString stringWithFormat:@"%d.%d 折",self.dataSource ]

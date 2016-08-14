@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HAJSONModel.h"
 
-@interface HAHouseImage : NSObject
+@interface HAHouseImage : HAJSONModel
 
 @property(nonatomic,assign) NSInteger imageId;
 @property(nonatomic,assign) NSInteger houseId;

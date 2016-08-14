@@ -25,4 +25,7 @@
 
 @property (nonatomic,weak) id<HADiscountEditorCellDelegate> delegate;
 
+@property (nonatomic,copy) NSString* unitName;
+
+
 @end

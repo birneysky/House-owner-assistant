@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HAJSONModel.h"
 
-@interface HAHouseOrder : NSObject
+@interface HAHouseOrder : HAJSONModel
 
 @property(nonatomic,assign) NSInteger orderId;
 @property(nonatomic,copy)   NSString* orderNo; // '订单号',

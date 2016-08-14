@@ -8,11 +8,14 @@
 
 #import "HAHouseTypeTableViewController.h"
 #import "HAOffOnCell.h"
+#import "HAHouse.h"
+#import "HARESTfulEngine.h"
 
 @interface HAHouseTypeTableViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (nonatomic,strong) NSArray* dataSource;
 @property (nonatomic,assign) NSInteger selectedIndex;
+@property (nonatomic,strong) NSArray* rentTypeDataSource;
 @end
 
 @implementation HAHouseTypeTableViewController
@@ -21,12 +24,20 @@
 - (NSArray*)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@"具名",@"公寓",@"独栋别墅",@"客栈",@"四合院",@"豪宅",@"树屋", nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@"民居",@"公寓",@"独栋别墅",@"客栈",@"阁楼",@"四合院",@"海边小屋",@"林间小屋",@"豪宅",@"城堡",@"树屋",@"船舱",@"房车",@"冰屋", nil];
     }
     return _dataSource;
 }
 
+- (NSArray*) rentTypeDataSource
+{
+    if (!_rentTypeDataSource) {
+        _rentTypeDataSource = [[NSArray alloc] initWithObjects:@"整套出租",@"单间出租", nil];
+    }
+    return _rentTypeDataSource;
+}
 
+#pragma mark - *** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -79,6 +90,7 @@
 {
     self.selectedIndex = indexPath.row;
     [tableView reloadData];
+    self.house.houseType = self.selectedIndex + 1;
 }
 
 /*
@@ -124,5 +136,26 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - *** Target Action ***
+- (IBAction)wholeBtnClicked:(UIButton*)sender {
+    self.house.rentType = 1;
+    sender.selected = !sender.selected;
+}
 
+- (IBAction)signleBtnClicked:(UIButton*)sender {
+    self.house.rentType = 2;
+    sender.selected = !sender.selected;
+}
+
+- (IBAction)okBtnClicked:(id)sender {
+    self.house.landlordId = 1;
+    self.house.houseNumber = @"9000-1234";
+//    [[HARESTfulEngine defaultEngine] createNewHouseWithHAJSONModel:self.house onSucceeded:^(HAJSONModel *aModelBaseObject) {
+//        NSLog(@"aModelBaseObject %@",[aModelBaseObject toJsonString]);
+//    } onError:^(NSError *engineError) {
+//        
+//    }];
+    
+    [self performSegueWithIdentifier:@"push_publish_house" sender:sender];
+}
 @end

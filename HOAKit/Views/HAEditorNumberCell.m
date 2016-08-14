@@ -50,6 +50,7 @@
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, 21)];
     label.text = unitName;
     label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:12.0f];
     self.textField.rightView = label;
 }
 

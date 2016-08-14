@@ -70,36 +70,40 @@
     NSInteger townIndex = [self.pickerView selectedRowInComponent:2];
     
     NSMutableString* address = [[NSMutableString alloc] initWithCapacity:100];
-    double  lat = 0;
-    double  lng = 0;
+    NSInteger  provinceId = 0;
+    NSInteger  cityId = 0;
+    NSInteger  distictId = 0;
     
     NSArray* provinces = self.dataSourceDelegate.dataSource[@"child"];
     NSDictionary* provice = provinces[provinceIndex];
-    lat = [provice[@"Lat"] doubleValue];
-    lng = [provice[@"lng"] doubleValue];
+//    lat = [provice[@"Lat"] doubleValue];
+//    lng = [provice[@"lng"] doubleValue];
+    provinceId = [provice[@"ID"] integerValue];
     [address appendString:provice[@"Name"]];
     NSArray* citys = provice[@"child"];
     if (cityIndex < citys.count) {
         NSDictionary* city = citys[cityIndex];
         [address appendFormat:@"-%@",city[@"Name"]];
-        lat = [city[@"Lat"] doubleValue];
-        lng = [city[@"lng"] doubleValue];
+//        lat = [city[@"Lat"] doubleValue];
+//        lng = [city[@"lng"] doubleValue];
+        cityId = [city[@"ID"] integerValue];
         
         NSArray* towns = city[@"child"];
         if (townIndex < towns.count) {
             NSDictionary* town = towns[townIndex];
             [address appendFormat:@"-%@",town[@"Name"]];
-            lat = [town[@"Lat"] doubleValue];
-            lng = [town[@"lng"] doubleValue];
+//            lat = [town[@"Lat"] doubleValue];
+//            lng = [town[@"lng"] doubleValue];
+            distictId = [town[@"ID"] integerValue];
         }
     }
     
     
     
-    NSLog(@"==> proviceIndex %d, cityIndex %d, townIndex %d",provinceIndex,cityIndex,townIndex);
-    NSLog(@"==> address %@ lat %f lng %f",address,lat,lng);
-    if ([self.locationPickerDelegate respondsToSelector:@selector(selectedObjectChangedForPickerTextField: address:latitude:longitude:)]) {
-        [self.locationPickerDelegate selectedObjectChangedForPickerTextField:self address:[address copy] latitude:lat longitude:lng];
+    //NSLog(@"==> proviceIndex %d, cityIndex %d, townIndex %d",provinceIndex,cityIndex,townIndex);
+    NSLog(@"==> address %@ lat %f lng %f",address);
+    if ([self.locationPickerDelegate respondsToSelector:@selector(selectedObjectChangedForPickerTextField: address:province:city:distict:)]) {
+        [self.locationPickerDelegate selectedObjectChangedForPickerTextField:self address:[address copy] province:provinceId city:cityId distict:distictId];
     }
 }
 

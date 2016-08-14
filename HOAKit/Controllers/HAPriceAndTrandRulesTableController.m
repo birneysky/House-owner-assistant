@@ -24,7 +24,7 @@
 - (NSArray*)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金"],@[@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],[[NSMutableArray alloc] initWithObjects:@"需要第三方保洁", nil], nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金"],@[@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],[[NSMutableArray alloc] initWithObjects:@"需要第三方保洁", nil],@[@"退订规则"], nil];
         //@"平台提供洗漱用品"
     }
     return _dataSource;
@@ -34,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
     //self.tableView.sectionFooterHeight = 280;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
@@ -71,6 +72,16 @@
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (4 == indexPath.section) {
+        return 300.0f;
+    }
+    else{
+        return 44.0f;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
     
@@ -102,8 +113,15 @@
        [text isEqualToString:@"30天折扣"]){
         HADiscountEditorCell* discountCell = [tableView dequeueReusableCellWithIdentifier:@"HADiscountCell" forIndexPath:indexPath];
         discountCell.delegate = self;
+        discountCell.unitName = @"折";
         cell = discountCell;
     }
+    
+    if ([text isEqualToString:@"退订规则"]) {
+        UITableViewCell* ttCell = [tableView dequeueReusableCellWithIdentifier:@"HAPriceRuleCell" forIndexPath:indexPath];
+        return ttCell;
+    }
+    
     cell.textLabel.text = text;
     return cell;
 }
@@ -198,6 +216,7 @@
     }
     else if (1 == section){
         lable.font = [UIFont systemFontOfSize:12.0f];
+        lable.textColor = [UIColor colorWithRed:172/255.0f green:172/255.0f blue:172/255.0f alpha:1];
         CGRect frame = lable.frame;
         frame.size.height = 21.0f;
         lable.frame = frame;
@@ -205,6 +224,18 @@
     }
     else if(2 == section){
         lable.text = @"折扣";
+        lable.font = [UIFont systemFontOfSize:12.0f];
+        lable.textColor = [UIColor colorWithRed:113/255.0f green:113/255.0f blue:113/255.0f alpha:1];
+    }
+    else if (3==section){
+        lable.text = @"保洁方式";
+        lable.font = [UIFont systemFontOfSize:12.0f];
+        lable.textColor = [UIColor colorWithRed:113/255.0f green:113/255.0f blue:113/255.0f alpha:1];
+    }
+    else if (4 == section){
+        lable.text = @"退订规则";
+        lable.font = [UIFont systemFontOfSize:12.0f];
+        lable.textColor = [UIColor colorWithRed:113/255.0f green:113/255.0f blue:113/255.0f alpha:1];
     }
 
     return lable;

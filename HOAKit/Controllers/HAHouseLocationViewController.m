@@ -11,6 +11,8 @@
 #import "HALocationPoint.h"
 #import "HALocationPickerTextField.h"
 #import "HALeapBehavior.h"
+#import "HAHouse.h"
+#import "HAHouseTypeTableViewController.h"
 
 @interface HAHouseLocationViewController ()<MKMapViewDelegate,HALocationPickerTextFieldDelegate,UIDynamicAnimatorDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -25,6 +27,7 @@
 
 @property(nonatomic,strong) UIDynamicAnimator* animator;
 @property(nonatomic,strong) HALeapBehavior* behavior;
+@property(nonatomic,strong) HAHouse* house;
 
 @end
 
@@ -56,6 +59,14 @@
     }
     
     return _behavior;
+}
+
+- (HAHouse*)house
+{
+    if (!_house) {
+        _house = [[HAHouse alloc] init];
+    }
+    return _house;
 }
 
 #pragma mark - *** Init ***
@@ -114,8 +125,11 @@
 
 #pragma mark - *** HALocationPickerTextFieldDelegate ***
 
-- (void)selectedObjectChangedForPickerTextField:(HALocationPickerTextField *)pickerTF address:(NSString *)address latitude:(double)lat longitude:(double)lng
+- (void)selectedObjectChangedForPickerTextField:(HALocationPickerTextField *)pickerTF address:(NSString *)address province:(NSInteger)pid city:(NSInteger)cid distict:(NSInteger)did
 {
+    self.house.province = pid;
+    self.house.city = cid;
+    self.house.distict = did;
     NSString *oreillyAddress = @"1005 Gravenstein Highway North, Sebastopol, CA 95472, USA";
     CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
     [myGeocoder geocodeAddressString:@"北京市海淀区知春路盈都大厦B座" completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -126,6 +140,9 @@
             NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
             CLLocationDegrees lat = firstPlacemark.location.coordinate.latitude;
             CLLocationDegrees lng = firstPlacemark.location.coordinate.longitude;
+            self.house.lat = lat;
+            self.house.lng = lng;
+            self.house.address = @"北京市海淀区知春路盈都大厦B座";
             self.cityAddressTextfield.text = address;
             CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
             CLLocationCoordinate2D coord = [loc coordinate];
@@ -166,14 +183,18 @@
     return YES;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    HAHouseTypeTableViewController* destController = segue.destinationViewController;
+    if ([destController respondsToSelector:@selector(setHouse:)]) {
+        [destController setHouse:self.house];
+    }
 }
-*/
+
 
 @end

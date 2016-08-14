@@ -23,7 +23,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#import <UIKit/UIKit.h>
+
+@class UIImage;
 @class MKNetworkOperation;
+@class UILocalNotification;
 
 typedef enum {
   MKNetworkOperationStateReady = 1,

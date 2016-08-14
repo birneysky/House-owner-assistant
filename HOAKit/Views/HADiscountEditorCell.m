@@ -27,6 +27,7 @@
         _textField = [[HAPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 130, 20)];
         _textField.font = [UIFont systemFontOfSize:14.0f];
         _textField.textAlignment = NSTextAlignmentRight;
+        _textField.rightViewMode = UITextFieldViewModeAlways;
     }
     return _textField;
 }
@@ -57,6 +58,16 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setUnitName:(NSString *)unitName
+{
+    _unitName = [unitName copy];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, 21)];
+    label.text = unitName;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:12.0f];
+    self.textField.rightView = label;
 }
 
 

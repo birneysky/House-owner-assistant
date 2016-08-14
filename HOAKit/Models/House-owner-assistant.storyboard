@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="38" width="600" height="562"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseInfoCell" rowHeight="180" id="wKA-g4-jgm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseInfoCell" rowHeight="180" id="wKA-g4-jgm" customClass="HAHouseItemCell">
                                         <rect key="frame" x="0.0" y="113.5" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wKA-g4-jgm" id="CLC-ZP-YYv">
@@ -129,68 +129,52 @@
                                                     <rect key="frame" x="8" y="125" width="584" height="46"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Oj-j0-XGk">
-                                                            <rect key="frame" x="388" y="8" width="1" height="34"/>
+                                                            <rect key="frame" x="291" y="4" width="1" height="38"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="1" id="dZB-CA-Lhh"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhW-uw-xKQ">
-                                                            <rect key="frame" x="193" y="8" width="1" height="34"/>
-                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="1" id="mnH-8n-N3T"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-d8-uVN">
-                                                            <rect key="frame" x="202" y="8" width="178" height="30"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-d8-uVN">
+                                                            <rect key="frame" x="8" y="8" width="275.5" height="30"/>
                                                             <state key="normal" title="查看评论">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <state key="highlighted">
                                                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubM-dK-yax">
-                                                            <rect key="frame" x="8" y="8" width="179" height="30"/>
-                                                            <state key="normal" title="操作下线">
-                                                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <state key="highlighted">
-                                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </state>
+                                                            <connections>
+                                                                <action selector="commentsBtnClicked:" destination="wKA-g4-jgm" eventType="touchUpInside" id="Ej9-ix-vth"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uy-Ri-GKW">
-                                                            <rect key="frame" x="397" y="8" width="179" height="30"/>
+                                                            <rect key="frame" x="300" y="8" width="275.5" height="30"/>
                                                             <state key="normal" title="更改房价">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <state key="highlighted">
                                                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="priceBtnClicked:" destination="wKA-g4-jgm" eventType="touchUpInside" id="tNu-XF-cLJ"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="1uy-Ri-GKW" secondAttribute="trailing" constant="8" id="0QF-2c-5xd"/>
-                                                        <constraint firstItem="BCP-d8-uVN" firstAttribute="leading" secondItem="PhW-uw-xKQ" secondAttribute="trailing" constant="8" id="6gP-dD-K1P"/>
                                                         <constraint firstAttribute="height" constant="46" id="7rQ-du-4X2"/>
-                                                        <constraint firstAttribute="bottom" secondItem="PhW-uw-xKQ" secondAttribute="bottom" constant="4" id="EXg-Mq-psK"/>
-                                                        <constraint firstItem="ubM-dK-yax" firstAttribute="leading" secondItem="e4T-wW-s8E" secondAttribute="leading" constant="8" id="Ezy-KU-kPg"/>
-                                                        <constraint firstItem="ubM-dK-yax" firstAttribute="top" secondItem="e4T-wW-s8E" secondAttribute="top" constant="8" id="FWa-x5-59q"/>
                                                         <constraint firstItem="1uy-Ri-GKW" firstAttribute="leading" secondItem="3Oj-j0-XGk" secondAttribute="trailing" constant="8" id="GOW-CO-Y1H"/>
-                                                        <constraint firstItem="BCP-d8-uVN" firstAttribute="width" secondItem="ubM-dK-yax" secondAttribute="width" id="HPk-OC-gdY"/>
-                                                        <constraint firstAttribute="bottom" secondItem="1uy-Ri-GKW" secondAttribute="bottom" constant="7.5" id="HXw-B1-cjx"/>
+                                                        <constraint firstAttribute="bottom" secondItem="1uy-Ri-GKW" secondAttribute="bottom" constant="8" id="HXw-B1-cjx"/>
                                                         <constraint firstAttribute="bottom" secondItem="BCP-d8-uVN" secondAttribute="bottom" constant="8" id="JQd-RB-elx"/>
                                                         <constraint firstItem="1uy-Ri-GKW" firstAttribute="top" secondItem="e4T-wW-s8E" secondAttribute="top" constant="8" id="RrT-gg-xAO"/>
-                                                        <constraint firstItem="3Oj-j0-XGk" firstAttribute="top" secondItem="e4T-wW-s8E" secondAttribute="top" constant="8" id="TKt-Qv-8bs"/>
+                                                        <constraint firstItem="3Oj-j0-XGk" firstAttribute="top" secondItem="e4T-wW-s8E" secondAttribute="top" constant="4" id="TKt-Qv-8bs"/>
                                                         <constraint firstItem="BCP-d8-uVN" firstAttribute="top" secondItem="e4T-wW-s8E" secondAttribute="top" constant="8" id="UD9-r0-9ff"/>
-                                                        <constraint firstItem="PhW-uw-xKQ" firstAttribute="top" secondItem="e4T-wW-s8E" secondAttribute="top" constant="8" id="ZOA-L5-xMI"/>
+                                                        <constraint firstItem="3Oj-j0-XGk" firstAttribute="centerY" secondItem="e4T-wW-s8E" secondAttribute="centerY" id="Vj1-U5-Lqy"/>
                                                         <constraint firstAttribute="bottom" secondItem="3Oj-j0-XGk" secondAttribute="bottom" constant="4" id="ZkH-Xn-p80"/>
-                                                        <constraint firstItem="1uy-Ri-GKW" firstAttribute="width" secondItem="ubM-dK-yax" secondAttribute="width" id="gn7-2J-bsQ"/>
-                                                        <constraint firstAttribute="bottom" secondItem="ubM-dK-yax" secondAttribute="bottom" constant="8" id="iTn-jD-pu6"/>
+                                                        <constraint firstItem="3Oj-j0-XGk" firstAttribute="centerX" secondItem="e4T-wW-s8E" secondAttribute="centerX" id="n3j-gr-JCA"/>
+                                                        <constraint firstItem="BCP-d8-uVN" firstAttribute="leading" secondItem="e4T-wW-s8E" secondAttribute="leading" constant="8" id="p9B-Tz-vl2"/>
                                                         <constraint firstItem="3Oj-j0-XGk" firstAttribute="leading" secondItem="BCP-d8-uVN" secondAttribute="trailing" constant="8" id="rk4-HH-98h"/>
-                                                        <constraint firstItem="PhW-uw-xKQ" firstAttribute="leading" secondItem="ubM-dK-yax" secondAttribute="trailing" constant="6" id="vun-Yh-Aby"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -207,6 +191,13 @@
                                                 <constraint firstItem="e4T-wW-s8E" firstAttribute="top" secondItem="ncR-uf-eoF" secondAttribute="bottom" constant="8" id="v7x-0u-G3H"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addressLabel" destination="wSp-NK-XYt" id="HWB-1E-Xpk"/>
+                                            <outlet property="checkStatusLabel" destination="YA3-H5-9CT" id="ulO-T7-NQP"/>
+                                            <outlet property="houseImageView" destination="gxX-rx-NhF" id="8cy-nT-yKF"/>
+                                            <outlet property="priceLabel" destination="4uu-8m-3uA" id="Gkp-LG-w92"/>
+                                            <outlet property="rentTypeLabel" destination="Kpm-yd-HNf" id="VhR-pY-keL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -268,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zZx-6a-AIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2392" y="775"/>
+            <point key="canvasLocation" x="2300" y="761"/>
         </scene>
         <!--House Location View Controller-->
         <scene sceneID="iMF-r5-Hny">
@@ -501,12 +492,21 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGc-8Z-a2c">
                                     <rect key="frame" x="20" y="20" width="276" height="153"/>
-                                    <state key="normal" image="HA_House_Icon"/>
+                                    <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" image="HA_House_Icon" backgroundImage="HA_Light_Gary_Backgroud"/>
+                                    <state key="selected" image="HA_House_Icon" backgroundImage="HA_White_Background"/>
+                                    <connections>
+                                        <action selector="wholeBtnClicked:" destination="uOt-M8-ctJ" eventType="touchUpInside" id="E6v-bo-Fpq"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCf-dz-cfb">
                                     <rect key="frame" x="304" y="20" width="276" height="153"/>
                                     <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" image="HA_House_Icon"/>
+                                    <state key="normal" image="HA_House_Icon" backgroundImage="HA_Light_Gary_Backgroud"/>
+                                    <state key="selected" image="HA_House_Icon" backgroundImage="HA_White_Background"/>
+                                    <connections>
+                                        <action selector="signleBtnClicked:" destination="uOt-M8-ctJ" eventType="touchUpInside" id="tot-RE-5YQ"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -539,13 +539,16 @@
                         <barButtonItem key="rightBarButtonItem" title="确定" id="Q8M-CO-gVJ">
                             <color key="tintColor" red="0.85882352939999995" green="0.30588235289999999" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="KLx-va-RGR" kind="show" id="zhJ-JW-pC8"/>
+                                <action selector="okBtnClicked:" destination="uOt-M8-ctJ" id="QM4-Xu-tbx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="房源类型"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="KLx-va-RGR" kind="show" identifier="push_publish_house" id="76o-Jl-bZk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPB-2i-0wa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -986,204 +989,6 @@
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="Bne-Iq-xKm">
-                            <rect key="frame" x="0.0" y="263.5" width="600" height="113"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEr-bv-iry">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="113"/>
-                                    <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="1.">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="房客在入住前一天">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="18">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="：">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="00">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="之前取消订单，对还全部房租和押金                      ">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="                                                                                           2.">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="房客在入住日前">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="1">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="天">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="18">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="：">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="00">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="之后，入住日的">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="18">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="：">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="00">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="之前取消订单，从收取的租金中扣除第一天的房租">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="                                                                       3.">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="房客入住日">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="18">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="：">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="00">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="之后默认为入住并扣除当日房租，如提前退房，则扣除次日的房租">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="PingFangSC-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="   ">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" firstLineHeadIndent="20" headIndent="20" lineHeightMultiple="1" defaultTabInterval="33" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <nil key="highlightedColor"/>
-                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="80"/>
-                                    </variation>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="sEr-bv-iry" secondAttribute="bottom" id="4SS-FO-ZDj"/>
-                                <constraint firstItem="sEr-bv-iry" firstAttribute="leading" secondItem="Bne-Iq-xKm" secondAttribute="leading" id="5fC-7C-Bja"/>
-                                <constraint firstAttribute="trailing" secondItem="sEr-bv-iry" secondAttribute="trailing" id="ZhD-Dk-kcM"/>
-                                <constraint firstItem="sEr-bv-iry" firstAttribute="top" secondItem="Bne-Iq-xKm" secondAttribute="top" id="prg-Oq-xhO"/>
-                            </constraints>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HADiscountCell" id="X3c-x3-hG6" customClass="HADiscountEditorCell">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
@@ -1207,6 +1012,115 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZvH-DZ-6Gy" id="uQh-Se-3Rf">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAPriceRuleCell" rowHeight="300" id="jO9-f9-5sQ">
+                                <rect key="frame" x="0.0" y="245.5" width="600" height="300"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jO9-f9-5sQ" id="oyF-QD-5OE">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="299.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmN-sr-0QO">
+                                            <rect key="frame" x="8" y="8" width="584" height="283.5"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xE4-qA-kje">
+                                                    <rect key="frame" x="8" y="8" width="20" height="267.5"/>
+                                                    <color key="backgroundColor" red="0.083725895810000006" green="0.78553109219999995" blue="0.29008639520000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="fOV-hF-aXr"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果取消订单，订金全部退还" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kg-Ps-Use">
+                                                    <rect key="frame" x="36" y="25" width="540" height="35"/>
+                                                    <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="qa7-0w-sdM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.20784313730000001" green="0.25098039220000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果取消订单，扣除头1天订金" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PA0-hY-D6Q">
+                                                    <rect key="frame" x="36" y="110" width="540" height="35"/>
+                                                    <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="gxZ-jI-gpQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.20784313730000001" green="0.25098039220000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果提前退房，扣除未消费的头1天订金" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0a-yg-vXy">
+                                                    <rect key="frame" x="36" y="195" width="540" height="35"/>
+                                                    <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="CHm-ma-C6t"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.20784313730000001" green="0.25098039220000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入住当天 18:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uD4-fE-8jS">
+                                                    <rect key="frame" x="36" y="166" width="540" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="x4B-Mu-ois"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.52941176469999995" green="0.57647058819999997" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退房当天 14:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74W-05-RVp">
+                                                    <rect key="frame" x="36" y="254" width="540" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="khN-0D-Kvf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.52941176469999995" green="0.57647058819999997" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入住前1天 18:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIK-nW-x7i">
+                                                    <rect key="frame" x="36" y="81" width="540" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="6He-As-V1e"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.52941176469999995" green="0.57647058819999997" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="t0a-yg-vXy" firstAttribute="top" secondItem="uD4-fE-8jS" secondAttribute="bottom" constant="8" id="0wH-Rz-eou"/>
+                                                <constraint firstAttribute="trailing" secondItem="uD4-fE-8jS" secondAttribute="trailing" constant="8" id="6fA-57-g7i"/>
+                                                <constraint firstAttribute="bottom" secondItem="xE4-qA-kje" secondAttribute="bottom" constant="8" id="93m-Oq-c8V"/>
+                                                <constraint firstAttribute="trailing" secondItem="t0a-yg-vXy" secondAttribute="trailing" constant="8" id="9bi-w9-l7o"/>
+                                                <constraint firstItem="9Kg-Ps-Use" firstAttribute="leading" secondItem="xE4-qA-kje" secondAttribute="trailing" constant="8" id="Bnm-3A-iSm"/>
+                                                <constraint firstItem="t0a-yg-vXy" firstAttribute="leading" secondItem="xE4-qA-kje" secondAttribute="trailing" constant="8" id="EhE-h8-1zh"/>
+                                                <constraint firstItem="9Kg-Ps-Use" firstAttribute="top" secondItem="AmN-sr-0QO" secondAttribute="top" constant="25" id="HTS-mn-KJD"/>
+                                                <constraint firstAttribute="bottom" secondItem="74W-05-RVp" secondAttribute="bottom" constant="8" id="Kzq-Vg-CCA"/>
+                                                <constraint firstAttribute="trailing" secondItem="zIK-nW-x7i" secondAttribute="trailing" constant="8" id="Li8-vI-bUV"/>
+                                                <constraint firstAttribute="trailing" secondItem="74W-05-RVp" secondAttribute="trailing" constant="8" id="Opa-19-UWp"/>
+                                                <constraint firstItem="PA0-hY-D6Q" firstAttribute="top" secondItem="9Kg-Ps-Use" secondAttribute="bottom" constant="50" id="S9q-oP-VbE"/>
+                                                <constraint firstItem="zIK-nW-x7i" firstAttribute="leading" secondItem="xE4-qA-kje" secondAttribute="trailing" constant="8" id="Whf-wN-CeA"/>
+                                                <constraint firstItem="xE4-qA-kje" firstAttribute="top" secondItem="AmN-sr-0QO" secondAttribute="top" constant="8" id="Yix-gf-OpJ"/>
+                                                <constraint firstItem="PA0-hY-D6Q" firstAttribute="top" secondItem="zIK-nW-x7i" secondAttribute="bottom" constant="8" id="cih-T1-EvV"/>
+                                                <constraint firstAttribute="trailing" secondItem="PA0-hY-D6Q" secondAttribute="trailing" constant="8" id="hxg-zd-nSq"/>
+                                                <constraint firstItem="t0a-yg-vXy" firstAttribute="top" secondItem="PA0-hY-D6Q" secondAttribute="bottom" constant="50" id="j9S-1l-9uk"/>
+                                                <constraint firstItem="74W-05-RVp" firstAttribute="leading" secondItem="xE4-qA-kje" secondAttribute="trailing" constant="8" id="mDz-ht-xS7"/>
+                                                <constraint firstAttribute="trailing" secondItem="9Kg-Ps-Use" secondAttribute="trailing" constant="8" id="ool-fo-CRK"/>
+                                                <constraint firstItem="uD4-fE-8jS" firstAttribute="leading" secondItem="xE4-qA-kje" secondAttribute="trailing" constant="8" id="pwS-kb-TP7"/>
+                                                <constraint firstItem="PA0-hY-D6Q" firstAttribute="leading" secondItem="xE4-qA-kje" secondAttribute="trailing" constant="8" id="tVS-dO-LhT"/>
+                                                <constraint firstItem="xE4-qA-kje" firstAttribute="leading" secondItem="AmN-sr-0QO" secondAttribute="leading" constant="8" id="xol-ND-oLP"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="AmN-sr-0QO" firstAttribute="top" secondItem="oyF-QD-5OE" secondAttribute="topMargin" id="UPr-gW-9SX"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="AmN-sr-0QO" secondAttribute="trailing" id="eDy-Lq-1B1"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="AmN-sr-0QO" secondAttribute="bottom" id="feJ-Wa-Cen"/>
+                                        <constraint firstItem="AmN-sr-0QO" firstAttribute="leading" secondItem="oyF-QD-5OE" secondAttribute="leadingMargin" id="zAl-t2-rD6"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -1235,6 +1149,119 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yUv-fg-h6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4177" y="1563"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Yvh-ab-kGr">
+            <objects>
+                <viewController id="D62-vz-Naw" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oUN-89-0A8"/>
+                        <viewControllerLayoutGuide type="bottom" id="dwf-mA-4YF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JhT-Iu-NfD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kXT-IF-gBc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2d2-e0-SKa">
+                                        <rect key="frame" x="8" y="8" width="20" height="267.5"/>
+                                        <color key="backgroundColor" red="0.083725895810000006" green="0.78553109219999995" blue="0.29008639520000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="na3-SL-Zu1"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="如果取消订单，订金全部退还" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8K-Rv-eQU">
+                                        <rect key="frame" x="36" y="35" width="540" height="35"/>
+                                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="dhq-ih-kn0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.20784313730000001" green="0.25098039220000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="如果取消订单，扣除头1天订金" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ls-u6-D9e">
+                                        <rect key="frame" x="36" y="120" width="540" height="35"/>
+                                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="C9l-xG-BSq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.20784313730000001" green="0.25098039220000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="如果提前退房，扣除未消费的头1天订金" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8X-lA-eBF">
+                                        <rect key="frame" x="36" y="205" width="540" height="35"/>
+                                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="5QE-R3-sPt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.20784313730000001" green="0.25098039220000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="入住当天 18:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJb-sA-c53">
+                                        <rect key="frame" x="36" y="176" width="540" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="I6v-dF-yxp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.52941176469999995" green="0.57647058819999997" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="退房当天 14:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjV-gc-ypz">
+                                        <rect key="frame" x="36" y="254" width="540" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="fgJ-6d-lfK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.52941176469999995" green="0.57647058819999997" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="入住前1天 18:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXl-8C-DiI">
+                                        <rect key="frame" x="36" y="91" width="540" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="1Tb-eY-Eng"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.52941176469999995" green="0.57647058819999997" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="d8K-Rv-eQU" secondAttribute="trailing" constant="8" id="0O0-lY-XRu"/>
+                                    <constraint firstAttribute="trailing" secondItem="YXl-8C-DiI" secondAttribute="trailing" constant="8" id="8Dq-93-vpJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="I8X-lA-eBF" secondAttribute="trailing" constant="8" id="FbA-cP-RaG"/>
+                                    <constraint firstItem="2d2-e0-SKa" firstAttribute="top" secondItem="kXT-IF-gBc" secondAttribute="top" constant="8" id="HHl-Ck-orD"/>
+                                    <constraint firstItem="0ls-u6-D9e" firstAttribute="top" secondItem="d8K-Rv-eQU" secondAttribute="bottom" constant="50" id="MsN-ov-KRe"/>
+                                    <constraint firstItem="0ls-u6-D9e" firstAttribute="leading" secondItem="2d2-e0-SKa" secondAttribute="trailing" constant="8" id="Pj0-yg-v1M"/>
+                                    <constraint firstItem="YXl-8C-DiI" firstAttribute="leading" secondItem="2d2-e0-SKa" secondAttribute="trailing" constant="8" id="QrW-92-rho"/>
+                                    <constraint firstItem="ZJb-sA-c53" firstAttribute="leading" secondItem="2d2-e0-SKa" secondAttribute="trailing" constant="8" id="R7J-G7-EyE"/>
+                                    <constraint firstAttribute="trailing" secondItem="0ls-u6-D9e" secondAttribute="trailing" constant="8" id="SsD-Gj-ttr"/>
+                                    <constraint firstItem="I8X-lA-eBF" firstAttribute="top" secondItem="0ls-u6-D9e" secondAttribute="bottom" constant="50" id="URA-Dz-vbh"/>
+                                    <constraint firstAttribute="bottom" secondItem="2d2-e0-SKa" secondAttribute="bottom" constant="8" id="Ve5-1z-1Wr"/>
+                                    <constraint firstItem="d8K-Rv-eQU" firstAttribute="leading" secondItem="2d2-e0-SKa" secondAttribute="trailing" constant="8" id="cEl-Jw-Cug"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZJb-sA-c53" secondAttribute="trailing" constant="8" id="gXu-W9-DTa"/>
+                                    <constraint firstAttribute="bottom" secondItem="fjV-gc-ypz" secondAttribute="bottom" constant="8" id="kAm-1d-7Om"/>
+                                    <constraint firstItem="fjV-gc-ypz" firstAttribute="leading" secondItem="2d2-e0-SKa" secondAttribute="trailing" constant="8" id="lbG-MG-yai"/>
+                                    <constraint firstItem="I8X-lA-eBF" firstAttribute="top" secondItem="ZJb-sA-c53" secondAttribute="bottom" constant="8" id="lrv-Cu-Gac"/>
+                                    <constraint firstItem="I8X-lA-eBF" firstAttribute="leading" secondItem="2d2-e0-SKa" secondAttribute="trailing" constant="8" id="oru-1n-s12"/>
+                                    <constraint firstItem="d8K-Rv-eQU" firstAttribute="top" secondItem="kXT-IF-gBc" secondAttribute="top" constant="35" id="pzO-rq-CCL"/>
+                                    <constraint firstItem="0ls-u6-D9e" firstAttribute="top" secondItem="YXl-8C-DiI" secondAttribute="bottom" constant="8" id="sxN-cf-Tn8"/>
+                                    <constraint firstAttribute="trailing" secondItem="fjV-gc-ypz" secondAttribute="trailing" constant="8" id="vCc-mf-pfI"/>
+                                    <constraint firstItem="2d2-e0-SKa" firstAttribute="leading" secondItem="kXT-IF-gBc" secondAttribute="leading" constant="8" id="vK9-Ep-7Jt"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Kx-V1-aSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4320" y="2118"/>
         </scene>
         <!--House Introduce View Controller-->
         <scene sceneID="XVU-P3-s5e">
@@ -1583,9 +1610,11 @@
         <image name="HA_Bubble" width="161" height="46"/>
         <image name="HA_Camera_Icon" width="45" height="45"/>
         <image name="HA_House_Icon" width="42" height="42"/>
+        <image name="HA_Light_Gary_Backgroud" width="60" height="60"/>
         <image name="HA_Location_Icon" width="40" height="40"/>
         <image name="HA_Room_Default_Picture" width="320" height="167"/>
         <image name="HA_Test_Picture" width="140" height="96"/>
+        <image name="HA_White_Background" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="efl-mY-tkK"/>

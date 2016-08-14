@@ -8,6 +8,7 @@
 
 #import "HAHouseTableController.h"
 #import "HAFloatingButton.h"
+#import "HARESTfulEngine.h"
 
 @interface HAHouseTableController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet HAFloatingButton *addButton;
@@ -18,6 +19,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:1 onSucceeded:^(NSArray *listOfModelBaseObjects) {
+//        
+//    } onError:^(NSError *engineError) {
+//        
+//    }];
+    
+//    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:16 onSucceeded:^(HAJSONModel *aModelBaseObject) {
+//        NSString* houseJson = [aModelBaseObject toJsonString];
+//        NSLog(@"houseJson %@",houseJson);
+//    } onError:^(NSError *engineError) {
+//        
+//    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated

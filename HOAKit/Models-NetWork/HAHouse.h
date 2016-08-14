@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HAJSONModel.h"
 
-@interface HAHouse : NSObject
-
-- (instancetype) initWithDictionary:(NSDictionary*)dic;
+@interface HAHouse : HAJSONModel
 
 @property(nonatomic,assign) NSInteger houseId;
 @property(nonatomic,assign) NSInteger landlordId;		// '房东ID',
@@ -31,7 +30,7 @@
 @property(nonatomic,copy)   NSString*  houseNumber;		// '门牌号',
 @property(nonatomic,assign) double lng;		//'经度',
 @property(nonatomic,assign) double lat;		// '纬度',
-@property(nonatomic,copy)   NSString*   houseType;		// '房源类型',
+@property(nonatomic,assign)   NSInteger   houseType;		// '房源类型',
 @property(nonatomic,assign) NSInteger   rentType;		//
 @property(nonatomic,copy)   NSString*   description;		// '描述',
 @property(nonatomic,copy)   NSString*   position;		// '地理位置描述',
@@ -58,5 +57,14 @@
 @property(nonatomic,assign) NSInteger   checkStatus;// '资料审核状态0 待审核 1 审核待完善  2 审核不通过 3 审核通过',
 @property(nonatomic,assign) NSInteger   operationStatus;		// '运营状态 0 正常 1 房东下线 2 平台锁定',
 @property(nonatomic,copy)   NSString*   remark;		// '备注'
+
+@property (nonatomic,copy) NSArray* houseImages;
+@property (nonatomic,copy) NSString* headerImage;
+
+@property (nonatomic,assign) NSInteger commentCount;
+
+@property (nonatomic,assign) float averageGeneralScore;
+
+@property (nonatomic,assign) NSInteger hasConllected;
 
 @end

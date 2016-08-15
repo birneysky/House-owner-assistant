@@ -11,7 +11,7 @@
 
 @interface HAHouseFacility : HAJSONModel
 
-@property(nonatomic,assign) NSInteger facilitiyId;
+@property(nonatomic,assign) NSInteger houseId;
 @property(nonatomic,assign) NSInteger hotShower;
 @property(nonatomic,assign) NSInteger sofa;
 @property(nonatomic,assign) NSInteger showerGel;

@@ -18,4 +18,10 @@
 
 - (NSDictionary*) toDictionary;
 
+- (NSString*) toFullJsonString;
+
+- (NSString*) toFullJsonData;
+
+- (NSDictionary*) toFullDictionary;
+
 @end

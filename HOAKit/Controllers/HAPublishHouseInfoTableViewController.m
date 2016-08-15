@@ -10,6 +10,7 @@
 #import "HARESTfulEngine.h"
 #import "HAHouseFullInfo.h"
 #import "HAHouseIntroduceViewController.h"
+#import "HouseFacilitiesViewController.h"
 
 @interface HAPublishHouseInfoTableViewController ()
 
@@ -150,6 +151,11 @@
     if ([segue.identifier isEqualToString:@"push_house_introduce"]) {
         HAHouseIntroduceViewController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
+    }
+    
+    if ([segue.identifier isEqualToString:@"push_house_facilities"]) {
+        HouseFacilitiesViewController* vc = segue.destinationViewController;
+        vc.houseId = self.houseId;
     }
 }
 

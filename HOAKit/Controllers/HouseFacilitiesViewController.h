@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class HAHouseFacility;
+
 @interface HouseFacilitiesViewController : UITableViewController
+
+@property (nonatomic,strong) HAHouseFacility* factilities;
+
+@property (nonatomic,assign) NSInteger houseId;
 
 @end

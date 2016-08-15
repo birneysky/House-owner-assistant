@@ -13,6 +13,7 @@
 #import "HAHouseBed.h"
 #import "HAHouseComment.h"
 #import "HAHousePosition.h"
+#import "HAHouseFacility.h"
 
 NSString* const kBaseURL = @"120.76.28.47:8080/yisu";
 
@@ -61,17 +62,17 @@ static HARESTfulEngine* defaultEngine;
 }
 
 - (void)httpRequestWithPath:(NSString*)path
-                      params:(HAJSONModel*)model
+                     params:(NSDictionary*)dic
                   httpMethod:(NSString*)method
                  onSucceeded:(ObjectBlock)objectBlock
                      onError:(ErrorBlock) errorBlock
 {
-    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:path params:[model toDictionary] httpMethod:method];
+    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:path params:dic httpMethod:method];
     //
     if ([method isEqualToString:@"PUT"]) {
         [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
     }
-    NSLog(@" model %@",[model toJsonString]);
+    
     [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
         
         NSMutableDictionary* responseDictionary = [completedOperation responseJSON];
@@ -165,7 +166,8 @@ static HARESTfulEngine* defaultEngine;
                            onSucceeded:(ModelBlock)sBlock
                                onError:(ErrorBlock)errBlock
 {
-    [self httpRequestWithPath:@"api/houses" params:model httpMethod:@"POST" onSucceeded:^(NSObject *info) {
+    NSLog(@" model %@",[model toJsonString]);
+    [self httpRequestWithPath:@"api/houses" params:[model toDictionary] httpMethod:@"POST" onSucceeded:^(NSObject *info) {
         if ([info isKindOfClass:[NSDictionary class]]) {
             NSDictionary* houseJson = info;
             HAHouse* houseObj = [[HAHouse alloc] initWithDictionary:houseJson];
@@ -181,9 +183,11 @@ static HARESTfulEngine* defaultEngine;
                               onSucceeded:(ModelBlock)sBlock
                                   onError:(ErrorBlock)errBlock
 {
+     NSLog(@" model %@",[param toFullJsonString]);
      NSString* path = [NSString stringWithFormat:@"/api/house_facilities/%d",houseId];
-     [self httpRequestWithPath:path params:[param toDictionary] httpMethod:@"PUT" onSucceeded:^(NSObject *object) {
-         
+     [self httpRequestWithPath:path params:[param toFullDictionary] httpMethod:@"PUT" onSucceeded:^(NSObject *object) {
+         HAHouseFacility* facitility = [[HAHouseFacility alloc] initWithDictionary:object];
+         sBlock(facitility);
      } onError:^(NSError *engineError) {
          
      }];

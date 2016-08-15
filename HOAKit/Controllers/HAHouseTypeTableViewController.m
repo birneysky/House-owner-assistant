@@ -150,7 +150,7 @@
 - (IBAction)okBtnClicked:(id)sender {
     self.house.landlordId = 1;
     self.house.houseNumber = @"9000-1234";
-    [[HARESTfulEngine defaultEngine] createNewHouseWithHAJSONModel:self.house onSucceeded:^(HAJSONModel *object) {
+    [[HARESTfulEngine defaultEngine] createNewHouseWithModel:self.house onSucceeded:^(HAJSONModel *object) {
         NSLog(@"aModelBaseObject %@",[object toJsonString]);
     } onError:^(NSError *engineError) {
         

@@ -76,7 +76,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KP6-1I-c8q">
                                                     <rect key="frame" x="8" y="8" width="160" height="109"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YA3-H5-9CT">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YA3-H5-9CT">
                                                             <rect key="frame" x="8" y="8" width="21" height="93"/>
                                                             <color key="backgroundColor" red="0.98431372549999996" green="0.96862745100000003" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
@@ -1513,7 +1513,7 @@
         <image name="HA_White_Background" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="76o-Jl-bZk"/>
+        <segue reference="FiJ-Aa-niN"/>
         <segue reference="efl-mY-tkK"/>
     </inferredMetricsTieBreakers>
 </document>

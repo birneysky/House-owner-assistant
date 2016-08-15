@@ -7,6 +7,7 @@
 //
 
 #import "HAHouseItemCell.h"
+#import "HAAppDataHelper.h"
 
 @interface HAHouseItemCell ()
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -22,6 +23,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -41,11 +43,17 @@
 - (void)setAddress:(NSString*)text
 {
     self.addressLabel.text = text;
+    
 }
 
 - (void)setCheckStatus:(NSInteger)status
 {
+    NSString* text = [HAAppDataHelper checkStatusText:status];
     
+    NSMutableAttributedString* atrributedString = [[NSMutableAttributedString alloc] initWithAttributedString:self.checkStatusLabel.attributedText];
+    [atrributedString replaceCharactersInRange:NSMakeRange(0, atrributedString.length) withString:text];
+    
+    self.checkStatusLabel.attributedText = atrributedString;
 }
 
 - (void)setPrice:(float)price

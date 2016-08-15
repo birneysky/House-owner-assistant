@@ -45,19 +45,20 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 1;
+    return self.dataSource.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.count;
+    return 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HAHouseItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
     
-    HAHouse* item = self.dataSource[indexPath.row];
+    HAHouse* item = self.dataSource[indexPath.section];
     
+    [cell setCheckStatus:item.checkStatus];
     [cell setPrice:item.price];
     [cell setAddress:item.address];
     
@@ -67,7 +68,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HAHouse* item = self.dataSource[indexPath.row];
+    HAHouse* item = self.dataSource[indexPath.section];
     NSLog(@" checkStatus  %d",item.checkStatus);
     switch (item.checkStatus) {
         case 1://待审核

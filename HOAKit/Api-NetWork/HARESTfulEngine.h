@@ -16,7 +16,8 @@
 typedef void (^VoidBlock)(void);
 typedef void (^ModelBlock)(HAJSONModel* object);
 typedef void (^ArrayBlock)(NSArray<HAJSONModel*>* objects);
-typedef void (^ObjectBlock)(HAHouseFullInfo* info);
+typedef void (^HAHouseFullInfoBlock)(HAHouseFullInfo* info);
+typedef void (^ObjectBlock)(NSObject* object);
 typedef void (^ErrorBlock)(NSError* engineError);
 
 
@@ -29,10 +30,10 @@ typedef void (^ErrorBlock)(NSError* engineError);
                                  onError:(ErrorBlock) errorBlock;
 
 - (void) fetchHouseInfoWithHouseID:(NSInteger) houseId
-                      onSucceeded:(ObjectBlock) succeededBlock
+                      onSucceeded:(HAHouseFullInfoBlock) succeededBlock
                           onError:(ErrorBlock) errorBlock;
 
-- (void) createNewHouseWithHAJSONModel:(HAJSONModel*) model
+- (void) createNewHouseWithModel:(HAJSONModel*) model
                            onSucceeded:(ModelBlock)sBlock
                                onError:(ErrorBlock)errBlock;
 

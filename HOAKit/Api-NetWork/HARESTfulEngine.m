@@ -60,6 +60,32 @@ static HARESTfulEngine* defaultEngine;
     [self enqueueOperation:op];
 }
 
+- (void)fetchRequestWithPath:(NSString*)path
+                      params:(HAJSONModel*)model
+                  httpMethod:(NSString*)method
+                 onSucceeded:(ObjectBlock)objectBlock
+                     onError:(ErrorBlock) errorBlock
+{
+    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:@"api/houses" params:[model toDictionary] httpMethod:method];
+    //
+    if ([method isEqualToString:@"PUT"]) {
+        [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
+    }
+    NSLog(@" model %@",[model toJsonString]);
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        
+        NSMutableDictionary* responseDictionary = [completedOperation responseJSON];
+        NSDictionary* houseJson = [responseDictionary objectForKey:@"data"];
+
+        objectBlock(houseJson);
+        
+    }  errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        errorBlock(error);
+    }];
+    
+    [self enqueueOperation:op];
+}
+
 #pragma mark - *** Api-Net ***
 - (void) fetchHouseItemsWithHouseOwnerID:(NSInteger) hoid
                              onSucceeded:(ArrayBlock) succeededBlock
@@ -82,7 +108,7 @@ static HARESTfulEngine* defaultEngine;
 }
 
 - (void)fetchHouseInfoWithHouseID:(NSInteger) houseId
-                      onSucceeded:(ObjectBlock) succeededBlock
+                      onSucceeded:(HAHouseFullInfoBlock) succeededBlock
                           onError:(ErrorBlock) errorBlock
 {
     NSString* path = [NSString stringWithFormat:@"api/houses/%d",houseId];
@@ -139,22 +165,15 @@ static HARESTfulEngine* defaultEngine;
                            onSucceeded:(ModelBlock)sBlock
                                onError:(ErrorBlock)errBlock
 {
-    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:@"api/houses" params:[model toDictionary] httpMethod:@"POST"];
-    //[op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
-    NSLog(@" model %@",[model toJsonString]);
-    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+    [self fetchRequestWithPath:@"api/houses" params:model httpMethod:@"POST" onSucceeded:^(NSObject *info) {
+        if ([info isKindOfClass:[NSDictionary class]]) {
+            NSDictionary* houseJson = info;
+            HAHouse* houseObj = [[HAHouse alloc] initWithDictionary:houseJson];
+            sBlock(houseObj);
+        }
+    } onError:^(NSError *engineError) {
         
-        NSMutableDictionary* responseDictionary = [completedOperation responseJSON];
-        NSDictionary* houseJson = [responseDictionary objectForKey:@"data"];
-//        
-        HAHouse* houseObj = [[HAHouse alloc] initWithDictionary:houseJson];
-        sBlock(houseObj);
-        
-    }  errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        errBlock(error);
     }];
-    
-    [self enqueueOperation:op];
 }
 
 @end

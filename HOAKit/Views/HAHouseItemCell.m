@@ -64,14 +64,8 @@
 
 - (void)setHouseType:(NSInteger)type roomCount:(NSInteger)count;
 {
-    switch (type) {
-        case 1:
-            
-            break;
-            
-        default:
-            break;
-    }
+    NSString* typeName = [HAAppDataHelper houseTypeName:type];
+    self.rentTypeLabel.text = [NSString stringWithFormat:@"%@%d居",typeName,count];
 }
 
 @end

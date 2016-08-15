@@ -61,6 +61,7 @@
     [cell setCheckStatus:item.checkStatus];
     [cell setPrice:item.price];
     [cell setAddress:item.address];
+    [cell setHouseType:item.houseType roomCount:item.roomNumber];
     
     return cell;
 }

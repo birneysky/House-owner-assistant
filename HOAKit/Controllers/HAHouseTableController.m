@@ -9,28 +9,31 @@
 #import "HAHouseTableController.h"
 #import "HAFloatingButton.h"
 #import "HARESTfulEngine.h"
+#import "HAHouseItemCell.h"
+#import "HAHouse.h"
+#import "HAPublishHouseInfoTableViewController.h"
 
 @interface HAHouseTableController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet HAFloatingButton *addButton;
-
+@property (nonatomic,strong) NSArray* dataSource;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation HAHouseTableController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:1 onSucceeded:^(NSArray *listOfModelBaseObjects) {
-//        
-//    } onError:^(NSError *engineError) {
-//        
-//    }];
+    [self.activityIndicator startAnimating];
     
-//    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:16 onSucceeded:^(HAJSONModel *aModelBaseObject) {
-//        NSString* houseJson = [aModelBaseObject toJsonString];
-//        NSLog(@"houseJson %@",houseJson);
-//    } onError:^(NSError *engineError) {
-//        
-//    }];
+    [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:1 onSucceeded:^(NSArray<HAJSONModel *> *objects) {
+        self.dataSource = objects;
+        [self.activityIndicator stopAnimating];
+        self.activityIndicator.hidden = YES;
+        [self.tableView reloadData];
+    } onError:^(NSError *engineError) {
+        
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -42,63 +45,59 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 10;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dataSource.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+    HAHouseItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+    
+    HAHouse* item = self.dataSource[indexPath.row];
+    
+    [cell setPrice:item.price];
+    [cell setAddress:item.address];
     
     return cell;
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HAHouse* item = self.dataSource[indexPath.row];
+    NSLog(@" checkStatus  %d",item.checkStatus);
+    switch (item.checkStatus) {
+        case 1://待审核
+            // show toast;
+            break;
+        case 2://通过
+            [self performSegueWithIdentifier:@"push_publish_house" sender:indexPath];
+            break;
+        case 3://已拒绝
+            // show toast;
+            break;
+        case 4://补充材料
+            [self performSegueWithIdentifier:@"push_publish_house" sender:indexPath];
+            break;
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"push_publish_house"]) {
+        NSIndexPath* indexPath = sender;
+        HAHouse* item = self.dataSource[indexPath.row];
+        HAPublishHouseInfoTableViewController* vc = segue.destinationViewController;
+        vc.houseId = item.houseId;
+    }
 }
-*/
+
 
 @end

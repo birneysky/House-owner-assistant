@@ -112,12 +112,12 @@
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
-    NSLog(@"touch begin");
+    //NSLog(@"touch begin");
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    NSLog(@"touch end");
+    //NSLog(@"touch end");
     self.locationPromptView.hidden = YES;
     [self.behavior addItem:self.locationPointImgView];
 }

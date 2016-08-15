@@ -8,13 +8,15 @@
 
 #import "MKNetworkEngine.h"
 #import "HAJSONModel.h"
+#import "HAHouseFullInfo.h"
 
 
 /*单例类*/
 
 typedef void (^VoidBlock)(void);
-typedef void (^ModelBlock)(HAJSONModel* aModelBaseObject);
-typedef void (^ArrayBlock)(NSArray* listOfModelBaseObjects);
+typedef void (^ModelBlock)(HAJSONModel* object);
+typedef void (^ArrayBlock)(NSArray<HAJSONModel*>* objects);
+typedef void (^ObjectBlock)(HAHouseFullInfo* info);
 typedef void (^ErrorBlock)(NSError* engineError);
 
 
@@ -27,7 +29,7 @@ typedef void (^ErrorBlock)(NSError* engineError);
                                  onError:(ErrorBlock) errorBlock;
 
 - (void) fetchHouseInfoWithHouseID:(NSInteger) houseId
-                      onSucceeded:(ModelBlock) succeededBlock
+                      onSucceeded:(ObjectBlock) succeededBlock
                           onError:(ErrorBlock) errorBlock;
 
 - (void) createNewHouseWithHAJSONModel:(HAJSONModel*) model

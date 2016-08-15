@@ -16,6 +16,6 @@
 
 - (void)setPrice:(float)price;
 
-- (void)setRentType:(NSInteger)type roomCount:(NSInteger)count;
+- (void)setHouseType:(NSInteger)type roomCount:(NSInteger)count;
 
 @end

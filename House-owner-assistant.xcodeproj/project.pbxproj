@@ -442,7 +442,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/HOAKit$(EFFECTIVE_PLATFORM_NAME)",
 				);
 				INFOPLIST_FILE = "House-owner-assistant/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -464,7 +464,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/HOAKit$(EFFECTIVE_PLATFORM_NAME)",
 				);
 				INFOPLIST_FILE = "House-owner-assistant/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

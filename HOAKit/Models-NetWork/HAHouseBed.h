@@ -25,4 +25,10 @@
 @property(nonatomic,assign) NSInteger roundRed;
 @property(nonatomic,assign) NSInteger airBed;
 
+@property(nonatomic,assign) NSInteger bedTypeId;
+@property (nonatomic,assign) NSInteger houseId;
+@property (nonatomic,assign) float length;
+@property (nonatomic,assign) float width;
+@property (nonatomic,assign) NSInteger number;
+
 @end

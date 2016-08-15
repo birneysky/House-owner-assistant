@@ -54,7 +54,7 @@
     self.priceLabel.text = priceString;
 }
 
-- (void)setRentType:(NSInteger)type roomCount:(NSInteger)count
+- (void)setHouseType:(NSInteger)type roomCount:(NSInteger)count;
 {
     switch (type) {
         case 1:

@@ -10,4 +10,6 @@
 
 @interface HAPublishHouseInfoTableViewController : UITableViewController
 
+@property (nonatomic,assign) NSInteger houseId;
+
 @end

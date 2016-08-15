@@ -25,5 +25,6 @@
 @property(nonatomic,assign) NSInteger commentTime;		//
 @property(nonatomic,assign) NSInteger status;		// '状态 0:初始化 1:删除',
 @property(nonatomic,assign) NSInteger comments;		// '评价内容',
+@property(nonatomic,copy) NSString* reply;
 
 @end

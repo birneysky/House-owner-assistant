@@ -10,4 +10,12 @@
 
 @implementation HAHouseBed
 
+
+- (void) setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    if ([key isEqualToString:@"id"]) {
+        self.bedId = [value integerValue];
+    }
+}
+
 @end

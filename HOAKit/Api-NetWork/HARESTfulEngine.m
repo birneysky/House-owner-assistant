@@ -100,7 +100,7 @@ static HARESTfulEngine* defaultEngine;
             
             NSMutableArray* beds = [NSMutableArray array];
             [houseBeds enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                HAHouseBed* bed = [[HAHouseBed alloc] initWithDictionary:object];
+                HAHouseBed* bed = [[HAHouseBed alloc] initWithDictionary:obj];
                 [beds addObject:bed];
             }];
             fullInfo.beds = [beds copy];

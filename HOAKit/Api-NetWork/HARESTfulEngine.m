@@ -60,13 +60,13 @@ static HARESTfulEngine* defaultEngine;
     [self enqueueOperation:op];
 }
 
-- (void)fetchRequestWithPath:(NSString*)path
+- (void)httpRequestWithPath:(NSString*)path
                       params:(HAJSONModel*)model
                   httpMethod:(NSString*)method
                  onSucceeded:(ObjectBlock)objectBlock
                      onError:(ErrorBlock) errorBlock
 {
-    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:@"api/houses" params:[model toDictionary] httpMethod:method];
+    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:path params:[model toDictionary] httpMethod:method];
     //
     if ([method isEqualToString:@"PUT"]) {
         [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
@@ -161,11 +161,11 @@ static HARESTfulEngine* defaultEngine;
 }
 
 
-- (void) createNewHouseWithHAJSONModel:(HAJSONModel*) model
+- (void) createNewHouseWithModel:(HAJSONModel*) model
                            onSucceeded:(ModelBlock)sBlock
                                onError:(ErrorBlock)errBlock
 {
-    [self fetchRequestWithPath:@"api/houses" params:model httpMethod:@"POST" onSucceeded:^(NSObject *info) {
+    [self httpRequestWithPath:@"api/houses" params:model httpMethod:@"POST" onSucceeded:^(NSObject *info) {
         if ([info isKindOfClass:[NSDictionary class]]) {
             NSDictionary* houseJson = info;
             HAHouse* houseObj = [[HAHouse alloc] initWithDictionary:houseJson];
@@ -174,6 +174,19 @@ static HARESTfulEngine* defaultEngine;
     } onError:^(NSError *engineError) {
         
     }];
+}
+
+- (void) modifyHouseFacilitiesWithHouseID:(NSInteger)houseId
+                                   params:(HAJSONModel*)param
+                              onSucceeded:(ModelBlock)sBlock
+                                  onError:(ErrorBlock)errBlock
+{
+     NSString* path = [NSString stringWithFormat:@"/api/house_facilities/%d",houseId];
+     [self httpRequestWithPath:path params:[param toDictionary] httpMethod:@"PUT" onSucceeded:^(NSObject *object) {
+         
+     } onError:^(NSError *engineError) {
+         
+     }];
 }
 
 @end

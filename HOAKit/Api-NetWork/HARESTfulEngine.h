@@ -25,16 +25,26 @@ typedef void (^ErrorBlock)(NSError* engineError);
 
 + (HARESTfulEngine*) defaultEngine;
 
+//获取房源列表
 - (void) fetchHouseItemsWithHouseOwnerID:(NSInteger) hoid
                              onSucceeded:(ArrayBlock) succeededBlock
                                  onError:(ErrorBlock) errorBlock;
-
+//获取房源信息
 - (void) fetchHouseInfoWithHouseID:(NSInteger) houseId
                       onSucceeded:(HAHouseFullInfoBlock) succeededBlock
                           onError:(ErrorBlock) errorBlock;
 
+//创建新房源
 - (void) createNewHouseWithModel:(HAJSONModel*) model
                            onSucceeded:(ModelBlock)sBlock
                                onError:(ErrorBlock)errBlock;
+
+
+//修改房源设施
+- (void) modifyHouseFacilitiesWithHouseID:(NSInteger)houseId
+                                   params:(HAJSONModel*)param
+                              onSucceeded:(ModelBlock)sBlock
+                                  onError:(ErrorBlock)errBlock;
+
 
 @end

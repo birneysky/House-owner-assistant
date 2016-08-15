@@ -9,10 +9,13 @@
 #import "HAPublishHouseInfoTableViewController.h"
 #import "HARESTfulEngine.h"
 #import "HAHouseFullInfo.h"
+#import "HAHouseIntroduceViewController.h"
 
 @interface HAPublishHouseInfoTableViewController ()
 
 @property(nonatomic,strong) NSArray* dataSource;
+
+@property(nonatomic,strong) HAHouseFullInfo* houseFullInfo;
 
 @end
 
@@ -32,7 +35,7 @@
     [super viewDidLoad];
     
     [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId onSucceeded:^(HAHouseFullInfo *info) {
-        
+        self.houseFullInfo = info;
     } onError:^(NSError *engineError) {
         
     }];
@@ -139,14 +142,16 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"push_house_introduce"]) {
+        HAHouseIntroduceViewController* vc = segue.destinationViewController;
+        vc.house = self.houseFullInfo.house;
+    }
 }
-*/
+
 
 @end

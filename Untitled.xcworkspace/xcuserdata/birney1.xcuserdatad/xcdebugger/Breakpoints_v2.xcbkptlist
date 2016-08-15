@@ -19,44 +19,60 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HOAKit/Api-NetWork/HARESTfulEngine.m"
-            timestampString = "492868508.048687"
+            filePath = "HOAKit/Controllers/HAPublishHouseInfoTableViewController.m"
+            timestampString = "492960005.787775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-fetchHouseItemsWithHouseOwnerID:onSucceeded:onError:"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-prepareForSegue:sender:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HOAKit/Api-NetWork/HARESTfulEngine.m"
+            timestampString = "492960810.91406"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "-modifyHouseFacilitiesWithHouseID:params:onSucceeded:onError:"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__71-[HARESTfulEngine fetchHouseItemsWithHouseOwnerID:onSucceeded:onError:]_block_invoke"
+                  symbolName = "__79-[HARESTfulEngine modifyHouseFacilitiesWithHouseID:params:onSucceeded:onError:]_block_invoke"
                   moduleName = "House-owner-assistant"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/birney1/mysource/source_git/House-owner-assistant/HOAKit/Api-NetWork/HARESTfulEngine.m"
-                  timestampString = "492870568.791089"
+                  timestampString = "492960810.91855"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "185">
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "52">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__71-[HARESTfulEngine fetchHouseItemsWithHouseOwnerID:onSucceeded:onError:]_block_invoke_2"
+                  symbolName = "__79-[HARESTfulEngine modifyHouseFacilitiesWithHouseID:params:onSucceeded:onError:]_block_invoke_2"
                   moduleName = "House-owner-assistant"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/birney1/mysource/source_git/House-owner-assistant/HOAKit/Api-NetWork/HARESTfulEngine.m"
-                  timestampString = "492870568.791244"
+                  timestampString = "492960810.91872"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "16">
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "52">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -68,12 +84,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HOAKit/Api-NetWork/HARESTfulEngine.m"
-            timestampString = "492868512.590407"
+            timestampString = "492960812.439946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-fetchHouseItemsWithHouseOwnerID:onSucceeded:onError:"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "-modifyHouseFacilitiesWithHouseID:params:onSucceeded:onError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

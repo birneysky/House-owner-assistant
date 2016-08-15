@@ -20,8 +20,8 @@
 		74266F6E1D5DF6E300A7E4BF /* HAHouseBed.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F6C1D5DF6E300A7E4BF /* HAHouseBed.m */; };
 		74266F711D5DF7E700A7E4BF /* HAHouseComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F6F1D5DF7E700A7E4BF /* HAHouseComment.h */; };
 		74266F721D5DF7E700A7E4BF /* HAHouseComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F701D5DF7E700A7E4BF /* HAHouseComment.m */; };
-		74266F751D5DF85E00A7E4BF /* HAHouseFacilitiy.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F731D5DF85E00A7E4BF /* HAHouseFacilitiy.h */; };
-		74266F761D5DF85E00A7E4BF /* HAHouseFacilitiy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F741D5DF85E00A7E4BF /* HAHouseFacilitiy.m */; };
+		74266F751D5DF85E00A7E4BF /* HAHouseFacility.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F731D5DF85E00A7E4BF /* HAHouseFacility.h */; };
+		74266F761D5DF85E00A7E4BF /* HAHouseFacility.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F741D5DF85E00A7E4BF /* HAHouseFacility.m */; };
 		74266F791D5DF8C300A7E4BF /* HAHouseImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F771D5DF8C300A7E4BF /* HAHouseImage.h */; };
 		74266F7A1D5DF8C300A7E4BF /* HAHouseImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F781D5DF8C300A7E4BF /* HAHouseImage.m */; };
 		74266F7D1D5DF91F00A7E4BF /* HAHouseInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F7B1D5DF91F00A7E4BF /* HAHouseInfo.h */; };
@@ -177,8 +177,8 @@
 		74266F6C1D5DF6E300A7E4BF /* HAHouseBed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseBed.m; sourceTree = "<group>"; };
 		74266F6F1D5DF7E700A7E4BF /* HAHouseComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseComment.h; sourceTree = "<group>"; };
 		74266F701D5DF7E700A7E4BF /* HAHouseComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseComment.m; sourceTree = "<group>"; };
-		74266F731D5DF85E00A7E4BF /* HAHouseFacilitiy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseFacilitiy.h; sourceTree = "<group>"; };
-		74266F741D5DF85E00A7E4BF /* HAHouseFacilitiy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseFacilitiy.m; sourceTree = "<group>"; };
+		74266F731D5DF85E00A7E4BF /* HAHouseFacility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseFacility.h; sourceTree = "<group>"; };
+		74266F741D5DF85E00A7E4BF /* HAHouseFacility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseFacility.m; sourceTree = "<group>"; };
 		74266F771D5DF8C300A7E4BF /* HAHouseImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseImage.h; sourceTree = "<group>"; };
 		74266F781D5DF8C300A7E4BF /* HAHouseImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseImage.m; sourceTree = "<group>"; };
 		74266F7B1D5DF91F00A7E4BF /* HAHouseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseInfo.h; sourceTree = "<group>"; };
@@ -351,8 +351,8 @@
 				74266F6C1D5DF6E300A7E4BF /* HAHouseBed.m */,
 				74266F6F1D5DF7E700A7E4BF /* HAHouseComment.h */,
 				74266F701D5DF7E700A7E4BF /* HAHouseComment.m */,
-				74266F731D5DF85E00A7E4BF /* HAHouseFacilitiy.h */,
-				74266F741D5DF85E00A7E4BF /* HAHouseFacilitiy.m */,
+				74266F731D5DF85E00A7E4BF /* HAHouseFacility.h */,
+				74266F741D5DF85E00A7E4BF /* HAHouseFacility.m */,
 				74266F771D5DF8C300A7E4BF /* HAHouseImage.h */,
 				74266F781D5DF8C300A7E4BF /* HAHouseImage.m */,
 				74266F7B1D5DF91F00A7E4BF /* HAHouseInfo.h */,
@@ -653,7 +653,7 @@
 				742B91E91D4FB731000FF5A1 /* CTAssetsViewCell.h in Headers */,
 				742B917E1D4FA836000FF5A1 /* HOAKit.h in Headers */,
 				74266F601D5CA31700A7E4BF /* RTArealocationView.h in Headers */,
-				74266F751D5DF85E00A7E4BF /* HAHouseFacilitiy.h in Headers */,
+				74266F751D5DF85E00A7E4BF /* HAHouseFacility.h in Headers */,
 				742B91EE1D4FB731000FF5A1 /* NSDate+timeDescription.h in Headers */,
 				742B91D21D4FB731000FF5A1 /* Toast+UIView.h in Headers */,
 				743F43521D55F84F00D06D19 /* HADiscountDataSourceDelegate.h in Headers */,
@@ -807,7 +807,7 @@
 			files = (
 				74266F861D5DFC1B00A7E4BF /* HAHousePosition.m in Sources */,
 				742B91E61D4FB731000FF5A1 /* CTAssetsPickerController.m in Sources */,
-				74266F761D5DF85E00A7E4BF /* HAHouseFacilitiy.m in Sources */,
+				74266F761D5DF85E00A7E4BF /* HAHouseFacility.m in Sources */,
 				743F437D1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.m in Sources */,
 				74266F6E1D5DF6E300A7E4BF /* HAHouseBed.m in Sources */,
 				742B91EF1D4FB731000FF5A1 /* NSDate+timeDescription.m in Sources */,

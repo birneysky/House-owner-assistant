@@ -7,6 +7,7 @@
 //
 
 #import "HAHouseIntroduceViewController.h"
+#import "HAHouse.h"
 
 @interface HAHouseIntroduceViewController ()<UITextViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -33,6 +34,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //self.scrollView.contentOffset = CGPointMake(0, 44);
+    if (self.house) {
+        self.titleTextView.text = self.house.title;
+        self.houseDescriptionTextView.text = self.house.houseDescription;
+        self.houseLocationTextView.text = self.house.position;
+        self.houseTrafficTextView.text = self.house.traffic;
+        self.houseLiftTextView.text = self.house.surroundings;
+        self.houseCommentTextView.text = self.house.remark;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,6 +50,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide) name:UIKeyboardDidHideNotification object:nil];
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

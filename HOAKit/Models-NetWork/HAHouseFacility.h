@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "HAJSONModel.h"
 
-@interface HAHouseFacilitiy : HAJSONModel
+@interface HAHouseFacility : HAJSONModel
 
 @property(nonatomic,assign) NSInteger facilitiyId;
 @property(nonatomic,assign) NSInteger hotShower;

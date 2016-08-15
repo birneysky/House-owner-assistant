@@ -6,8 +6,8 @@
 //  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HAHouseFacilitiy.h"
+#import "HAHouseFacility.h"
 
-@implementation HAHouseFacilitiy
+@implementation HAHouseFacility
 
 @end

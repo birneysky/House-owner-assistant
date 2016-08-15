@@ -75,6 +75,12 @@
     self.placeholderLable.text = _placeholder;
 }
 
+- (void)setText:(NSString *)text
+{
+    [super setText:text];
+    self.placeholderLable.hidden = self.hasText;
+}
+
 #pragma mark - ***Notification Selector ***
 
 - (void)textDidChange {
@@ -82,6 +88,8 @@
     self.placeholderLable.hidden = self.hasText;
     
 }
+
+
 
 
 @end

@@ -32,7 +32,7 @@
 @property(nonatomic,assign) double lat;		// '纬度',
 @property(nonatomic,assign)   NSInteger   houseType;		// '房源类型',
 @property(nonatomic,assign) NSInteger   rentType;		//
-@property(nonatomic,copy)   NSString*   description;		// '描述',
+@property(nonatomic,copy)   NSString*   houseDescription;		// '描述',
 @property(nonatomic,copy)   NSString*   position;		// '地理位置描述',
 @property(nonatomic,copy)   NSString*   traffic;		// '交通描述',
 @property(nonatomic,copy)   NSString*   surroundings;		// '周边生活',

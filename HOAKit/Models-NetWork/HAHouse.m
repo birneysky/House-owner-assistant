@@ -16,6 +16,10 @@
     if ([key isEqualToString:@"id"]) {
         self.houseId = [value integerValue];
     }
+    
+    if ([key isEqualToString:@"description"]) {
+        self.houseDescription = value;
+    }
 }
 
 - (void) setNilValueForKey:(NSString *)key

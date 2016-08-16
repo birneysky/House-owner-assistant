@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class HAHouseBed;
-@class HAHouseComment;
-@class HAHouseFacilitiy;
-@class HAHouse;
-@class HAHousePosition;
+#import "HAHouseBed.h"
+#import "HAHouseComment.h"
+#import "HAHouseFacility.h"
+#import "HAHouse.h"
+#import "HAHousePosition.h"
 
 @interface HAHouseFullInfo : NSObject
 
@@ -20,7 +19,7 @@
 
 @property (nonatomic,strong) NSArray<HAHouseComment*>* comments;
 
-@property (nonatomic,strong) HAHouseFacilitiy* facility;
+@property (nonatomic,strong) HAHouseFacility* facility;
 
 @property (nonatomic,assign) NSInteger hasConllection;
 

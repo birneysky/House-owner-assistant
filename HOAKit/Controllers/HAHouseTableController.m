@@ -26,7 +26,7 @@
     [super viewDidLoad];
     [self.activityIndicator startAnimating];
     
-    [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:1 onSucceeded:^(NSArray<HAJSONModel *> *objects) {
+    [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:1 completion:^(NSArray<HAJSONModel *> *objects) {
         self.dataSource = objects;
         [self.activityIndicator stopAnimating];
         self.activityIndicator.hidden = YES;

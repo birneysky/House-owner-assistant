@@ -11,7 +11,7 @@
 #import "HAHouseFullInfo.h"
 #import "HAHouseIntroduceViewController.h"
 #import "HouseFacilitiesViewController.h"
-
+#import "HAHouseAreaSelectViewController.h"
 @interface HAPublishHouseInfoTableViewController ()
 
 @property(nonatomic,strong) NSArray* dataSource;
@@ -35,8 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId onSucceeded:^(HAHouseFullInfo *info) {
+    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId completion:^(HAHouseFullInfo *info) {
         self.houseFullInfo = info;
+        NSLog(@"fetch house full info finished");
     } onError:^(NSError *engineError) {
         
     }];
@@ -156,6 +157,11 @@
     if ([segue.identifier isEqualToString:@"push_house_facilities"]) {
         HouseFacilitiesViewController* vc = segue.destinationViewController;
         vc.houseId = self.houseId;
+    }
+    
+    if ([segue.identifier isEqualToString:@"push_house_area"]) {
+        HAHouseAreaSelectViewController* vc = segue.destinationViewController;
+        vc.cityId = self.houseFullInfo.house.city;
     }
 }
 

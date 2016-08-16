@@ -126,6 +126,12 @@
 		DB12CBF31D61AAAA0069126F /* HAHouseFullInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DB12CBF11D61AAAA0069126F /* HAHouseFullInfo.m */; };
 		DB12CBF61D61C2F70069126F /* HAAppDataHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = DB12CBF41D61C2F70069126F /* HAAppDataHelper.h */; };
 		DB12CBF71D61C2F70069126F /* HAAppDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DB12CBF51D61C2F70069126F /* HAAppDataHelper.m */; };
+		DB13FCA51D62EDFB003A8F58 /* HAPosition.h in Headers */ = {isa = PBXBuildFile; fileRef = DB13FCA31D62EDFB003A8F58 /* HAPosition.h */; };
+		DB13FCA61D62EDFB003A8F58 /* HAPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = DB13FCA41D62EDFB003A8F58 /* HAPosition.m */; };
+		DB13FCA91D62EE63003A8F58 /* HASubWay.h in Headers */ = {isa = PBXBuildFile; fileRef = DB13FCA71D62EE63003A8F58 /* HASubWay.h */; };
+		DB13FCAA1D62EE63003A8F58 /* HASubWay.m in Sources */ = {isa = PBXBuildFile; fileRef = DB13FCA81D62EE63003A8F58 /* HASubWay.m */; };
+		DB13FCAD1D63007F003A8F58 /* HARegion.h in Headers */ = {isa = PBXBuildFile; fileRef = DB13FCAB1D63007F003A8F58 /* HARegion.h */; };
+		DB13FCAE1D63007F003A8F58 /* HARegion.m in Sources */ = {isa = PBXBuildFile; fileRef = DB13FCAC1D63007F003A8F58 /* HARegion.m */; };
 		DB3B28BC1D5851A90007E576 /* HAOffOnCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28BA1D5851A90007E576 /* HAOffOnCell.h */; };
 		DB3B28BD1D5851A90007E576 /* HAOffOnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28BB1D5851A90007E576 /* HAOffOnCell.m */; };
 		DB3B28C01D5866370007E576 /* HABedInfoCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28BE1D5866370007E576 /* HABedInfoCell.h */; };
@@ -285,6 +291,12 @@
 		DB12CBF11D61AAAA0069126F /* HAHouseFullInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseFullInfo.m; sourceTree = "<group>"; };
 		DB12CBF41D61C2F70069126F /* HAAppDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAAppDataHelper.h; sourceTree = "<group>"; };
 		DB12CBF51D61C2F70069126F /* HAAppDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAAppDataHelper.m; sourceTree = "<group>"; };
+		DB13FCA31D62EDFB003A8F58 /* HAPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPosition.h; sourceTree = "<group>"; };
+		DB13FCA41D62EDFB003A8F58 /* HAPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPosition.m; sourceTree = "<group>"; };
+		DB13FCA71D62EE63003A8F58 /* HASubWay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HASubWay.h; sourceTree = "<group>"; };
+		DB13FCA81D62EE63003A8F58 /* HASubWay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HASubWay.m; sourceTree = "<group>"; };
+		DB13FCAB1D63007F003A8F58 /* HARegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HARegion.h; sourceTree = "<group>"; };
+		DB13FCAC1D63007F003A8F58 /* HARegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HARegion.m; sourceTree = "<group>"; };
 		DB3B28BA1D5851A90007E576 /* HAOffOnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAOffOnCell.h; sourceTree = "<group>"; };
 		DB3B28BB1D5851A90007E576 /* HAOffOnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAOffOnCell.m; sourceTree = "<group>"; };
 		DB3B28BE1D5866370007E576 /* HABedInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABedInfoCell.h; sourceTree = "<group>"; };
@@ -367,6 +379,12 @@
 				74266F991D5F835A00A7E4BF /* HAHouseItem.m */,
 				DB12CBF01D61AAAA0069126F /* HAHouseFullInfo.h */,
 				DB12CBF11D61AAAA0069126F /* HAHouseFullInfo.m */,
+				DB13FCA31D62EDFB003A8F58 /* HAPosition.h */,
+				DB13FCA41D62EDFB003A8F58 /* HAPosition.m */,
+				DB13FCA71D62EE63003A8F58 /* HASubWay.h */,
+				DB13FCA81D62EE63003A8F58 /* HASubWay.m */,
+				DB13FCAB1D63007F003A8F58 /* HARegion.h */,
+				DB13FCAC1D63007F003A8F58 /* HARegion.m */,
 			);
 			path = "Models-NetWork";
 			sourceTree = SOURCE_ROOT;
@@ -655,7 +673,9 @@
 				74266F601D5CA31700A7E4BF /* RTArealocationView.h in Headers */,
 				74266F751D5DF85E00A7E4BF /* HAHouseFacility.h in Headers */,
 				742B91EE1D4FB731000FF5A1 /* NSDate+timeDescription.h in Headers */,
+				DB13FCAD1D63007F003A8F58 /* HARegion.h in Headers */,
 				742B91D21D4FB731000FF5A1 /* Toast+UIView.h in Headers */,
+				DB13FCA91D62EE63003A8F58 /* HASubWay.h in Headers */,
 				743F43521D55F84F00D06D19 /* HADiscountDataSourceDelegate.h in Headers */,
 				74266F9E1D60054300A7E4BF /* HAHouseItemCell.h in Headers */,
 				DB3B28D21D5C7A2D0007E576 /* HATextField.h in Headers */,
@@ -679,6 +699,7 @@
 				743F434E1D55F81500D06D19 /* HADiscountPickerTextField.h in Headers */,
 				742B91E11D4FB731000FF5A1 /* CTAssetsGroupViewController.h in Headers */,
 				743F43841D58BC8500D06D19 /* HAPhotoCollectionViewController.h in Headers */,
+				DB13FCA51D62EDFB003A8F58 /* HAPosition.h in Headers */,
 				74266F7D1D5DF91F00A7E4BF /* HAHouseInfo.h in Headers */,
 				DB12CBF21D61AAAA0069126F /* HAHouseFullInfo.h in Headers */,
 				743F43611D57037800D06D19 /* HAEditPickerDelegate.h in Headers */,
@@ -810,6 +831,7 @@
 				74266F761D5DF85E00A7E4BF /* HAHouseFacility.m in Sources */,
 				743F437D1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.m in Sources */,
 				74266F6E1D5DF6E300A7E4BF /* HAHouseBed.m in Sources */,
+				DB13FCAA1D62EE63003A8F58 /* HASubWay.m in Sources */,
 				742B91EF1D4FB731000FF5A1 /* NSDate+timeDescription.m in Sources */,
 				DB12CBF31D61AAAA0069126F /* HAHouseFullInfo.m in Sources */,
 				742B91DE1D4FB731000FF5A1 /* ALAssetsGroup+isEqual.m in Sources */,
@@ -860,6 +882,7 @@
 				DB3B28FD1D5DC0070007E576 /* MKNetworkOperation.m in Sources */,
 				DB3B28C51D587F0A0007E576 /* HAHouseTypeDataSouceDelegate.m in Sources */,
 				743F43651D570CE700D06D19 /* HADiscountEditorCell.m in Sources */,
+				DB13FCAE1D63007F003A8F58 /* HARegion.m in Sources */,
 				742B91E41D4FB731000FF5A1 /* CTAssetsPickerConstants.m in Sources */,
 				742B91D51D4FB731000FF5A1 /* HALeapBehavior.m in Sources */,
 				743F43791D57440300D06D19 /* HAEditPickerCell.m in Sources */,
@@ -872,6 +895,7 @@
 				74266F9B1D5F835A00A7E4BF /* HAHouseItem.m in Sources */,
 				DB3B28F21D5DC0070007E576 /* NSDate+RFC1123.m in Sources */,
 				DB3B28CD1D5C1AF50007E576 /* HouseFacilitiesViewController.m in Sources */,
+				DB13FCA61D62EDFB003A8F58 /* HAPosition.m in Sources */,
 				DB3B28C11D5866370007E576 /* HABedInfoCell.m in Sources */,
 				74266F821D5DFA5B00A7E4BF /* HAHouseOrder.m in Sources */,
 				74266F721D5DF7E700A7E4BF /* HAHouseComment.m in Sources */,

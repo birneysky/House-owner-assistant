@@ -17,3 +17,8 @@
 @property(nonatomic,assign) NSInteger positionTypeId;		// '景点类型ID',
 
 @end
+
+/*
+ 
+
+ */

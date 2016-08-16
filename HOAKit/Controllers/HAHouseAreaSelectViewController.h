@@ -10,4 +10,6 @@
 
 @interface HAHouseAreaSelectViewController : UIViewController
 
+@property (nonatomic,assign) NSInteger cityId;
+
 @end

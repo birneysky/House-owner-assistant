@@ -9,6 +9,8 @@
 #import "MKNetworkEngine.h"
 #import "HAJSONModel.h"
 #import "HAHouseFullInfo.h"
+#import "HASubWay.h"
+#import "HAPosition.h"
 
 
 /*单例类*/
@@ -27,24 +29,37 @@ typedef void (^ErrorBlock)(NSError* engineError);
 
 //获取房源列表
 - (void) fetchHouseItemsWithHouseOwnerID:(NSInteger) hoid
-                             onSucceeded:(ArrayBlock) succeededBlock
+                             completion:(ArrayBlock) succeededBlock
                                  onError:(ErrorBlock) errorBlock;
 //获取房源信息
 - (void) fetchHouseInfoWithHouseID:(NSInteger) houseId
-                      onSucceeded:(HAHouseFullInfoBlock) succeededBlock
+                      completion:(HAHouseFullInfoBlock) succeededBlock
                           onError:(ErrorBlock) errorBlock;
 
 //创建新房源
 - (void) createNewHouseWithModel:(HAJSONModel*) model
-                           onSucceeded:(ModelBlock)sBlock
+                           completion:(ModelBlock)sBlock
                                onError:(ErrorBlock)errBlock;
 
 
 //修改房源设施
 - (void) modifyHouseFacilitiesWithHouseID:(NSInteger)houseId
                                    params:(HAJSONModel*)param
-                              onSucceeded:(ModelBlock)sBlock
+                              completion:(ModelBlock)sBlock
                                   onError:(ErrorBlock)errBlock;
 
+//获取城市位置区域信息
+- (void) fetchPositionInfoWithCityID:(NSInteger)cityId
+                          completion:(void (^)(NSArray<HAPosition*>* postions,NSArray<HASubWay*>* subways))completion
+                             onError:(ErrorBlock)errorBlock;
 
+//添加床铺信息
+- (void) addHouseBed:(HAJSONModel*)bed
+          completion:(ModelBlock)completion
+             onError:(ErrorBlock)errBlock;
+
+//删除床铺信息
+- (void) removeHouseBedWithID:(NSInteger)bedId
+                   completion:(ModelBlock)completion
+                      onError:(ErrorBlock)errBlock;
 @end

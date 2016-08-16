@@ -8,12 +8,16 @@
 
 #import "HAHouseAreaSelectViewController.h"
 #import "RTArealocationView.h"
+#import "HARESTfulEngine.h"
+#import "HARegion.h"
 
 @interface HAHouseAreaSelectViewController ()<ArealocationViewDelegate>
 
 @property (nonatomic, strong) RTArealocationView *arealocationView;
 
 @property (nonatomic, strong) NSArray *allAreas;
+
+@property (nonatomic, strong) NSMutableArray* allRegions;
 
 @end
 
@@ -29,6 +33,19 @@
         _arealocationView.delegate = self;
     }
     return _arealocationView;
+}
+
+- (NSMutableArray*) allRegions
+{
+    if (!_allRegions) {
+        NSArray* names = @[@"景点",@"车站/机场",@"地铁线路",@"商圈",@"行政区",@"医院",@"学校"];
+        _allRegions = [[NSMutableArray alloc] initWithCapacity:15];
+        [names enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            HARegion* region = [[HARegion alloc] initWithName:obj];
+            [_allRegions addObject:region];
+        }];
+    }
+    return _allRegions;
 }
 
 - (NSArray*)allAreas
@@ -53,12 +70,16 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     // 初始化选择的cell
-    NSInteger select[3] = {0,1,2};
-    [self.arealocationView selectRowWithSelectedIndex:select];
-    
+    //NSInteger select[3] = {0,1,2};
+    //[self.arealocationView selectRowWithSelectedIndex:select];
     // 显示 menu
     [self.arealocationView showArealocationInView:self.view];
-
+    
+    [[HARESTfulEngine defaultEngine] fetchPositionInfoWithCityID:self.cityId completion:^(NSArray<HAPosition *> *postions, NSArray<HASubWay *> *subways) {
+        
+    } onError:^(NSError *engineError) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

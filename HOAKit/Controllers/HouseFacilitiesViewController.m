@@ -173,7 +173,7 @@
 #pragma mark - *** Target Action ***
 - (IBAction)okButtonClicked:(id)sender {
     self.factilities.houseId = self.houseId;
-    [[HARESTfulEngine defaultEngine] modifyHouseFacilitiesWithHouseID:self.houseId params:self.factilities onSucceeded:^(HAJSONModel *object) {
+    [[HARESTfulEngine defaultEngine] modifyHouseFacilitiesWithHouseID:self.houseId params:self.factilities completion:^(HAJSONModel *object) {
             [self.navigationController popViewControllerAnimated:YES];
     } onError:^(NSError *engineError) {
         

@@ -129,6 +129,7 @@
     
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     
+    
     if (selCell!=cell) {
 
         [selIcon removeFromSuperview];
@@ -139,9 +140,12 @@
     
     [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     
+    NSMutableArray* selectedIndexArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (int i=0; i<tableViewArr.count; i++) {
         
         UITableView *tempTableView = tableViewArr[i];
+        NSInteger selectRow =  tempTableView.indexPathForSelectedRow.row;
+        [selectedIndexArray addObject:@(selectRow)];
         // 添加下一级tableView
         if (tempTableView == tableView && i != tableViewArr.count - 1) {
             
@@ -151,7 +155,9 @@
             
             [tableViewArr[i+1] reloadData];
             
-            if (![tableViewArr[i+1] superview]) {
+            NSInteger count = [tableViewArr[i+1] numberOfRowsInSection:0];
+            
+            if (![tableViewArr[i+1] superview] && count > 0) {
                 
                 [backgroundView addSubview:tableViewArr[i+1]];
                 
@@ -192,6 +198,10 @@
 
                 }
         }
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(arealocationView:didSelectIndexsArray:)]) {
+        [self.delegate arealocationView:self didSelectIndexsArray:[selectedIndexArray copy]];
     }
 }
 

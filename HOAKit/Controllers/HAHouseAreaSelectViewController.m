@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) NSArray* regionNames;
 
+@property (nonatomic, strong) NSArray* selectedIndexs;
+
 @end
 
 @implementation HAHouseAreaSelectViewController
@@ -79,8 +81,8 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     // 初始化选择的cell
-    //NSInteger select[3] = {0,1,2};
-    //[self.arealocationView selectRowWithSelectedIndex:select];    
+//    NSInteger select[3] = {0,1,0};
+//    [self.arealocationView selectRowWithSelectedIndex:select];
     // 显示 menu
     [self.arealocationView showArealocationInView:self.view];
     
@@ -130,18 +132,30 @@
     if (level==0) {
         
         return self.allRegions.count;
-        
+        //return 2;
     }else if (level==1) {
         HARegion* region = self.allRegions[index];
         return region.subItems.count;
-        //return self.allAreas.count;
+//        return self.allAreas.count;
+        
         
     }else {
-        
+        if (-1 == *selectedIndex) {
+            return 0;
+        }
+        HARegion* region = self.allRegions[*selectedIndex];
+        NSArray* items = region.subItems;
+        HAJSONModel* item = items[index];
+        if([item isKindOfClass:[HASubWay class]])
+        {
+            HASubWay* subWay = item;
+            return subWay.stations.count;
+        }
+        else{
+            return 0;
+        }
 //        NSDictionary *dict = self.allAreas[index];
-//        
 //        NSArray *comArr = dict[@"commercial"];
-//        
 //        return comArr.count;
         return 0;
     }
@@ -161,6 +175,8 @@
  */
 - (NSString *)arealocationView:(RTArealocationView *)arealocationView titleForClass:(NSInteger)level index:(NSInteger)index selectedIndex:(NSInteger *)selectedIndex {
     
+    NSLog(@"level %d index %d, selectedIndex %d",level,index,*selectedIndex);
+
     if (level==0) {
         HARegion* region = self.allRegions[index];
         return region.name;
@@ -168,23 +184,61 @@
     }else if (level==1) {
         
         HARegion* region = self.allRegions[*selectedIndex];
-        region.subItems[index];
-        NSDictionary *dict = self.allAreas[index];
-        
-        return dict[@"district"];
+        NSArray* postions =  region.subItems;
+        HAPosition* postion = postions[index];
+        return postion.name;
+//        NSDictionary *dict = self.allAreas[index];
+//        
+//        return dict[@"district"];
         
     }else {
         
-        NSDictionary *dict = self.allAreas[selectedIndex[1]];
+//        NSDictionary *dict = self.allAreas[selectedIndex[1]];
+//        
+//        NSArray *comArr = dict[@"commercial"];
+//        
+//        return comArr[index];
+
+//        if (-1 == *selectedIndex) {
+//            return 0;
+//        }
+//        HARegion* region = self.allRegions[*selectedIndex];
+//        NSArray* items = region.subItems;
+//        HAJSONModel* item = items[index];
+//        if([item isKindOfClass:[HASubWay class]])
+//        {
+//            HASubWay* subWay = item;
+//            HASubWay* stations = subWay.stations;
+//            return subWay.name;
+//        }
+//        else{
+//            return @"";
+//        }
         
-        NSArray *comArr = dict[@"commercial"];
-        
-        return comArr[index];
-        
+        HARegion* region = self.allRegions[[self.selectedIndexs.firstObject integerValue]];
+        NSArray* items = region.subItems;
+        HAJSONModel* item = items[[self.selectedIndexs[1] integerValue]];
+        if ([item respondsToSelector:@selector(stations)]) {
+            HASubWay* subWay = item;
+            NSArray* stations = subWay.stations;
+            HASubWay* station = stations[index];
+            return station.name;
+        }
+        else{
+            return @"";
+        }
     }
+    
+    
+    
     
 }
 
+
+- (void)arealocationView:(RTArealocationView *)arealocationView didSelectIndexsArray:(NSArray<NSNumber *> *)indexs
+{
+    self.selectedIndexs = indexs;
+}
 
 /**
  *  选取完毕执行的方法

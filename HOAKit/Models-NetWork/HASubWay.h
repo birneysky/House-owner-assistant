@@ -29,6 +29,8 @@
 
 - (void) addItem:(HASubWay*) item;
 
+- (HASubWay*)subItemWithID:(NSInteger)subwayId;
+
 /*
  
  cityId = 110100;

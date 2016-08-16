@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) NSMutableArray* allRegions;
 
+@property (nonatomic, strong) NSArray* regionNames;
+
 @end
 
 @implementation HAHouseAreaSelectViewController
@@ -35,12 +37,19 @@
     return _arealocationView;
 }
 
+- (NSArray*) regionNames
+{
+    if (!_regionNames) {
+        _regionNames = @[@"景点",@"车站/机场",@"地铁线路",@"商圈",@"行政区",@"医院",@"学校"];
+    }
+    return _regionNames;
+}
+
 - (NSMutableArray*) allRegions
 {
     if (!_allRegions) {
-        NSArray* names = @[@"景点",@"车站/机场",@"地铁线路",@"商圈",@"行政区",@"医院",@"学校"];
         _allRegions = [[NSMutableArray alloc] initWithCapacity:15];
-        [names enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.regionNames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             HARegion* region = [[HARegion alloc] initWithName:obj];
             [_allRegions addObject:region];
         }];
@@ -71,11 +80,30 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     // 初始化选择的cell
     //NSInteger select[3] = {0,1,2};
-    //[self.arealocationView selectRowWithSelectedIndex:select];
+    //[self.arealocationView selectRowWithSelectedIndex:select];    
     // 显示 menu
     [self.arealocationView showArealocationInView:self.view];
     
     [[HARESTfulEngine defaultEngine] fetchPositionInfoWithCityID:self.cityId completion:^(NSArray<HAPosition *> *postions, NSArray<HASubWay *> *subways) {
+        [postions enumerateObjectsUsingBlock:^(HAPosition * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            HARegion* region = self.allRegions[obj.typeId - 1];
+            [region addSubItem:obj];
+        }];
+        
+        NSInteger index = [self.regionNames indexOfObject:@"地铁线路"];
+        [subways enumerateObjectsUsingBlock:^(HASubWay * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            HARegion* region = self.allRegions[index];
+            if(1 == obj.levelType ){
+                [region addSubItem:obj];
+            }
+            else{
+                //obj.parentId;
+                HASubWay* subWayLine = [region subItemWithID:obj.parentId];
+                [subWayLine addItem:obj];
+            }
+        }];
+        
+        int a = 3;
         
     } onError:^(NSError *engineError) {
         
@@ -101,20 +129,21 @@
     
     if (level==0) {
         
-        return 2;
+        return self.allRegions.count;
         
     }else if (level==1) {
-        
-        return self.allAreas.count;
+        HARegion* region = self.allRegions[index];
+        return region.subItems.count;
+        //return self.allAreas.count;
         
     }else {
         
-        NSDictionary *dict = self.allAreas[index];
-        
-        NSArray *comArr = dict[@"commercial"];
-        
-        return comArr.count;
-        
+//        NSDictionary *dict = self.allAreas[index];
+//        
+//        NSArray *comArr = dict[@"commercial"];
+//        
+//        return comArr.count;
+        return 0;
     }
 }
 
@@ -133,11 +162,13 @@
 - (NSString *)arealocationView:(RTArealocationView *)arealocationView titleForClass:(NSInteger)level index:(NSInteger)index selectedIndex:(NSInteger *)selectedIndex {
     
     if (level==0) {
-        
-        return @"全城";
+        HARegion* region = self.allRegions[index];
+        return region.name;
         
     }else if (level==1) {
         
+        HARegion* region = self.allRegions[*selectedIndex];
+        region.subItems[index];
         NSDictionary *dict = self.allAreas[index];
         
         return dict[@"district"];

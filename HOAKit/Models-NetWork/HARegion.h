@@ -19,4 +19,6 @@
 
 - (void)addSubItem:(HAJSONModel*)item;
 
+- (HAJSONModel*)subItemWithID:(NSInteger)Id;
+
 @end

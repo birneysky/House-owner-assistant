@@ -175,31 +175,37 @@
             
             [self adjustTableViews];
         
-            //break;
+            break;
         }
+        else{
+            
+        }
+        
 
-        if (lastTableView == tableView ) {
-            
-            [self saveSelectedIndex];
-            
-            // 添加选中icon
-            CGPoint center = CGPointMake(cell.frame.size.width * 0.9, cell.frame.size.height * 0.5);
-            
-            selIcon.center = center;
-            
-            [cell.contentView addSubview:selIcon];
 
-            // 改变选中颜色
-            cell.textLabel.textColor = [UIColor orangeColor];
+    }
+    
+    if (lastTableView == tableView ) {
+        
+        [self saveSelectedIndex];
+        
+        // 添加选中icon
+        CGPoint center = CGPointMake(cell.frame.size.width * 0.9, cell.frame.size.height * 0.5);
+        
+        selIcon.center = center;
+        
+        [cell.contentView addSubview:selIcon];
+        
+        // 改变选中颜色
+        cell.textLabel.textColor = [UIColor orangeColor];
+        
+        //[self dismissArealocationView];
+        
+        // 选中后执行方法
+        if ([self.delegate respondsToSelector:@selector(arealocationView:finishChooseLocationAtIndexs:)]) {
             
-            //[self dismissArealocationView];
-                
-                // 选中后执行方法
-                if ([self.delegate respondsToSelector:@selector(arealocationView:finishChooseLocationAtIndexs:)]) {
-                    
-                    [self.delegate arealocationView:self finishChooseLocationAtIndexs:selectedIndex];
-
-                }
+            [self.delegate arealocationView:self finishChooseLocationAtIndexs:selectedIndex];
+            
         }
     }
     

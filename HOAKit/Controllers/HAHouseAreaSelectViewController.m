@@ -81,8 +81,7 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     // 初始化选择的cell
-//    NSInteger select[3] = {0,1,0};
-//    [self.arealocationView selectRowWithSelectedIndex:select];
+
     // 显示 menu
     [self.arealocationView showArealocationInView:self.view];
     
@@ -105,7 +104,8 @@
             }
         }];
         
-        int a = 3;
+        NSInteger select[3] = {0,0,0};
+        [self.arealocationView selectRowWithSelectedIndex:select];
         
     } onError:^(NSError *engineError) {
         
@@ -174,8 +174,6 @@
  *  @return cell的标题
  */
 - (NSString *)arealocationView:(RTArealocationView *)arealocationView titleForClass:(NSInteger)level index:(NSInteger)index selectedIndex:(NSInteger *)selectedIndex {
-    
-    NSLog(@"level %d index %d, selectedIndex %d",level,index,*selectedIndex);
 
     if (level==0) {
         HARegion* region = self.allRegions[index];
@@ -248,10 +246,10 @@
  */
 - (void)arealocationView:(RTArealocationView *)arealocationView finishChooseLocationAtIndexs:(NSInteger *)selectedIndex{
     
-    for (int i=0; i<3; i++) {
-        
-        NSLog(@"%ld",selectedIndex[i]);
-    }
+//    for (int i=0; i<3; i++) {
+//        
+//        NSLog(@"%ld",selectedIndex[i]);
+//    }
 }
 
 

@@ -19,7 +19,7 @@
     NSInteger        selectedRow;         // 选中的行
     UIImageView      *selIcon;            // 选中的icon
     UITableViewCell  *selCell;            // 选中的cell
-
+    UITableView* lastTableView;
 }
 
 @end
@@ -54,7 +54,7 @@
     }
     backgroundView = [[UIView alloc] init];
     [backgroundView addSubview:tableViewArr[0]];
-    backgroundView.backgroundColor = [UIColor lightGrayColor];
+    backgroundView.backgroundColor = [UIColor whiteColor];
     
 }
 
@@ -147,6 +147,7 @@
         NSInteger selectRow =  tempTableView.indexPathForSelectedRow.row;
         [selectedIndexArray addObject:@(selectRow)];
         // 添加下一级tableView
+        NSInteger nextTableRowsCount = -1;
         if (tempTableView == tableView && i != tableViewArr.count - 1) {
             
             selectedRow = indexPath.row;
@@ -155,11 +156,12 @@
             
             [tableViewArr[i+1] reloadData];
             
-            NSInteger count = [tableViewArr[i+1] numberOfRowsInSection:0];
+            nextTableRowsCount = [tableViewArr[i+1] numberOfRowsInSection:0];
             
-            if (![tableViewArr[i+1] superview] && count > 0) {
+            if (![tableViewArr[i+1] superview] && nextTableRowsCount > 0) {
                 
                 [backgroundView addSubview:tableViewArr[i+1]];
+                lastTableView = tableViewArr[i+1];
                 
             }            // 移除多余的tableView
             for (int j=i; j<tableViewArr.count-2; j++) {
@@ -167,15 +169,16 @@
                 if ([tableViewArr[j+2] superview]) {
                     
                     [tableViewArr[j+2] removeFromSuperview];
+                    lastTableView = tableViewArr[j+1] ;
                 }
             }
             
             [self adjustTableViews];
         
-            break;
+            //break;
         }
-        
-        if (i == tableViewArr.count - 1) {
+
+        if (lastTableView == tableView ) {
             
             [self saveSelectedIndex];
             

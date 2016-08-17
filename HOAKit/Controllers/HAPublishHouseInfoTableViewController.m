@@ -14,6 +14,7 @@
 #import "HAHouseAreaSelectViewController.h"
 #import "HAHouseBedViewController.h"
 #import "HAHouseInfoViewController.h"
+#import "HAPriceAndTrandRulesTableController.h"
 
 @interface HAPublishHouseInfoTableViewController ()
 
@@ -177,6 +178,11 @@
     
     if ([segue.identifier isEqualToString:@"push_house_info"]) {
         HAHouseInfoViewController* vc = segue.destinationViewController;
+        vc.house = self.houseFullInfo.house;
+    }
+    
+    if ([segue.identifier isEqualToString:@"push_price_trading_rules"]) {
+        HAPriceAndTrandRulesTableController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
     }
 

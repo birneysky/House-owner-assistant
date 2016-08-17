@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAPickerTextField.h"
 
-@class HAPickerTextField;
 
 @protocol HADiscountEditorCellDelegate <NSObject>
 
@@ -21,7 +21,7 @@
 
 @interface HADiscountEditorCell : UITableViewCell
 
-//@property (nonatomic,readonly) HAPickerTextField* textField;
+@property (nonatomic,readonly) HAPickerTextField* textField;
 
 @property (nonatomic,weak) id<HADiscountEditorCellDelegate> delegate;
 

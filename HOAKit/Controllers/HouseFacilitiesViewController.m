@@ -11,7 +11,7 @@
 #import "HAHouseFacility.h"
 #import "HARESTfulEngine.h"
 
-@interface HouseFacilitiesViewController ()
+@interface HouseFacilitiesViewController ()<HAOffOnCellDelegate>
 
 @property (nonatomic,strong) NSArray* dataSource;
 
@@ -60,57 +60,9 @@
     // Configure the cell...
     cell.textLabel.text = text;
     
-    if ([text isEqualToString:@"热水淋浴"]) {
-       cell.accessoryViewSelected =  self.factilities.hotShower;
-    }
-    else if ([text isEqualToString:@"沙发"]){
-        cell.accessoryViewSelected = self.factilities.sofa;
-    }
-    else if ([text isEqualToString:@"沐浴露"]){
-        cell.accessoryViewSelected =  self.factilities.showerGel;
-    }
-    else if ([text isEqualToString:@"电视"]){
-        cell.accessoryViewSelected = self.factilities.tv;
-    }
-    else if ([text isEqualToString:@"微波炉"]){
-        cell.accessoryViewSelected = self.factilities.microwaveOven ;
-    }
-    else if ([text isEqualToString:@"电脑"]){
-         cell.accessoryViewSelected = self.factilities.computer;
-    }
-    else if ([text isEqualToString:@"空调"]){
-        cell.accessoryViewSelected = self.factilities.airCondition;
-    }
-    else if ([text isEqualToString:@"饮水机"]){
-        cell.accessoryViewSelected = self.factilities.drinkingFountain;
-    }
-    else if ([text isEqualToString:@"冰箱"]){
-         cell.accessoryViewSelected = self.factilities.refrigerator;
-    }
-    else if ([text isEqualToString:@"洗衣机"]){
-        cell.accessoryViewSelected = self.factilities.washer;
-    }
-    else if ([text isEqualToString:@"wifi"]){
-        cell.accessoryViewSelected = self.factilities.wifi;
-    }
-    else if ([text isEqualToString:@"有线网络"]){
-         cell.accessoryViewSelected = self.factilities.wiredNetwork;
-    }
-    else if ([text isEqualToString:@"有停车位"]){
-         cell.accessoryViewSelected = self.factilities.parkingSpace;
-    }
-    else if ([text isEqualToString:@"允许抽烟"]){
-        cell.accessoryViewSelected = self.factilities.smokingAllowed;
-    }
-    else if ([text isEqualToString:@"允许做饭"]){
-         cell.accessoryViewSelected = self.factilities.cookAllowed;
-    }
-    else if ([text isEqualToString:@"允许带宠物"]){
-        cell.accessoryViewSelected = self.factilities.petsAllowed;
-    }
-    else if ([text isEqualToString:@"允许聚会"]){
-         cell.accessoryViewSelected = self.factilities.partyAllowed;
-    }
+    cell.accessoryViewSelected = [self.factilities boolValueOfChineseName:text];
+    
+    cell.delegate = self;
     
     return cell;
 }
@@ -125,58 +77,9 @@
     }
     
     NSString* text = self.dataSource[indexPath.row];
-    /*@"热水淋浴",@"沙发",@"沐浴露",@"电视",@"微波炉",@"电脑",@"空调",@"饮水机",@"冰箱",@"洗衣机",@"wifi",@"有线网络",@"有停车位",@"允许抽烟",@"允许做饭",@"允许带宠物",@"允许聚会"*/
-    if ([text isEqualToString:@"热水淋浴"]) {
-        self.factilities.hotShower = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"沙发"]){
-        self.factilities.sofa = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"沐浴露"]){
-        self.factilities.showerGel = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"电视"]){
-        self.factilities.tv = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"微波炉"]){
-        self.factilities.microwaveOven = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"电脑"]){
-        self.factilities.computer = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"空调"]){
-        self.factilities.airCondition = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"饮水机"]){
-        self.factilities.drinkingFountain = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"冰箱"]){
-        self.factilities.refrigerator = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"洗衣机"]){
-        self.factilities.washer = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"wifi"]){
-        self.factilities.wifi = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"有线网络"]){
-        self.factilities.wiredNetwork = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"有停车位"]){
-        self.factilities.parkingSpace = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"允许抽烟"]){
-        self.factilities.smokingAllowed = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"允许做饭"]){
-        self.factilities.cookAllowed = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"允许带宠物"]){
-        self.factilities.petsAllowed = cell.accessoryViewSelected;
-    }
-    else if ([text isEqualToString:@"允许聚会"]){
-        self.factilities.partyAllowed = cell.accessoryViewSelected;
-    }
+
+    [self.factilities setValue:cell.accessoryViewSelected forChineseName:text];
+
 
 }
 
@@ -232,6 +135,16 @@
         
     }];
 
+}
+
+
+#pragma mark - *** HAOffOnCellDelegate ***
+- (void) offONButtonChangedFromCell:(UITableViewCell *)cell sender:(UIButton *)sender
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    NSString* text = self.dataSource[indexPath.row];
+    HAOffOnCell* offCell = cell;
+    [self.factilities setValue:offCell.accessoryViewSelected forChineseName:text];
 }
 
 @end

@@ -10,11 +10,14 @@
 #import "HAEditorNumberCell.h"
 #import "HAOffOnCell.h"
 #import "HADiscountEditorCell.h"
+#import "HAHouse.h"
 
 @interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate,HADiscountEditorCellDelegate,HAOffOnCellDelegate,HAEditorNumberCellDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *ppLabel;
 
 @property(nonatomic,strong) NSArray* dataSource;
+
+@property (nonatomic,copy) HAHouse* houseCopy;
 
 @end
 
@@ -45,6 +48,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 //    NSLog(@"footview %p %@,lable %p lableFrame %@",self.tableView.tableFooterView,NSStringFromClass([self.tableView.tableFooterView class]),self.ppLabel,NSStringFromCGRect(self.ppLabel.frame));
 //    self.ppLabel.frame = CGRectMake(0, 0, 600, 300);
+    self.houseCopy = self.house;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -89,12 +93,13 @@
     NSString* text = self.dataSource[indexPath.section][indexPath.row];
     cell.accessoryView = nil;
 
-    if([text isEqualToString:@"线上收取押金"]        ||
-       [text isEqualToString:@"需要第三方保洁"]   ||
+    if([text isEqualToString:@"线上收取押金"] ||
+       [text isEqualToString:@"需要第三方保洁"] ||
        [text isEqualToString:@"平台提供洗漱用品"] ||
-       [text isEqualToString:@"平台提供床品"]){
+       [text isEqualToString:@"平台提供床品"]){	
         HAOffOnCell* switchCell = [tableView dequeueReusableCellWithIdentifier:@"HAPriceOnOffCell" forIndexPath:indexPath];
         switchCell.delegate = self;
+        switchCell.accessoryViewSelected = [self.houseCopy boolValueOfChineseName:text];
         cell = switchCell;
     }
     
@@ -103,6 +108,7 @@
         HAEditorNumberCell* editorCell = (HAEditorNumberCell*)[tableView dequeueReusableCellWithIdentifier:@"HAPriceNumberCell" forIndexPath:indexPath];
         editorCell.unitName = @"元";
         editorCell.delegate = self;
+        editorCell.textField.text = [self.houseCopy stringValueOfChineseName:text];
         cell = editorCell;
         
     }
@@ -114,6 +120,8 @@
         HADiscountEditorCell* discountCell = [tableView dequeueReusableCellWithIdentifier:@"HADiscountCell" forIndexPath:indexPath];
         discountCell.delegate = self;
         discountCell.unitName = @"折";
+        discountCell.textField.text = [self.houseCopy stringValueOfChineseName:text];
+        
         cell = discountCell;
     }
     
@@ -188,13 +196,13 @@
         HAOffOnCell* offOnCell = cell;
         NSInteger section = indexPath.section;
         NSMutableArray* mutableArray = self.dataSource[indexPath.section];
-        if (!offOnCell.accessoryViewSelected) {
-            offOnCell.accessoryViewSelected = YES;
+        if (offOnCell.accessoryViewSelected) {
+            ///offOnCell.accessoryViewSelected = YES;
             [mutableArray addObject:@"平台提供洗漱用品"];
             [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
         }
         else{
-            offOnCell.accessoryViewSelected = NO;
+            //offOnCell.accessoryViewSelected = NO;
             [mutableArray removeLastObject];
             [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
         }

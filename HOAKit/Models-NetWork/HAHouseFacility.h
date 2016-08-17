@@ -30,4 +30,8 @@
 @property(nonatomic,assign) NSInteger petsAllowed;
 @property(nonatomic,assign) NSInteger partyAllowed;
 
+- (BOOL) boolValueOfChineseName:(NSString*)text;
+
+- (void) setValue:(BOOL)value forChineseName:(NSString*)text;
+
 @end

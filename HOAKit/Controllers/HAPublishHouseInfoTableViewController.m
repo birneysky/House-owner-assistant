@@ -12,6 +12,9 @@
 #import "HAHouseIntroduceViewController.h"
 #import "HouseFacilitiesViewController.h"
 #import "HAHouseAreaSelectViewController.h"
+#import "HAHouseBedViewController.h"
+#import "HAHouseInfoViewController.h"
+
 @interface HAPublishHouseInfoTableViewController ()
 
 @property(nonatomic,strong) NSArray* dataSource;
@@ -157,12 +160,26 @@
     if ([segue.identifier isEqualToString:@"push_house_facilities"]) {
         HouseFacilitiesViewController* vc = segue.destinationViewController;
         vc.houseId = self.houseId;
+        vc.factilities = self.houseFullInfo.facility;
     }
     
     if ([segue.identifier isEqualToString:@"push_house_area"]) {
         HAHouseAreaSelectViewController* vc = segue.destinationViewController;
         vc.cityId = self.houseFullInfo.house.city;
     }
+
+    if([segue.identifier isEqualToString:@"push_house_bed_info"]){
+        HAHouseBedViewController* vc = segue.destinationViewController;
+        NSMutableArray* bes = [[NSMutableArray alloc] initWithArray:self.houseFullInfo.beds];
+        vc.beds = bes;
+        vc.houseId = self.houseFullInfo.house.houseId;
+    }
+    
+    if ([segue.identifier isEqualToString:@"push_house_info"]) {
+        HAHouseInfoViewController* vc = segue.destinationViewController;
+        vc.house = self.houseFullInfo.house;
+    }
+
 }
 
 

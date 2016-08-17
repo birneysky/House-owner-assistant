@@ -114,6 +114,22 @@
 //        //NSString* result = [NSString stringWithFormat:@"%d.%d 折",self.dataSource ]
         [self.resultDelegate pickerView:pickerView didSelectResultText:result];
     }
+    
+    [self callDetailResultDelegate];
+}
+
+- (void)currentDetailResult:(NSInteger*)pResult len:(NSUInteger)len
+{
+    for (int i = 0; i < self.nameArray.count; i++) {
+        NSUInteger index = [self.weakPickView selectedRowInComponent:i];
+        if (i == 0){
+            *(pResult+i) = [self.dataSource[index] integerValue];
+        }
+        else{
+              *(pResult+i) = [self.otherDataSource[index] integerValue];
+        }
+        
+    }
 }
 
 - (NSString*)currentResult
@@ -133,9 +149,18 @@
     return [result copy];
 }
 
+- (void)callDetailResultDelegate
+{
+    NSInteger detailResult[4] = {};
+    [self currentDetailResult:detailResult len:4];
+    if ([self.detailResultDelegate respondsToSelector:@selector(didSelectRoom:hall:cookroom:balcony:)]) {
+        [self.detailResultDelegate didSelectRoom:detailResult[0] hall:detailResult[1] cookroom:detailResult[2] balcony:detailResult[3]];
+    }
+}
+
 - (NSString*)selectResult
 {
-    
+    [self callDetailResultDelegate];
     return [self currentResult];
 }
 

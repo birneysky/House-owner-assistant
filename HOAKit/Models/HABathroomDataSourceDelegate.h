@@ -8,6 +8,15 @@
 
 #import "HAEditPickerDataSourceDelegate.h"
 
+
+@protocol HAHouseBathrommSelectDetailResult <NSObject>
+
+- (void) didSelectPublicBathroom:(NSInteger) pubNum privateBathroom:(NSInteger)privateNum;
+
+@end
+
 @interface HABathroomDataSourceDelegate : HAEditPickerDataSourceDelegate
+
+@property(nonatomic,weak) id<HAHouseBathrommSelectDetailResult> detailResultDelegate;
 
 @end

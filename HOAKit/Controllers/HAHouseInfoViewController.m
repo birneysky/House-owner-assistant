@@ -11,15 +11,18 @@
 #import "HAHouseTypeDataSouceDelegate.h"
 #import "HABathroomDataSourceDelegate.h"
 #import "HAEditPickerCell.h"
+#import "HAHouse.h"
+#import "HARESTfulEngine.h"
 
-
-@interface HAHouseInfoViewController ()
+@interface HAHouseInfoViewController ()<HAHouseTypeSelectDetailResult,HAHouseBathrommSelectDetailResult,HAEditorNumberCellDelegate>
 
 @property(nonatomic,strong) NSArray* dataSource;
 
 @property(nonatomic,strong) HAHouseTypeDataSouceDelegate* houseTypeDataSource;
 
 @property(nonatomic,strong) HABathroomDataSourceDelegate* bathroomDataSource;
+
+@property (nonatomic,copy) HAHouse* houseNew;
 
 @end
 
@@ -38,6 +41,7 @@
 {
     if (!_houseTypeDataSource) {
         _houseTypeDataSource = [[HAHouseTypeDataSouceDelegate alloc] init];
+        _houseTypeDataSource.detailResultDelegate = self;
     }
     return _houseTypeDataSource;
 }
@@ -46,15 +50,26 @@
 - (HABathroomDataSourceDelegate*)bathroomDataSource{
     if (!_bathroomDataSource) {
         _bathroomDataSource = [[HABathroomDataSourceDelegate alloc] init];
+        _bathroomDataSource.detailResultDelegate = self;
     }
     return _bathroomDataSource;
 }
+
+//- (HAHouse*) houseNew
+//{
+//    if (!_houseNew) {
+//        _houseNew = [[HAHouse alloc] init];
+//    }
+//    return _houseNew;
+//}
 
 #pragma mark - *** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
     
    self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
+    
+    self.houseNew = self.house;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,6 +98,10 @@
         pickerCell.pickerDataSouce = self.houseTypeDataSource;
         [pickerCell.textField setDefultText:@"1室0厅0厨0阳台"];
         //view = cell.accessoryView;
+        if (self.house) {
+            pickerCell.textField.text = [NSString stringWithFormat:@"%d室%d厅%d厨%d阳台",self.house.roomNumber,self.house.hallNumber,self.house.kitchenNumber,self.house.balconyNumber];
+        }
+       
         cell = pickerCell;
     }
     else if([text isEqualToString:@"卫生间数量"] )
@@ -90,6 +109,10 @@
         HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
         pickerCell.pickerDataSouce = self.bathroomDataSource;
         [pickerCell.textField setDefultText:@"公共0独立0"];
+        
+        if (self.house) {
+            pickerCell.textField.text = [NSString stringWithFormat:@"公共%d独立%d",self.house.publicToiletNumber,self.house.toiletNumber];
+        }
         cell = pickerCell;
     }
     else{
@@ -97,10 +120,18 @@
         if([text isEqualToString:@"房屋面积"])
         {
             editorCell.unitName = @"平";
+            if (self.house) {
+                editorCell.textField.text = self.house.area;
+            }
         }
         else if([text isEqualToString:@"几位访客"]){
             editorCell.unitName = @"人";
+            if (self.house) {
+                editorCell.textField.text = [NSString stringWithFormat:@"%d",self.house.toliveinNumber];
+            }
         }
+        
+        editorCell.delegate = self;
         
         cell = editorCell;
     }
@@ -167,8 +198,47 @@
 #pragma mark - *** Target Action ***
 
 - (IBAction)saveButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self.view endEditing:YES];
+    
+    [[HARESTfulEngine defaultEngine] modifyHouseGeneralInfoWithID:self.house.houseId params:self.houseNew completion:^{
+        [self.navigationController popViewControllerAnimated:YES]; 
+    } onError:^(NSError *engineError) {
+        
+    }];
+
 }
 
+
+
+#pragma mark - *** HAHouseTypeSelectDetailResult ***
+- (void)didSelectRoom:(NSInteger)rNum hall:(NSInteger)hallNum cookroom:(NSInteger)cookNum balcony:(NSInteger)bNum
+{
+    self.houseNew.roomNumber = rNum;
+    self.houseNew.hallNumber = hallNum;
+    self.houseNew.kitchenNumber = cookNum;
+    self.houseNew.balconyNumber = bNum;
+}
+
+- (void) didSelectPublicBathroom:(NSInteger) pubNum privateBathroom:(NSInteger)privateNum
+{
+    self.houseNew.publicToiletNumber = pubNum;
+    self.houseNew.toiletNumber = privateNum;
+}
+
+
+- (void) textFieldDidEndEditing:(UITextField*)textfield
+                       fromCell:(UITableViewCell*) cell
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    NSString* text = self.dataSource[indexPath.row];
+    
+    if ([text isEqualToString:@"房屋面积"]) {
+        self.houseNew.area = textfield.text;
+    }
+    if ([text isEqualToString:@"几位访客"]) {
+        self.houseNew.toliveinNumber = [textfield.text integerValue];
+    }
+}
 
 @end

@@ -62,4 +62,11 @@ typedef void (^ErrorBlock)(NSError* engineError);
 - (void) removeHouseBedWithID:(NSInteger)bedId
                    completion:(ModelBlock)completion
                       onError:(ErrorBlock)errBlock;
+
+//修改房源基本信息
+- (void) modifyHouseGeneralInfoWithID:(NSInteger)houseId
+                               params:(HAJSONModel*)param
+                           completion:(VoidBlock)completion
+                              onError:(ErrorBlock)errorBlcok;
+
 @end

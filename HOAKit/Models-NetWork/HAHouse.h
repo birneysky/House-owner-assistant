@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "HAJSONModel.h"
 
-@interface HAHouse : HAJSONModel
+@interface HAHouse : HAJSONModel <NSCopying>
 
 @property(nonatomic,assign) NSInteger houseId;
 @property(nonatomic,assign) NSInteger landlordId;		// '房东ID',

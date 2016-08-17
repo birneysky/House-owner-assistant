@@ -8,6 +8,15 @@
 
 #import "HAEditPickerDataSourceDelegate.h"
 
+@protocol HAHouseTypeSelectDetailResult <NSObject>
+
+- (void) didSelectRoom:(NSInteger)rNum hall:(NSInteger)hallNum cookroom:(NSInteger)cookNum balcony:(NSInteger)bNum;
+
+@end
+
+
 @interface HAHouseTypeDataSouceDelegate : HAEditPickerDataSourceDelegate
+
+@property (nonatomic,weak) id<HAHouseTypeSelectDetailResult> detailResultDelegate;
 
 @end

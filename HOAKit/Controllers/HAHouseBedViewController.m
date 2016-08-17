@@ -8,24 +8,26 @@
 
 #import "HAHouseBedViewController.h"
 #import "HAEditHouseBenViewController.h"
-#import "HABed.h"
 #import "HABedInfoCell.h"
+#import "HAHouseBed.h"
+#import "HAAppDataHelper.h"
+#import "HARESTfulEngine.h"
 
 @interface HAHouseBedViewController ()<HAEditHouseBenViewControllerDelegate,HABedInfoCellDelegate>
 
-@property(nonatomic,strong) NSMutableArray* dataSource;
+//@property(nonatomic,strong) NSMutableArray* dataSource;
 
 @end
 
 @implementation HAHouseBedViewController
 #pragma mark - *** Properties ***
-- (NSMutableArray*)dataSource
-{
-    if (!_dataSource) {
-        _dataSource = [[NSMutableArray alloc] initWithCapacity:100];
-    }
-    return _dataSource;
-}
+//- (NSMutableArray*)dataSource
+//{
+//    if (!_dataSource) {
+//        _dataSource = [[NSMutableArray alloc] initWithCapacity:100];
+//    }
+//    return _dataSource;
+//}
 
 #pragma mark - *** Init ***
 - (void)viewDidLoad {
@@ -51,19 +53,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.dataSource.count;
+    return self.beds.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HABedInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HABedInfoCell" forIndexPath:indexPath];
     
-    HABed* bed  = self.dataSource[indexPath.row];
+    //HABed* bed  = self.dataSource[indexPath.row];
+    HAHouseBed* bed = self.beds[indexPath.row];
     // Configure the cell...
 //    cell.textLabel.text = bed.type;
 //    
 //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f x %.1f",bed.length,bed.width];
-    cell.typeText = bed.type;
+    cell.typeText = [HAAppDataHelper bedName:bed.bedTypeId];
     cell.sizeText = [NSString stringWithFormat:@"%.1f x %.1f",bed.length,bed.width];
     cell.delegate = self;
     return cell;
@@ -113,14 +116,20 @@
 - (void)deleteButtonClickedFromCell:(UITableViewCell *)cell sender:(UIButton *)sender
 {
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-    [self.dataSource removeObjectAtIndex:indexPath.row];
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    HAHouseBed* targetBed = self.beds[indexPath.row];
+    [[HARESTfulEngine defaultEngine] removeHouseBedWithID:targetBed.bedId completion:^(HAJSONModel *object) {
+        [self.beds removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    } onError:^(NSError *engineError) {
+        
+    }];
+
 }
 
 #pragma mark - *** HAEditHouseBenViewControllerDelegate ***
-- (void)houseBedInfoDidEndEditing:(HABed *)bed
+- (void)houseBedInfoDidEndEditing:(HAHouseBed *)bed
 {
-    [self.dataSource addObject:bed];
+    [self.beds addObject:bed];
     [self.tableView reloadData];
 }
 
@@ -131,8 +140,9 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
      HAEditHouseBenViewController* vc = segue.destinationViewController;
+    vc.houseId = self.houseId;
     if ([segue.identifier isEqualToString:@"house_add_bed"]) {
-       
+    
         vc.delegate = self;
         
     }
@@ -140,10 +150,8 @@
     {
         //UITableViewCell* cell = sender;
         NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
-        vc.bed = self.dataSource[indexPath.row];
+        vc.bed = self.beds[indexPath.row];
+        
     }
-    
 }
-
-
 @end

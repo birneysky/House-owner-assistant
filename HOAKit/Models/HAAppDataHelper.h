@@ -16,4 +16,8 @@
 
 + (NSString*)checkStatusText:(NSInteger)status;
 
++ (NSString*)bedName:(NSInteger)type;
+
++ (NSInteger)typeForBedName:(NSString*)name;
+
 @end

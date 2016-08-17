@@ -7,6 +7,7 @@
 //
 
 #import "HAHouse.h"
+#import <objc/runtime.h>
 
 @implementation HAHouse
 
@@ -27,6 +28,14 @@
     if ([key isEqualToString:@"platformToiletries"]) {
         self.platformToiletries = 0;
     }
+}
+
+- (id)copyWithZone:(nullable NSZone *)zone
+{
+    id copyInstance = [[[self class] allocWithZone:zone] init];
+    size_t instanceSize = class_getInstanceSize([self class]);
+    memcpy((__bridge  void *)(copyInstance), (__bridge const  void *)(self), instanceSize);
+    return copyInstance;
 }
 
 @end

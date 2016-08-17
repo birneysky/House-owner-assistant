@@ -14,7 +14,7 @@
 #import "HAHouse.h"
 #import "HAHouseTypeTableViewController.h"
 
-@interface HAHouseLocationViewController ()<MKMapViewDelegate,HALocationPickerTextFieldDelegate,UIDynamicAnimatorDelegate>
+@interface HAHouseLocationViewController ()<MKMapViewDelegate,HALocationPickerTextFieldDelegate,UIDynamicAnimatorDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,strong) CLLocationManager* locationManager;
 
@@ -27,7 +27,6 @@
 
 @property(nonatomic,strong) UIDynamicAnimator* animator;
 @property(nonatomic,strong) HALeapBehavior* behavior;
-@property(nonatomic,strong) HAHouse* house;
 
 @end
 
@@ -77,9 +76,12 @@
     self.cityAddressTextfield.locationPickerDelegate = self;
     UIImageView* leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Green_Location_Icon"]];
     UIImageView* rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Arrow_Right"]];
-
     self.cityAddressTextfield.leftView = leftView;
     self.cityAddressTextfield.rightView = rightView;
+    
+    if (!_house) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
     
 //    CLLocationCoordinate2D touchMapCoordinate =
 //        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
@@ -131,31 +133,7 @@
     self.house.city = cid;
     self.house.distict = did;
     NSString *oreillyAddress = @"1005 Gravenstein Highway North, Sebastopol, CA 95472, USA";
-    CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
-    [myGeocoder geocodeAddressString:@"北京市海淀区知春路盈都大厦B座" completionHandler:^(NSArray *placemarks, NSError *error) {
-        if ([placemarks count] > 0 && error == nil) {
-            NSLog(@"Found %lu placemark(s).", (unsigned long)[placemarks count]);
-            CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
-            NSLog(@"Longitude = %f", firstPlacemark.location.coordinate.longitude);
-            NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
-            CLLocationDegrees lat = firstPlacemark.location.coordinate.latitude;
-            CLLocationDegrees lng = firstPlacemark.location.coordinate.longitude;
-            self.house.lat = lat;
-            self.house.lng = lng;
-            self.house.address = @"北京市海淀区知春路盈都大厦B座";
-            self.cityAddressTextfield.text = address;
-            CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
-            CLLocationCoordinate2D coord = [loc coordinate];
-            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
-            [self.mapView setRegion:region animated:YES];
-        }
-        else if ([placemarks count] == 0 && error == nil) {
-            NSLog(@"Found no placemarks.");
-        } else if (error != nil) {
-            NSLog(@"An error occurred = %@", error);
-        }  
-    }];
-    
+    self.cityAddressTextfield.text = address;
     self.locationPromptView.hidden = YES;
     [self.behavior addItem:self.locationPointImgView];
 //    HALocationPoint *centerPoint = [[HALocationPoint alloc] initWithCoordinate:coord];
@@ -183,6 +161,18 @@
     return YES;
 }
 
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (self.fullAddressTextfield == textField) {
+
+        [self geocodeAddressString:self.fullAddressTextfield.text];
+    }
+}
 
 #pragma mark - Navigation
 
@@ -196,5 +186,33 @@
     }
 }
 
+#pragma mark - *** ***
+- (void)geocodeAddressString:(NSString*)address{
+    CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
+    [myGeocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
+        if ([placemarks count] > 0 && error == nil) {
+            NSLog(@"Found %lu placemark(s).", (unsigned long)[placemarks count]);
+            CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
+            NSLog(@"Longitude = %f", firstPlacemark.location.coordinate.longitude);
+            NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
+            CLLocationDegrees lat = firstPlacemark.location.coordinate.latitude;
+            CLLocationDegrees lng = firstPlacemark.location.coordinate.longitude;
+            self.house.lat = lat;
+            self.house.lng = lng;
+            self.house.address = address;
+            
+            CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
+            CLLocationCoordinate2D coord = [loc coordinate];
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
+            [self.mapView setRegion:region animated:YES];
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+        else if ([placemarks count] == 0 && error == nil) {
+            NSLog(@"Found no placemarks.");
+        } else if (error != nil) {
+            NSLog(@"An error occurred = %@", error);
+        }
+    }];
+}
 
 @end

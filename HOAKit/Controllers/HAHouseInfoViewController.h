@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class HAHouse;
+
 @interface HAHouseInfoViewController : UITableViewController
+
+@property(nonatomic,strong) HAHouse* house;
 
 @end

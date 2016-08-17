@@ -97,13 +97,31 @@
 //        //NSString* result = [NSString stringWithFormat:@"%d.%d 折",self.dataSource ]
         [self.resultDelegate pickerView:pickerView didSelectResultText:restult];
     }
+    [self callDetailResultDelegate];
 }
 
 - (NSString*)selectResult
 {
 //    NSUInteger index = [self.weakPickView selectedRowInComponent:0];
 //    return self.dataSource[index];
+    [self callDetailResultDelegate];
     return [self currentResult];
+}
+
+- (void)currentDetailResult:(NSInteger*)pResult len:(NSUInteger)len
+{
+    for (int i = 0; i < self.nameArray.count; i++) {
+        NSUInteger index = [self.weakPickView selectedRowInComponent:i];
+        *(pResult+i) = [self.dataSource[i][index] integerValue];
+    }
+}
+
+- (void)callDetailResultDelegate{
+    NSInteger detailResult[2] = {};
+    [self currentDetailResult:detailResult len:2];
+    if ([self.detailResultDelegate respondsToSelector:@selector(didSelectPublicBathroom:privateBathroom:)]) {
+        [self.detailResultDelegate didSelectPublicBathroom:detailResult[0] privateBathroom:detailResult[1]];
+    }
 }
 
 @end

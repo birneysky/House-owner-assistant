@@ -106,8 +106,6 @@
 		743F43691D571E6100D06D19 /* HAHouseBathRoomEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43671D571E6100D06D19 /* HAHouseBathRoomEditViewController.m */; };
 		743F436C1D573F8A00D06D19 /* HAHouseBedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F436A1D573F8A00D06D19 /* HAHouseBedViewController.h */; };
 		743F436D1D573F8A00D06D19 /* HAHouseBedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F436B1D573F8A00D06D19 /* HAHouseBedViewController.m */; };
-		743F43701D57413A00D06D19 /* HABed.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F436E1D57413A00D06D19 /* HABed.h */; };
-		743F43711D57413A00D06D19 /* HABed.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F436F1D57413A00D06D19 /* HABed.m */; };
 		743F43741D5742F900D06D19 /* HAEditHouseBenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43721D5742F900D06D19 /* HAEditHouseBenViewController.h */; };
 		743F43751D5742F900D06D19 /* HAEditHouseBenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43731D5742F900D06D19 /* HAEditHouseBenViewController.m */; };
 		743F43781D57440300D06D19 /* HAEditPickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43761D57440300D06D19 /* HAEditPickerCell.h */; };
@@ -132,6 +130,8 @@
 		DB13FCAA1D62EE63003A8F58 /* HASubWay.m in Sources */ = {isa = PBXBuildFile; fileRef = DB13FCA81D62EE63003A8F58 /* HASubWay.m */; };
 		DB13FCAD1D63007F003A8F58 /* HARegion.h in Headers */ = {isa = PBXBuildFile; fileRef = DB13FCAB1D63007F003A8F58 /* HARegion.h */; };
 		DB13FCAE1D63007F003A8F58 /* HARegion.m in Sources */ = {isa = PBXBuildFile; fileRef = DB13FCAC1D63007F003A8F58 /* HARegion.m */; };
+		DB13FCB11D640F74003A8F58 /* HAError.h in Headers */ = {isa = PBXBuildFile; fileRef = DB13FCAF1D640F74003A8F58 /* HAError.h */; };
+		DB13FCB21D640F74003A8F58 /* HAError.m in Sources */ = {isa = PBXBuildFile; fileRef = DB13FCB01D640F74003A8F58 /* HAError.m */; };
 		DB3B28BC1D5851A90007E576 /* HAOffOnCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28BA1D5851A90007E576 /* HAOffOnCell.h */; };
 		DB3B28BD1D5851A90007E576 /* HAOffOnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28BB1D5851A90007E576 /* HAOffOnCell.m */; };
 		DB3B28C01D5866370007E576 /* HABedInfoCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28BE1D5866370007E576 /* HABedInfoCell.h */; };
@@ -271,8 +271,6 @@
 		743F43671D571E6100D06D19 /* HAHouseBathRoomEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseBathRoomEditViewController.m; sourceTree = "<group>"; };
 		743F436A1D573F8A00D06D19 /* HAHouseBedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseBedViewController.h; sourceTree = "<group>"; };
 		743F436B1D573F8A00D06D19 /* HAHouseBedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseBedViewController.m; sourceTree = "<group>"; };
-		743F436E1D57413A00D06D19 /* HABed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABed.h; sourceTree = "<group>"; };
-		743F436F1D57413A00D06D19 /* HABed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HABed.m; sourceTree = "<group>"; };
 		743F43721D5742F900D06D19 /* HAEditHouseBenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAEditHouseBenViewController.h; sourceTree = "<group>"; };
 		743F43731D5742F900D06D19 /* HAEditHouseBenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAEditHouseBenViewController.m; sourceTree = "<group>"; };
 		743F43761D57440300D06D19 /* HAEditPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAEditPickerCell.h; sourceTree = "<group>"; };
@@ -297,6 +295,8 @@
 		DB13FCA81D62EE63003A8F58 /* HASubWay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HASubWay.m; sourceTree = "<group>"; };
 		DB13FCAB1D63007F003A8F58 /* HARegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HARegion.h; sourceTree = "<group>"; };
 		DB13FCAC1D63007F003A8F58 /* HARegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HARegion.m; sourceTree = "<group>"; };
+		DB13FCAF1D640F74003A8F58 /* HAError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAError.h; sourceTree = "<group>"; };
+		DB13FCB01D640F74003A8F58 /* HAError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAError.m; sourceTree = "<group>"; };
 		DB3B28BA1D5851A90007E576 /* HAOffOnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAOffOnCell.h; sourceTree = "<group>"; };
 		DB3B28BB1D5851A90007E576 /* HAOffOnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAOffOnCell.m; sourceTree = "<group>"; };
 		DB3B28BE1D5866370007E576 /* HABedInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABedInfoCell.h; sourceTree = "<group>"; };
@@ -396,6 +396,8 @@
 				74266F891D5E02EA00A7E4BF /* HARESTfulEngine.m */,
 				74266F901D5F7C3B00A7E4BF /* HARESTfulOperation.h */,
 				74266F911D5F7C3B00A7E4BF /* HARESTfulOperation.m */,
+				DB13FCAF1D640F74003A8F58 /* HAError.h */,
+				DB13FCB01D640F74003A8F58 /* HAError.m */,
 			);
 			path = "Api-NetWork";
 			sourceTree = SOURCE_ROOT;
@@ -528,8 +530,6 @@
 				743F43501D55F84F00D06D19 /* HADiscountDataSourceDelegate.h */,
 				743F43511D55F84F00D06D19 /* HADiscountDataSourceDelegate.m */,
 				743F43601D57037800D06D19 /* HAEditPickerDelegate.h */,
-				743F436E1D57413A00D06D19 /* HABed.h */,
-				743F436F1D57413A00D06D19 /* HABed.m */,
 				743F437A1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.h */,
 				743F437B1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.m */,
 				743F437E1D574A4200D06D19 /* HABedTypeDataSourceDelegate.h */,
@@ -660,6 +660,7 @@
 				74266F921D5F7C3B00A7E4BF /* HARESTfulOperation.h in Headers */,
 				DB3B28C81D5892180007E576 /* HABathroomDataSourceDelegate.h in Headers */,
 				74266F9A1D5F835A00A7E4BF /* HAHouseItem.h in Headers */,
+				DB13FCB11D640F74003A8F58 /* HAError.h in Headers */,
 				742B91DF1D4FB731000FF5A1 /* CTAssetsGroupViewCell.h in Headers */,
 				742B91C81D4FB731000FF5A1 /* HAHouseTableController.h in Headers */,
 				7422D7991D53811C00ACB2B6 /* HATextView.h in Headers */,
@@ -707,7 +708,6 @@
 				DB3B28F11D5DC0070007E576 /* NSDate+RFC1123.h in Headers */,
 				DB3B28CC1D5C1AF50007E576 /* HouseFacilitiesViewController.h in Headers */,
 				743F43881D58CD9900D06D19 /* HAAddPhotoViewLayout.h in Headers */,
-				743F43701D57413A00D06D19 /* HABed.h in Headers */,
 				74266F791D5DF8C300A7E4BF /* HAHouseImage.h in Headers */,
 				74266F8A1D5E02EA00A7E4BF /* HARESTfulEngine.h in Headers */,
 				742B91D61D4FB731000FF5A1 /* HAFloatingButton.h in Headers */,
@@ -839,6 +839,7 @@
 				74266F9F1D60054300A7E4BF /* HAHouseItemCell.m in Sources */,
 				743F43811D574A4200D06D19 /* HABedTypeDataSourceDelegate.m in Sources */,
 				743F43421D55EBD200D06D19 /* HAProvinceDataSourceDelegate.m in Sources */,
+				DB13FCB21D640F74003A8F58 /* HAError.m in Sources */,
 				743F435F1D56E1AE00D06D19 /* HASwitchCell.m in Sources */,
 				DB3B28F01D5DC0070007E576 /* NSData+MKBase64.m in Sources */,
 				743F43571D5600AA00D06D19 /* HAHouseInfoViewController.m in Sources */,
@@ -867,7 +868,6 @@
 				742B91E81D4FB731000FF5A1 /* CTAssetsSupplementaryView.m in Sources */,
 				742B91C91D4FB731000FF5A1 /* HAHouseTableController.m in Sources */,
 				742B91E21D4FB731000FF5A1 /* CTAssetsGroupViewController.m in Sources */,
-				743F43711D57413A00D06D19 /* HABed.m in Sources */,
 				74266F8B1D5E02EA00A7E4BF /* HARESTfulEngine.m in Sources */,
 				742B91D11D4FB731000FF5A1 /* CALayer+Additions.m in Sources */,
 				DB3B28F61D5DC0070007E576 /* NSString+MKNetworkKitAdditions.m in Sources */,

@@ -10,7 +10,9 @@
 #import "HAEditorNumberCell.h"
 #import "HAEditPickerCell.h"
 #import "HABedTypeDataSourceDelegate.h"
-#import "HABed.h"
+#import "HAHouseBed.h"
+#import "HAAppDataHelper.h"
+#import "HARESTfulEngine.h"
 
 @interface HAEditHouseBenViewController ()
 
@@ -18,7 +20,6 @@
 
 @property(nonatomic,strong) HABedTypeDataSourceDelegate* bedTypeDataSouce;
 
-//@property (nonatomic,strong) HABed* bed;
 
 @end
 
@@ -42,10 +43,10 @@
     return _bedTypeDataSouce;
 }
 
-- (HABed*)bed
+- (HAHouseBed*)bed
 {
     if (!_bed) {
-        _bed = [[HABed alloc] init];
+        _bed = [[HAHouseBed alloc] init];
     }
     return _bed;
 }
@@ -60,6 +61,10 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //如果不设置表示添加床铺信息，这里不要使用self.bed.
+    if (_bed) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 
@@ -83,7 +88,7 @@
        HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HABedTypeCell" forIndexPath:indexPath];
         pickerCell.pickerDataSouce = self.bedTypeDataSouce;
         pickerCell.delegate = self;
-        pickerCell.textField.text = self.bed.type;
+        pickerCell.textField.text = [HAAppDataHelper bedName:self.bed.bedTypeId] ;
         cell = pickerCell;
     }
     else {
@@ -91,7 +96,7 @@
         editCell.unitName = @"m";
         if([text isEqualToString:@"数量"]){
             editCell.unitName = @"张";
-            NSString* value = self.bed.count <= 0 ? @"" : [NSString stringWithFormat:@"%d",self.bed.count];
+            NSString* value = self.bed.number <= 0 ? @"" : [NSString stringWithFormat:@"%d",self.bed.number];
             editCell.textField.text = value;
         }
         else if([text isEqualToString:@"长度"]){
@@ -129,7 +134,7 @@
     //@"床型",@"长度",@"宽度",@"数量"
     NSString* text = cell.textLabel.text;
     if ([text isEqualToString:@"床型"]) {
-        self.bed.type = textfield.text;
+        self.bed.bedTypeId = [HAAppDataHelper typeForBedName:textfield.text];
     }
     
     
@@ -148,7 +153,7 @@
     }
     else if ([text isEqualToString:@"数量"]){
         //CGFloat value = [textfield.text floatValue];
-        self.bed.count = [textfield.text integerValue];
+        self.bed.number = [textfield.text integerValue];
     }
 }
 
@@ -200,11 +205,19 @@
 - (IBAction)saveBtnClicked:(id)sender {
     
     [self.view endEditing:YES];
-    [self.navigationController popViewControllerAnimated:YES];
-    if ([self.delegate respondsToSelector:@selector(houseBedInfoDidEndEditing:)]) {
-        [self.delegate houseBedInfoDidEndEditing:self.bed];
-    }
-    NSLog(@"bed type  %@ lenght %f,widht %f,count %f",self.bed.type,self.bed.length,self.bed.width,self.bed.count);
+    self.bed.houseId = self.houseId;
+    [[HARESTfulEngine defaultEngine] addHouseBed:self.bed completion:^(HAJSONModel *object) {
+        [self.navigationController popViewControllerAnimated:YES];
+        if ([self.delegate respondsToSelector:@selector(houseBedInfoDidEndEditing:)]) {
+            [self.delegate houseBedInfoDidEndEditing:object];
+        }
+    } onError:^(NSError *engineError) {
+        
+    }];
+    
+    
+
+    //NSLog(@"bed type  %@ lenght %f,widht %f,count %f",self.bed.bedTypeId,self.bed.length,self.bed.width,self.bed.number);
 }
 
 @end

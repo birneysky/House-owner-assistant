@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class HABed;
+@class HAHouseBed;
 
 @protocol HAEditHouseBenViewControllerDelegate <NSObject>
 
-- (void)houseBedInfoDidEndEditing:(HABed*)bed;
+- (void)houseBedInfoDidEndEditing:(HAHouseBed*)bed;
 
 @end
 
@@ -20,6 +20,8 @@
 
 @property(nonatomic,weak) id<HAEditHouseBenViewControllerDelegate> delegate;
 
-@property(nonatomic,strong) HABed* bed;
+@property(nonatomic,strong) HAHouseBed* bed;
+
+@property (nonatomic,assign) NSInteger houseId;
 
 @end

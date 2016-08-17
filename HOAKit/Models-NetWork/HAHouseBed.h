@@ -12,6 +12,15 @@
 @interface HAHouseBed : HAJSONModel
 
 @property(nonatomic,assign) NSInteger bedId;
+@property(nonatomic,assign) NSInteger bedTypeId;
+@property (nonatomic,assign) NSInteger houseId;
+@property (nonatomic,assign) float length;
+@property (nonatomic,assign) float width;
+@property (nonatomic,assign) NSInteger number;
+
+@end
+
+
 //@property(nonatomic,assign) NSInteger doubleBedBig;
 //@property(nonatomic,assign) NSInteger doubleBedMedium;
 //@property(nonatomic,assign) NSInteger doubleBedSmall;
@@ -24,11 +33,3 @@
 //@property(nonatomic,assign) NSInteger tatami;
 //@property(nonatomic,assign) NSInteger roundRed;
 //@property(nonatomic,assign) NSInteger airBed;
-
-@property(nonatomic,assign) NSInteger bedTypeId;
-@property (nonatomic,assign) NSInteger houseId;
-@property (nonatomic,assign) float length;
-@property (nonatomic,assign) float width;
-@property (nonatomic,assign) NSInteger number;
-
-@end

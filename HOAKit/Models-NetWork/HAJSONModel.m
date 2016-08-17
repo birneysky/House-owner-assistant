@@ -78,7 +78,13 @@
             continue;
         }
         id value = [self valueForKey:key];
-        [dict setObject:value forKey:key];
+        if (value) {
+            [dict setObject:value forKey:key];
+        }
+        else{
+            [dict setObject:[NSNull null] forKey:key];
+        }
+        
     }
     
     free(properties);
@@ -90,7 +96,7 @@
 
     NSDictionary* dict = [self toDictionary];
     NSError* error;
-    NSData* data = [NSJSONSerialization dataWithJSONObject:[dict copy] options:NSJSONWritingPrettyPrinted error:&error];
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict  options:NSJSONWritingPrettyPrinted error:&error];
     return data;
 }
 
@@ -98,7 +104,7 @@
 {
     NSDictionary* dict = [self toFullDictionary];
     NSError* error;
-    NSData* data = [NSJSONSerialization dataWithJSONObject:[dict copy] options:NSJSONWritingPrettyPrinted error:&error];
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict  options:NSJSONWritingPrettyPrinted error:&error];
     return data;
 }
 

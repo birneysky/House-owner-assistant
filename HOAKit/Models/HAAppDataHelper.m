@@ -55,4 +55,25 @@
     return name;
 }
 
++ (NSString*)bedName:(NSInteger)type
+{
+    NSArray* array = @[@"双人床",@"单人床",@"双层床",@"单人沙发床",@"双人沙发床",@"儿童床",@"园床",@"气垫床"];
+    NSString* name = nil;
+    NSInteger index = type - 1;
+    if (index < array.count) {
+        name = array[index];
+    }
+    return name;
+}
+
++ (NSInteger)typeForBedName:(NSString*)name
+{
+    NSArray* array = @[@"双人床",@"单人床",@"双层床",@"单人沙发床",@"双人沙发床",@"儿童床",@"园床",@"气垫床"];
+    NSInteger index = [array indexOfObject:name];
+    if (index > 0) {
+        return index + 1;
+    }
+    return index;
+}
+
 @end

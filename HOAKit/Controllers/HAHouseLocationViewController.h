@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAHouse.h"
 
 @interface HAHouseLocationViewController : UIViewController
+
+@property (nonatomic,strong) HAHouse* house;
 
 @end

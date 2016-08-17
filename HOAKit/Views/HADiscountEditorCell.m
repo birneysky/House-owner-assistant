@@ -36,6 +36,7 @@
 {
     if (!_dataSourceDelegate) {
         _dataSourceDelegate = [[HADiscountDataSourceDelegate alloc] init];
+        _dataSourceDelegate.resultDelegate = self;
     }
     return _dataSourceDelegate;
 }
@@ -74,6 +75,7 @@
 #pragma mark - *** HAPickerTextFieldDelegate ***
 - (void)selectedObjectDoneForPickerTextField:(HAPickerTextField*)pickerTF
 {
+    self.textField.text = self.dataSourceDelegate.selectResult;
     if ([self.delegate respondsToSelector:@selector(selectItemDoneForPickerTextField:fromCell:)]) {
         [self.delegate selectItemDoneForPickerTextField:self.textField fromCell:self];
     }

@@ -12,6 +12,7 @@
 @interface HADiscountDataSourceDelegate () <HAEditPickerDelegate>
 
 @property(nonatomic,strong) NSArray* dataSource;
+@property(nonatomic,weak) UIPickerView* weakPickView;
 
 @end
 
@@ -42,6 +43,7 @@
 #pragma mark - *** UIPicker DataSource ***
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
+    self.weakPickView = pickerView;
     return self.dataSource.count;
 }
 
@@ -69,23 +71,45 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSUInteger lastIndex = self.dataSource.count - 1;
-    NSMutableString* result = [[NSMutableString alloc] initWithCapacity:100];
-    for (int i = 0; i <= lastIndex; i++) {
-        NSUInteger index = [pickerView selectedRowInComponent:i];
-        [result appendFormat:@"%@.",self.dataSource[i][index]];
-        if (i == lastIndex) {
-            [result deleteCharactersInRange:NSMakeRange(result.length - 1, 1)];
-        }
-    }
+
     
-    //[result appendString:@" 折"];
+    NSString* result = [self currentResult];
     
     if ([self.resultDelegate respondsToSelector:@selector(pickerView:didSelectResultText:)]) {
         //NSString* result = [NSString stringWithFormat:@"%d.%d 折",self.dataSource ]
         [self.resultDelegate pickerView:pickerView didSelectResultText:[result copy]];
     }
+    
+    if ([self.detailResultDelegate respondsToSelector:@selector(didSelectDiscount:)]) {
+        [self.detailResultDelegate didSelectDiscount:[result floatValue] ];
+    }
 }
+
+- (NSString*)currentResult
+{
+    NSUInteger lastIndex = self.dataSource.count - 1;
+    NSMutableString* result = [[NSMutableString alloc] initWithCapacity:100];
+    for (int i = 0; i <= lastIndex; i++) {
+        NSUInteger index = [self.weakPickView selectedRowInComponent:i];
+        [result appendFormat:@"%@.",self.dataSource[i][index]];
+        if (i == lastIndex) {
+            [result deleteCharactersInRange:NSMakeRange(result.length - 1, 1)];
+        }
+    }
+    return [result copy];
+}
+
+- (NSString*)selectResult
+{
+    NSString* result = [self currentResult];
+
+    if ([self.detailResultDelegate respondsToSelector:@selector(didSelectDiscount:)]) {
+        [self.detailResultDelegate didSelectDiscount:[result floatValue] ];
+    }
+    return result;
+}
+
+
 
 
 

@@ -45,7 +45,7 @@
 @property (nonatomic,assign) NSInteger   inMostDays;		//
 @property (nonatomic,assign) NSInteger   needDeposit;		// '是否需要押金',
 @property (nonatomic,assign) float     depositAmount;		// '押金金额',
-@property (nonatomic,assign) NSInteger   thirdCleaning;		// '是否需要第三方保洁？',
+@property (nonatomic,assign) NSInteger   cleanType;		// '是否需要第三方保洁？',
 @property (nonatomic,assign) NSInteger   platformToiletries;		// '平台提供洗漱用品？',
 @property (nonatomic,assign) NSInteger   platformBedding;		// '平台提供床品？',
 @property (nonatomic,assign) NSInteger   platformRecommend;		// '平台推荐',
@@ -67,5 +67,7 @@
 - (NSString*)stringValueOfChineseName:(NSString*)text;
 
 - (BOOL) boolValueOfChineseName:(NSString*)text;
+
+- (void) setValue:(float)value forChineseName:(NSString*)text;
 
 @end

@@ -280,7 +280,7 @@ static HARESTfulEngine* defaultEngine;
                               onError:(ErrorBlock)errorBlcok
 {
      NSString* path = [NSString stringWithFormat:@"/api/houses/%d",houseId];
-     NSLog(@" model %@",[param toJsonString]);
+     NSLog(@" model %@",[param toFullJsonString]);
     [self httpRequestWithPath:path params:[param toFullDictionary] httpMethod:@"PUT" completion:^(NSObject *object) {
         completion();
     } onError:^(NSError *engineError) {

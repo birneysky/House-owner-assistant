@@ -9,7 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "HAEditPickerDataSourceDelegate.h"
 
+@protocol HADiscountSelectDetailResult <NSObject>
+
+- (void) didSelectDiscount:(float)value;
+
+@end
+
 @interface HADiscountDataSourceDelegate : HAEditPickerDataSourceDelegate <UIPickerViewDelegate,UIPickerViewDataSource>
 
+
+@property (nonatomic,weak) id<HADiscountSelectDetailResult> detailResultDelegate;
 
 @end

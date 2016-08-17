@@ -76,13 +76,13 @@
             // show toast;
             break;
         case 2://通过
-            [self performSegueWithIdentifier:@"push_publish_house" sender:indexPath];
+            [self performSegueWithIdentifier:@"push_publish_house" sender:[indexPath copy]];
             break;
         case 3://已拒绝
             // show toast;
             break;
         case 4://补充材料
-            [self performSegueWithIdentifier:@"push_publish_house" sender:indexPath];
+            [self performSegueWithIdentifier:@"push_publish_house" sender:[indexPath copy]];
             break;
     }
 }
@@ -95,7 +95,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"push_publish_house"]) {
         NSIndexPath* indexPath = sender;
-        HAHouse* item = self.dataSource[indexPath.row];
+        HAHouse* item = self.dataSource[indexPath.section];
         HAPublishHouseInfoTableViewController* vc = segue.destinationViewController;
         vc.houseId = item.houseId;
     }

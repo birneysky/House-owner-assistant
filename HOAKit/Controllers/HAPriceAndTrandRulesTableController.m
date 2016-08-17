@@ -11,11 +11,14 @@
 #import "HAOffOnCell.h"
 #import "HADiscountEditorCell.h"
 #import "HAHouse.h"
+#import "HARESTfulEngine.h"
 
 @interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate,HADiscountEditorCellDelegate,HAOffOnCellDelegate,HAEditorNumberCellDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *ppLabel;
 
 @property(nonatomic,strong) NSArray* dataSource;
+
+@property (nonatomic,strong) NSMutableArray* cleaningDataSouce;
 
 @property (nonatomic,copy) HAHouse* houseCopy;
 
@@ -27,10 +30,18 @@
 - (NSArray*)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金"],@[@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],[[NSMutableArray alloc] initWithObjects:@"需要第三方保洁", nil],@[@"退订规则"], nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金"],@[@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],self.cleaningDataSouce,@[@"退订规则"], nil];
         //@"平台提供洗漱用品"
     }
     return _dataSource;
+}
+
+- (NSMutableArray*)cleaningDataSouce
+{
+    if (!_cleaningDataSouce) {
+        _cleaningDataSouce = [[NSMutableArray alloc] initWithObjects:@"需要第三方保洁", nil];
+    }
+    return _cleaningDataSouce;
 }
 
 #pragma mark - *** Init ***
@@ -38,17 +49,11 @@
     [super viewDidLoad];
     
     self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
-    //self.tableView.sectionFooterHeight = 280;
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-//    NSLog(@"footview %p %@,lable %p lableFrame %@",self.tableView.tableFooterView,NSStringFromClass([self.tableView.tableFooterView class]),self.ppLabel,NSStringFromCGRect(self.ppLabel.frame));
-//    self.ppLabel.frame = CGRectMake(0, 0, 600, 300);
     self.houseCopy = self.house;
+    
+    if(self.houseCopy.cleanType){
+        [self.cleaningDataSouce addObject:@"平台提供洗漱用品"];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -163,11 +168,14 @@
             //offOnCell.accessoryViewSelected = YES;
             [mutableArray addObject:@"平台提供洗漱用品"];
             [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
+            self.houseCopy.cleanType = YES;
         }
         else{
             //offOnCell.accessoryViewSelected = NO;
             [mutableArray removeLastObject];
             [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
+            self.houseCopy.cleanType = NO;
+            self.houseCopy.platformToiletries = NO;
         }
 
     }
@@ -175,7 +183,12 @@
     if ([cell respondsToSelector:@selector(setAccessoryViewSelected:)]) {
         HAOffOnCell* offOnCell = cell;
         offOnCell.accessoryViewSelected = ! offOnCell.accessoryViewSelected;
+        if ([textString isEqualToString:@"平台提供洗漱用品"]) {
+            self.houseCopy.platformToiletries = offOnCell.accessoryViewSelected;
+        }
     }
+    
+
     
     [cell.accessoryView becomeFirstResponder];
 }
@@ -185,6 +198,10 @@
 - (void)selectItemDoneForPickerTextField:(UITextField *)textfield fromCell:(UITableViewCell *)cell
 {
      NSLog(@"selectItemDoneForPickerTextField");
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    NSString* text = self.dataSource[indexPath.section][indexPath.row];
+    [self.houseCopy setValue:[textfield.text floatValue] forChineseName:text];
+    
 }
 
 - (void)offONButtonChangedFromCell:(UITableViewCell *)cell sender:(UIButton *)sender
@@ -197,22 +214,34 @@
         NSInteger section = indexPath.section;
         NSMutableArray* mutableArray = self.dataSource[indexPath.section];
         if (offOnCell.accessoryViewSelected) {
-            ///offOnCell.accessoryViewSelected = YES;
             [mutableArray addObject:@"平台提供洗漱用品"];
             [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
+            self.houseCopy.cleanType = YES;
         }
         else{
-            //offOnCell.accessoryViewSelected = NO;
+            self.houseCopy.cleanType = NO;
+            self.houseCopy.platformToiletries = NO;
             [mutableArray removeLastObject];
             [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
         }
         
     }
+    
+    if ([textString isEqualToString:@"平台提供洗漱用品"]) {
+        HAOffOnCell* offOnCell = cell;
+        self.houseCopy.platformToiletries = offOnCell.accessoryViewSelected;
+    }
+    
+    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textfield fromCell:(UITableViewCell *)cell
 {
-   NSLog(@"textFieldDidEndEditing");
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+     NSString* text = self.dataSource[indexPath.section][indexPath.row];
+    
+    [self.houseCopy setValue:[textfield.text floatValue] forChineseName:text];
+   
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -302,7 +331,13 @@
 #pragma mark - *** Target Action ***
 
 - (IBAction)saveButtonClicked:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.view endEditing:YES];
+    [[HARESTfulEngine defaultEngine] modifyHouseGeneralInfoWithID:self.houseCopy.houseId params:self.houseCopy completion:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    } onError:^(NSError *engineError) {
+        
+    }];
+ 
 }
 
 

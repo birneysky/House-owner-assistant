@@ -56,7 +56,7 @@
 @property (nonatomic,assign) NSInteger   type30Rate;		// '连住30天折扣率',
 @property (nonatomic,assign) NSInteger   checkStatus;// '资料审核状态0 待审核 1 审核待完善  2 审核不通过 3 审核通过',
 @property (nonatomic,assign) NSInteger   operationStatus;		// '运营状态 0 正常 1 房东下线 2 平台锁定',
-@property (nonatomic,copy)   NSString*   remark;		// '备注'
+@property (nonatomic,copy)   NSString*   remarks;		// '备注'
 @property (nonatomic,copy)   NSArray* houseImages;
 @property (nonatomic,copy)   NSString* headerImage;
 @property (nonatomic,assign) NSInteger commentCount;

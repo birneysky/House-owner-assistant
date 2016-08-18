@@ -453,7 +453,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huseowner.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b8c7137-1aa5-4677-ba3c-75ad42718c46";
+				PROVISIONING_PROFILE = "77c1d359-efb6-41a3-9b84-3d9dead1969c";
 			};
 			name = Debug;
 		};
@@ -475,7 +475,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huseowner.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b8c7137-1aa5-4677-ba3c-75ad42718c46";
+				PROVISIONING_PROFILE = "77c1d359-efb6-41a3-9b84-3d9dead1969c";
 			};
 			name = Release;
 		};

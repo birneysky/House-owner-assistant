@@ -8,6 +8,7 @@
 
 #import "HAHouseIntroduceViewController.h"
 #import "HAHouse.h"
+#import "HARESTfulEngine.h"
 
 @interface HAHouseIntroduceViewController ()<UITextViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -26,6 +27,8 @@
 @property (nonatomic,assign) CGFloat keyboardHeight;
 @property (nonatomic,assign) CGFloat contentOffset;
 
+@property (nonatomic,copy) HAHouse* houseCopy;
+
 @end
 
 @implementation HAHouseIntroduceViewController
@@ -40,8 +43,10 @@
         self.houseLocationTextView.text = self.house.position;
         self.houseTrafficTextView.text = self.house.traffic;
         self.houseLiftTextView.text = self.house.surroundings;
-        self.houseCommentTextView.text = self.house.remark;
+        self.houseCommentTextView.text = self.house.remarks;
     }
+    
+    self.houseCopy = self.house;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -83,7 +88,14 @@
 
 #pragma mark - *** Target Action ***
 - (IBAction)saveButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.view endEditing:YES];
+    
+    [[HARESTfulEngine defaultEngine] modifyHouseGeneralInfoWithID:self.houseCopy.houseId params:self.houseCopy completion:^{
+         [self.navigationController popViewControllerAnimated:YES];
+    } onError:^(NSError *engineError) {
+        
+    }];
+   
 //    NSArray* controllers = self.navigationController.viewControllers;
 //    [self.navigationController popToViewController:controllers[controllers.count - 3] animated:YES];
 }
@@ -111,6 +123,12 @@
     //textView.text = @"";
     return YES;
 }
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    return YES;
+}
+
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     CGRect rect = self.firstResponderView.frame;
@@ -120,6 +138,37 @@
    // rect = [self.scrollView convertRect:rect fromView:nil];
 //    NSLog(@"scroll frame %@,contentsize %@,contentofffset %@,torect %@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize),NSStringFromCGPoint(self.scrollView.contentOffset),NSStringFromCGRect(rect));
     [self.scrollView scrollRectToVisible:rect animated:YES];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    /*
+     self.titleTextView.text = self.house.title;
+     self.houseDescriptionTextView.text = self.house.houseDescription;
+     self.houseLocationTextView.text = self.house.position;
+     self.houseTrafficTextView.text = self.house.traffic;
+     self.houseLiftTextView.text = self.house.surroundings;
+     self.houseCommentTextView.text = self.house.remark;
+
+     */
+    if (self.titleTextView == textView) {
+        self.houseCopy.title = textView.text;
+    }
+    else if (self.houseDescriptionTextView == textView){
+        self.houseCopy.houseDescription = textView.text;
+    }
+    else if (self.houseLocationTextView == textView){
+        self.houseCopy.position = textView.text;
+    }
+    else if (self.houseTrafficTextView == textView){
+        self.houseCopy.traffic = textView.text;
+    }
+    else if (self.houseLiftTextView == textView){
+        self.houseCopy.surroundings = textView.text;
+    }
+    else if (self.houseCommentTextView == textView){
+        self.houseCopy.remarks = textView.text;
+    }
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

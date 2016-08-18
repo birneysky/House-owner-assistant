@@ -16,7 +16,7 @@
 #import "HAHouseFacility.h"
 #import "HAError.h"
 
-NSString* const kBaseURL = @"120.76.28.47:8080/yisu";
+NSString* const kBaseURL = @"120.76.28.47:8080";
 
 static HARESTfulEngine* defaultEngine;
 

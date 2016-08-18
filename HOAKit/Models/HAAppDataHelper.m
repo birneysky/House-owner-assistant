@@ -76,4 +76,9 @@
     return index;
 }
 
++ (NSArray<HAHousePosition*>*) positionsFromProvince:(NSInteger)provinceId city:(NSInteger)cityId
+{
+    return nil;
+}
+
 @end

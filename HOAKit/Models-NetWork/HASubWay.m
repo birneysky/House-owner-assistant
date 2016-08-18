@@ -51,7 +51,7 @@
 
 -(NSArray<id<HAGeneralPosition>>*) subItems
 {
-    return [_stationArray copy];
+    return [self stations];
 }
 
 - (NSInteger) positionId

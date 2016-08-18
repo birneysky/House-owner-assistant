@@ -12,6 +12,7 @@
 #import "HARegion.h"
 #import "HAHouse.h"
 #import "HAAppDataHelper.h"
+#import "HAHousePosition.h"
 
 const NSInteger MAXLEVEL =  3;
 
@@ -25,6 +26,7 @@ const NSInteger MAXLEVEL =  3;
 
 //@property (nonatomic, strong) NSArray* selectedIndexs;
 
+@property (nonatomic, strong) NSMutableDictionary<NSString*,HAHousePosition*>* positionDic;
 
 @end
 
@@ -78,7 +80,7 @@ const NSInteger MAXLEVEL =  3;
     HARegion* region = self.allRegions[distictId];
     [region addItems:positions];
     // 显示 menu
-    [self.arealocationView showArealocationInView:self.view];
+
     
     [[HARESTfulEngine defaultEngine] fetchPositionInfoWithCityID:self.cityId completion:^(NSArray<HAPosition *> *postions, NSArray<HASubWay *> *subways) {
         [postions enumerateObjectsUsingBlock:^(HAPosition * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -100,8 +102,9 @@ const NSInteger MAXLEVEL =  3;
         }];
         
         
-        NSInteger select[3] = {0,0,0};
-        [self.arealocationView selectRowWithSelectedIndex:select];
+//        NSInteger select[3] = {0,0,0};
+//        [self.arealocationView selectRowWithSelectedIndex:select];
+        [self.arealocationView showArealocationInView:self.view];
         
     } onError:^(NSError *engineError) {
         
@@ -132,12 +135,15 @@ const NSInteger MAXLEVEL =  3;
         return self.allRegions.count;
         //return 2;
     }else if (level==1) {
-        HARegion* region = self.allRegions[index];
-        return region.subItems.count;
+        return self.allRegions[index].subItems.count;
     }else {
+        
         if (-1 == *selectedIndex) {
             return 0;
         }
+//        NSArray* obj =self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems;
+//        NSInteger xx = obj.count;
+//        return self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems.count;
         HARegion* region = self.allRegions[selectedIndex[0]];
         NSArray* items = region.subItems;
         HAJSONModel* item = items[index];
@@ -147,6 +153,8 @@ const NSInteger MAXLEVEL =  3;
             return subWay.stations.count;
         }
         else{
+            
+            
             return 0;
         }
     }

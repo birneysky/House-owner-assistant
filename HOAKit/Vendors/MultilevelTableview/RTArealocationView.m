@@ -14,7 +14,7 @@
 {
     NSInteger        selectedIndex[NUM];  // 每层选中的索引index
     CGFloat          leftWidth;           // 左边栏宽度
-    NSMutableArray   *tableViewArr;       // 存放每层的tableView的数组
+    NSMutableArray<UITableView*>   *tableViewArr;       // 存放每层的tableView的数组
     UIView           *backgroundView;     // 背景view
     NSInteger        selectedRow;         // 选中的行
     UIImageView      *selIcon;            // 选中的icon
@@ -132,8 +132,8 @@
     
     if (selCell!=cell) {
 
-        [selIcon removeFromSuperview];
-        selCell.textLabel.textColor = [UIColor grayColor];
+        //[selIcon removeFromSuperview];
+        //selCell.textLabel.textColor = [UIColor grayColor];
         selCell = cell;
         
     }
@@ -144,8 +144,8 @@
     for (int i=0; i<tableViewArr.count; i++) {
         
         UITableView *tempTableView = tableViewArr[i];
-        NSInteger selectRow =  tempTableView.indexPathForSelectedRow.row;
-        [selectedIndexArray addObject:@(selectRow)];
+//        NSInteger selectRow =  tempTableView.indexPathForSelectedRow.row;
+//        [selectedIndexArray addObject:@(selectRow)];
         // 添加下一级tableView
         NSInteger nextTableRowsCount = -1;
         if (tempTableView == tableView && i != tableViewArr.count - 1) {
@@ -191,11 +191,11 @@
         [self saveSelectedIndex];
         
         // 添加选中icon
-        CGPoint center = CGPointMake(cell.frame.size.width * 0.9, cell.frame.size.height * 0.5);
+        //CGPoint center = CGPointMake(cell.frame.size.width * 0.9, cell.frame.size.height * 0.5);
         
-        selIcon.center = center;
+        //selIcon.center = center;
         
-        [cell.contentView addSubview:selIcon];
+        //[cell.contentView addSubview:selIcon];
         
         // 改变选中颜色
         cell.textLabel.textColor = [UIColor orangeColor];
@@ -208,11 +208,13 @@
             [self.delegate arealocationView:self finishChooseLocationAtIndexs:selectedIndex];
             
         }
+        
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     
-    if ([self.delegate respondsToSelector:@selector(arealocationView:didSelectIndexsArray:)]) {
-        [self.delegate arealocationView:self didSelectIndexsArray:[selectedIndexArray copy]];
-    }
+//    if ([self.delegate respondsToSelector:@selector(arealocationView:didSelectIndexsArray:)]) {
+//        [self.delegate arealocationView:self didSelectIndexsArray:[selectedIndexArray copy]];
+//    }
 }
 
 
@@ -256,6 +258,7 @@
     [self adjustTableViews];
     [view addSubview:self];
     
+    [self tableView:tableViewArr[0] didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
 #pragma mark - dismissArealocationView

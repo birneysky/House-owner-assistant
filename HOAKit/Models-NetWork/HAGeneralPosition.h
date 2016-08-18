@@ -15,6 +15,8 @@
 
 @property (nonatomic,assign) NSInteger positionId;
 
+//@property (nonatomic,readonly) NSInteger count;
+
 @property (nonatomic,readonly) NSArray<id<HAGeneralPosition>>* subItems;
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import "HAJSONModel.h"
+#import "HAGeneralPosition.h"
 
-@interface HASubWay : HAJSONModel
+@interface HASubWay : HAJSONModel <HAGeneralPosition>
 
 /*
  levelType 1 表示地铁线路

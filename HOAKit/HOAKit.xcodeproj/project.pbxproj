@@ -132,6 +132,7 @@
 		DB13FCAE1D63007F003A8F58 /* HARegion.m in Sources */ = {isa = PBXBuildFile; fileRef = DB13FCAC1D63007F003A8F58 /* HARegion.m */; };
 		DB13FCB11D640F74003A8F58 /* HAError.h in Headers */ = {isa = PBXBuildFile; fileRef = DB13FCAF1D640F74003A8F58 /* HAError.h */; };
 		DB13FCB21D640F74003A8F58 /* HAError.m in Sources */ = {isa = PBXBuildFile; fileRef = DB13FCB01D640F74003A8F58 /* HAError.m */; };
+		DB35A7991D65BF5500CD6776 /* HAGeneralPosition.h in Headers */ = {isa = PBXBuildFile; fileRef = DB35A7981D65BF5500CD6776 /* HAGeneralPosition.h */; };
 		DB3B28BC1D5851A90007E576 /* HAOffOnCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28BA1D5851A90007E576 /* HAOffOnCell.h */; };
 		DB3B28BD1D5851A90007E576 /* HAOffOnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28BB1D5851A90007E576 /* HAOffOnCell.m */; };
 		DB3B28C01D5866370007E576 /* HABedInfoCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28BE1D5866370007E576 /* HABedInfoCell.h */; };
@@ -297,6 +298,7 @@
 		DB13FCAC1D63007F003A8F58 /* HARegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HARegion.m; sourceTree = "<group>"; };
 		DB13FCAF1D640F74003A8F58 /* HAError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAError.h; sourceTree = "<group>"; };
 		DB13FCB01D640F74003A8F58 /* HAError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAError.m; sourceTree = "<group>"; };
+		DB35A7981D65BF5500CD6776 /* HAGeneralPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAGeneralPosition.h; sourceTree = "<group>"; };
 		DB3B28BA1D5851A90007E576 /* HAOffOnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAOffOnCell.h; sourceTree = "<group>"; };
 		DB3B28BB1D5851A90007E576 /* HAOffOnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAOffOnCell.m; sourceTree = "<group>"; };
 		DB3B28BE1D5866370007E576 /* HABedInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABedInfoCell.h; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				DB13FCA81D62EE63003A8F58 /* HASubWay.m */,
 				DB13FCAB1D63007F003A8F58 /* HARegion.h */,
 				DB13FCAC1D63007F003A8F58 /* HARegion.m */,
+				DB35A7981D65BF5500CD6776 /* HAGeneralPosition.h */,
 			);
 			path = "Models-NetWork";
 			sourceTree = SOURCE_ROOT;
@@ -677,6 +680,7 @@
 				DB13FCAD1D63007F003A8F58 /* HARegion.h in Headers */,
 				742B91D21D4FB731000FF5A1 /* Toast+UIView.h in Headers */,
 				DB13FCA91D62EE63003A8F58 /* HASubWay.h in Headers */,
+				DB35A7991D65BF5500CD6776 /* HAGeneralPosition.h in Headers */,
 				743F43521D55F84F00D06D19 /* HADiscountDataSourceDelegate.h in Headers */,
 				74266F9E1D60054300A7E4BF /* HAHouseItemCell.h in Headers */,
 				DB3B28D21D5C7A2D0007E576 /* HATextField.h in Headers */,

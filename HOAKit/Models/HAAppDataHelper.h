@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HAHousePosition.h"
+#import "HAPosition.h"
 
 
 @interface HAAppDataHelper : NSObject
@@ -22,6 +22,6 @@
 
 + (NSInteger)typeForBedName:(NSString*)name;
 
-+ (NSArray<HAHousePosition*>*) positionsFromProvince:(NSInteger)provinceId city:(NSInteger)cityId;
++ (NSArray<HAPosition*>*) positionsFromProvince:(NSInteger)provinceId city:(NSInteger)cityId house:(NSInteger)houseId;
 
 @end

@@ -76,9 +76,52 @@
     return index;
 }
 
-+ (NSArray<HAHousePosition*>*) positionsFromProvince:(NSInteger)provinceId city:(NSInteger)cityId
++ (NSArray<HAPosition*>*) positionsFromProvince:(NSInteger)provinceId city:(NSInteger)cityId house:(NSInteger)houseId
 {
-    return nil;
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"HOAKit.bundle/province" ofType:@"json"];
+    
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    
+    NSError* error;
+    NSDictionary* provincialCity = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+    
+    NSArray<NSDictionary*>* provincesArray = provincialCity[@"child"];
+    __block NSInteger provinceIndex = -1;
+    [provincesArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger provinceItemId = [[obj objectForKey:@"ID"] integerValue];
+        if (provinceId == provinceItemId) {
+            provinceIndex = idx;
+            *stop = YES;
+        }
+    }];
+    
+    NSDictionary* province = provincesArray[provinceIndex];
+    NSArray<NSDictionary*>* citysArray = [province objectForKey:@"child"];
+    __block NSInteger cityIndex = -1;
+    [citysArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger cityItemId = [[obj objectForKey:@"ID"] integerValue];
+        if (cityId == cityItemId) {
+            cityIndex = idx;
+        }
+    }];
+    
+    NSDictionary* city = citysArray[cityIndex];
+    NSArray<NSDictionary*>* distictsArray = city[@"child"];
+    NSMutableArray<HAPosition*>* mutableDistictsArray = [[NSMutableArray alloc] initWithCapacity:100];
+    [distictsArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        HAPosition* position = [[HAPosition alloc] init];
+        position.cityId = cityId;
+        position.name = [obj objectForKey:@"Name"];
+        position.positionId = [[obj objectForKey:@"ID"] integerValue];
+        position.typeId = 5;
+//        position.houseId = houseId;
+//        position.positionId = [[obj objectForKey:@"ID"] integerValue];
+//        position.positionTypeId = 5; //5 表示行政区域
+        [mutableDistictsArray addObject:position];
+    }];
+    
+    
+    return [mutableDistictsArray copy];
 }
 
 @end

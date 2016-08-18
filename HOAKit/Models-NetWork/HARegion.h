@@ -8,17 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "HAJSONModel.h"
+#import "HAGeneralPosition.h"
 
-@interface HARegion : NSObject
+@interface HARegion : NSObject <HAGeneralPosition>
 
 - (instancetype) initWithName:(NSString*)name;
 
 @property (nonatomic,readonly) NSString* name;
 
-@property (nonatomic,readonly) NSArray<HAJSONModel*>* subItems;
+@property (nonatomic,readonly) NSArray<id<HAGeneralPosition>>* subItems;
 
-- (void)addSubItem:(HAJSONModel*)item;
+- (void)addSubItem:(id<HAGeneralPosition>)item;
 
-- (HAJSONModel*)subItemWithID:(NSInteger)Id;
+- (void)addItems:(NSArray<id<HAGeneralPosition>>*)items;
+
+- (id<HAGeneralPosition>)subItemWithID:(NSInteger)Id;
 
 @end

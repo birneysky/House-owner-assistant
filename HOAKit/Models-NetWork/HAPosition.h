@@ -7,8 +7,9 @@
 //
 
 #import "HAJSONModel.h"
+#import "HAGeneralPosition.h"
 
-@interface HAPosition : HAJSONModel
+@interface HAPosition : HAJSONModel <HAGeneralPosition>
 
 @property (nonatomic,assign) NSInteger cityId;
 @property (nonatomic,assign) NSInteger enable;

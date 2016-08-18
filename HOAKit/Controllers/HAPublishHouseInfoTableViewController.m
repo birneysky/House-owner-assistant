@@ -167,6 +167,7 @@
     if ([segue.identifier isEqualToString:@"push_house_area"]) {
         HAHouseAreaSelectViewController* vc = segue.destinationViewController;
         vc.cityId = self.houseFullInfo.house.city;
+        vc.house = self.houseFullInfo.house;
     }
 
     if([segue.identifier isEqualToString:@"push_house_bed_info"]){

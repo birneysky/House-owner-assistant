@@ -11,7 +11,7 @@
 
 @interface HARegion ()
 
-@property (nonatomic,strong) NSMutableArray<HAJSONModel*>* items;
+@property (nonatomic,strong) NSMutableArray<id<HAGeneralPosition>>* items;
 
 @property (nonatomic,copy) NSString* name;
 
@@ -33,7 +33,7 @@
     return self;
 }
 
-- (NSMutableArray<HAJSONModel*>*) items
+- (NSMutableArray<HAGeneralPosition>*) items
 {
     if (!_items) {
         _items = [[NSMutableArray alloc] initWithCapacity:100];
@@ -50,7 +50,7 @@
     return _indexDic;
 }
 
-- (void)addSubItem:(HAJSONModel *)item
+- (void)addSubItem:(id<HAGeneralPosition>)item
 {
     if([item respondsToSelector:@selector(subwayId)])
     {
@@ -60,12 +60,17 @@
     [self.items addObject:item];
 }
 
-- (NSArray<HAJSONModel*>*) subItems
+- (void)addItems:(NSArray<id<HAGeneralPosition>>*)items
+{
+    [self.items addObjectsFromArray:items];
+}
+
+- (NSArray<id<HAGeneralPosition>>*) subItems
 {
     return [self.items copy];
 }
 
-- (HAJSONModel*)subItemWithID:(NSInteger)Id
+- (id<HAGeneralPosition>)subItemWithID:(NSInteger)Id
 {
     NSString* strId = [NSString stringWithFormat:@"%d",Id];
     NSNumber* index = self.indexDic[strId];

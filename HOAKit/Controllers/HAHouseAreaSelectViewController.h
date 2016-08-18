@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class HAHouse;
+
 @interface HAHouseAreaSelectViewController : UIViewController
 
 @property (nonatomic,assign) NSInteger cityId;
+
+@property (nonatomic,strong) HAHouse* house;
 
 @end

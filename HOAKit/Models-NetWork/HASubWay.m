@@ -49,5 +49,14 @@
 }
 
 
+-(NSArray<id<HAGeneralPosition>>*) subItems
+{
+    return [_stationArray copy];
+}
+
+- (NSInteger) positionId
+{
+    return self.subwayId;
+}
 
 @end

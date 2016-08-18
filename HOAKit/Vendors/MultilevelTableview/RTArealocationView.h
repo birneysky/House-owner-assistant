@@ -76,6 +76,10 @@
  */
 - (void)arealocationView:(RTArealocationView *)arealocationView finishChooseLocationAtIndexs:(NSInteger *)selectedIndex;
 
+
+/*
+ * 
+ */
 - (void)arealocationView:(RTArealocationView *)arealocationView didSelectIndexsArray:(NSArray<NSNumber*>*)indexs;
 
 @end

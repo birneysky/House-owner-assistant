@@ -29,4 +29,10 @@
         self.lng = 0;
     }
 }
+
+-(NSArray<id<HAGeneralPosition>>*) subItems
+{
+    return nil;
+}
+
 @end

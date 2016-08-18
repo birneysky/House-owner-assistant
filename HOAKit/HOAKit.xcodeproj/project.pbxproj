@@ -40,6 +40,9 @@
 		74266F9B1D5F835A00A7E4BF /* HAHouseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F991D5F835A00A7E4BF /* HAHouseItem.m */; };
 		74266F9E1D60054300A7E4BF /* HAHouseItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F9C1D60054300A7E4BF /* HAHouseItemCell.h */; };
 		74266F9F1D60054300A7E4BF /* HAHouseItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F9D1D60054300A7E4BF /* HAHouseItemCell.m */; };
+		74266FD61D660CB200A7E4BF /* HALocationCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266FD31D660CB200A7E4BF /* HALocationCell.h */; };
+		74266FD71D660CB200A7E4BF /* HALocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266FD41D660CB200A7E4BF /* HALocationCell.m */; };
+		74266FD81D660CB200A7E4BF /* HALocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74266FD51D660CB200A7E4BF /* HALocationCell.xib */; };
 		742B917E1D4FA836000FF5A1 /* HOAKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B917D1D4FA836000FF5A1 /* HOAKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742B91C61D4FB731000FF5A1 /* HAAddHousePhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91951D4FB731000FF5A1 /* HAAddHousePhotoViewController.h */; };
 		742B91C71D4FB731000FF5A1 /* HAAddHousePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91961D4FB731000FF5A1 /* HAAddHousePhotoViewController.m */; };
@@ -204,6 +207,9 @@
 		74266F991D5F835A00A7E4BF /* HAHouseItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseItem.m; sourceTree = "<group>"; };
 		74266F9C1D60054300A7E4BF /* HAHouseItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseItemCell.h; sourceTree = "<group>"; };
 		74266F9D1D60054300A7E4BF /* HAHouseItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseItemCell.m; sourceTree = "<group>"; };
+		74266FD31D660CB200A7E4BF /* HALocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HALocationCell.h; sourceTree = "<group>"; };
+		74266FD41D660CB200A7E4BF /* HALocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HALocationCell.m; sourceTree = "<group>"; };
+		74266FD51D660CB200A7E4BF /* HALocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HALocationCell.xib; sourceTree = "<group>"; };
 		742B917A1D4FA836000FF5A1 /* HOAKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HOAKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		742B917D1D4FA836000FF5A1 /* HOAKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HOAKit.h; sourceTree = "<group>"; };
 		742B917F1D4FA836000FF5A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -608,6 +614,9 @@
 				743F438B1D58E81F00D06D19 /* HAAddPictureCollectionViewCell.m */,
 				74266F9C1D60054300A7E4BF /* HAHouseItemCell.h */,
 				74266F9D1D60054300A7E4BF /* HAHouseItemCell.m */,
+				74266FD31D660CB200A7E4BF /* HALocationCell.h */,
+				74266FD41D660CB200A7E4BF /* HALocationCell.m */,
+				74266FD51D660CB200A7E4BF /* HALocationCell.xib */,
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
@@ -725,6 +734,7 @@
 				743F438C1D58E81F00D06D19 /* HAAddPictureCollectionViewCell.h in Headers */,
 				DB3B28EF1D5DC0070007E576 /* NSData+MKBase64.h in Headers */,
 				743F43411D55EBD200D06D19 /* HAProvinceDataSourceDelegate.h in Headers */,
+				74266FD61D660CB200A7E4BF /* HALocationCell.h in Headers */,
 				743F437C1D5747FD00D06D19 /* HAEditPickerDataSourceDelegate.h in Headers */,
 				DB3B28F71D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.h in Headers */,
 				743F43781D57440300D06D19 /* HAEditPickerCell.h in Headers */,
@@ -802,6 +812,7 @@
 			files = (
 				DBAE09231D5043DF008A85C4 /* HOA.xcassets in Resources */,
 				742B91ED1D4FB731000FF5A1 /* Images.xcassets in Resources */,
+				74266FD81D660CB200A7E4BF /* HALocationCell.xib in Resources */,
 				742B91DC1D4FB731000FF5A1 /* House-owner-assistant.storyboard in Resources */,
 				7425B80D1D50CBDF00288A46 /* province.json in Resources */,
 			);
@@ -861,6 +872,7 @@
 				DB12CBF71D61C2F70069126F /* HAAppDataHelper.m in Sources */,
 				74266F7E1D5DF91F00A7E4BF /* HAHouseInfo.m in Sources */,
 				743F438D1D58E81F00D06D19 /* HAAddPictureCollectionViewCell.m in Sources */,
+				74266FD71D660CB200A7E4BF /* HALocationCell.m in Sources */,
 				74266F651D5CA6E800A7E4BF /* HAHouseAreaSelectViewController.m in Sources */,
 				DB3B28F41D5DC0070007E576 /* NSDictionary+RequestEncoding.m in Sources */,
 				DB3B28FA1D5DC0070007E576 /* MKNetworkEngine.m in Sources */,

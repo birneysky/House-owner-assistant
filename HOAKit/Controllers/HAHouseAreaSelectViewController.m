@@ -105,6 +105,7 @@ const NSInteger MAXLEVEL =  3;
 //        NSInteger select[3] = {0,0,0};
 //        [self.arealocationView selectRowWithSelectedIndex:select];
         [self.arealocationView showArealocationInView:self.view];
+
         
     } onError:^(NSError *engineError) {
         
@@ -130,17 +131,21 @@ const NSInteger MAXLEVEL =  3;
 
 - (NSInteger)arealocationView:(RTArealocationView *)arealocationView countForClassAtLevel:(NSInteger)level index:(NSInteger)index selectedIndex:(NSInteger *)selectedIndex {
     
+
     if (level==0) {
         
         return self.allRegions.count;
         //return 2;
     }else if (level==1) {
-        return self.allRegions[index].subItems.count;
-    }else {
-        
         if (-1 == *selectedIndex) {
             return 0;
         }
+        return self.allRegions[selectedIndex[0]].subItems.count;
+    }else {
+        if (-1 == *selectedIndex) {
+            return 0;
+        }
+
 //        NSArray* obj =self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems;
 //        NSInteger xx = obj.count;
 //        return self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems.count;

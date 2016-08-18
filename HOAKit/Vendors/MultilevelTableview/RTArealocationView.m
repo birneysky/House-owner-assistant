@@ -101,6 +101,9 @@
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         
     }
+    else{
+        
+    }
     
     [tableViewArr enumerateObjectsUsingBlock:^(UITableView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -138,8 +141,8 @@
         
     }
     
+
     [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    
     NSMutableArray* selectedIndexArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (int i=0; i<tableViewArr.count; i++) {
         
@@ -153,7 +156,6 @@
             selectedRow = indexPath.row;
             
             selectedIndex[i] = indexPath.row;
-            
             [tableViewArr[i+1] reloadData];
             
             nextTableRowsCount = [tableViewArr[i+1] numberOfRowsInSection:0];
@@ -164,6 +166,7 @@
                 [backgroundView addSubview:tableViewArr[i+1]];
                 lastTableView = tableViewArr[i+1];
                 
+
             }            // 移除多余的tableView
             for (int j=i; j<tableViewArr.count-2; j++) {
                 
@@ -208,10 +211,11 @@
             [self.delegate arealocationView:self finishChooseLocationAtIndexs:selectedIndex];
             
         }
-        
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSLog(@" row count %d section count %d row %d  section %d",[tableView numberOfRowsInSection:0],[tableView numberOfSections],indexPath.row,indexPath.section);
+        [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     }
     
+
 //    if ([self.delegate respondsToSelector:@selector(arealocationView:didSelectIndexsArray:)]) {
 //        [self.delegate arealocationView:self didSelectIndexsArray:[selectedIndexArray copy]];
 //    }

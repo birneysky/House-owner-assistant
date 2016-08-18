@@ -145,23 +145,7 @@ const NSInteger MAXLEVEL =  3;
         if (-1 == *selectedIndex) {
             return 0;
         }
-
-//        NSArray* obj =self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems;
-//        NSInteger xx = obj.count;
-//        return self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems.count;
-        HARegion* region = self.allRegions[selectedIndex[0]];
-        NSArray* items = region.subItems;
-        HAJSONModel* item = items[index];
-        if([item isKindOfClass:[HASubWay class]])
-        {
-            HASubWay* subWay = item;
-            return subWay.stations.count;
-        }
-        else{
-            
-            
-            return 0;
-        }
+        return self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems.count;
     }
 }
 
@@ -169,33 +153,12 @@ const NSInteger MAXLEVEL =  3;
 - (NSString *)arealocationView:(RTArealocationView *)arealocationView titleForClass:(NSInteger)level index:(NSInteger)index selectedIndex:(NSInteger *)selectedIndex {
 
     if (level==0) {
-        HARegion* region = self.allRegions[index];
-        return region.name;
-        
+        return self.allRegions[index].name;
     }else if (level==1) {
-        
-//        HARegion* region = self.allRegions[selectedIndex[0]];
-//        NSArray* postions =  region.subItems;
-//        HAPosition* postion = postions[index];
-        HAPosition* postion = self.allRegions[selectedIndex[0]].subItems[index];
-        return postion.name;
-        
+        return self.allRegions[selectedIndex[0]].subItems[index].name;
     }else {
-        HAJSONModel* item =  self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]];
-        if ([item respondsToSelector:@selector(stations)]) {
-            HASubWay* subWay = item;
-            NSArray* stations = subWay.stations;
-            HASubWay* station = stations[index];
-            return station.name;
-        }
-        else{
-            return @"";
-        }
+        return  self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems[index].name;
     }
-    
-    
-    
-    
 }
 
 

@@ -211,7 +211,6 @@
             [self.delegate arealocationView:self finishChooseLocationAtIndexs:selectedIndex];
             
         }
-        NSLog(@" row count %d section count %d row %d  section %d",[tableView numberOfRowsInSection:0],[tableView numberOfSections],indexPath.row,indexPath.section);
         [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     }
     

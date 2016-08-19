@@ -9,7 +9,7 @@
 #import "HALocationPickerTextField.h"
 #import "HAProvinceDataSourceDelegate.h"
 
-@interface HALocationPickerTextField () <UIPickerViewDelegate,UIPickerViewDataSource>
+@interface HALocationPickerTextField () <HAPickerTextFieldDelegate>
 
 @property (nonatomic,strong) HAProvinceDataSourceDelegate* dataSourceDelegate;
 
@@ -98,10 +98,6 @@
         }
     }
     
-    
-    
-    //NSLog(@"==> proviceIndex %d, cityIndex %d, townIndex %d",provinceIndex,cityIndex,townIndex);
-    NSLog(@"==> address %@ lat %f lng %f",address);
     if ([self.locationPickerDelegate respondsToSelector:@selector(selectedObjectChangedForPickerTextField: address:province:city:distict:)]) {
         [self.locationPickerDelegate selectedObjectChangedForPickerTextField:self address:[address copy] province:provinceId city:cityId distict:distictId];
     }

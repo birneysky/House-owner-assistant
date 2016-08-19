@@ -106,7 +106,6 @@
         NSArray* provinces = self.dataSource[@"child"];
         NSDictionary* province = provinces[provinceIndex];
         NSArray* citys = province[@"child"];
-        NSInteger cityIndex = [pickerView selectedRowInComponent:1];
         if (row >= citys.count) {
             return title;
         }
@@ -123,7 +122,6 @@
         }
         NSDictionary* city = citys[cityIndex];
         NSArray* towns = city[@"child"];
-        NSInteger townIndex = [pickerView selectedRowInComponent:2];
         if (row >= towns.count) {
             return title;
         }
@@ -148,13 +146,8 @@
     }
     else if (1 == component){
         [pickerView reloadComponent:2];
-        //[pickerView selectRow:2 inComponent:2 animated:YES];
     }
-    //    else
-    //    {
-    //
-    //        [pickerView reloadComponent:0];
-    //    }
+
 }
 
 @end

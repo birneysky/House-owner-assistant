@@ -10,7 +10,7 @@
 #import "HAAddPictureCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface HAPhotoCollectionViewController ()
+@interface HAPhotoCollectionViewController ()<HAAddPictureCollectionViewCellDelegate>
 
 
 @end
@@ -77,7 +77,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewFlowLayout* flowLayout = collectionViewLayout;
+    UICollectionViewFlowLayout* flowLayout = (UICollectionViewFlowLayout*)collectionViewLayout;
     CGRect rect = [UIScreen mainScreen].bounds;
     if (0 == indexPath.row) {
         CGFloat width = rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right;

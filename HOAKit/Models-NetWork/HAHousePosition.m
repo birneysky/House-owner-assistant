@@ -18,4 +18,13 @@
     }
 }
 
+- (NSDictionary*)toFullDictionary
+{
+    NSDictionary* dic = [super toFullDictionary];
+    NSMutableDictionary* mutableDic = [[NSMutableDictionary alloc] initWithDictionary:dic copyItems:NO];
+    [mutableDic removeObjectForKey:@"uniqueId"];
+    [mutableDic setObject:@(0) forKey:@"id"];
+    return [mutableDic copy];
+}
+
 @end

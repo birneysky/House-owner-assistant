@@ -31,7 +31,8 @@
 
 - (void) addItem:(HASubWay*) item;
 
-- (HASubWay*)subItemWithID:(NSInteger)subwayId;
+//- (HASubWay*)subItemWithID:(NSInteger)subwayId;
+
 
 /*
  

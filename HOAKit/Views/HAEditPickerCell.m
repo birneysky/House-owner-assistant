@@ -9,7 +9,7 @@
 #import "HAEditPickerCell.h"
 #import "HAPickerTextField.h"
 
-@interface HAEditPickerCell ()<UITextFieldDelegate>
+@interface HAEditPickerCell ()<UITextFieldDelegate,HAPickerTextFieldDelegate,HAEditPickerDelegate>
 
 @property (nonatomic,strong) HAPickerTextField* textField;
 
@@ -48,7 +48,6 @@
     //self.dataSourceDelegate.resultDelegate = self;
     
     UIImageView* rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Arrow_Right"]];
-    CGRect rect = rightView.frame;
     //rect.origin.x += 5;
     self.textField.rightViewMode = UITextFieldViewModeAlways;
     self.textField.rightView = rightView;

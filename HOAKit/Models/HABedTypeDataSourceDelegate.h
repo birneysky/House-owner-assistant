@@ -8,6 +8,6 @@
 
 #import "HAEditPickerDataSourceDelegate.h"
 
-@interface HABedTypeDataSourceDelegate : HAEditPickerDataSourceDelegate <UIPickerViewDelegate,UIPickerViewDataSource>
+@interface HABedTypeDataSourceDelegate : HAEditPickerDataSourceDelegate
 
 @end

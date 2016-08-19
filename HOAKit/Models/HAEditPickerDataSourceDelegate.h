@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "HAEditPickerDelegate.h"
 
-@interface HAEditPickerDataSourceDelegate : NSObject
+@interface HAEditPickerDataSourceDelegate : NSObject  <UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property(nonatomic,weak) id<HAEditPickerDelegate> resultDelegate;
 

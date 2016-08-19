@@ -49,6 +49,7 @@
         locationView.delegate = self;
         locationView.rowHeight = 48;
         locationView.frame = self.bounds;
+        locationView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
         //locationView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [tableViewArr addObject:locationView];
     }
@@ -151,7 +152,7 @@
     }
     
 
-    [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
     NSMutableArray* selectedIndexArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (int i=0; i<tableViewArr.count; i++) {
         
@@ -224,6 +225,7 @@
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     
+    [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 

@@ -10,7 +10,7 @@
 #import "HAPickerTextField.h"
 #import "HADiscountDataSourceDelegate.h"
 
-@interface HADiscountEditorCell ()
+@interface HADiscountEditorCell ()<HAEditPickerDelegate,HAPickerTextFieldDelegate>
 
 @property (nonatomic,strong) HAPickerTextField* textField;
 

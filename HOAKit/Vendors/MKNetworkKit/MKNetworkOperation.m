@@ -51,6 +51,8 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,
 @property (strong, nonatomic) NSHTTPURLResponse *response;
 
 @property (strong, nonatomic) NSMutableDictionary *fieldsToBePosted;
+@property (strong, nonatomic) NSMutableArray* fieldsToBePostedArray;
+
 @property (strong, nonatomic) NSMutableArray *filesToBePosted;
 @property (strong, nonatomic) NSMutableArray *dataToBePosted;
 
@@ -89,6 +91,10 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,
 
 - (id)initWithURLString:(NSString *)aURLString
                  params:(NSDictionary *)body
+             httpMethod:(NSString *)method;
+
+- (id)initWithURLString:(NSString *)aURLString
+            paramsArray:(NSArray *)body
              httpMethod:(NSString *)method;
 
 -(NSData*) bodyData;
@@ -176,9 +182,10 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,
     returnValue = self.postDataEncodingHandler(self.fieldsToBePosted);
   else if(self.postDataEncoding == MKNKPostDataEncodingTypeURL)
     returnValue = [self.fieldsToBePosted urlEncodedKeyValueString];
-  else if(self.postDataEncoding == MKNKPostDataEncodingTypeJSON)
-    returnValue = [self.fieldsToBePosted jsonEncodedKeyValueString];
-  else if(self.postDataEncoding == MKNKPostDataEncodingTypePlist)
+  else if(self.postDataEncoding == MKNKPostDataEncodingTypeJSON){
+    //returnValue = [self.fieldsToBePosted jsonEncodedKeyValueString];
+      returnValue =  self.fieldsToBePosted.count > 0 ? [self.fieldsToBePosted jsonEncodedKeyValueString] : [self.fieldsToBePostedArray jsonEncodedKeyValueString];
+  }else if(self.postDataEncoding == MKNKPostDataEncodingTypePlist)
     returnValue = [self.fieldsToBePosted plistEncodedKeyValueString];
   return returnValue;
 }
@@ -518,66 +525,142 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,
   [self.downloadStreams addObject:outputStream];
 }
 
+- (instancetype)initWithURLString:(NSString *)aURLString
+                    generalParams:(NSObject *)params
+                       httpMethod:(NSString *)method
+{
+    if((self = [super init])) {
+        
+        self.responseBlocks = [NSMutableArray array];
+        self.errorBlocks = [NSMutableArray array];
+        self.errorBlocksType2 = [NSMutableArray array];
+        self.filesToBePosted = [NSMutableArray array];
+        self.dataToBePosted = [NSMutableArray array];
+        self.fieldsToBePosted = [NSMutableDictionary dictionary];
+        
+        self.notModifiedHandlers = [NSMutableArray array];
+        self.uploadProgressChangedHandlers = [NSMutableArray array];
+        self.downloadProgressChangedHandlers = [NSMutableArray array];
+        self.downloadStreams = [NSMutableArray array];
+        
+        self.credentialPersistence = NSURLCredentialPersistenceForSession;
+        
+        NSURL *finalURL = nil;
+        
+        NSInteger paramsCount = 0;
+        if([params isKindOfClass:[NSDictionary class]]){
+            self.fieldsToBePosted = [params mutableCopy];
+            paramsCount = self.fieldsToBePosted.count;
+        }else if([params isKindOfClass:[NSArray class]]){
+            self.fieldsToBePostedArray = [params mutableCopy];
+            paramsCount = self.fieldsToBePostedArray.count;
+        }
+        
+        self.stringEncoding = NSUTF8StringEncoding; // use a delegate to get these values later
+        
+        if ([method isEqualToString:@"GET"])
+            self.cacheHeaders = [NSMutableDictionary dictionary];
+        
+        if (([method isEqualToString:@"GET"] ||
+             [method isEqualToString:@"DELETE"]) && (params && paramsCount > 0)) {
+            
+            finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", aURLString,
+                                             [self encodedPostDataString]]];
+        } else {
+            finalURL = [NSURL URLWithString:aURLString];
+        }
+        
+        self.request = [NSMutableURLRequest requestWithURL:finalURL
+                                               cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                           timeoutInterval:kMKNetworkKitRequestTimeOutInSeconds];
+        
+        [self.request setHTTPMethod:method];
+        
+        [self.request setValue:[NSString stringWithFormat:@"%@, en-us",
+                                [[NSLocale preferredLanguages] componentsJoinedByString:@", "]
+                                ] forHTTPHeaderField:@"Accept-Language"];
+        
+        if (([method isEqualToString:@"POST"] ||
+             [method isEqualToString:@"PUT"]) && (params && paramsCount > 0)) {
+            
+            self.postDataEncoding = MKNKPostDataEncodingTypeURL;
+        }
+        
+        self.state = MKNetworkOperationStateReady;
+    }
+    
+    return self;
+
+}
+
 - (id)initWithURLString:(NSString *)aURLString
                  params:(NSDictionary *)params
              httpMethod:(NSString *)method
 
 {
-  if((self = [super init])) {
-    
-    self.responseBlocks = [NSMutableArray array];
-    self.errorBlocks = [NSMutableArray array];
-    self.errorBlocksType2 = [NSMutableArray array];
-    self.filesToBePosted = [NSMutableArray array];
-    self.dataToBePosted = [NSMutableArray array];
-    self.fieldsToBePosted = [NSMutableDictionary dictionary];
-    
-    self.notModifiedHandlers = [NSMutableArray array];
-    self.uploadProgressChangedHandlers = [NSMutableArray array];
-    self.downloadProgressChangedHandlers = [NSMutableArray array];
-    self.downloadStreams = [NSMutableArray array];
-    
-    self.credentialPersistence = NSURLCredentialPersistenceForSession;
-    
-    NSURL *finalURL = nil;
-    
-    if(params)
-      self.fieldsToBePosted = [params mutableCopy];
-    
-    self.stringEncoding = NSUTF8StringEncoding; // use a delegate to get these values later
-    
-    if ([method isEqualToString:@"GET"])
-      self.cacheHeaders = [NSMutableDictionary dictionary];
-    
-    if (([method isEqualToString:@"GET"] ||
-         [method isEqualToString:@"DELETE"]) && (params && [params count] > 0)) {
-      
-      finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", aURLString,
-                                       [self encodedPostDataString]]];
-    } else {
-      finalURL = [NSURL URLWithString:aURLString];
-    }
-    
-    self.request = [NSMutableURLRequest requestWithURL:finalURL
-                                           cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                       timeoutInterval:kMKNetworkKitRequestTimeOutInSeconds];
-    
-    [self.request setHTTPMethod:method];
-    
-    [self.request setValue:[NSString stringWithFormat:@"%@, en-us",
-                            [[NSLocale preferredLanguages] componentsJoinedByString:@", "]
-                            ] forHTTPHeaderField:@"Accept-Language"];
-    
-    if (([method isEqualToString:@"POST"] ||
-         [method isEqualToString:@"PUT"]) && (params && [params count] > 0)) {
-      
-      self.postDataEncoding = MKNKPostDataEncodingTypeURL;
-    }
-    
-    self.state = MKNetworkOperationStateReady;
-  }
-  
-  return self;
+//  if((self = [super init])) {
+//    
+//    self.responseBlocks = [NSMutableArray array];
+//    self.errorBlocks = [NSMutableArray array];
+//    self.errorBlocksType2 = [NSMutableArray array];
+//    self.filesToBePosted = [NSMutableArray array];
+//    self.dataToBePosted = [NSMutableArray array];
+//    self.fieldsToBePosted = [NSMutableDictionary dictionary];
+//    
+//    self.notModifiedHandlers = [NSMutableArray array];
+//    self.uploadProgressChangedHandlers = [NSMutableArray array];
+//    self.downloadProgressChangedHandlers = [NSMutableArray array];
+//    self.downloadStreams = [NSMutableArray array];
+//    
+//    self.credentialPersistence = NSURLCredentialPersistenceForSession;
+//    
+//    NSURL *finalURL = nil;
+//    
+//    if(params)
+//      self.fieldsToBePosted = [params mutableCopy];
+//    
+//    self.stringEncoding = NSUTF8StringEncoding; // use a delegate to get these values later
+//    
+//    if ([method isEqualToString:@"GET"])
+//      self.cacheHeaders = [NSMutableDictionary dictionary];
+//    
+//    if (([method isEqualToString:@"GET"] ||
+//         [method isEqualToString:@"DELETE"]) && (params && [params count] > 0)) {
+//      
+//      finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", aURLString,
+//                                       [self encodedPostDataString]]];
+//    } else {
+//      finalURL = [NSURL URLWithString:aURLString];
+//    }
+//    
+//    self.request = [NSMutableURLRequest requestWithURL:finalURL
+//                                           cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+//                                       timeoutInterval:kMKNetworkKitRequestTimeOutInSeconds];
+//    
+//    [self.request setHTTPMethod:method];
+//    
+//    [self.request setValue:[NSString stringWithFormat:@"%@, en-us",
+//                            [[NSLocale preferredLanguages] componentsJoinedByString:@", "]
+//                            ] forHTTPHeaderField:@"Accept-Language"];
+//    
+//    if (([method isEqualToString:@"POST"] ||
+//         [method isEqualToString:@"PUT"]) && (params && [params count] > 0)) {
+//      
+//      self.postDataEncoding = MKNKPostDataEncodingTypeURL;
+//    }
+//    
+//    self.state = MKNetworkOperationStateReady;
+//  }
+//  
+//  return self;
+    return [self initWithURLString:aURLString generalParams:params httpMethod:method];
+}
+
+- (id)initWithURLString:(NSString *)aURLString
+            paramsArray:(NSArray *)body
+             httpMethod:(NSString *)method
+{
+    return [self initWithURLString:aURLString generalParams:body httpMethod:method];
 }
 
 -(void) addHeaders:(NSDictionary*) headersDictionary {
@@ -1438,7 +1521,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     errorBlock(self, error);
   
 #if TARGET_OS_IPHONE
-  DLog(@"State: %d", [[UIApplication sharedApplication] applicationState]);
+  DLog(@"State: %ld", (long)[[UIApplication sharedApplication] applicationState]);
   if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground)
     [self showLocalNotification];
 #endif

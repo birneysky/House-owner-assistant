@@ -10,8 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "CTAssetsPickerController.h"
 #import "HAPhotoCollectionViewController.h"
-
-
+#import "HARESTfulEngine.h"
 
 @interface HAAddHousePhotoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -213,7 +212,7 @@ NSString* gen_uuid()
         
         
         NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
-        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@",fileID,@"thumbnail"];
+        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.png",fileID,@"thumbnail"];
         NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
         [self.selectedPhotoPathes addObject:thumbnailImgPath];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -238,6 +237,11 @@ NSString* gen_uuid()
 
     }];
 
+    [[HARESTfulEngine defaultEngine] uploadHouseImageWithPath:self.selectedPhotoPathes[0] completion:^{
+        
+    } progress:^(float progress) {
+        
+    }];
 }
 
 #pragma mark - image picker delegate

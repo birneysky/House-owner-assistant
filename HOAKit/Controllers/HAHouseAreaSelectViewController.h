@@ -10,10 +10,12 @@
 
 @class HAHouse;
 
+@class HAHousePosition;
+
 @interface HAHouseAreaSelectViewController : UIViewController
 
-@property (nonatomic,assign) NSInteger cityId;
-
 @property (nonatomic,strong) HAHouse* house;
+
+@property (nonatomic,strong) NSArray<HAHousePosition*>* positionArray;
 
 @end

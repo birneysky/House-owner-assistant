@@ -33,6 +33,5 @@
 
 @property (nonatomic,readonly) UIPickerView* picker;
 
-@property (nonatomic,assign) BOOL showToolbar;
 
 @end

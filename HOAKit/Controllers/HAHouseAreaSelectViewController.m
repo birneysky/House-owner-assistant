@@ -2,7 +2,7 @@
 //  HAHouseAreaSelectViewController.m
 //  HOAKit
 //
-//  Created by birneysky on 16/8/11.
+//  Created by ; on 16/8/11.
 //  Copyright © 2016年 birneysky. All rights reserved.
 //
 
@@ -39,7 +39,7 @@ const NSInteger MAXLEVEL =  3;
 {
     if (!_arealocationView) {
         CGSize screenSize = [UIScreen mainScreen].bounds.size;
-        _arealocationView = [[RTArealocationView alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height-64)];
+        _arealocationView = [[RTArealocationView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
         _arealocationView.delegate = self;
     }
     return _arealocationView;
@@ -78,7 +78,7 @@ const NSInteger MAXLEVEL =  3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = YES;
     // 初始化选择的cell
 
     NSInteger distictId = [self.regionNames indexOfObject:@"行政区"];
@@ -87,8 +87,14 @@ const NSInteger MAXLEVEL =  3;
     [region addItems:positions];
     // 显示 menu
 
+    //加载该房源已选的位置区域信息
+    [self.positionArray enumerateObjectsUsingBlock:^(HAHousePosition * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString* key = [NSString stringWithFormat:@"%d-%d",obj.positionTypeId,obj.positionId];
+        [self.positionDic setObject:obj forKey:key];
+    }];
     
-    [[HARESTfulEngine defaultEngine] fetchPositionInfoWithCityID:self.cityId completion:^(NSArray<HAPosition *> *postions, NSArray<HASubWay *> *subways) {
+    //请求房源所在城市的位置区域信息。
+    [[HARESTfulEngine defaultEngine] fetchPositionInfoWithCityID:self.house.city completion:^(NSArray<HAPosition *> *postions, NSArray<HASubWay *> *subways) {
         [postions enumerateObjectsUsingBlock:^(HAPosition * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             HARegion* region = self.allRegions[obj.typeId - 1];
             [region addSubItem:obj];
@@ -166,9 +172,9 @@ const NSInteger MAXLEVEL =  3;
     if (0 == level) {
         return NO;
     }
-    if(-1 == selectedIndex[level]){
-        return NO;
-    }
+//    if(-1 == selectedIndex[level]){
+//        return NO;
+//    }
     NSInteger type = 0;
     NSInteger postionId = 0;
     if (1 == level) {
@@ -181,6 +187,7 @@ const NSInteger MAXLEVEL =  3;
     }
     
     NSString* key = [NSString stringWithFormat:@"%d-%d",type,postionId];
+
     if ([self.positionDic objectForKey:key]){
         return YES;
     }
@@ -217,5 +224,16 @@ const NSInteger MAXLEVEL =  3;
     }
 }
 
+#pragma mark - *** Taget action ***
+- (IBAction)resetBtnClciked:(id)sender {
+    
+    [[HARESTfulEngine defaultEngine] modifyHousePositionWithArray:[self.positionDic allValues] completion:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    } onError:^(NSError *engineError) {
+        
+    }];
+    
+    
+}
 
 @end

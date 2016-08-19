@@ -316,49 +316,81 @@ static NSOperationQueue *_sharedNetworkQueue;
 }
 
 -(MKNetworkOperation*) operationWithPath:(NSString*) path
+                             paramsArray:(NSArray*) body
+                              httpMethod:(NSString*)method
+{
+    return [self operationWithPath:path generalParams:body httpMethod:method ssl:NO];
+}
+
+-(MKNetworkOperation*) operationWithPath:(NSString*) path
                                   params:(NSDictionary*) body
                               httpMethod:(NSString*)method
                                      ssl:(BOOL) useSSL {
-  
-  if(self.hostName == nil) {
+    return [self operationWithPath:path generalParams:body httpMethod:method ssl:useSSL];
+}
+
+-(MKNetworkOperation*) operationWithPath:(NSString*) path
+                                  generalParams:(NSObject*) body
+                              httpMethod:(NSString*)method
+                                     ssl:(BOOL) useSSL
+{
+    if(self.hostName == nil) {
+        
+        DLog(@"Hostname is nil, use operationWithURLString: method to create absolute URL operations");
+        return nil;
+    }
     
-    DLog(@"Hostname is nil, use operationWithURLString: method to create absolute URL operations");
-    return nil;
-  }
-  
-  NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@://%@", useSSL ? @"https" : @"http", self.hostName];
-  
-  if(self.portNumber != 0)
-    [urlString appendFormat:@":%d", self.portNumber];
-  
-  if(self.apiPath)
-    [urlString appendFormat:@"/%@", self.apiPath];
-  
-  [urlString appendFormat:@"/%@", path];
-  
-  return [self operationWithURLString:urlString params:body httpMethod:method];
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@://%@", useSSL ? @"https" : @"http", self.hostName];
+    
+    if(self.portNumber != 0)
+        [urlString appendFormat:@":%d", self.portNumber];
+    
+    if(self.apiPath)
+        [urlString appendFormat:@"/%@", self.apiPath];
+    
+    [urlString appendFormat:@"/%@", path];
+    
+    return [self operationWithURLString:urlString generalParams:body httpMethod:method];
 }
 
 -(MKNetworkOperation*) operationWithURLString:(NSString*) urlString {
   
-  return [self operationWithURLString:urlString params:nil httpMethod:@"GET"];
+  return [self operationWithURLString:urlString generalParams:nil httpMethod:@"GET"];
 }
 
 -(MKNetworkOperation*) operationWithURLString:(NSString*) urlString
                                        params:(NSDictionary*) body {
-  
-  return [self operationWithURLString:urlString params:body httpMethod:@"GET"];
+    return [self operationWithURLString:urlString generalParams:body httpMethod:@"GET"];
 }
 
 
+//-(MKNetworkOperation*) operationWithURLString:(NSString*) urlString
+//                                       params:(NSDictionary*) body
+//                                   httpMethod:(NSString*)method {
+//  
+//  MKNetworkOperation *operation = [[self.customOperationSubclass alloc] initWithURLString:urlString params:body httpMethod:method];
+//  
+//  [self prepareHeaders:operation];
+//  return operation;
+//}
+
 -(MKNetworkOperation*) operationWithURLString:(NSString*) urlString
-                                       params:(NSDictionary*) body
-                                   httpMethod:(NSString*)method {
-  
-  MKNetworkOperation *operation = [[self.customOperationSubclass alloc] initWithURLString:urlString params:body httpMethod:method];
-  
-  [self prepareHeaders:operation];
-  return operation;
+                                       generalParams:(NSObject*) body
+                                   httpMethod:(NSString*)method{
+    MKNetworkOperation *operation = nil;
+    if ([body isKindOfClass:[NSDictionary class]]) {
+        operation = [[self.customOperationSubclass alloc] initWithURLString:urlString params:body httpMethod:method];
+    }
+    else if([body isKindOfClass:[NSArray class]]) {
+        operation = [[self.customOperationSubclass alloc] initWithURLString:urlString paramsArray:body httpMethod:method];
+    }
+    else{
+        operation = [[self.customOperationSubclass alloc] initWithURLString:urlString params:body httpMethod:method];
+    }
+    
+    
+    [self prepareHeaders:operation];
+    return operation;
 }
 
 -(void) prepareHeaders:(MKNetworkOperation*) operation {

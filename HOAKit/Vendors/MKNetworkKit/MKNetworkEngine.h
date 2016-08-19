@@ -119,6 +119,10 @@
                          params:(NSDictionary*) body
                    httpMethod:(NSString*)method;
 
+-(MKNetworkOperation*) operationWithPath:(NSString*) path
+                                  paramsArray:(NSArray*) body
+                              httpMethod:(NSString*)method;
+
 /*!
  *  @abstract Creates a simple GET Operation with a request URL, parameters, HTTP Method and the SSL switch
  *  

@@ -100,7 +100,7 @@
     return data;
 }
 
-- (NSString*) toFullJsonData
+- (NSData*) toFullJsonData
 {
     NSDictionary* dict = [self toFullDictionary];
     NSError* error;

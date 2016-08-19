@@ -65,7 +65,7 @@
 - (void)setHouseType:(NSInteger)type roomCount:(NSInteger)count;
 {
     NSString* typeName = [HAAppDataHelper houseTypeName:type];
-    self.rentTypeLabel.text = [NSString stringWithFormat:@"%@%d居",typeName,count];
+    self.rentTypeLabel.text = [NSString stringWithFormat:@"%@%ld居",typeName,(long)count];
 }
 
 @end

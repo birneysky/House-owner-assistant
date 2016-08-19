@@ -20,7 +20,7 @@
 
 - (NSString*) toFullJsonString;
 
-- (NSString*) toFullJsonData;
+- (NSData*) toFullJsonData;
 
 - (NSDictionary*) toFullDictionary;
 

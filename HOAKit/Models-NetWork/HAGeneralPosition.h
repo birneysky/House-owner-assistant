@@ -13,7 +13,9 @@
 @required
 @property (nonatomic,readonly) NSString* name;
 
-@property (nonatomic,assign) NSInteger positionId;
+@property (nonatomic,readonly) NSInteger positionId;
+
+@property (nonatomic,readonly) NSInteger typeId;
 
 //@property (nonatomic,readonly) NSInteger count;
 

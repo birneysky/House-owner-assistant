@@ -74,16 +74,12 @@
  *  @param arealocationView arealocationView
  *  @param selectedIndex           每一层选取结果的数组
  */
-- (void)arealocationView:(RTArealocationView *)arealocationView finishChooseLocationAtIndexs:(NSInteger *)selectedIndex;
+- (void)arealocationView:(RTArealocationView *)arealocationView atLevel:(NSInteger)level finishChooseLocationAtIndexs:(NSInteger *)selectedIndex;
 
 
-/*
- * 
- */
-- (void)arealocationView:(RTArealocationView *)arealocationView didSelectIndexsArray:(NSArray<NSNumber*>*)indexs;
 
 
-- (BOOL)isSelectedLocationInAreaLocationView:(RTArealocationView*)arealocationView selectedIndex:(NSInteger*)selectedIndex;
+- (BOOL)isSelectedLocationInAreaLocationView:(RTArealocationView*)arealocationView atLevel:(NSInteger)level selectedIndex:(NSInteger*)selectedIndex index:(NSInteger)index;
 
 @end
 

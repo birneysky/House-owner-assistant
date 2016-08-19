@@ -12,11 +12,19 @@
 
 @property (nonatomic,strong) NSMutableArray<HASubWay*>* stationArray;
 
-
+@property (nonatomic,assign) NSInteger typeId;
 
 @end
 
 @implementation HASubWay
+
+- (instancetype) initWithDictionary:(NSDictionary *)jsonDic
+{
+    if (self = [super initWithDictionary:jsonDic]) {
+        self.typeId = 3; //3 表示是地铁
+    }
+    return self;
+}
 
 #pragma mark - *** Properties ***
 - (NSMutableArray<HASubWay*>*) stationArray

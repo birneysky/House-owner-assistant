@@ -97,13 +97,14 @@
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.textLabel.textColor = [UIColor grayColor];
+        
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         
     }
     else{
         
     }
+    cell.textLabel.textColor = [UIColor grayColor];
     
     [tableViewArr enumerateObjectsUsingBlock:^(UITableView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -114,6 +115,14 @@
                 cell.textLabel.text = [self.delegate arealocationView:self titleForClass:idx index:indexPath.row selectedIndex:selectedIndex];
                 
                 cell.textLabel.numberOfLines = 0;
+                
+                BOOL selected = [self.delegate isSelectedLocationInAreaLocationView:self atLevel:idx selectedIndex:selectedIndex index:indexPath.row];
+                if (selected) {
+                    cell.textLabel.textColor = [UIColor orangeColor];
+                }
+                else{
+                    cell.textLabel.textColor = [UIColor grayColor];
+                }
                 
                 if (idx == 0) {
                     
@@ -201,23 +210,20 @@
         //[cell.contentView addSubview:selIcon];
         
         // 改变选中颜色
-        cell.textLabel.textColor = [UIColor orangeColor];
+       // cell.textLabel.textColor = [UIColor orangeColor];
         
         //[self dismissArealocationView];
         
         // 选中后执行方法
-        if ([self.delegate respondsToSelector:@selector(arealocationView:finishChooseLocationAtIndexs:)]) {
+        NSInteger level = [tableViewArr indexOfObject:tableView];
+        if ([self.delegate respondsToSelector:@selector(arealocationView:atLevel:finishChooseLocationAtIndexs:)]) {
             
-            [self.delegate arealocationView:self finishChooseLocationAtIndexs:selectedIndex];
+            [self.delegate arealocationView:self atLevel:level finishChooseLocationAtIndexs:selectedIndex];
             
         }
-        [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     
-
-//    if ([self.delegate respondsToSelector:@selector(arealocationView:didSelectIndexsArray:)]) {
-//        [self.delegate arealocationView:self didSelectIndexsArray:[selectedIndexArray copy]];
-//    }
 }
 
 

@@ -22,4 +22,6 @@
 @property (nonatomic,assign) NSInteger sort;
 @property (nonatomic,assign) NSInteger typeId;
 
+@property (nonatomic,readonly) NSArray<id<HAGeneralPosition>>* subItems;
+
 @end

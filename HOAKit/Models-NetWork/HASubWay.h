@@ -26,7 +26,8 @@
 @property(nonatomic,copy) NSString* pinyin;
 @property(nonatomic,copy) NSString* transfer;
 
-@property (nonatomic,readonly,getter=stations) NSArray<HASubWay*>* stations;
+
+@property (nonatomic,readonly,getter=subItems) NSArray<id<HAGeneralPosition>>* stations;
 
 - (void) addItem:(HASubWay*) item;
 

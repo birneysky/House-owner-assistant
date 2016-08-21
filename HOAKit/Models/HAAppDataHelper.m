@@ -124,4 +124,60 @@
     return [mutableDistictsArray copy];
 }
 
+
+
+
++ (NSString*) provincesAndCityAddress:(NSInteger)provinceId city:(NSInteger)cityId distict:(NSInteger)distictId
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"HOAKit.bundle/province" ofType:@"json"];
+    
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    
+    NSError* error;
+    NSDictionary* provincialCity = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+    
+    NSMutableString* addresss = [[NSMutableString alloc] init];
+    NSArray<NSDictionary*>* provincesArray = provincialCity[@"child"];
+    __block NSInteger provinceIndex = -1;
+    [provincesArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger provinceItemId = [[obj objectForKey:@"ID"] integerValue];
+        if (provinceId == provinceItemId) {
+            provinceIndex = idx;
+            NSString* proviceName =  [obj objectForKey:@"Name"];
+            [addresss appendString:proviceName];
+            *stop = YES;
+        }
+        
+    }];
+    
+    NSDictionary* province = provincesArray[provinceIndex];
+    NSArray<NSDictionary*>* citysArray = [province objectForKey:@"child"];
+    __block NSInteger cityIndex = -1;
+    [citysArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger cityItemId = [[obj objectForKey:@"ID"] integerValue];
+        if (cityId == cityItemId) {
+            cityIndex = idx;
+            NSString* cityName = [obj objectForKey:@"Name"];
+            [addresss appendFormat:@"-%@",cityName];
+            *stop = YES;
+        }
+    }];
+    
+    NSDictionary* city = citysArray[cityIndex];
+    NSArray<NSDictionary*>* distictsArray = city[@"child"];
+    
+    [distictsArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+         NSInteger distictItemId = [[obj objectForKey:@"ID"] integerValue];
+        if (distictItemId == distictId) {
+            NSString* distictName =  [obj objectForKey:@"Name"];
+            [addresss appendFormat:@"-%@",distictName];
+            *stop = YES;
+        }
+    }];
+    
+    
+    return [addresss copy];
+}
+
 @end

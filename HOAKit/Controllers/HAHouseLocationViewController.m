@@ -13,6 +13,7 @@
 #import "HALeapBehavior.h"
 #import "HAHouse.h"
 #import "HAHouseTypeTableViewController.h"
+#import "HAAppDataHelper.h"
 
 @interface HAHouseLocationViewController ()<MKMapViewDelegate,HALocationPickerTextFieldDelegate,UIDynamicAnimatorDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -82,6 +83,17 @@
     if (!_house) {
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
+    else{
+        self.navigationItem.rightBarButtonItem.title = @"确定";
+        self.fullAddressTextfield.text = self.house.address;
+        self.cityAddressTextfield.text = [HAAppDataHelper provincesAndCityAddress:self.house.province city:self.house.city distict:self.house.distict];
+        self.houseNumberTextfield.text = self.house.houseNumber;
+        
+        CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.house.lat longitude:self.house.lng];
+        CLLocationCoordinate2D coord = [loc coordinate];
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
+        [self.mapView setRegion:region animated:YES];
+    }
     
 //    CLLocationCoordinate2D touchMapCoordinate =
 //        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
@@ -102,6 +114,14 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)nextBtnclicked:(UIBarButtonItem *)sender {
+    if ([self.title isEqualToString:@"下一步"]) {
+        [self performSegueWithIdentifier:@"push_house_type" sender:nil];
+    }
+    else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 #pragma mark - *** MKMapViewDelegate ***
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{

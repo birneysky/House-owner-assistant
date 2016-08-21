@@ -14,5 +14,6 @@
 @property(nonatomic,assign) NSInteger imageId;
 @property(nonatomic,assign) NSInteger houseId;
 @property(nonatomic,copy)   NSString* imagePath;
+@property(nonatomic,assign) NSInteger userId;
 
 @end

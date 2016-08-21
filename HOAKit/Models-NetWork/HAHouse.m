@@ -45,6 +45,31 @@
     return [mutableDic copy];
 }
 
+- (BOOL) isEqualToHouse:(HAHouse*)house
+{
+//    unsigned count;
+//    objc_property_t *properties = class_copyPropertyList([self class], &count);
+//    
+//    for (int i = 0; i < count; i++) {
+//        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+//        if ([key isEqualToString:@"description"]) {
+//            continue;
+//        }
+//        id selfvalue = [self valueForKey:key];
+//        id otherValue = [house valueForKey:key];
+//        if ([selfvalue isKindOfClass:[NSString class]]) {
+//            NSLog(@"%@",[selfvalue class]);
+//        }
+//        
+//        
+//    }
+//    
+//    free(properties);
+    NSDictionary* selfDic = [self toFullDictionary];
+    NSDictionary* otherDic = [house toFullDictionary];
+    return [selfDic isEqualToDictionary:otherDic];
+}
+
 - (id)copyWithZone:(nullable NSZone *)zone
 {
     NSDictionary* dictory = [super toFullDictionary];

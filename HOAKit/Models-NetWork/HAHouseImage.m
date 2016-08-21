@@ -10,4 +10,19 @@
 
 @implementation HAHouseImage
 
+- (void) setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    if ([key isEqualToString:@"id"]) {
+        self.imageId = [value integerValue];
+    }
+}
+
+- (NSDictionary*) toFullDictionary
+{
+    NSDictionary* dic = [super toFullDictionary];
+    NSMutableDictionary* mutableDic = [[NSMutableDictionary alloc] initWithDictionary:dic copyItems:NO];
+    [mutableDic removeObjectForKey:@"imageId"];
+    return [mutableDic copy];
+}
+
 @end

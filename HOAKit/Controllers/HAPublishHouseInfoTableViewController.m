@@ -15,6 +15,9 @@
 #import "HAHouseBedViewController.h"
 #import "HAHouseInfoViewController.h"
 #import "HAPriceAndTrandRulesTableController.h"
+#import "HAAddHousePhotoViewController.h"
+#import "HAHouseLocationViewController.h"
+#import "HAHouseTypeTableViewController.h"
 
 @interface HAPublishHouseInfoTableViewController ()
 
@@ -99,11 +102,39 @@
         [self performSegueWithIdentifier:@"push_house_bed_info" sender:nil];
     }
     else if ([text isEqualToString:@"出租方式与房源类型"]){
-        [self.navigationController popViewControllerAnimated:YES];
+        NSArray<UIViewController*>* vcs = self.navigationController.viewControllers;
+        __block UIViewController* targetVC = nil;
+        [vcs enumerateObjectsUsingBlock:^(UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if([obj isKindOfClass:[HAHouseTypeTableViewController class]])
+            {
+                targetVC = obj;
+            }
+        }];
+        if (targetVC) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            [self performSegueWithIdentifier:@"push_back_house_type_select" sender:nil];
+        }
+        
     }
     else if ([text isEqualToString:@"地址"]){
-        NSArray* vcs = self.navigationController.viewControllers;
-        [self.navigationController popToViewController:vcs[vcs.count-3] animated:YES];
+        NSArray<UIViewController*>* vcs = self.navigationController.viewControllers;
+        __block UIViewController* targetVC = nil;
+        [vcs enumerateObjectsUsingBlock:^(UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if([obj isKindOfClass:[HAHouseLocationViewController class]])
+            {
+                targetVC = obj;
+            }
+        }];
+        
+        if (targetVC) {
+            [self.navigationController popToViewController:targetVC animated:YES];
+        }
+        else{
+            [self performSegueWithIdentifier:@"push_location" sender:nil];
+        }
+        
     }
     else if([text isEqualToString:@"设施列表"]){
         [self performSegueWithIdentifier:@"push_house_facilities" sender:nil];
@@ -184,6 +215,21 @@
     
     if ([segue.identifier isEqualToString:@"push_price_trading_rules"]) {
         HAPriceAndTrandRulesTableController* vc = segue.destinationViewController;
+        vc.house = self.houseFullInfo.house;
+    }
+    
+    if ([segue.identifier isEqualToString:@"push_add_photoes"]) {
+        HAAddHousePhotoViewController* vc = segue.destinationViewController;
+        vc.house = self.houseFullInfo.house;
+    }
+    
+    if ([segue.identifier isEqualToString:@"push_location"]) {
+        HAHouseLocationViewController* vc = segue.destinationViewController;
+        vc.house = self.houseFullInfo.house;
+    }
+    
+    if ([segue.identifier isEqualToString:@"push_back_house_type_select"]) {
+        HAHouseTypeTableViewController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
     }
 

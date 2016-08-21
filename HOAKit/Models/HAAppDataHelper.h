@@ -24,4 +24,6 @@
 
 + (NSArray<HAPosition*>*) positionsFromProvince:(NSInteger)provinceId city:(NSInteger)cityId house:(NSInteger)houseId;
 
++ (NSString*) provincesAndCityAddress:(NSInteger)provinceId city:(NSInteger)cityId distict:(NSInteger)distictId;
+
 @end

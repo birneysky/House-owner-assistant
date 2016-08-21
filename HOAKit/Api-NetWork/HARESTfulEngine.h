@@ -12,7 +12,7 @@
 #import "HASubWay.h"
 #import "HAPosition.h"
 #import "HAHousePosition.h"
-
+#import "HAHouseImage.h"
 
 /*单例类*/
 
@@ -159,7 +159,7 @@ typedef void (^ErrorBlock)(NSError* engineError);
                               onError:(ErrorBlock)errorBlcok;
 
 
-//http://120.76.28.47:8080/yisu/images/avatar/1.png
+//http://120.76.28.47:8080/yisu/images/house/1471779370324.jpg
 
 /**
  *  上传房源图片
@@ -170,8 +170,24 @@ typedef void (^ErrorBlock)(NSError* engineError);
  *
  */
 
-- (void) uploadHouseImageWithPath:(NSString*)path
-                       completion:(VoidBlock)completion
-                         progress:(void (^)(float progress))progressBlock;
+- (MKNetworkOperation*) uploadHouseImageWithPath:(NSString*)path
+                       completion:(void (^)(HAHouseImage* obj))completion
+                         progress:(void (^)(NSString* certificate, float progress))progressBlock
+                          onError:(ErrorBlock)errorBlcok;
+
+
+/**
+ *  上传房源图片
+ *
+ *  @param array           位置对象数组 HAHousePosition
+ *  @param completion      网络请求结束 block
+ *  @param errorBlcok      调用出错 block
+ *
+ */
+
+- (void) relationshipBetweenHousesAndPictures:(NSArray<HAHouseImage*>*)imageArray
+                                   completion:(VoidBlock)completion
+                                      onError:(ErrorBlock)errorBlcok;
+
 
 @end

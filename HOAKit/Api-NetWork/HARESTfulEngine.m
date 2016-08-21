@@ -303,20 +303,32 @@ static HARESTfulEngine* defaultEngine;
 }
 
 
-- (void) uploadHouseImageWithPath:(NSString*)path
-                       completion:(VoidBlock)completion
-                         progress:(void (^)(float progress))progressBlock
+- (MKNetworkOperation*) uploadHouseImageWithPath:(NSString*)path
+                       completion:(void (^)(HAHouseImage* obj))completion
+                         progress:(void (^)(NSString* certificate, float progress))progressBlock
+                          onError:(ErrorBlock)errorBlcok
 {
-    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:@"api/house/images"  params:nil httpMethod:@"POST"];
-    
-    [op addFile:path forKey:@"file" mimeType:@"image/png"];
+    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:@"api/houses/images/"  params:nil httpMethod:@"POST"];
+    NSLog(@"op %p",op);
+    op.clientCertificate = [NSString stringWithFormat:@"%p",op];
+    [op addFile:path forKey:@"file" mimeType:@"image/jpg"];
     
     [op setFreezable:YES];
     
     [op addCompletionHandler:^(MKNetworkOperation* completedOperation) {
         
-        NSString *responseString = [completedOperation responseString];
-        NSLog(@"server response: %@",responseString);
+        NSMutableDictionary* responseDictionary = [completedOperation responseJSON];
+
+        NSInteger code = [[responseDictionary objectForKey:@"code"] integerValue];
+        if (code != 0){
+            NSString* text = [responseDictionary objectForKey:@"msg"];
+            HAError* error = [[HAError alloc] initWithCode:code reason:text];
+            errorBlcok(error);
+        }
+        NSDictionary* data = [responseDictionary objectForKey:@"data"];
+        HAHouseImage* houseImage = [[HAHouseImage alloc] initWithDictionary:data];
+        
+        completion(houseImage);
         
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* err){
         
@@ -327,11 +339,33 @@ static HARESTfulEngine* defaultEngine;
     [self enqueueOperation:op];
     
     [op onUploadProgressChanged:^(double progress) {
-        
-        DLog(@"Upload file progress: %.2f", progress*100.0);
+        progressBlock(op.clientCertificate,progress);
+       // DLog(@"Upload file progress: %.2f", progress*100.0);
     }];
+    return op;
+}
+
+
+- (void) relationshipBetweenHousesAndPictures:(NSArray<HAHouseImage*>*)imageArray
+                                   completion:(VoidBlock)completion
+                                      onError:(ErrorBlock)errorBlcok
+{
+    __block HAHouseImage* houseImage = imageArray.firstObject;
+    NSMutableString* pathes = [[NSMutableString alloc] init];
+    [imageArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx >0)
+            houseImage.imagePath = [houseImage.imagePath stringByAppendingFormat:@";%@",obj.imagePath];
+    }];
+
     
+    [self httpRequestWithPath:@"api/house_images/relation" generalParams:[houseImage toFullDictionary] httpMethod:@"POST" completion:^(NSObject *object) {
+        
+    } onError:^(NSError *engineError) {
+        
+    }];
 }
 
 
 @end
+
+

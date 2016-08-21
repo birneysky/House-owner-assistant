@@ -22,12 +22,18 @@
 @property (weak, nonatomic) IBOutlet UITextView *houseTrafficTextView;
 
 @property (weak, nonatomic) IBOutlet UITextView *houseCommentTextView;
+@property (strong, nonatomic) IBOutlet UILabel *textViewInputingLabel;
 @property (nonatomic,weak) UIView* firstResponderView;
+
 
 @property (nonatomic,assign) CGFloat keyboardHeight;
 @property (nonatomic,assign) CGFloat contentOffset;
 
 @property (nonatomic,copy) HAHouse* houseCopy;
+
+@property (nonatomic,assign) PRTValidState validFlag;
+
+
 
 @end
 
@@ -37,6 +43,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //self.scrollView.contentOffset = CGPointMake(0, 44);
+    self.validFlag = PRTValidStateNormal;
     if (self.house) {
         self.titleTextView.text = self.house.title;
         self.houseDescriptionTextView.text = self.house.houseDescription;
@@ -44,6 +51,7 @@
         self.houseTrafficTextView.text = self.house.traffic;
         self.houseLiftTextView.text = self.house.surroundings;
         self.houseCommentTextView.text = self.house.remarks;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     
     self.houseCopy = self.house;
@@ -55,6 +63,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide) name:UIKeyboardDidHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextDidChanged:) name:UITextViewTextDidChangeNotification object:nil];
     
     
 }
@@ -115,6 +124,27 @@
 //    self.firstResponderView = textField;
 //    return YES;
 //}
+#pragma mark - *** Helper ***
+- (BOOL) limitTextViewTextLengthMin:(NSInteger)min max:(NSInteger)max textView:(UITextView*)textView warningText:(NSString*)text
+{
+    BOOL flag = NO;
+    self.textViewInputingLabel.text = [NSString stringWithFormat:@"    %@",text];
+    if (textView.text.length < min) {
+        textView.inputAccessoryView = self.textViewInputingLabel;
+        flag = NO;
+    }
+    else if(textView.text.length > max){
+        textView.inputAccessoryView = self.textViewInputingLabel;
+        flag = NO;
+    }
+    else{
+        textView.inputAccessoryView = nil;
+        flag = YES;
+    }
+    [textView reloadInputViews];
+    return flag;
+}
+
 
 #pragma mark - *** UITextViewDelegate ***
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -197,6 +227,86 @@
     }
     
     return YES;
+}
+
+#pragma mark - *** TextView Notification Selector ***
+- (void)textViewTextDidChanged:(NSNotification*)notify
+{
+    UITextView* textView = notify.object;
+    NSInteger length = textView.text.length;
+    BOOL valid = YES;
+    BOOL change = NO;
+    
+    if(textView == self.titleTextView){
+        valid = [self limitTextViewTextLengthMin:5 max:20 textView:textView warningText:@"请输入5-20个字"];
+               self.houseCopy.title = textView.text;
+        //change = ![self.houseCopy.title isEqualToString:self.house.title];
+        if (!valid) {
+            self.validFlag &= PRTValidStateTitle;
+        }
+        else{
+            self.validFlag |= ~ PRTValidStateTitle;
+        }
+        
+    }
+    
+    if (self.houseDescriptionTextView == textView ){
+       valid = [self limitTextViewTextLengthMin:0 max:250 textView:textView warningText:@"请输入0-250个字"];
+        self.houseCopy.houseDescription = textView.text;
+        if (!valid) {
+            self.validFlag &= PRTValidStateDescription;
+        }
+        else{
+            self.validFlag |= ~ PRTValidStateDescription;
+        }
+    }
+    else if (self.houseLocationTextView == textView){
+        valid = [self limitTextViewTextLengthMin:0 max:250 textView:self.titleTextView warningText:@"请输入0-250个字"];
+        self.houseCopy.position = textView.text;
+        if (!valid) {
+            self.validFlag &= PRTValidStatePosition;
+        }
+        else{
+            self.validFlag |= ~ PRTValidStatePosition;
+        }
+    }
+    else if (self.houseTrafficTextView == textView){
+        valid = [self limitTextViewTextLengthMin:0 max:250 textView:self.titleTextView warningText:@"请输入0-250个字"];
+        self.houseCopy.traffic = textView.text;
+        if (!valid) {
+            self.validFlag &= PRTValidStateTraffic;
+        }else{
+             self.validFlag |= ~ PRTValidStateTraffic;
+        }
+    }
+    else if (self.houseLiftTextView == textView){
+        valid = [self limitTextViewTextLengthMin:0 max:250 textView:self.titleTextView warningText:@"请输入0-250个字"];
+        self.houseCopy.surroundings = textView.text;
+        if (!valid) {
+            self.validFlag &= PRTValidStateSurroundings;
+        }{
+             self.validFlag |= ~ PRTValidStateSurroundings;
+        }
+    }
+    else if (self.houseCommentTextView == textView){
+        valid = [self limitTextViewTextLengthMin:0 max:250 textView:textView warningText:@"请输入0-250个字"];
+        self.houseCopy.remarks = textView.text;
+        if (!valid) {
+            self.validFlag &= PRTValidStateRemarks;
+        }
+        else{
+             self.validFlag |= ~ PRTValidStateRemarks;
+        }
+    }
+
+    change = ![self.house isEqualToHouse:self.houseCopy];
+    BOOL validTest = (self.validFlag & PRTValidStateNormal) == PRTValidStateNormal;
+    if (change && validTest) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 #pragma mark - *** Keyboard Notification Selector ***

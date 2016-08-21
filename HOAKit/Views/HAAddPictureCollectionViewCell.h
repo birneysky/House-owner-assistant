@@ -23,5 +23,7 @@
 
 @property (nonatomic,strong) UIImage* image;
 
+@property (nonatomic,assign) double uploadProgress;
+
 
 @end

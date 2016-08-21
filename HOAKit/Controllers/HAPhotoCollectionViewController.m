@@ -9,6 +9,7 @@
 #import "HAPhotoCollectionViewController.h"
 #import "HAAddPictureCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "HAPhotoItem.h"
 
 @interface HAPhotoCollectionViewController ()<HAAddPictureCollectionViewCellDelegate>
 
@@ -63,13 +64,15 @@ static NSString * const reuseIdentifier = @"Cell";
     //BOOL lastOneFlag = indexPath.row == 9;
     HAAddPictureCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HAAddPictureCell" forIndexPath:indexPath];
     // Configure the cell
+    HAPhotoItem* item = self.datasource[indexPath.row];
     UIView* selectBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
     selectBackgroundView.backgroundColor = [UIColor redColor];
  
-    cell.image = [UIImage imageWithContentsOfFile:self.datasource[indexPath.row]];
+    cell.image = [UIImage imageWithContentsOfFile:item.path];
     cell.selectedBackgroundView = selectBackgroundView;
     cell.edited = self.edited ? YES : NO;
     cell.delegate = self;
+    cell.uploadProgress = item.progress;
     return cell;
 }
 

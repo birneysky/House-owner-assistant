@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface HAPhotoCollectionViewController : UICollectionViewController
 
 @property(nonatomic,assign) BOOL edited;

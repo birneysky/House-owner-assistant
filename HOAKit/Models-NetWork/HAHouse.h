@@ -70,4 +70,6 @@
 
 - (void) setValue:(float)value forChineseName:(NSString*)text;
 
+- (BOOL) isEqualToHouse:(HAHouse*)house;
+
 @end

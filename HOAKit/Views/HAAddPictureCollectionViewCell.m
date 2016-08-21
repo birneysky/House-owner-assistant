@@ -7,10 +7,12 @@
 //
 
 #import "HAAddPictureCollectionViewCell.h"
+#import "SDLoopProgressView.h"
 
 @interface HAAddPictureCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+@property (weak, nonatomic) IBOutlet SDLoopProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @end
 
@@ -32,6 +34,11 @@
 - (void)setImage:(UIImage *)image
 {
     self.imageView.image = image;
+}
+
+- (void)setUploadProgress:(double)uploadProgress
+{
+    self.progressView.progress = uploadProgress;
 }
 
 @end

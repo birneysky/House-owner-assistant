@@ -12,10 +12,17 @@
 #import "HARESTfulEngine.h"
 
 @interface HAHouseTypeTableViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *button;
+
 @property (nonatomic,strong) NSArray* dataSource;
 @property (nonatomic,assign) NSInteger selectedIndex;
 @property (nonatomic,strong) NSArray* rentTypeDataSource;
+@property (weak, nonatomic) IBOutlet UIButton *wholeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *singleBtn;
+
+@property (nonatomic,assign) BOOL isNewHouse;
+
+@property (nonatomic,copy) HAHouse* houseCopy;
+
 @end
 
 @implementation HAHouseTypeTableViewController
@@ -47,6 +54,20 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (self.house) {
+        self.selectedIndex = self.house.houseType - 1;
+        if (self.house.rentType == 1) {
+            self.wholeBtn.selected = YES;
+        }
+        else if (self.house.rentType == 2){
+            self.wholeBtn.selected = YES;
+        }
+        self.isNewHouse = NO;
+        self.houseCopy = self.house;
+    }
+    else{
+        self.isNewHouse = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,7 +111,13 @@
 {
     self.selectedIndex = indexPath.row;
     [tableView reloadData];
-    self.house.houseType = self.selectedIndex + 1;
+    if (self.isNewHouse) {
+         self.house.houseType = self.selectedIndex + 1;
+    }
+    else{
+        self.houseCopy.houseType = self.selectedIndex + 1;
+    }
+   
 }
 
 /*
@@ -150,12 +177,29 @@
 - (IBAction)okBtnClicked:(id)sender {
     self.house.landlordId = 1;
     self.house.houseNumber = @"9000-1234";
-    [[HARESTfulEngine defaultEngine] createNewHouseWithModel:self.house completion:^(HAJSONModel *object) {
-        NSLog(@"aModelBaseObject %@",[object toJsonString]);
-    } onError:^(NSError *engineError) {
+    if (self.isNewHouse) {
+        [[HARESTfulEngine defaultEngine] createNewHouseWithModel:self.house completion:^(HAJSONModel *object) {
+            NSLog(@"aModelBaseObject %@",[object toJsonString]);
+            [self performSegueWithIdentifier:@"push_publish_house" sender:sender];
+        } onError:^(NSError *engineError) {
+            
+        }];
+    }else{
+        BOOL change = ![self.house isEqualToHouse:self.houseCopy];
+        if (change) {
+            [[HARESTfulEngine defaultEngine] modifyHouseGeneralInfoWithID:self.houseCopy.houseId params:self.houseCopy completion:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            } onError:^(NSError *engineError) {
+                
+            }];
+        }
+        else{
+          [self.navigationController popViewControllerAnimated:YES];
+        }
         
-    }];
+    }
+
     
-    [self performSegueWithIdentifier:@"push_publish_house" sender:sender];
+ 
 }
 @end

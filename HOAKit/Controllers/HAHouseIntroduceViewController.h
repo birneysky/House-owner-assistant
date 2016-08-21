@@ -9,6 +9,18 @@
 #import <UIKit/UIKit.h>
 @class HAHouse;
 
+
+typedef NS_ENUM(NSInteger,PRTValidState) {
+    PRTValidStateNormal = 0b111111,
+    PRTValidStateTitle = 0b011111,
+    PRTValidStateDescription = 0b101111,
+    PRTValidStatePosition = 0b110111,
+    PRTValidStateTraffic = 0b111011,
+    
+    PRTValidStateSurroundings = 0b111101,
+    PRTValidStateRemarks = 0b111110
+};
+
 @interface HAHouseIntroduceViewController : UIViewController
 
 @property(nonatomic,strong) HAHouse* house;

@@ -45,5 +45,53 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HOAKit/Controllers/HAAddHousePhotoViewController.m"
+            timestampString = "493482808.890518"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "-editButtonClicked:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__51-[HAAddHousePhotoViewController editButtonClicked:]_block_invoke"
+                  moduleName = "House-owner-assistant"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/birney1/mysource/source_git/House-owner-assistant/HOAKit/Controllers/HAAddHousePhotoViewController.m"
+                  timestampString = "493488010.760374"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "377"
+                  endingLineNumber = "377"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__51-[HAAddHousePhotoViewController editButtonClicked:]_block_invoke_2"
+                  moduleName = "House-owner-assistant"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/birney1/mysource/source_git/House-owner-assistant/HOAKit/Controllers/HAAddHousePhotoViewController.m"
+                  timestampString = "493488010.760626"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "379"
+                  endingLineNumber = "379"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

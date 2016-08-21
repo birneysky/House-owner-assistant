@@ -11,12 +11,19 @@
 #import "CTAssetsPickerController.h"
 #import "HAPhotoCollectionViewController.h"
 #import "HARESTfulEngine.h"
+#import "HAPhotoItem.h"
+
 
 @interface HAAddHousePhotoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet HAPhotoCollectionViewController *photoCollectionViewController;
 @property (nonatomic,strong) NSMutableArray* selectedPhotoPathes;
+
+@property (nonatomic,strong) NSMutableDictionary* netOperationDic;
+
+@property (nonatomic,strong) NSMutableArray* photosArray;
+
 @end
 
 
@@ -49,6 +56,22 @@ NSString* gen_uuid()
     return _selectedPhotoPathes;
 }
 
+- (NSMutableDictionary*)netOperationDic
+{
+    if (!_netOperationDic) {
+        _netOperationDic = [[NSMutableDictionary alloc] init];
+    }
+    return _netOperationDic;
+}
+
+- (NSMutableArray*) photosArray
+{
+    if (!_photosArray) {
+        _photosArray = [[NSMutableArray alloc] init];
+    }
+    return _photosArray;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -59,6 +82,10 @@ NSString* gen_uuid()
     
     // Do any additional setup after loading the view.
 
+    self.photoCollectionViewController.datasource = self.selectedPhotoPathes;
+    //NSInteger count = self.photoCollectionViewController.datasource.count;
+    
+    //
 
 }
 
@@ -158,40 +185,11 @@ NSString* gen_uuid()
 
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
     
-//    dispatch_queue_t globalQueue = dispatch_queue_create("Com.WriteImageFile.Queue", DISPATCH_QUEUE_SERIAL);
-//     dispatch_async(globalQueue, ^{
-//         for (ALAsset * asset in assets)
-//         {
-//             CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
-//             CGImageRef thumbnailImg = asset.aspectRatioThumbnail;
-//             NSString * fileID = gen_uuid();
-//             const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
-    
-//             NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
-//             NSData* thumbnailData = UIImagePNGRepresentation([UIImage imageWithCGImage:thumbnailImg]);
-//             NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
-//             if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
-//             {
-//                 [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
-//             }
-//             
-//             NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
-//             NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@",fileID,@"thumbnail"];
-//             NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
-//             [self.selectedPhotoPathes addObject:thumbnailImgPath];
-//             
-//             [pngData writeToFile:fullImgfilePath atomically:YES];
-//             [thumbnailData writeToFile:thumbnailImgPath atomically:YES];
-             
-//         }
-         
-//         dispatch_async(dispatch_get_main_queue(), ^{
-//             self.photoCollectionViewController.datasource = [self.selectedPhotoPathes copy];
-//             [self.collectionView reloadData];
-//
-//         });
-     
-     //});
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+        //[self.collectionView reloadData];
+        
+    }];
     
     NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
@@ -199,49 +197,70 @@ NSString* gen_uuid()
         [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
-    
-    for (ALAsset * asset in assets)
-    {
-        CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
-        CGImageRef thumbnailImg = asset.aspectRatioThumbnail;
-        NSString * fileID = gen_uuid();
-        const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
-        
-        NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
-        NSData* thumbnailData = UIImagePNGRepresentation([UIImage imageWithCGImage:thumbnailImg]);
-        
-        
-        NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
-        NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.png",fileID,@"thumbnail"];
-        NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
-        [self.selectedPhotoPathes addObject:thumbnailImgPath];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (ALAsset * asset in assets)
+        {
+            CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
+            CGImageRef thumbnailImg = asset.aspectRatioThumbnail;
+            NSString * fileID = gen_uuid();
+            const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
+            
+            NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
+            NSData* thumbnailData = UIImagePNGRepresentation([UIImage imageWithCGImage:thumbnailImg]);
+            NSData* thumbnailJPGData = UIImageJPEGRepresentation([UIImage imageWithCGImage:thumbnailImg], 1);
+            
+            
+            NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
+            NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",fileID,@"thumbnail"];
+            NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
+            HAPhotoItem* allocItem = [[HAPhotoItem alloc] init];
+            allocItem.path = thumbnailImgPath;
+            allocItem.progress = 0;
+            [self.selectedPhotoPathes addObject:allocItem];
+            //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             
             [pngData writeToFile:fullImgfilePath atomically:YES];
-            [thumbnailData writeToFile:thumbnailImgPath atomically:YES];
-
-        });
+            [thumbnailJPGData writeToFile:thumbnailImgPath atomically:YES];
+            
+            
+            [self.collectionView reloadData];
+            
+            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] uploadHouseImageWithPath:thumbnailImgPath completion:^(HAHouseImage *obj) {
+                obj.userId = self.house.landlordId;
+                obj.houseId = self.house.houseId;
+                [self.photosArray addObject:obj];
+            } progress:^(NSString *certificate, float progress) {
+                NSInteger index = [self.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                item.progress = progress;
+                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+            } onError:^(NSError *engineError) {
+                
+            }];
+//            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] uploadHouseImageWithPath:thumbnailImgPath completion:(void (^)(HAHouseImage* obj)){
+//                
+//            } progress:^(NSString* certificate, float progress) {
+//                NSInteger index = [self.netOperationDic[certificate] integerValue];
+//                HAPhotoItem* item = self.selectedPhotoPathes[index];
+//                item.progress = progress;
+//                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+//            }];
+            //NSLog(@"key %@",op.clientCertificate);
+            [self.netOperationDic setObject:@(self.selectedPhotoPathes.count-1) forKey:op.clientCertificate];
+            //});
+            
+        }
         
-    }
+        
+ 
+
+    });
 
     
-    [picker dismissViewControllerAnimated:YES completion:^{
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.photoCollectionViewController.datasource = [self.selectedPhotoPathes copy];
-            NSInteger count = self.photoCollectionViewController.datasource.count;
-            //[self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:count - 1 inSection:0]]];
-            [self.collectionView reloadData];
-        });
 
-    }];
 
-    [[HARESTfulEngine defaultEngine] uploadHouseImageWithPath:self.selectedPhotoPathes[0] completion:^{
-        
-    } progress:^(float progress) {
-        
-    }];
 }
 
 #pragma mark - image picker delegate
@@ -350,7 +369,14 @@ NSString* gen_uuid()
     NSArray* array = [self.collectionView indexPathsForVisibleItems];
     NSArray* arrayCell = [self.collectionView visibleCells];
 
-    [self.collectionView reloadItemsAtIndexPaths:array];//self.collectionView.indexPathsForVisibleItems;
+    [self.collectionView reloadItemsAtIndexPaths:array];//
+    
+    
+    [[HARESTfulEngine defaultEngine] relationshipBetweenHousesAndPictures:([self.photosArray copy]) completion:^{
+        
+    } onError:^(NSError *engineError) {
+        
+    }];self.collectionView.indexPathsForVisibleItems;
 //     [self.photoCollectionViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
     //[self.collectionView reloadData];
 }

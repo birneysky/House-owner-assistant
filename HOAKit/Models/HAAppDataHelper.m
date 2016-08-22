@@ -70,7 +70,7 @@
 {
     NSArray* array = @[@"双人床",@"单人床",@"双层床",@"单人沙发床",@"双人沙发床",@"儿童床",@"园床",@"气垫床"];
     NSInteger index = [array indexOfObject:name];
-    if (index > 0) {
+    if (index >= 0) {
         return index + 1;
     }
     return index;

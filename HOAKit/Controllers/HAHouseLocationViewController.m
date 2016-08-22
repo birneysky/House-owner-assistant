@@ -25,9 +25,13 @@
 @property (weak, nonatomic) IBOutlet UIView *locationView;
 @property (weak, nonatomic) IBOutlet UIView *locationPromptView;
 @property (weak, nonatomic) IBOutlet UIImageView *locationPointImgView;
+@property (strong, nonatomic) IBOutlet UILabel *textViewInputingLabel;
 
 @property(nonatomic,strong) UIDynamicAnimator* animator;
 @property(nonatomic,strong) HALeapBehavior* behavior;
+@property(nonatomic,assign) HAValueValidState validFlag;
+
+@property (nonatomic,copy) HAHouse* houseCopy;
 
 @end
 
@@ -69,6 +73,11 @@
     return _house;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidEndEditingNotification object:nil];
+}
+
 #pragma mark - *** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,11 +88,9 @@
     UIImageView* rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Arrow_Right"]];
     self.cityAddressTextfield.leftView = leftView;
     self.cityAddressTextfield.rightView = rightView;
-    
-    if (!_house) {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-    }
-    else{
+    self.validFlag = HAValueValidStateNormal;
+    if(_house)
+    {
         self.navigationItem.rightBarButtonItem.title = @"确定";
         self.fullAddressTextfield.text = self.house.address;
         self.cityAddressTextfield.text = [HAAppDataHelper provincesAndCityAddress:self.house.province city:self.house.city distict:self.house.distict];
@@ -93,8 +100,11 @@
         CLLocationCoordinate2D coord = [loc coordinate];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
         [self.mapView setRegion:region animated:YES];
+        self.houseCopy = self.house;
     }
     
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
 //    CLLocationCoordinate2D touchMapCoordinate =
 //        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
 }
@@ -186,6 +196,22 @@
     return YES;
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (self.fullAddressTextfield == textField) {
+        if(self.validFlag | HAValueValidStateNormal == HAValueValidStateDetailAddress)
+        {
+            self.textViewInputingLabel.text = @"     请输1-60个字";
+        }
+    }
+    else if (self.houseNumberTextfield == textField){
+        if (self.validFlag | HAValueValidStateNormal == HAValueValidStateHouseNumber) {
+            self.textViewInputingLabel.text = @"    请输1-30个字";
+        }
+    }
+    return YES;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (self.fullAddressTextfield == textField) {
@@ -206,7 +232,7 @@
     }
 }
 
-#pragma mark - *** ***
+#pragma mark - *** Helper ***
 - (void)geocodeAddressString:(NSString*)address{
     CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
     [myGeocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -225,7 +251,7 @@
             CLLocationCoordinate2D coord = [loc coordinate];
             MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
             [self.mapView setRegion:region animated:YES];
-            self.navigationItem.rightBarButtonItem.enabled = YES;
+            //self.navigationItem.rightBarButtonItem.enabled = YES;
         }
         else if ([placemarks count] == 0 && error == nil) {
             NSLog(@"Found no placemarks.");
@@ -233,6 +259,71 @@
             NSLog(@"An error occurred = %@", error);
         }
     }];
+}
+
+- (BOOL) limitTextViewTextLengthMin:(NSInteger)min max:(NSInteger)max textField:(UITextField*)textField warningText:(NSString*)text
+{
+    BOOL flag = NO;
+    self.textViewInputingLabel.text = [NSString stringWithFormat:@"    %@",text];
+    if (textField.text.length < min) {
+        textField.inputAccessoryView = self.textViewInputingLabel;
+        flag = NO;
+    }
+    else if(textField.text.length > max){
+        textField.inputAccessoryView = self.textViewInputingLabel;
+        flag = NO;
+    }
+    else{
+        textField.inputAccessoryView = nil;
+        flag = YES;
+    }
+    [textField reloadInputViews];
+    return flag;
+}
+
+#pragma mark - *** Notification Selector ***
+- (void)textFieldTextDidChange:(NSNotification*)notification
+{
+    UITextField* textField = notification.object;
+    
+    BOOL valid = YES;
+    BOOL change = NO;
+    if (textField == self.fullAddressTextfield) {
+        valid = [self limitTextViewTextLengthMin:1 max:60 textField:textField warningText:@"请输1-60个字"];
+        self.houseCopy.address = textField.text;
+        //change = ![self.houseCopy.title isEqualToString:self.house.title];
+        if (!valid) {
+            self.validFlag &= HAValueValidStateDetailAddress;
+        }
+        else{
+            self.validFlag |= ~ HAValueValidStateDetailAddress;
+        }
+    }
+    
+    if (textField == self.cityAddressTextfield) {
+        
+    }
+    
+    if (textField == self.houseNumberTextfield) {
+        valid = [self limitTextViewTextLengthMin:1 max:30 textField:textField warningText:@"请输1-30个字"];
+        self.houseCopy.houseNumber = textField.text;
+        
+        if (!valid) {
+            self.validFlag &= HAValueValidStateHouseNumber;
+        }
+        else{
+            self.validFlag |= ~ HAValueValidStateHouseNumber;
+        }
+    }
+    
+    change = ![self.house isEqualToHouse:self.houseCopy];
+    BOOL validTest = (self.validFlag & HAValueValidStateNormal) == HAValueValidStateNormal;
+    if (change && validTest) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 @end

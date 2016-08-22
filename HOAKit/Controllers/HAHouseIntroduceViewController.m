@@ -168,6 +168,43 @@
    // rect = [self.scrollView convertRect:rect fromView:nil];
 //    NSLog(@"scroll frame %@,contentsize %@,contentofffset %@,torect %@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize),NSStringFromCGPoint(self.scrollView.contentOffset),NSStringFromCGRect(rect));
     [self.scrollView scrollRectToVisible:rect animated:YES];
+    
+    if (self.titleTextView == textView) {
+        if(self.validFlag | PRTValidStateTitle == PRTValidStateTitle)
+        {
+            self.textViewInputingLabel.text = @"   请输入5-20个字";
+        }
+    }
+    else if (self.houseDescriptionTextView == textView){
+        if(self.validFlag | PRTValidStateDescription == PRTValidStateDescription)
+        {
+            self.textViewInputingLabel.text = @"   请输入0-250个字";
+        }
+    }
+    else if (self.houseLocationTextView == textView){
+        if(self.validFlag | PRTValidStatePosition == PRTValidStatePosition)
+        {
+            self.textViewInputingLabel.text = @"   请输入0-250个字";
+        }
+    }
+    else if (self.houseTrafficTextView == textView){
+        if(self.validFlag | PRTValidStateTraffic == PRTValidStateTraffic)
+        {
+            self.textViewInputingLabel.text = @"   请输入0-250个字";
+        }
+    }
+    else if (self.houseLiftTextView == textView){
+        if(self.validFlag | PRTValidStateSurroundings == PRTValidStateSurroundings)
+        {
+            self.textViewInputingLabel.text = @"   请输入0-250个字";
+        }
+    }
+    else if (self.houseCommentTextView == textView){
+        if(self.validFlag | PRTValidStateRemarks == PRTValidStateRemarks)
+        {
+            self.textViewInputingLabel.text = @"   请输入0-250个字";
+        }
+    }
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
@@ -236,7 +273,7 @@
     NSInteger length = textView.text.length;
     BOOL valid = YES;
     BOOL change = NO;
-    
+
     if(textView == self.titleTextView){
         valid = [self limitTextViewTextLengthMin:5 max:20 textView:textView warningText:@"请输入5-20个字"];
                self.houseCopy.title = textView.text;
@@ -261,7 +298,7 @@
         }
     }
     else if (self.houseLocationTextView == textView){
-        valid = [self limitTextViewTextLengthMin:0 max:250 textView:self.titleTextView warningText:@"请输入0-250个字"];
+        valid = [self limitTextViewTextLengthMin:0 max:250 textView:textView warningText:@"请输入0-250个字"];
         self.houseCopy.position = textView.text;
         if (!valid) {
             self.validFlag &= PRTValidStatePosition;
@@ -271,7 +308,7 @@
         }
     }
     else if (self.houseTrafficTextView == textView){
-        valid = [self limitTextViewTextLengthMin:0 max:250 textView:self.titleTextView warningText:@"请输入0-250个字"];
+        valid = [self limitTextViewTextLengthMin:0 max:250 textView:textView warningText:@"请输入0-250个字"];
         self.houseCopy.traffic = textView.text;
         if (!valid) {
             self.validFlag &= PRTValidStateTraffic;
@@ -280,7 +317,7 @@
         }
     }
     else if (self.houseLiftTextView == textView){
-        valid = [self limitTextViewTextLengthMin:0 max:250 textView:self.titleTextView warningText:@"请输入0-250个字"];
+        valid = [self limitTextViewTextLengthMin:0 max:250 textView:textView warningText:@"请输入0-250个字"];
         self.houseCopy.surroundings = textView.text;
         if (!valid) {
             self.validFlag &= PRTValidStateSurroundings;

@@ -73,6 +73,9 @@
    self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
     
     self.houseCopy = self.house;
+    if (self.house) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

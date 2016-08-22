@@ -129,7 +129,17 @@
 #pragma mark - *** HAEditHouseBenViewControllerDelegate ***
 - (void)houseBedInfoDidEndEditing:(HAHouseBed *)bed
 {
-    [self.beds addObject:bed];
+    __block BOOL exist = NO;
+    [self.beds enumerateObjectsUsingBlock:^(HAHouseBed * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.bedId == bed.bedId) {
+            exist = YES;
+            *stop = YES;
+        }
+    }];
+    if (!exist) {
+      [self.beds addObject:bed];
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -151,6 +161,7 @@
         //UITableViewCell* cell = sender;
         NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
         vc.bed = self.beds[indexPath.row];
+        vc.delegate = self;
         
     }
 }

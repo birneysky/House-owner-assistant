@@ -146,7 +146,7 @@ static HARESTfulEngine* defaultEngine;
             fullInfo.house = houseObj;
             
             NSMutableArray* beds = [NSMutableArray array];
-            if([houseBeds isKindOfClass:[NSArray alloc]])
+            if([houseBeds isKindOfClass:[NSArray class]])
             [houseBeds enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 HAHouseBed* bed = [[HAHouseBed alloc] initWithDictionary:obj];
                 [beds addObject:bed];
@@ -154,7 +154,7 @@ static HARESTfulEngine* defaultEngine;
             fullInfo.beds = [beds copy];
             
             NSMutableArray* comments = [NSMutableArray array];
-             if([houseComments isKindOfClass:[NSArray alloc]])
+             if([houseComments isKindOfClass:[NSArray class]])
             [houseComments enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 HAHouseComment* commnet  = [[HAHouseComment alloc] initWithDictionary:obj];
                 [comments addObject:commnet];
@@ -162,7 +162,7 @@ static HARESTfulEngine* defaultEngine;
             fullInfo.comments = [comments copy];
             
             NSMutableArray* images = [NSMutableArray array];
-             if([houseImages isKindOfClass:[NSArray alloc]])
+             if([houseImages isKindOfClass:[NSArray class]])
             [houseImages enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 HAHouseImage* image = [[HAHouseImage alloc] initWithDictionary:obj];
                 image.houseId = houseObj.houseId;
@@ -171,7 +171,7 @@ static HARESTfulEngine* defaultEngine;
             fullInfo.images = [images copy];
             
             NSMutableArray* positions = [NSMutableArray array];
-            if([housePositions isKindOfClass:[NSArray alloc]])
+            if([housePositions isKindOfClass:[NSArray class]])
             [housePositions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 HAHousePosition* postion = [[HAHousePosition alloc] initWithDictionary:obj];
                 [positions addObject:postion];

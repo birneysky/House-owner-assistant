@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "HAHouse.h"
+#import "HAHouseImage.h"
 
 @interface HAAddHousePhotoViewController : UIViewController
 
 @property(nonatomic,strong) HAHouse* house;
+
+@property(nonatomic,copy) NSArray<HAHouseImage*>* photoes;
 
 @end

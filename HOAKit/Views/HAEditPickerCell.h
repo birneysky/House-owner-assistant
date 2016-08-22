@@ -14,6 +14,9 @@
 
 - (void)selectItemDoneForPickerTextField:(UITextField*)textfield
                                 fromCell:(UITableViewCell*) cell;
+
+- (BOOL) textFieldShouldBeginEditing:(UITextField*)textField
+                            fromCell:(UITableViewCell*)cell;
 @end
 
 

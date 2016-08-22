@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HAPhotoItem.h"
 
 @interface HAPhotoCollectionViewController : UICollectionViewController
 
 @property(nonatomic,assign) BOOL edited;
 
-@property (nonatomic,strong) NSArray* datasource;
+@property (nonatomic,strong) NSMutableArray<HAPhotoItem*>* datasource;
 
 @end

@@ -190,4 +190,33 @@ typedef void (^ErrorBlock)(NSError* engineError);
                                       onError:(ErrorBlock)errorBlcok;
 
 
+
+/**
+ *  下载房源图片
+ *
+ *  @param array           位置对象数组 HAHousePosition
+ *  @param completion      网络请求结束 block
+ *  @param errorBlcok      调用出错 block
+ *
+ */
+
+- (MKNetworkOperation*) downloadHouseImageWithPath:(NSString*)path
+                                      completion:(void (^)(NSString* certificate, NSString* fileName))completion
+                                        progress:(void (^)(NSString* certificate, float progress))progressBlock
+                                         onError:(ErrorBlock)errorBlcok;
+
+
+
+/**
+ *  删除房源图片
+ *
+ *  @param array           位置对象数组 HAHousePosition
+ *  @param completion      网络请求结束 block
+ *  @param errorBlcok      调用出错 block
+ *
+ */
+
+- (void) delteHouseImageWithImageId:(NSInteger)imgId
+                                        completion:(VoidBlock)completion
+                                           onError:(ErrorBlock)errorBlcok;
 @end

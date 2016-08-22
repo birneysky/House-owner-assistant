@@ -14,6 +14,12 @@
 @optional
 - (void) textFieldDidEndEditing:(UITextField*)textfield
                                 fromCell:(UITableViewCell*) cell;
+- (void) textFieldTextDidChange:(UITextField*)textfield
+                     changeText:(NSString*)text
+                       fromCell:(UITableViewCell*) cell;
+
+- (BOOL) textFieldShouldBeginEditing:(UITextField*)textField
+                            fromCell:(UITableViewCell*)cell;
 @end
 
 @interface HAEditorNumberCell : UITableViewCell

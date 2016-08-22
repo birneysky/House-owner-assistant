@@ -32,11 +32,10 @@
     return _textField;
 }
 
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.textLabel.font = [UIFont systemFontOfSize:15.0f];
-    self.accessoryView = self.textField;    
+    self.accessoryView = self.textField;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -62,4 +61,21 @@
     }
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(textFieldShouldBeginEditing:fromCell:)]) {
+        return [self.delegate textFieldShouldBeginEditing:textField fromCell:self];
+    }
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if ([self.delegate respondsToSelector:@selector(textFieldTextDidChange: changeText: fromCell:)]) {
+        [self.delegate textFieldTextDidChange:textField changeText:toBeString fromCell:self];
+    }
+    return YES;
+}
 @end

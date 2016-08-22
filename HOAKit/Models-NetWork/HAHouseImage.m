@@ -22,6 +22,7 @@
     NSDictionary* dic = [super toFullDictionary];
     NSMutableDictionary* mutableDic = [[NSMutableDictionary alloc] initWithDictionary:dic copyItems:NO];
     [mutableDic removeObjectForKey:@"imageId"];
+    [mutableDic setObject:@(self.imageId) forKey:@"id"];
     return [mutableDic copy];
 }
 

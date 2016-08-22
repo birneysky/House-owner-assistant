@@ -10,9 +10,11 @@
 #import "HAAddPictureCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "HAPhotoItem.h"
+#import "HARESTfulEngine.h"
 
 @interface HAPhotoCollectionViewController ()<HAAddPictureCollectionViewCellDelegate>
 
+@property (nonatomic,weak) UICollectionView* collectionViewTemp;
 
 @end
 
@@ -27,7 +29,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[HAAddPictureCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
 }
@@ -51,7 +53,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
+    self.collectionViewTemp = collectionView;
     return 1;
 }
 
@@ -84,11 +86,15 @@ static NSString * const reuseIdentifier = @"Cell";
     CGRect rect = [UIScreen mainScreen].bounds;
     if (0 == indexPath.row) {
         CGFloat width = rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right;
-       return  CGSizeMake(width, width * 0.75);
+       return  CGSizeMake(width, width * 0.56);
     }
     else{
+        CGFloat left = flowLayout.sectionInset.left;
+        CGFloat right = flowLayout.sectionInset.right;
+        CGFloat minimumInteritemSpacing = flowLayout.minimumInteritemSpacing;
+        CGFloat lineSpace = flowLayout.minimumLineSpacing;
         CGFloat width = (rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumLineSpacing * 2) / 3;
-        return CGSizeMake(width, width * 0.75);
+        return CGSizeMake(floor(width) , floor(width));
     }
     
 }
@@ -128,5 +134,20 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     _datasource = datasource;
 }
+
+
+#pragma mark - *** HAAddPictureCollectionViewCellDelegate ***
+- (void)deleteItemFromCell:(UICollectionViewCell *)cell
+{
+    NSIndexPath* indexPath = [self.collectionViewTemp indexPathForCell:cell];
+    HAPhotoItem* item = self.datasource[indexPath.row];
+    [[HARESTfulEngine defaultEngine] delteHouseImageWithImageId:item.imageId completion:^{
+        [self.datasource removeObjectAtIndex:indexPath.row];
+        [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+    } onError:^(NSError *engineError) {
+        
+    }];
+}
+
 
 @end

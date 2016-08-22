@@ -68,7 +68,8 @@
 
 - (BOOL) boolValueOfChineseName:(NSString*)text;
 
-- (void) setValue:(float)value forChineseName:(NSString*)text;
+// 输入的数据有效，返回YES，超出范围返回NO
+- (BOOL) setValue:(NSString*)value forChineseName:(NSString*)text;
 
 - (BOOL) isEqualToHouse:(HAHouse*)house;
 

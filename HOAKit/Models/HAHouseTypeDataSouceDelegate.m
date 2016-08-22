@@ -87,7 +87,9 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    return 100.0f;
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    return floor(size.width / 4);
+
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component

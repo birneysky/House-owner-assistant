@@ -14,6 +14,9 @@
 @optional
 -(void)offONButtonChangedFromCell:(UITableViewCell*)cell sender:(UIButton*)sender;
 
+- (BOOL) offOnButtonShouldResponseEvent:(UIButton*)offOnBtn
+                            fromCell:(UITableViewCell*)cell;
+
 @end
 
 @interface HAOffOnCell : UITableViewCell

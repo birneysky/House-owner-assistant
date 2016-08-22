@@ -10,6 +10,7 @@
 
 @interface HAPhotoItem : NSObject
 
+@property (nonatomic,assign) NSInteger imageId;
 
 @property (copy,nonatomic) NSString* path;
 

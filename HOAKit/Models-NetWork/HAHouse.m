@@ -41,7 +41,7 @@
     [mutableDic removeObjectForKey:@"houseId"];
     [mutableDic setObject:@(self.houseId) forKey:@"id"];
     [mutableDic removeObjectForKey:@"houseDescription"];
-    [mutableDic setObject:self.houseDescription forKey:@"description"];
+    [mutableDic setObject:self.houseDescription ? self.houseDescription : [NSNull null] forKey:@"description"];
     return [mutableDic copy];
 }
 
@@ -141,34 +141,61 @@
     return value;
 }
 
-- (void) setValue:(float)value forChineseName:(NSString*)text
+- (BOOL) setValue:(NSString*)value forChineseName:(NSString*)text
 {
     //@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"
+    BOOL valid = YES;
     if ([text isEqualToString:@"3天折扣"]) {
-        self.type3Rate = value * 10;
+        self.type3Rate = [value floatValue]* 10;
     }
     
     if ([text isEqualToString:@"7天折扣"]) {
-        self.type7Rate = value * 10;
+        self.type7Rate = [value floatValue] * 10;
     }
     
     if ([text isEqualToString:@"15天折扣"]) {
-        self.type15Rate = value * 10;
+        self.type15Rate = [value floatValue]* 10;
     }
     
     if ([text isEqualToString:@"30天折扣"]) {
-        self.type30Rate = value * 10;
+        self.type30Rate = [value floatValue]* 10;
     }
     
     if([text isEqualToString:@"日价"])
     {
-        self.price = value;
+        self.price = [value floatValue];
     }
     
     if([text isEqualToString:@"押金"])
     {
-        self.depositAmount = value;
+        self.depositAmount = [value floatValue];
     }
+    
+    if ([text isEqualToString:@"房屋面积"]) {
+        self.area = value;
+    }
+    
+    if ([text isEqualToString:@"几位访客"]) {
+        self.toliveinNumber = [value integerValue];
+    }
+    
+    if ([self.area floatValue] > 99999) {
+        valid = NO;
+    }
+    
+    if (self.price > 99999) {
+        valid = NO;
+    }
+    
+    if (self.depositAmount > 99999) {
+        valid = NO;
+    }
+    
+    if(self.toliveinNumber > 10 )
+    {
+        valid = NO;
+    }
+    return valid;
 }
 
 @end

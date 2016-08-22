@@ -51,7 +51,7 @@
     self.textField.pickerView.dataSource = self.dataSourceDelegate;
     self.textField.pickerView.delegate = self.dataSourceDelegate;
     self.dataSourceDelegate.resultDelegate = self;
-    
+    self.textField.delegate = self;
     self.accessoryView = self.textField;
 }
 
@@ -89,4 +89,13 @@
 }
 
 
+#pragma mark - *** UITextFieldDelegate ***
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(textFieldShouldBeginEditing:fromCell:)]) {
+        return [self.delegate textFieldShouldBeginEditing:textField fromCell:self];
+    }
+    return YES;
+}
 @end

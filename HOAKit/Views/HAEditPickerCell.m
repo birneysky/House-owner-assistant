@@ -90,4 +90,12 @@
   
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(textFieldShouldBeginEditing:fromCell:)]) {
+        return [self.delegate textFieldShouldBeginEditing:textField fromCell:self];
+    }
+    return YES;
+}
+
 @end

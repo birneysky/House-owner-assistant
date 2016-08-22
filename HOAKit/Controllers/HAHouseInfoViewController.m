@@ -16,13 +16,16 @@
 
 @interface HAHouseInfoViewController ()<HAHouseTypeSelectDetailResult,HAHouseBathrommSelectDetailResult,HAEditorNumberCellDelegate>
 
+@property (strong, nonatomic) IBOutlet UILabel *textViewInputingLabel;
 @property(nonatomic,strong) NSArray* dataSource;
 
 @property(nonatomic,strong) HAHouseTypeDataSouceDelegate* houseTypeDataSource;
 
 @property(nonatomic,strong) HABathroomDataSourceDelegate* bathroomDataSource;
 
-@property (nonatomic,copy) HAHouse* houseNew;
+@property (nonatomic,copy) HAHouse* houseCopy;
+
+@property (nonatomic,assign) BOOL invalidFlag;
 
 @end
 
@@ -69,7 +72,7 @@
     
    self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
     
-    self.houseNew = self.house;
+    self.houseCopy = self.house;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,6 +149,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.invalidFlag) {
+        return;
+    }
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell.accessoryView becomeFirstResponder];
 }
@@ -201,7 +207,7 @@
     
     [self.view endEditing:YES];
     
-    [[HARESTfulEngine defaultEngine] modifyHouseGeneralInfoWithID:self.house.houseId params:self.houseNew completion:^{
+    [[HARESTfulEngine defaultEngine] modifyHouseGeneralInfoWithID:self.houseCopy.houseId params:self.houseCopy completion:^{
         [self.navigationController popViewControllerAnimated:YES]; 
     } onError:^(NSError *engineError) {
         
@@ -214,30 +220,74 @@
 #pragma mark - *** HAHouseTypeSelectDetailResult ***
 - (void)didSelectRoom:(NSInteger)rNum hall:(NSInteger)hallNum cookroom:(NSInteger)cookNum balcony:(NSInteger)bNum
 {
-    self.houseNew.roomNumber = rNum;
-    self.houseNew.hallNumber = hallNum;
-    self.houseNew.kitchenNumber = cookNum;
-    self.houseNew.balconyNumber = bNum;
+    self.houseCopy.roomNumber = rNum;
+    self.houseCopy.hallNumber = hallNum;
+    self.houseCopy.kitchenNumber = cookNum;
+    self.houseCopy.balconyNumber = bNum;
 }
 
 - (void) didSelectPublicBathroom:(NSInteger) pubNum privateBathroom:(NSInteger)privateNum
 {
-    self.houseNew.publicToiletNumber = pubNum;
-    self.houseNew.toiletNumber = privateNum;
+    self.houseCopy.publicToiletNumber = pubNum;
+    self.houseCopy.toiletNumber = privateNum;
 }
 
-
+#pragma mark - *** HAEditorNumberCellDelegate ***
 - (void) textFieldDidEndEditing:(UITextField*)textfield
                        fromCell:(UITableViewCell*) cell
 {
+//    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+//    NSString* text = self.dataSource[indexPath.row];
+//    
+//    if ([text isEqualToString:@"房屋面积"]) {
+//        self.houseNew.area = textfield.text;
+//    }
+//    if ([text isEqualToString:@"几位访客"]) {
+//        self.houseNew.toliveinNumber = [textfield.text integerValue];
+//    }
+}
+
+- (BOOL) textFieldShouldBeginEditing:(UITextField*)textField
+                            fromCell:(UITableViewCell*)cell
+{
+    if(self.invalidFlag) return NO;
+    else return YES;
+}
+
+- (void) textFieldTextDidChange:(UITextField*)textfield
+                     changeText:(NSString*)text
+                       fromCell:(UITableViewCell*) cell{
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-    NSString* text = self.dataSource[indexPath.row];
-    
-    if ([text isEqualToString:@"房屋面积"]) {
-        self.houseNew.area = textfield.text;
+    NSString* textTitle = self.dataSource[indexPath.row];
+//    
+    if ([textTitle isEqualToString:@"房屋面积"]) {
+//        self.houseCopy.area = textfield.text;
+        self.textViewInputingLabel.text = @"    请输入0-99999数值";
     }
-    if ([text isEqualToString:@"几位访客"]) {
-        self.houseNew.toliveinNumber = [textfield.text integerValue];
+    if ([textTitle isEqualToString:@"几位访客"]) {
+//        self.houseCopy.toliveinNumber = [textfield.text integerValue];
+         self.textViewInputingLabel.text = @"    请输入0-10数值";
+    }
+    
+    BOOL valid = [self.houseCopy setValue:text forChineseName:textTitle];
+    if (!valid) {
+        self.invalidFlag = YES;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        textfield.inputAccessoryView = self.textViewInputingLabel;
+        [textfield reloadInputViews];
+    }
+    else{
+        textfield.inputAccessoryView = nil;
+        [textfield reloadInputViews];
+        self.invalidFlag = NO;
+    }
+    
+    BOOL change = ![self.house isEqualToHouse:self.houseCopy];
+    if (valid&&change) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 

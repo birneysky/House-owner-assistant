@@ -146,6 +146,7 @@ static HARESTfulEngine* defaultEngine;
             fullInfo.house = houseObj;
             
             NSMutableArray* beds = [NSMutableArray array];
+            if([houseBeds isKindOfClass:[NSArray alloc]])
             [houseBeds enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 HAHouseBed* bed = [[HAHouseBed alloc] initWithDictionary:obj];
                 [beds addObject:bed];
@@ -153,6 +154,7 @@ static HARESTfulEngine* defaultEngine;
             fullInfo.beds = [beds copy];
             
             NSMutableArray* comments = [NSMutableArray array];
+             if([houseComments isKindOfClass:[NSArray alloc]])
             [houseComments enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 HAHouseComment* commnet  = [[HAHouseComment alloc] initWithDictionary:obj];
                 [comments addObject:commnet];
@@ -160,19 +162,23 @@ static HARESTfulEngine* defaultEngine;
             fullInfo.comments = [comments copy];
             
             NSMutableArray* images = [NSMutableArray array];
+             if([houseImages isKindOfClass:[NSArray alloc]])
             [houseImages enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                //
-                //[images addObject:];
+                HAHouseImage* image = [[HAHouseImage alloc] initWithDictionary:obj];
+                image.houseId = houseObj.houseId;
+                [images addObject: image];
             }];
             fullInfo.images = [images copy];
             
             NSMutableArray* positions = [NSMutableArray array];
+            if([housePositions isKindOfClass:[NSArray alloc]])
             [housePositions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 HAHousePosition* postion = [[HAHousePosition alloc] initWithDictionary:obj];
                 [positions addObject:postion];
             }];
             fullInfo.positions = [positions copy];
             
+            if([houseFacility isKindOfClass:[NSDictionary class]])
             fullInfo.facility = [[HAHouseFacility alloc] initWithDictionary:houseFacility];
             
             
@@ -309,7 +315,7 @@ static HARESTfulEngine* defaultEngine;
                           onError:(ErrorBlock)errorBlcok
 {
     HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:@"api/houses/images/"  params:nil httpMethod:@"POST"];
-    NSLog(@"op %p",op);
+
     op.clientCertificate = [NSString stringWithFormat:@"%p",op];
     [op addFile:path forKey:@"file" mimeType:@"image/jpg"];
     
@@ -351,20 +357,71 @@ static HARESTfulEngine* defaultEngine;
                                       onError:(ErrorBlock)errorBlcok
 {
     __block HAHouseImage* houseImage = imageArray.firstObject;
-    NSMutableString* pathes = [[NSMutableString alloc] init];
+    NSMutableArray* mutableArray = [[NSMutableArray alloc] init];
     [imageArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (idx >0)
-            houseImage.imagePath = [houseImage.imagePath stringByAppendingFormat:@";%@",obj.imagePath];
+//        if (idx >0)
+//            houseImage.imagePath = [houseImage.imagePath stringByAppendingFormat:@";%@",obj.imagePath];
+        [mutableArray addObject:[obj toFullDictionary]];
     }];
 
     
-    [self httpRequestWithPath:@"api/house_images/relation" generalParams:[houseImage toFullDictionary] httpMethod:@"POST" completion:^(NSObject *object) {
-        
+    [self httpRequestWithPath:@"api/house_images/relation" generalParams:[mutableArray copy ] httpMethod:@"PUT" completion:^(NSObject *object) {
+        completion();
     } onError:^(NSError *engineError) {
-        
+        errorBlcok(engineError);
     }];
 }
 
+
+
+- (MKNetworkOperation*) downloadHouseImageWithPath:(NSString*)path
+                                        completion:(void (^)(NSString* certificate, NSString* fileName))completion
+                                          progress:(void (^)(NSString* certificate, float progress))progressBlock
+                                           onError:(ErrorBlock)errorBlcok
+{
+    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:path];
+    
+    op.clientCertificate = [NSString stringWithFormat:@"%p",op];
+    
+    NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    {
+        [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    NSString* targetFilePath = [filePath stringByAppendingPathComponent:[path lastPathComponent]];
+    [op addDownloadStream:[NSOutputStream outputStreamToFileAtPath:targetFilePath append:YES]];
+    [op addCompletionHandler:^(MKNetworkOperation* completedOperation) {
+        
+        NSMutableDictionary* responseDictionary = [completedOperation responseJSON];
+        completion(op.clientCertificate,[path lastPathComponent]);
+        
+    } errorHandler:^(MKNetworkOperation *errorOp, NSError* err){
+        (errorBlcok);
+    }];
+    
+    [self enqueueOperation:op];
+    
+    [op onDownloadProgressChanged:^(double progress) {
+        progressBlock(op.clientCertificate,progress);
+        // DLog(@"Upload file progress: %.2f", progress*100.0);
+    }];
+
+    return op;
+}
+
+
+- (void) delteHouseImageWithImageId:(NSInteger)imgId
+                                        completion:(VoidBlock)completion
+                                           onError:(ErrorBlock)errorBlcok
+{
+    NSString* path = [NSString stringWithFormat:@"api/house_images/%d",imgId];
+     //HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:path params:nil httpMethod:@"DELETE"];
+    [self httpRequestWithPath:path generalParams:@{@"id":@(imgId)} httpMethod:@"DELETE" completion:^(NSObject *object) {
+        completion();
+    } onError:^(NSError *engineError) {
+        errorBlcok(engineError);
+    }];
+}
 
 @end
 

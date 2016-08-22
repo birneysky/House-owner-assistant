@@ -51,6 +51,12 @@
 #pragma mark - *** Target Action ***
 - (void)switchChange:(id)sender
 {
+    if ([self.delegate respondsToSelector:@selector(offOnButtonShouldResponseEvent:fromCell:)]) {
+        BOOL should = [self.delegate offOnButtonShouldResponseEvent:sender fromCell:self];
+        if (!should) {
+            return;
+        }
+    }
     self.onOff.selected = !self.onOff.selected;
     _accessoryViewSelected = self.onOff.selected;
     if ([self.delegate respondsToSelector:@selector(offONButtonChangedFromCell:sender:)]) {

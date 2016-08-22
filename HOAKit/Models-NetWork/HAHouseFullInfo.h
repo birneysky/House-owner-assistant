@@ -12,12 +12,13 @@
 #import "HAHouseFacility.h"
 #import "HAHouse.h"
 #import "HAHousePosition.h"
+#import "HAHouseImage.h"
 
 @interface HAHouseFullInfo : NSObject
 
-@property (nonatomic,strong) NSArray<HAHouseBed*>* beds;
+@property (nonatomic,copy) NSArray<HAHouseBed*>* beds;
 
-@property (nonatomic,strong) NSArray<HAHouseComment*>* comments;
+@property (nonatomic,copy) NSArray<HAHouseComment*>* comments;
 
 @property (nonatomic,strong) HAHouseFacility* facility;
 
@@ -25,8 +26,8 @@
 
 @property (nonatomic,strong) HAHouse* house;
 
-@property (nonatomic,strong) NSArray<NSString*>* images;
+@property (nonatomic,copy) NSArray<HAHouseImage*>* images;
 
-@property (nonatomic,strong) NSArray<HAHousePosition*>* positions;
+@property (nonatomic,copy) NSArray<HAHousePosition*>* positions;
 
 @end

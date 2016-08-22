@@ -14,13 +14,15 @@
 #import "HARESTfulEngine.h"
 
 @interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate,HADiscountEditorCellDelegate,HAOffOnCellDelegate,HAEditorNumberCellDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *ppLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *textViewInputingLabel;
 @property(nonatomic,strong) NSArray* dataSource;
 
 @property (nonatomic,strong) NSMutableArray* cleaningDataSouce;
 
 @property (nonatomic,copy) HAHouse* houseCopy;
+
+@property (nonatomic,assign) BOOL invalidFlag;
 
 @end
 
@@ -47,8 +49,10 @@
 #pragma mark - *** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
+    if (self.house) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
     self.houseCopy = self.house;
     
     if(self.houseCopy.cleanType){
@@ -156,6 +160,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.invalidFlag) {
+        return;
+    }
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString* textString = cell.textLabel.text;
     //@"平台提供洗漱用品"
@@ -200,7 +207,7 @@
      NSLog(@"selectItemDoneForPickerTextField");
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     NSString* text = self.dataSource[indexPath.section][indexPath.row];
-    [self.houseCopy setValue:[textfield.text floatValue] forChineseName:text];
+    [self.houseCopy setValue:textfield.text forChineseName:text];
     
 }
 
@@ -233,16 +240,21 @@
     }
     
     
+    if ([textString isEqualToString:@"线上收取押金"]) {
+        HAOffOnCell* offOnCell = cell;
+        self.houseCopy.needDeposit = offOnCell.accessoryViewSelected;
+    }
+    
+    BOOL change = ![self.house isEqualToHouse:self.houseCopy];
+    if (change) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+    
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textfield fromCell:(UITableViewCell *)cell
-{
-    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-     NSString* text = self.dataSource[indexPath.section][indexPath.row];
-    
-    [self.houseCopy setValue:[textfield.text floatValue] forChineseName:text];
-   
-}
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -284,39 +296,6 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
@@ -340,5 +319,56 @@
  
 }
 
+#pragma mark - *** HAEditorNumberCellDelegate ***
+- (void)textFieldDidEndEditing:(UITextField *)textfield fromCell:(UITableViewCell *)cell
+{
+    //    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    //     NSString* text = self.dataSource[indexPath.section][indexPath.row];
+    //
+    //    [self.houseCopy setValue:[textfield.text floatValue] forChineseName:text];
+    
+}
 
+- (BOOL) textFieldShouldBeginEditing:(UITextField*)textField
+                            fromCell:(UITableViewCell*)cell
+{
+    if(self.invalidFlag) return NO;
+    else return YES;
+}
+
+- (void) textFieldTextDidChange:(UITextField*)textfield
+                    changeText:(NSString*)text
+                       fromCell:(UITableViewCell*) cell
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    NSString* titleText = self.dataSource[indexPath.section][indexPath.row];
+    
+    BOOL valid =  [self.houseCopy setValue:text forChineseName:titleText];
+    if (!valid) {
+        self.invalidFlag = YES;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        textfield.inputAccessoryView = self.textViewInputingLabel;
+        [textfield reloadInputViews];
+    }
+    else{
+        textfield.inputAccessoryView = nil;
+        [textfield reloadInputViews];
+        self.invalidFlag = NO;
+    }
+    BOOL change = ![self.house isEqualToHouse:self.houseCopy];
+    if (valid&&change) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+}
+
+#pragma mark - *** HAOffOnCellDelegate ***
+- (BOOL) offOnButtonShouldResponseEvent:(UIButton*)offOnBtn
+                               fromCell:(UITableViewCell*)cell
+{
+    if(self.invalidFlag) return NO;
+    else return YES;
+}
 @end

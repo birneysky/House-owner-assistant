@@ -221,6 +221,7 @@
     if ([segue.identifier isEqualToString:@"push_add_photoes"]) {
         HAAddHousePhotoViewController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
+        vc.photoes = self.houseFullInfo.images;
     }
     
     if ([segue.identifier isEqualToString:@"push_location"]) {

@@ -115,7 +115,7 @@
 }
 
 - (IBAction)nextBtnclicked:(UIBarButtonItem *)sender {
-    if ([self.title isEqualToString:@"下一步"]) {
+    if ([sender.title isEqualToString:@"下一步"]) {
         [self performSegueWithIdentifier:@"push_house_type" sender:nil];
     }
     else{

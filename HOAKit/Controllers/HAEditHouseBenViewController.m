@@ -207,10 +207,11 @@
     [self.view endEditing:YES];
     self.bed.houseId = self.houseId;
     [[HARESTfulEngine defaultEngine] addHouseBed:self.bed completion:^(HAJSONModel *object) {
-        [self.navigationController popViewControllerAnimated:YES];
         if ([self.delegate respondsToSelector:@selector(houseBedInfoDidEndEditing:)]) {
             [self.delegate houseBedInfoDidEndEditing:object];
         }
+        [self.navigationController popViewControllerAnimated:YES];
+
     } onError:^(NSError *engineError) {
         
     }];

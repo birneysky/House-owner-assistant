@@ -22,7 +22,7 @@
 
 @property (nonatomic,strong) NSMutableDictionary* netOperationDic;
 
-@property (nonatomic,strong) NSMutableArray* photosArray;
+@property (nonatomic,strong) NSMutableArray <HAHouseImage*>* photosArray;
 
 @end
 
@@ -85,7 +85,39 @@ NSString* gen_uuid()
     self.photoCollectionViewController.datasource = self.selectedPhotoPathes;
     //NSInteger count = self.photoCollectionViewController.datasource.count;
     
-    //
+    if (self.photoes.count > 0) {
+        [self.photosArray addObjectsFromArray:self.photoes];
+    }
+    //检测图片是否存在
+    [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        HAPhotoItem* item = [[HAPhotoItem alloc] init];
+        item.imageId = obj.imageId;
+        [self.selectedPhotoPathes addObject:item];
+    }];
+    
+    //检测图片在不在，不在开始下载，暂时先直接开下
+    NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+    [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+       MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
+           NSInteger index = [self.netOperationDic[certificate] integerValue];
+           HAPhotoItem* item = self.selectedPhotoPathes[index];
+           item.path = [basePath stringByAppendingPathComponent:fileName];
+           NSLog(@"completion index %d  path %@",index,item.path);
+            [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+           
+       } progress:^(NSString *certificate, float progress) {
+           NSInteger index = [self.netOperationDic[certificate] integerValue];
+           HAPhotoItem* item = self.selectedPhotoPathes[index];
+           item.progress = progress;
+           NSLog(@"index %d",index);
+           [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+       } onError:^(NSError *engineError) {
+           
+       }];
+        
+        [self.netOperationDic setObject:@(idx) forKey:op.clientCertificate];
+    }];
+    
 
 }
 
@@ -354,6 +386,19 @@ NSString* gen_uuid()
     [self showActionSheet];
 }
 
+- (IBAction)saveBtnClicked:(id)sender {
+    if (self.photosArray.count <= 0) {
+        return;
+    }
+    [[HARESTfulEngine defaultEngine] relationshipBetweenHousesAndPictures:([self.photosArray copy]) completion:^{
+        [self.navigationController popViewControllerAnimated:YES];
+        NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
+        NSError* error;
+        [[NSFileManager defaultManager]  removeItemAtPath:filePath error:&error];
+    } onError:^(NSError *engineError) {
+        
+    }];
+}
 #pragma mark - *** Target Action***
 - (IBAction)editButtonClicked:(UIBarButtonItem*)sender {
     //[self.collectionView ];
@@ -372,11 +417,7 @@ NSString* gen_uuid()
     [self.collectionView reloadItemsAtIndexPaths:array];//
     
     
-    [[HARESTfulEngine defaultEngine] relationshipBetweenHousesAndPictures:([self.photosArray copy]) completion:^{
-        
-    } onError:^(NSError *engineError) {
-        
-    }];self.collectionView.indexPathsForVisibleItems;
+    self.collectionView.indexPathsForVisibleItems;
 //     [self.photoCollectionViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
     //[self.collectionView reloadData];
 }

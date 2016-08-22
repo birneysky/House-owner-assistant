@@ -10,6 +10,7 @@
 #import "HAOffOnCell.h"
 #import "HAHouse.h"
 #import "HARESTfulEngine.h"
+#import "HAPublishHouseInfoTableViewController.h"
 
 @interface HAHouseTypeTableViewController ()
 
@@ -54,7 +55,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    if (self.house) {
+    if (self.house.houseId > 0) {
         self.selectedIndex = self.house.houseType - 1;
         if (self.house.rentType == 1) {
             self.wholeBtn.selected = YES;
@@ -154,15 +155,19 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"push_publish_house"]) {
+        HAPublishHouseInfoTableViewController* vc = segue.destinationViewController;
+        vc.houseId = self.house.houseId;
+    }
 }
-*/
+
 #pragma mark - *** Target Action ***
 - (IBAction)wholeBtnClicked:(UIButton*)sender {
     self.house.rentType = 1;
@@ -180,6 +185,7 @@
     if (self.isNewHouse) {
         [[HARESTfulEngine defaultEngine] createNewHouseWithModel:self.house completion:^(HAJSONModel *object) {
             NSLog(@"aModelBaseObject %@",[object toJsonString]);
+            self.house = object;
             [self performSegueWithIdentifier:@"push_publish_house" sender:sender];
         } onError:^(NSError *engineError) {
             

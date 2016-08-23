@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HADataExchangeDelegate.h"
 
 @class HAHouse;
-
 @class HAHousePosition;
 
 @interface HAHouseAreaSelectViewController : UIViewController
@@ -17,5 +17,7 @@
 @property (nonatomic,strong) HAHouse* house;
 
 @property (nonatomic,strong) NSArray<HAHousePosition*>* positionArray;
+
+@property (nonatomic,weak) id<HADataExchangeDelegate> delegate;
 
 @end

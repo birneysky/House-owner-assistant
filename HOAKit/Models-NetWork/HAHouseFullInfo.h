@@ -30,4 +30,20 @@
 
 @property (nonatomic,copy) NSArray<HAHousePosition*>* positions;
 
+@property (nonatomic,readonly) BOOL houseGeneralInfoComplete;
+
+@property (nonatomic,readonly) BOOL bedInfoComplete;
+
+@property (nonatomic,readonly) BOOL houseDescriptionComplete;
+
+@property (nonatomic,readonly) BOOL facilityInfoComplete;
+
+@property (nonatomic,readonly) BOOL priceInfoComplete;
+
+@property (nonatomic,readonly) BOOL regionInfoComplete;
+
+@property (nonatomic,readonly) BOOL addressInfoComplete; 
+
+@property (nonatomic,readonly) BOOL rentTypeComplete;
+
 @end

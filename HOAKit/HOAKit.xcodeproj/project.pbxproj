@@ -187,6 +187,7 @@
 		DBAE09251D504A4F008A85C4 /* HOAKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE09241D504A4F008A85C4 /* HOAKit.m */; };
 		DBAE09281D506275008A85C4 /* HAHouseIntroduceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE09261D506275008A85C4 /* HAHouseIntroduceViewController.h */; };
 		DBAE09291D506275008A85C4 /* HAHouseIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE09271D506275008A85C4 /* HAHouseIntroduceViewController.m */; };
+		DBAE64761D6C2077006D807C /* HADataExchangeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE64751D6C2077006D807C /* HADataExchangeDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -372,6 +373,7 @@
 		DBAE09241D504A4F008A85C4 /* HOAKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOAKit.m; sourceTree = "<group>"; };
 		DBAE09261D506275008A85C4 /* HAHouseIntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseIntroduceViewController.h; sourceTree = "<group>"; };
 		DBAE09271D506275008A85C4 /* HAHouseIntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseIntroduceViewController.m; sourceTree = "<group>"; };
+		DBAE64751D6C2077006D807C /* HADataExchangeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HADataExchangeDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -533,6 +535,7 @@
 				DB3B28CB1D5C1AF50007E576 /* HouseFacilitiesViewController.m */,
 				74266F621D5CA6E800A7E4BF /* HAHouseAreaSelectViewController.h */,
 				74266F631D5CA6E800A7E4BF /* HAHouseAreaSelectViewController.m */,
+				DBAE64751D6C2077006D807C /* HADataExchangeDelegate.h */,
 			);
 			path = Controllers;
 			sourceTree = SOURCE_ROOT;
@@ -804,6 +807,7 @@
 				742B91DD1D4FB731000FF5A1 /* ALAssetsGroup+isEqual.h in Headers */,
 				DB3B28BC1D5851A90007E576 /* HAOffOnCell.h in Headers */,
 				742670021D69FF6F00A7E4BF /* HAPhotoItem.h in Headers */,
+				DBAE64761D6C2077006D807C /* HADataExchangeDelegate.h in Headers */,
 				74266FED1D69D0D400A7E4BF /* SDLoopProgressView.h in Headers */,
 				743F43801D574A4200D06D19 /* HABedTypeDataSourceDelegate.h in Headers */,
 				DB3B28F51D5DC0070007E576 /* NSString+MKNetworkKitAdditions.h in Headers */,

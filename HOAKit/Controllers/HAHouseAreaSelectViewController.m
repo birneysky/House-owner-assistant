@@ -227,7 +227,8 @@ const NSInteger MAXLEVEL =  3;
 #pragma mark - *** Taget action ***
 - (IBAction)resetBtnClciked:(id)sender {
     
-    [[HARESTfulEngine defaultEngine] modifyHousePositionWithArray:[self.positionDic allValues] completion:^{
+    [[HARESTfulEngine defaultEngine] modifyHousePositionWithArray:[self.positionDic allValues] completion:^(NSArray<HAHousePosition*>* positions){
+        [self.delegate positionsOfHouseDidChange:positions];
         [self.navigationController popViewControllerAnimated:YES];
     } onError:^(NSError *engineError) {
         

@@ -181,10 +181,9 @@
 
 - (IBAction)okBtnClicked:(id)sender {
     self.house.landlordId = 1;
-    self.house.houseNumber = @"9000-1234";
+    //self.house.houseNumber = @"9000-1234";
     if (self.isNewHouse) {
         [[HARESTfulEngine defaultEngine] createNewHouseWithModel:self.house completion:^(HAJSONModel *object) {
-            NSLog(@"aModelBaseObject %@",[object toJsonString]);
             self.house = object;
             [self performSegueWithIdentifier:@"push_publish_house" sender:sender];
         } onError:^(NSError *engineError) {
@@ -193,9 +192,12 @@
     }else{
         BOOL change = ![self.house isEqualToHouse:self.houseCopy];
         if (change) {
-            [[HARESTfulEngine defaultEngine] modifyHouseGeneralInfoWithID:self.houseCopy.houseId params:self.houseCopy completion:^{
-                [self.navigationController popViewControllerAnimated:YES];
-            } onError:^(NSError *engineError) {
+            [NETWORKENGINE modifyHouseGeneralInfoWithID:self.houseCopy.houseId
+                                                 params:self.houseCopy
+                                             completion:^(HAHouse* hosue){
+                                                 [self.delegate houseDidChangned:hosue];
+                                                 [self.navigationController popViewControllerAnimated:YES];
+                                             }  onError:^(NSError *engineError) {
                 
             }];
         }

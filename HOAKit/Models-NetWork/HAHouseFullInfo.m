@@ -10,4 +10,43 @@
 
 @implementation HAHouseFullInfo
 
+- (BOOL) houseGeneralInfoComplete
+{
+    return self.house.area.length > 0 && self.house.roomNumber > 0 && self.house.toliveinNumber > 0 && self.house.toiletNumber > 0;
+}
+
+- (BOOL) bedInfoComplete
+{
+    return self.beds.count > 0;
+}
+
+- (BOOL) houseDescriptionComplete
+{
+    return self.house.title.length > 0 && self.house.houseDescription.length > 0;
+}
+
+- (BOOL) facilityInfoComplete
+{
+    return self.facility.hotShower && self.facility.wifi && self.facility.tv && self.facility.airCondition;
+}
+
+- (BOOL) priceInfoComplete
+{
+    return self.house.price > 0;
+}
+
+- (BOOL) regionInfoComplete
+{
+    return self.positions.count > 0;
+}
+- (BOOL) addressInfoComplete
+{
+    return self.house.address.length > 0 && self.house.houseNumber.length > 0;
+}
+
+- (BOOL) rentTypeComplete
+{
+    return self.house.rentType > 0;
+}
+
 @end

@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HADataExchangeDelegate.h"
 
 @class HAHouseFacility;
+
 
 @interface HouseFacilitiesViewController : UITableViewController
 
 @property (nonatomic,strong) HAHouseFacility* factilities;
 
 @property (nonatomic,assign) NSInteger houseId;
+
+@property (nonatomic,weak) id<HADataExchangeDelegate> delegate;
 
 @end

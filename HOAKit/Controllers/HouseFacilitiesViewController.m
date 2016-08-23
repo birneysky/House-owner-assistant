@@ -129,9 +129,12 @@
 #pragma mark - *** Target Action ***
 - (IBAction)okButtonClicked:(id)sender {
     self.factilities.houseId = self.houseId;
-    [[HARESTfulEngine defaultEngine] modifyHouseFacilitiesWithHouseID:self.houseId params:self.factilities completion:^(HAJSONModel *object) {
-            [self.navigationController popViewControllerAnimated:YES];
-    } onError:^(NSError *engineError) {
+    [NETWORKENGINE modifyHouseFacilitiesWithHouseID:self.houseId
+                                             params:self.factilities
+                                         completion:^(HAHouseFacility* facility) {
+                                            [self.delegate facilityOfHouseDidChange:facility];
+                                             [self.navigationController popViewControllerAnimated:YES];
+                                         } onError:^(NSError *engineError) {
         
     }];
 

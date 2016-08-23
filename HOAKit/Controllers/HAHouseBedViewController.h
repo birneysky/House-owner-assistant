@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HADataExchangeDelegate.h"
 
 @class HAHouseBed;
+
 
 @interface HAHouseBedViewController : UITableViewController
 
 @property (nonatomic,strong) NSMutableArray<HAHouseBed*>* beds;
 
 @property (nonatomic,assign) NSInteger houseId;
+
+@property (nonatomic,weak) id<HADataExchangeDelegate> delegate;
 
 @end

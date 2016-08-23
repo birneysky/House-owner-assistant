@@ -311,9 +311,12 @@
 
 - (IBAction)saveButtonClicked:(UIBarButtonItem *)sender {
     [self.view endEditing:YES];
-    [[HARESTfulEngine defaultEngine] modifyHouseGeneralInfoWithID:self.houseCopy.houseId params:self.houseCopy completion:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    } onError:^(NSError *engineError) {
+    [NETWORKENGINE modifyHouseGeneralInfoWithID:self.houseCopy.houseId
+                                         params:self.houseCopy
+                                     completion:^(HAHouse* house){
+                                         [self.delegate houseDidChangned:house];
+                                         [self.navigationController popViewControllerAnimated:YES];
+                                     } onError:^(NSError *engineError) {
         
     }];
  

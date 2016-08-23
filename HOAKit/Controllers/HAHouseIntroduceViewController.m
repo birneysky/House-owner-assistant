@@ -99,13 +99,15 @@
 - (IBAction)saveButtonClicked:(id)sender {
     [self.view endEditing:YES];
     
-    [[HARESTfulEngine defaultEngine] modifyHouseGeneralInfoWithID:self.houseCopy.houseId params:self.houseCopy completion:^{
-         [self.navigationController popViewControllerAnimated:YES];
-    } onError:^(NSError *engineError) {
-        
-    }];
-   
-//    NSArray* controllers = self.navigationController.viewControllers;
+    [NETWORKENGINE  modifyHouseGeneralInfoWithID:self.houseCopy.houseId
+                                          params:self.houseCopy
+                                      completion:^(HAHouse *house){
+                                          [self.delegate houseDidChangned:house];
+                                          [self.navigationController popViewControllerAnimated:YES];}
+                                         onError:^(NSError *engineError) {}
+    ];
+
+ //    NSArray* controllers = self.navigationController.viewControllers;
 //    [self.navigationController popToViewController:controllers[controllers.count - 3] animated:YES];
 }
 

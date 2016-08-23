@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HADataExchangeDelegate.h"
+
 @class HAHouse;
 
 
@@ -24,5 +26,7 @@ typedef NS_ENUM(NSInteger,PRTValidState) {
 @interface HAHouseIntroduceViewController : UIViewController
 
 @property(nonatomic,strong) HAHouse* house;
+
+@property (nonatomic,weak) id<HADataExchangeDelegate> delegate;
 
 @end

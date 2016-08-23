@@ -47,24 +47,6 @@
 
 - (BOOL) isEqualToHouse:(HAHouse*)house
 {
-//    unsigned count;
-//    objc_property_t *properties = class_copyPropertyList([self class], &count);
-//    
-//    for (int i = 0; i < count; i++) {
-//        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
-//        if ([key isEqualToString:@"description"]) {
-//            continue;
-//        }
-//        id selfvalue = [self valueForKey:key];
-//        id otherValue = [house valueForKey:key];
-//        if ([selfvalue isKindOfClass:[NSString class]]) {
-//            NSLog(@"%@",[selfvalue class]);
-//        }
-//        
-//        
-//    }
-//    
-//    free(properties);
     NSDictionary* selfDic = [self toFullDictionary];
     NSDictionary* otherDic = [house toFullDictionary];
     return [selfDic isEqualToDictionary:otherDic];
@@ -82,20 +64,6 @@
 - (NSString*)stringValueOfChineseName:(NSString*)text
 {
     NSString* value = nil;
-//    if([text isEqualToString:@"线上收取押金"]){
-//        value = [NSString stringWithFormat:@"%d",self.needDeposit];
-//    }
-//    if ([text isEqualToString:@"需要第三方保洁"]) {
-//        value = [NSString stringWithFormat:@"%d",self.thirdCleaning];
-//    }
-//    
-//    if ([text isEqualToString:@"平台提供洗漱用品"] ) {
-//        value = [NSString stringWithFormat:@"%d",self.platformToiletries];
-//    }
-//    
-//    if ([text isEqualToString:@"平台提供床品"]) {
-//        
-//    }
     
     if([text isEqualToString:@"日价"] ){
         value = [NSString stringWithFormat:@"%.0f",self.price];

@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "HAHouse.h"
 #import "HAHouseImage.h"
+#import "HADataExchangeDelegate.h"
 
 @interface HAAddHousePhotoViewController : UIViewController
 
 @property(nonatomic,strong) HAHouse* house;
 
 @property(nonatomic,copy) NSArray<HAHouseImage*>* photoes;
+
+@property (nonatomic,weak) id<HADataExchangeDelegate> delegate;
 
 @end

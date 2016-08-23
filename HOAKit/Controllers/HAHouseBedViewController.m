@@ -119,6 +119,7 @@
     HAHouseBed* targetBed = self.beds[indexPath.row];
     [[HARESTfulEngine defaultEngine] removeHouseBedWithID:targetBed.bedId completion:^(HAJSONModel *object) {
         [self.beds removeObjectAtIndex:indexPath.row];
+        [self.delegate bedsOfHouseDidChange:[self.beds copy]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     } onError:^(NSError *engineError) {
         
@@ -139,7 +140,7 @@
     if (!exist) {
       [self.beds addObject:bed];
     }
-    
+    [self.delegate bedsOfHouseDidChange:[self.beds copy]];
     [self.tableView reloadData];
 }
 

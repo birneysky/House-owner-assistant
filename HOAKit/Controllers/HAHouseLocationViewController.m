@@ -14,6 +14,7 @@
 #import "HAHouse.h"
 #import "HAHouseTypeTableViewController.h"
 #import "HAAppDataHelper.h"
+#import "HARESTfulEngine.h"
 
 @interface HAHouseLocationViewController ()<MKMapViewDelegate,HALocationPickerTextFieldDelegate,UIDynamicAnimatorDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -32,6 +33,8 @@
 @property(nonatomic,assign) HAValueValidState validFlag;
 
 @property (nonatomic,copy) HAHouse* houseCopy;
+
+@property (nonatomic,assign) BOOL newHouse;
 
 @end
 
@@ -102,6 +105,9 @@
         [self.mapView setRegion:region animated:YES];
         self.houseCopy = self.house;
     }
+    else{
+        self.newHouse = YES;
+    }
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
@@ -129,7 +135,16 @@
         [self performSegueWithIdentifier:@"push_house_type" sender:nil];
     }
     else{
-        [self.navigationController popViewControllerAnimated:YES];
+        [NETWORKENGINE modifyHouseGeneralInfoWithID:self.houseCopy.houseId
+                                             params:self.houseCopy
+                                         completion:^(HAHouse* house){
+                                             [self.delegate houseDidChangned:house];
+                                             [self.navigationController popViewControllerAnimated:YES];
+                                         }
+                                            onError:^(NSError *engineError) {
+                                            
+        }];
+        
     }
 }
 
@@ -290,7 +305,13 @@
     BOOL change = NO;
     if (textField == self.fullAddressTextfield) {
         valid = [self limitTextViewTextLengthMin:1 max:60 textField:textField warningText:@"请输1-60个字"];
-        self.houseCopy.address = textField.text;
+        if (self.newHouse) {
+            self.house.address = textField.text;
+        }
+        else{
+           self.houseCopy.address = textField.text;
+        }
+        
         //change = ![self.houseCopy.title isEqualToString:self.house.title];
         if (!valid) {
             self.validFlag &= HAValueValidStateDetailAddress;
@@ -306,7 +327,13 @@
     
     if (textField == self.houseNumberTextfield) {
         valid = [self limitTextViewTextLengthMin:1 max:30 textField:textField warningText:@"请输1-30个字"];
-        self.houseCopy.houseNumber = textField.text;
+        if (self.newHouse) {
+            self.house.houseNumber = textField.text;
+        }
+        else{
+             self.houseCopy.houseNumber = textField.text;
+        }
+       
         
         if (!valid) {
             self.validFlag &= HAValueValidStateHouseNumber;
@@ -318,7 +345,8 @@
     
     change = ![self.house isEqualToHouse:self.houseCopy];
     BOOL validTest = (self.validFlag & HAValueValidStateNormal) == HAValueValidStateNormal;
-    if (change && validTest) {
+    BOOL complete = self.newHouse ? self.house.address.length > 0 && self.house.houseNumber > 0 :  self.houseCopy.address.length > 0 && self.houseCopy.houseNumber > 0;
+    if (change && validTest && complete) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else{

@@ -19,7 +19,7 @@
 #import "HAHouseLocationViewController.h"
 #import "HAHouseTypeTableViewController.h"
 
-@interface HAPublishHouseInfoTableViewController ()
+@interface HAPublishHouseInfoTableViewController ()<HADataExchangeDelegate>
 
 @property(nonatomic,strong) NSArray* dataSource;
 
@@ -44,6 +44,7 @@
     
     [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId completion:^(HAHouseFullInfo *info) {
         self.houseFullInfo = info;
+        [self.tableView reloadData];
         NSLog(@"fetch house full info finished");
     } onError:^(NSError *engineError) {
         
@@ -145,39 +146,38 @@
     
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* text = self.dataSource[indexPath.row];
+    cell.textLabel.textColor = [UIColor blackColor];
+    UIColor* color = [UIColor colorWithRed:219 / 255.0f green:78 / 255.0f blue:32 / 255.0f alpha:1];
+    if ([text isEqualToString:@"房屋标题与介绍"] && self.houseFullInfo.houseDescriptionComplete) {
+        cell.textLabel.textColor = color;
+    }
+    else if ([text isEqualToString:@"价格与交易规则"] && self.houseFullInfo.priceInfoComplete){
+        cell.textLabel.textColor = color;
+    }
+    else if ([text isEqualToString:@"房源信息"] && self.houseFullInfo.houseGeneralInfoComplete){
+        cell.textLabel.textColor = color;
+    }
+    else if ([text isEqualToString:@"床铺信息"] && self.houseFullInfo.bedInfoComplete){
+        cell.textLabel.textColor = color;
+    }
+    else if ([text isEqualToString:@"出租方式与房源类型"] && self.houseFullInfo.rentTypeComplete){
+        cell.textLabel.textColor = color;
+        
+    }
+    else if ([text isEqualToString:@"地址"] && self.houseFullInfo.addressInfoComplete){
+        cell.textLabel.textColor = color;
+        
+    }
+    else if([text isEqualToString:@"设施列表"] && self.houseFullInfo.facilityInfoComplete){
+        cell.textLabel.textColor = color;
+    }
+    else if([text isEqualToString:@"位置区域"] && self.houseFullInfo.regionInfoComplete){
+        cell.textLabel.textColor = color;
+    }
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Navigation
@@ -187,18 +187,21 @@
     if ([segue.identifier isEqualToString:@"push_house_introduce"]) {
         HAHouseIntroduceViewController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
+        vc.delegate = self;
     }
     
     if ([segue.identifier isEqualToString:@"push_house_facilities"]) {
         HouseFacilitiesViewController* vc = segue.destinationViewController;
         vc.houseId = self.houseId;
         vc.factilities = self.houseFullInfo.facility;
+        vc.delegate = self;
     }
     
     if ([segue.identifier isEqualToString:@"push_house_area"]) {
         HAHouseAreaSelectViewController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
         vc.positionArray = self.houseFullInfo.positions;
+        vc.delegate = self;
     }
 
     if([segue.identifier isEqualToString:@"push_house_bed_info"]){
@@ -206,34 +209,74 @@
         NSMutableArray* bes = [[NSMutableArray alloc] initWithArray:self.houseFullInfo.beds];
         vc.beds = bes;
         vc.houseId = self.houseFullInfo.house.houseId;
+        vc.delegate = self;
     }
     
     if ([segue.identifier isEqualToString:@"push_house_info"]) {
         HAHouseInfoViewController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
+        vc.delegate = self;
     }
     
     if ([segue.identifier isEqualToString:@"push_price_trading_rules"]) {
         HAPriceAndTrandRulesTableController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
+        vc.delegate = self;
     }
     
     if ([segue.identifier isEqualToString:@"push_add_photoes"]) {
         HAAddHousePhotoViewController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
         vc.photoes = self.houseFullInfo.images;
+        vc.delegate = self;
     }
     
     if ([segue.identifier isEqualToString:@"push_location"]) {
         HAHouseLocationViewController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
+        vc.delegate = self;
     }
     
     if ([segue.identifier isEqualToString:@"push_back_house_type_select"]) {
         HAHouseTypeTableViewController* vc = segue.destinationViewController;
         vc.house = self.houseFullInfo.house;
+        vc.delegate = self;
     }
 
+}
+
+
+#pragma mark - ***HADataExchangeDelegate  ***
+
+
+- (void) houseDidChangned:(HAHouse*) house
+{
+    self.houseFullInfo.house = house;
+    [self.tableView reloadData];
+}
+
+- (void) bedsOfHouseDidChange:(NSArray<HAHouseBed*>*) beds
+{
+    self.houseFullInfo.beds =beds;
+    [self.tableView reloadData];
+}
+
+- (void) positionsOfHouseDidChange:(NSArray<HAHousePosition*>*) positions
+{
+    self.houseFullInfo.positions = positions;
+    [self.tableView reloadData];
+}
+
+- (void) facilityOfHouseDidChange:(HAHouseFacility*) facility
+{
+    self.houseFullInfo.facility = facility;
+    [self.tableView reloadData];
+}
+
+- (void) imagesOfHouseDidChange:(NSArray<HAHouseImage*>*) images
+{
+    self.houseFullInfo.images = images;
+    [self.tableView reloadData];
 }
 
 

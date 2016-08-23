@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HAHouse.h"
-
+#import "HADataExchangeDelegate.h"
 
 typedef NS_ENUM(NSInteger,HAValueValidState) {
     HAValueValidStateNormal = 0b111,
@@ -20,5 +20,8 @@ typedef NS_ENUM(NSInteger,HAValueValidState) {
 @interface HAHouseLocationViewController : UIViewController
 
 @property (nonatomic,strong) HAHouse* house;
+
+
+@property (nonatomic,weak) id<HADataExchangeDelegate> delegate;
 
 @end

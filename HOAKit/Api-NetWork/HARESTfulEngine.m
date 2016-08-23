@@ -44,8 +44,8 @@ static HARESTfulEngine* defaultEngine;
 
 
 - (void)fetchRequestWithPath:(NSString*)path
-                 completion:(ObjectBlock)objectBlock
-                 onError:(ErrorBlock) errorBlock
+                  completion:(ObjectBlock)objectBlock
+                     onError:(ErrorBlock) errorBlock
 {
     HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:path];
     
@@ -71,10 +71,10 @@ static HARESTfulEngine* defaultEngine;
 }
 
 - (void)httpRequestWithPath:(NSString*)path
-                     generalParams:(NSObject*)object
-                  httpMethod:(NSString*)method
-                 completion:(ObjectBlock)objectBlock
-                     onError:(ErrorBlock) errorBlock
+              generalParams:(NSObject*)object
+                 httpMethod:(NSString*)method
+                 completion:(void (^)(NSDictionary* object))objectBlock
+                    onError:(ErrorBlock) errorBlock
 {
     HARESTfulOperation* op = nil;
     op = (HARESTfulOperation*) [self operationWithPath:path params:object httpMethod:method];
@@ -108,7 +108,7 @@ static HARESTfulEngine* defaultEngine;
 
 #pragma mark - *** Api-Net ***
 - (void) fetchHouseItemsWithHouseOwnerID:(NSInteger) hoid
-                             completion:(ArrayBlock) completion
+                              completion:(ArrayBlock) completion
                                  onError:(ErrorBlock) errorBlock
 {
     NSString* path = [NSString stringWithFormat:@"api/houses?landlordId=%d",hoid];
@@ -128,7 +128,7 @@ static HARESTfulEngine* defaultEngine;
 }
 
 - (void)fetchHouseInfoWithHouseID:(NSInteger) houseId
-                      completion:(HAHouseFullInfoBlock) completion
+                       completion:(HAHouseFullInfoBlock) completion
                           onError:(ErrorBlock) errorBlock
 {
     NSString* path = [NSString stringWithFormat:@"api/houses/%d",houseId];
@@ -191,29 +191,29 @@ static HARESTfulEngine* defaultEngine;
 
 
 - (void) createNewHouseWithModel:(HAJSONModel*) model
-                           completion:(ModelBlock)completion
-                               onError:(ErrorBlock)errorBlcok
+                      completion:(ModelBlock)completion
+                         onError:(ErrorBlock)errorBlcok
 {
     NSLog(@" model %@",[model toJsonString]);
-    [self httpRequestWithPath:@"api/houses" generalParams:[model toDictionary] httpMethod:@"POST" completion:^(NSObject *info) {
-        if ([info isKindOfClass:[NSDictionary class]]) {
-            NSDictionary* houseJson = [(NSDictionary*)info objectForKey:@"data"];
+    [self httpRequestWithPath:@"api/houses" generalParams:[model toDictionary] httpMethod:@"POST" completion:^(NSDictionary *info) {
+        //if ([info isKindOfClass:[NSDictionary class]]) {
+            NSDictionary* houseJson = [info objectForKey:@"data"];
             HAHouse* houseObj = [[HAHouse alloc] initWithDictionary:houseJson];
             completion(houseObj);
-        }
+        //}
     } onError:^(NSError *engineError) {
-        
+        errorBlcok(engineError);
     }];
 }
 
 - (void) modifyHouseFacilitiesWithHouseID:(NSInteger)houseId
-                                   params:(HAJSONModel*)param
-                               completion:(ModelBlock)completion
+                                   params:(HAHouseFacility*)param
+                               completion:(void (^)(HAHouseFacility* facility))completion
                                   onError:(ErrorBlock)errorBlcok
 {
      NSLog(@" model %@",[param toFullJsonString]);
      NSString* path = [NSString stringWithFormat:@"api/house_facilities/%d",houseId];
-     [self httpRequestWithPath:path generalParams:[param toFullDictionary] httpMethod:@"PUT" completion:^(NSObject *object) {
+     [self httpRequestWithPath:path generalParams:[param toFullDictionary] httpMethod:@"PUT" completion:^(NSDictionary *object) {
          NSDictionary* dic = [(NSDictionary*)object objectForKey:@"data"];
          HAHouseFacility* facitility = [[HAHouseFacility alloc] initWithDictionary:dic];
          completion(facitility);
@@ -256,7 +256,7 @@ static HARESTfulEngine* defaultEngine;
              onError:(ErrorBlock)errBlock
 {
     NSLog(@" model %@",[bed toFullJsonString]);
-    [self httpRequestWithPath:@"api/house_beds" generalParams:[bed toFullDictionary] httpMethod:@"POST" completion:^(NSObject *object) {
+    [self httpRequestWithPath:@"api/house_beds" generalParams:[bed toFullDictionary] httpMethod:@"POST" completion:^(NSDictionary *object) {
         NSDictionary* dic = [(NSDictionary*)object objectForKey:@"data"];
         HAHouseBed* bedresult = [[HAHouseBed alloc] initWithDictionary:dic];
         completion(bedresult);
@@ -271,7 +271,7 @@ static HARESTfulEngine* defaultEngine;
                       onError:(ErrorBlock)errBlock
 {
     NSString* path = [NSString stringWithFormat:@"api/house_beds/%d",bedId];
-    [self httpRequestWithPath:path generalParams:nil httpMethod:@"DELETE" completion:^(NSObject *object) {
+    [self httpRequestWithPath:path generalParams:nil httpMethod:@"DELETE" completion:^(NSDictionary *object) {
         completion(nil);
     } onError:^(NSError *engineError) {
         
@@ -280,29 +280,37 @@ static HARESTfulEngine* defaultEngine;
 
 
 - (void) modifyHouseGeneralInfoWithID:(NSInteger)houseId
-                               params:(HAJSONModel*)param
-                           completion:(VoidBlock)completion
+                               params:(HAHouse*)param
+                           completion:(void(^)(HAHouse* house))completion
                               onError:(ErrorBlock)errorBlcok
 {
      NSString* path = [NSString stringWithFormat:@"api/houses/%d",houseId];
      NSLog(@" model %@",[param toFullJsonString]);
-    [self httpRequestWithPath:path generalParams:[param toFullDictionary] httpMethod:@"PUT" completion:^(NSObject *object) {
-        completion();
+    [self httpRequestWithPath:path generalParams:[param toFullDictionary] httpMethod:@"PUT" completion:^(NSDictionary *object) {
+        NSDictionary* houseDic = [object objectForKey:@"data"];
+        HAHouse* house = [[HAHouse alloc] initWithDictionary:houseDic];
+        completion(house);
     } onError:^(NSError *engineError) {
         
     }];
 }
 
 - (void) modifyHousePositionWithArray:(NSArray<HAHousePosition*>*)array
-                           completion:(VoidBlock)completion
+                           completion:(void (^)(NSArray<HAHousePosition*>* positions))completion
                               onError:(ErrorBlock)errorBlcok
 {
     NSMutableArray* mutableArray = [[NSMutableArray alloc] initWithCapacity:50];
     [array enumerateObjectsUsingBlock:^(HAHousePosition * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [mutableArray addObject:[obj toFullDictionary]];
     }];
-    [self httpRequestWithPath:@"api/houses_positions" generalParams:[mutableArray copy] httpMethod:@"PUT" completion:^(NSObject *object) {
-        completion();
+    [self httpRequestWithPath:@"api/houses_positions" generalParams:[mutableArray copy] httpMethod:@"PUT" completion:^(NSDictionary *object) {
+        NSArray* positions = [object objectForKey:@"data"];
+        NSMutableArray<HAHousePosition*>* mutablArray = [[NSMutableArray alloc] initWithCapacity:30];
+        [positions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            HAHousePosition* position = [[HAHousePosition alloc] initWithDictionary:obj];
+            [mutablArray addObject:position];
+        }];
+        completion([mutablArray copy]);
     } onError:^(NSError *engineError) {
         
     }];
@@ -310,9 +318,9 @@ static HARESTfulEngine* defaultEngine;
 
 
 - (MKNetworkOperation*) uploadHouseImageWithPath:(NSString*)path
-                       completion:(void (^)(HAHouseImage* obj))completion
-                         progress:(void (^)(NSString* certificate, float progress))progressBlock
-                          onError:(ErrorBlock)errorBlcok
+                                      completion:(void (^)(HAHouseImage* obj))completion
+                                        progress:(void (^)(NSString* certificate, float progress))progressBlock
+                                         onError:(ErrorBlock)errorBlcok
 {
     HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:@"api/houses/images/"  params:nil httpMethod:@"POST"];
 
@@ -365,7 +373,7 @@ static HARESTfulEngine* defaultEngine;
     }];
 
     
-    [self httpRequestWithPath:@"api/house_images/relation" generalParams:[mutableArray copy ] httpMethod:@"PUT" completion:^(NSObject *object) {
+    [self httpRequestWithPath:@"api/house_images/relation" generalParams:[mutableArray copy ] httpMethod:@"PUT" completion:^(NSDictionary *object) {
         completion();
     } onError:^(NSError *engineError) {
         errorBlcok(engineError);
@@ -411,12 +419,26 @@ static HARESTfulEngine* defaultEngine;
 
 
 - (void) delteHouseImageWithImageId:(NSInteger)imgId
-                                        completion:(VoidBlock)completion
-                                           onError:(ErrorBlock)errorBlcok
+                         completion:(VoidBlock)completion
+                            onError:(ErrorBlock)errorBlcok
 {
     NSString* path = [NSString stringWithFormat:@"api/house_images/%d",imgId];
      //HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:path params:nil httpMethod:@"DELETE"];
-    [self httpRequestWithPath:path generalParams:@{@"id":@(imgId)} httpMethod:@"DELETE" completion:^(NSObject *object) {
+    [self httpRequestWithPath:path generalParams:@{@"id":@(imgId)} httpMethod:@"DELETE" completion:^(NSDictionary *object) {
+        completion();
+    } onError:^(NSError *engineError) {
+        errorBlcok(engineError);
+    }];
+}
+
+
+- (void) submitHouseInfoForCheckOfHouseId:(NSInteger)houseId
+                                   params:(HAHouse*)house
+                               completion:(VoidBlock)completion
+                                  onError:(ErrorBlock)errorBlcok;
+{
+    NSString* path = [NSString stringWithFormat:@"api/houses/%d",houseId];
+    [self httpRequestWithPath:path generalParams:[house toFullDictionary] httpMethod:@"PUT" completion:^(NSDictionary *object) {
         completion();
     } onError:^(NSError *engineError) {
         errorBlcok(engineError);

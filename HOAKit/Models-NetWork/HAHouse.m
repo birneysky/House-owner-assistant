@@ -159,7 +159,7 @@
         valid = NO;
     }
     
-    if(self.toliveinNumber > 10 )
+    if(self.toliveinNumber > 10 || self.toliveinNumber < 1)
     {
         valid = NO;
     }

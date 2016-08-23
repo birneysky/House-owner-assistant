@@ -143,7 +143,7 @@ static NSString * const reuseIdentifier = @"Cell";
     HAPhotoItem* item = self.datasource[indexPath.row];
     [[HARESTfulEngine defaultEngine] delteHouseImageWithImageId:item.imageId completion:^{
         [self.datasource removeObjectAtIndex:indexPath.row];
-        [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+        [self.collectionViewTemp deleteItemsAtIndexPaths:@[indexPath]];
     } onError:^(NSError *engineError) {
         
     }];

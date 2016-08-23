@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HAHouseItemCell : UITableViewCell
+@interface HAHouseInfoBaseCell : UITableViewCell
 
 - (void)setAddress:(NSString*)text;
 

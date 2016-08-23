@@ -9,7 +9,7 @@
 #import "HAHouseTableController.h"
 #import "HAFloatingButton.h"
 #import "HARESTfulEngine.h"
-#import "HAHouseItemCell.h"
+#import "HAHouseInfoBaseCell.h"
 #import "HAHouse.h"
 #import "HAPublishHouseInfoTableViewController.h"
 
@@ -53,10 +53,30 @@
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HAHouse* item = self.dataSource[indexPath.section];
+    if (2 == item.checkStatus) {
+        return 180;
+    }
+    else{
+        return 125;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HAHouseItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+    
+    HAHouseInfoBaseCell *cell = nil;
     
     HAHouse* item = self.dataSource[indexPath.section];
+    
+    if (2 == item.checkStatus) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+    }
+    else{
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoBaseCell" forIndexPath:indexPath];
+    }
     
     [cell setCheckStatus:item.checkStatus];
     [cell setPrice:item.price];
@@ -69,6 +89,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     HAHouse* item = self.dataSource[indexPath.section];
     NSLog(@" checkStatus  %d",item.checkStatus);
     switch (item.checkStatus) {

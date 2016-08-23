@@ -6,10 +6,10 @@
 //  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HAHouseItemCell.h"
+#import "HAHouseInfoBaseCell.h"
 #import "HAAppDataHelper.h"
 
-@interface HAHouseItemCell ()
+@interface HAHouseInfoBaseCell ()
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *houseImageView;
 @end
 
-@implementation HAHouseItemCell
+@implementation HAHouseInfoBaseCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -32,12 +32,7 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)commentsBtnClicked:(id)sender {
-}
 
-
-- (IBAction)priceBtnClicked:(id)sender {
-}
 
 
 - (void)setAddress:(NSString*)text

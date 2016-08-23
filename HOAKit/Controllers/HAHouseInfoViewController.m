@@ -271,7 +271,7 @@
     }
     if ([textTitle isEqualToString:@"几位访客"]) {
 //        self.houseCopy.toliveinNumber = [textfield.text integerValue];
-         self.textViewInputingLabel.text = @"    请输入0-10数值";
+         self.textViewInputingLabel.text = @"    请输入1-10数值";
     }
     
     BOOL valid = [self.houseCopy setValue:text forChineseName:textTitle];

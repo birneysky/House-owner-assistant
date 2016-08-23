@@ -23,6 +23,7 @@
     NSMutableDictionary* mutableDic = [[NSMutableDictionary alloc] initWithDictionary:dic copyItems:NO];
     [mutableDic removeObjectForKey:@"imageId"];
     [mutableDic setObject:@(self.imageId) forKey:@"id"];
+    [mutableDic removeObjectForKey:@"localPath"];
     return [mutableDic copy];
 }
 

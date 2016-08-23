@@ -16,4 +16,6 @@
 @property(nonatomic,copy)   NSString* imagePath;
 @property(nonatomic,assign) NSInteger userId;
 
+@property(nonatomic,copy)  NSString* localPath;
+
 @end

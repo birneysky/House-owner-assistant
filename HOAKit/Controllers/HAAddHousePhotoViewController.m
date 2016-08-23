@@ -81,41 +81,50 @@ NSString* gen_uuid()
     // Register cell classes
     
     // Do any additional setup after loading the view.
-
+    self.collectionView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     self.photoCollectionViewController.datasource = self.selectedPhotoPathes;
     //NSInteger count = self.photoCollectionViewController.datasource.count;
     
     if (self.photoes.count > 0) {
         [self.photosArray addObjectsFromArray:self.photoes];
     }
+    NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
     //检测图片是否存在
     [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         HAPhotoItem* item = [[HAPhotoItem alloc] init];
         item.imageId = obj.imageId;
+        NSString* path = [basePath stringByAppendingPathComponent:[obj.imagePath lastPathComponent]];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            obj.localPath = path;
+            item.path = path;
+        }
         [self.selectedPhotoPathes addObject:item];
     }];
     
+    [self.collectionView reloadData];
     //检测图片在不在，不在开始下载，暂时先直接开下
-    NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+    
     [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-       MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
-           NSInteger index = [self.netOperationDic[certificate] integerValue];
-           HAPhotoItem* item = self.selectedPhotoPathes[index];
-           item.path = [basePath stringByAppendingPathComponent:fileName];
-           NSLog(@"completion index %d  path %@",index,item.path);
-            [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-           
-       } progress:^(NSString *certificate, float progress) {
-           NSInteger index = [self.netOperationDic[certificate] integerValue];
-           HAPhotoItem* item = self.selectedPhotoPathes[index];
-           item.progress = progress;
-           NSLog(@"index %d",index);
-           [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-       } onError:^(NSError *engineError) {
-           
-       }];
-        
-        [self.netOperationDic setObject:@(idx) forKey:op.clientCertificate];
+        NSLog(@"imagePath %@",obj.imagePath);
+        if(obj.localPath.length <= 0){
+            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
+                NSInteger index = [self.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                item.path = [basePath stringByAppendingPathComponent:fileName];
+                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+                
+            } progress:^(NSString *certificate, float progress) {
+                NSInteger index = [self.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                item.progress = progress;
+                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+            } onError:^(NSError *engineError) {
+                
+            }];
+            
+            [self.netOperationDic setObject:@(idx) forKey:op.clientCertificate];
+        }
+
     }];
     
 

@@ -23,7 +23,7 @@
 
 @property(nonatomic,strong) NSArray* dataSource;
 
-@property(nonatomic,strong) HAHouseFullInfo* houseFullInfo;
+
 
 @end
 
@@ -54,6 +54,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 

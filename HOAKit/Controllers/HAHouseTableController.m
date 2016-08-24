@@ -110,7 +110,17 @@
     }
 }
 
-
+//#pragma mark - *** ***
+//- (void)fetchHouseInfoWithHouseId:(NSInteger)houseId{
+//    
+//    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:houseId completion:^(HAHouseFullInfo *info) {
+//        self.houseFullInfo = info;
+//        [self.tableView reloadData];
+//        NSLog(@"fetch house full info finished");
+//    } onError:^(NSError *engineError) {
+//        
+//    }];
+//}
 
 #pragma mark - Navigation
 
@@ -129,7 +139,7 @@
 {
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     HAHouse* item = self.dataSource[indexPath.row];
-    
+    [self performSegueWithIdentifier:@"push_price_trand_rule" sender:nil];
 }
 
 @end

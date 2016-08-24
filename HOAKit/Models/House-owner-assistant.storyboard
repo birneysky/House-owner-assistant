@@ -380,6 +380,7 @@
                         <outlet property="addButton" destination="3gg-xZ-4Bs" id="9dy-Lx-HRt"/>
                         <outlet property="tableView" destination="kPP-ll-249" id="qCC-O5-xEv"/>
                         <segue destination="KLx-va-RGR" kind="show" identifier="push_publish_house" id="FiJ-Aa-niN"/>
+                        <segue destination="1zs-ci-zDz" kind="push" identifier="push_price_trand_rule" id="DVT-YJ-7kO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zZx-6a-AIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1206,11 +1207,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="299"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AmN-sr-0QO">
-                                            <rect key="frame" x="8" y="8" width="584" height="284"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmN-sr-0QO">
+                                            <rect key="frame" x="8" y="8" width="584" height="283"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xE4-qA-kje">
-                                                    <rect key="frame" x="8" y="8" width="20" height="268"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xE4-qA-kje">
+                                                    <rect key="frame" x="8" y="8" width="20" height="267"/>
                                                     <color key="backgroundColor" red="0.083725895810000006" green="0.78553109219999995" blue="0.29008639520000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="fOV-hF-aXr"/>
@@ -1255,8 +1256,8 @@
                                                     <color key="textColor" red="0.52941176469999995" green="0.57647058819999997" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="退房当天 14:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74W-05-RVp">
-                                                    <rect key="frame" x="36" y="255" width="540" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退房当天 14:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74W-05-RVp">
+                                                    <rect key="frame" x="36" y="254" width="540" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="khN-0D-Kvf"/>
                                                     </constraints>
@@ -1717,8 +1718,9 @@
         <image name="HA_White_Background" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FiJ-Aa-niN"/>
         <segue reference="wTa-yi-rbG"/>
+        <segue reference="FiJ-Aa-niN"/>
+        <segue reference="DVT-YJ-7kO"/>
         <segue reference="b8F-wb-8Bk"/>
         <segue reference="efl-mY-tkK"/>
     </inferredMetricsTieBreakers>

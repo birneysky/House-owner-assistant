@@ -276,7 +276,6 @@
 - (void) imagesOfHouseDidChange:(NSArray<HAHouseImage*>*) images
 {
     self.houseFullInfo.images = images;
-    [self.tableView reloadData];
 }
 
 

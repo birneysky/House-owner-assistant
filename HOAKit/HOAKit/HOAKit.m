@@ -9,6 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "HOAKit.h"
 
+
+@implementation HOAKit
+
++ (UINavigationController*) rootViewController
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"HOAKit" ofType:@"bundle"];
+    NSBundle* bundle = [NSBundle bundleWithPath:path];
+    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"House-owner-assistant" bundle:bundle];
+    UINavigationController* nav = [sb instantiateViewControllerWithIdentifier:@"house_owner_assisnt_nav"];
+    return nav;
+}
+
+@end
+
+
+
 UINavigationController* GetHOAKitRootViewController()
 {
     NSString* path = [[NSBundle mainBundle] pathForResource:@"HOAKit" ofType:@"bundle"];

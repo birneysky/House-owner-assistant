@@ -16,5 +16,11 @@ FOUNDATION_EXPORT const unsigned char HOAKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <HOAKit/PublicHeader.h>
 
+@interface HOAKit : NSObject
+
++ (UINavigationController*) rootViewController;
+
+
+@end
 
 UINavigationController* GetHOAKitRootViewController();

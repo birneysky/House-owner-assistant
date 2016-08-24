@@ -13,6 +13,7 @@
 #import "HAHouse.h"
 #import "HAAppDataHelper.h"
 #import "HAHousePosition.h"
+#import "HAActiveWheel.h"
 
 const NSInteger MAXLEVEL =  3;
 
@@ -74,7 +75,6 @@ const NSInteger MAXLEVEL =  3;
 }
 
 #pragma mark - *** Init ***
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -94,6 +94,7 @@ const NSInteger MAXLEVEL =  3;
     }];
     
     //请求房源所在城市的位置区域信息。
+    [HAActiveWheel showHUDAddedTo:self.view].processString = @"正在载入";
     [[HARESTfulEngine defaultEngine] fetchPositionInfoWithCityID:self.house.city completion:^(NSArray<HAPosition *> *postions, NSArray<HASubWay *> *subways) {
         [postions enumerateObjectsUsingBlock:^(HAPosition * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             HARegion* region = self.allRegions[obj.typeId - 1];
@@ -114,10 +115,12 @@ const NSInteger MAXLEVEL =  3;
 //        NSInteger select[3] = {0,0,0};
 //        [self.arealocationView selectRowWithSelectedIndex:select];
         [self.arealocationView showArealocationInView:self.view];
+        [HAActiveWheel dismissForView:self.view];
+        
 
         
     } onError:^(NSError *engineError) {
-        
+        [HAActiveWheel dismissViewDelay:3 forView:self.view warningText:@"载入失败，请检查网络"];
     }];
     
 
@@ -127,6 +130,7 @@ const NSInteger MAXLEVEL =  3;
     [super didReceiveMemoryWarning];
     
 }
+
 
 /*
 #pragma mark - Navigation

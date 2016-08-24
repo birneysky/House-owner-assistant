@@ -22,6 +22,9 @@
 
 - (void)setProgress:(CGFloat)progress
 {
+    if (self.hidden && progress>0) {
+        self.hidden = NO;
+    }
     _progress = progress;
     
     if (progress >= 1.0) {

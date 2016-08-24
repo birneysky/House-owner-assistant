@@ -6,9 +6,9 @@
 //  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HAHouseInfoItem.h"
+#import "HAHouseInfoItemCell.h"
 
-@implementation HAHouseInfoItem
+@implementation HAHouseInfoItemCell
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -19,7 +19,9 @@
 */
 
 - (IBAction)commentsBtnClicked:(id)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(changePriceButtonClickedOfCell:)]) {
+        [self.delegate changePriceButtonClickedOfCell:self];
+    }
 }
 
 

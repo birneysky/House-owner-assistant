@@ -57,8 +57,8 @@
 		74266FF71D69D0D400A7E4BF /* SDTransparentPieProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266FE81D69D0D400A7E4BF /* SDTransparentPieProgressView.m */; };
 		742670021D69FF6F00A7E4BF /* HAPhotoItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 742670001D69FF6F00A7E4BF /* HAPhotoItem.h */; };
 		742670031D69FF6F00A7E4BF /* HAPhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 742670011D69FF6F00A7E4BF /* HAPhotoItem.m */; };
-		742670061D6C8EC300A7E4BF /* HAHouseInfoItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 742670041D6C8EC300A7E4BF /* HAHouseInfoItem.h */; };
-		742670071D6C8EC300A7E4BF /* HAHouseInfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 742670051D6C8EC300A7E4BF /* HAHouseInfoItem.m */; };
+		742670061D6C8EC300A7E4BF /* HAHouseInfoItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 742670041D6C8EC300A7E4BF /* HAHouseInfoItemCell.h */; };
+		742670071D6C8EC300A7E4BF /* HAHouseInfoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742670051D6C8EC300A7E4BF /* HAHouseInfoItemCell.m */; };
 		742B917E1D4FA836000FF5A1 /* HOAKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B917D1D4FA836000FF5A1 /* HOAKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742B91C61D4FB731000FF5A1 /* HAAddHousePhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91951D4FB731000FF5A1 /* HAAddHousePhotoViewController.h */; };
 		742B91C71D4FB731000FF5A1 /* HAAddHousePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91961D4FB731000FF5A1 /* HAAddHousePhotoViewController.m */; };
@@ -190,6 +190,12 @@
 		DBAE09281D506275008A85C4 /* HAHouseIntroduceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE09261D506275008A85C4 /* HAHouseIntroduceViewController.h */; };
 		DBAE09291D506275008A85C4 /* HAHouseIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE09271D506275008A85C4 /* HAHouseIntroduceViewController.m */; };
 		DBAE64761D6C2077006D807C /* HADataExchangeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE64751D6C2077006D807C /* HADataExchangeDelegate.h */; };
+		DBAE64791D6D6C00006D807C /* EVCircularProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE64771D6D6C00006D807C /* EVCircularProgressView.h */; };
+		DBAE647A1D6D6C00006D807C /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE64781D6D6C00006D807C /* EVCircularProgressView.m */; };
+		DBAE647E1D6D8927006D807C /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE647C1D6D8927006D807C /* MBProgressHUD.h */; };
+		DBAE647F1D6D8927006D807C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE647D1D6D8927006D807C /* MBProgressHUD.m */; };
+		DBE880681D6D9CBB00A72248 /* HAActiveWheel.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE880661D6D9CBB00A72248 /* HAActiveWheel.h */; };
+		DBE880691D6D9CBB00A72248 /* HAActiveWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE880671D6D9CBB00A72248 /* HAActiveWheel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -243,8 +249,8 @@
 		74266FE81D69D0D400A7E4BF /* SDTransparentPieProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTransparentPieProgressView.m; sourceTree = "<group>"; };
 		742670001D69FF6F00A7E4BF /* HAPhotoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPhotoItem.h; sourceTree = "<group>"; };
 		742670011D69FF6F00A7E4BF /* HAPhotoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPhotoItem.m; sourceTree = "<group>"; };
-		742670041D6C8EC300A7E4BF /* HAHouseInfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseInfoItem.h; sourceTree = "<group>"; };
-		742670051D6C8EC300A7E4BF /* HAHouseInfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseInfoItem.m; sourceTree = "<group>"; };
+		742670041D6C8EC300A7E4BF /* HAHouseInfoItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseInfoItemCell.h; sourceTree = "<group>"; };
+		742670051D6C8EC300A7E4BF /* HAHouseInfoItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseInfoItemCell.m; sourceTree = "<group>"; };
 		742B917A1D4FA836000FF5A1 /* HOAKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HOAKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		742B917D1D4FA836000FF5A1 /* HOAKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HOAKit.h; sourceTree = "<group>"; };
 		742B917F1D4FA836000FF5A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -378,6 +384,12 @@
 		DBAE09261D506275008A85C4 /* HAHouseIntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseIntroduceViewController.h; sourceTree = "<group>"; };
 		DBAE09271D506275008A85C4 /* HAHouseIntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseIntroduceViewController.m; sourceTree = "<group>"; };
 		DBAE64751D6C2077006D807C /* HADataExchangeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HADataExchangeDelegate.h; sourceTree = "<group>"; };
+		DBAE64771D6D6C00006D807C /* EVCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCircularProgressView.h; sourceTree = "<group>"; };
+		DBAE64781D6D6C00006D807C /* EVCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCircularProgressView.m; sourceTree = "<group>"; };
+		DBAE647C1D6D8927006D807C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		DBAE647D1D6D8927006D807C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		DBE880661D6D9CBB00A72248 /* HAActiveWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAActiveWheel.h; sourceTree = "<group>"; };
+		DBE880671D6D9CBB00A72248 /* HAActiveWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAActiveWheel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,6 +464,8 @@
 		74266FD91D69D0D400A7E4BF /* SDProgressView */ = {
 			isa = PBXGroup;
 			children = (
+				DBAE64771D6D6C00006D807C /* EVCircularProgressView.h */,
+				DBAE64781D6D6C00006D807C /* EVCircularProgressView.m */,
 				74266FDA1D69D0D400A7E4BF /* SDBallProgressView.h */,
 				74266FDB1D69D0D400A7E4BF /* SDBallProgressView.m */,
 				74266FDC1D69D0D400A7E4BF /* SDBaseProgressView.h */,
@@ -577,6 +591,8 @@
 		742B91A81D4FB731000FF5A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DBE880661D6D9CBB00A72248 /* HAActiveWheel.h */,
+				DBE880671D6D9CBB00A72248 /* HAActiveWheel.m */,
 				742B91A91D4FB731000FF5A1 /* HAFloatingButton.h */,
 				742B91AA1D4FB731000FF5A1 /* HAFloatingButton.m */,
 				7422D7971D53811C00ACB2B6 /* HATextView.h */,
@@ -621,6 +637,7 @@
 		742B91B11D4FB731000FF5A1 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				DBAE647B1D6D8927006D807C /* MBProgressHUD */,
 				74266FD91D69D0D400A7E4BF /* SDProgressView */,
 				DB3B28D71D5DC0070007E576 /* MKNetworkKit */,
 				74266F5D1D5CA31700A7E4BF /* MultilevelTableview */,
@@ -678,8 +695,8 @@
 				743F438B1D58E81F00D06D19 /* HAAddPictureCollectionViewCell.m */,
 				74266F9C1D60054300A7E4BF /* HAHouseInfoBaseCell.h */,
 				74266F9D1D60054300A7E4BF /* HAHouseInfoBaseCell.m */,
-				742670041D6C8EC300A7E4BF /* HAHouseInfoItem.h */,
-				742670051D6C8EC300A7E4BF /* HAHouseInfoItem.m */,
+				742670041D6C8EC300A7E4BF /* HAHouseInfoItemCell.h */,
+				742670051D6C8EC300A7E4BF /* HAHouseInfoItemCell.m */,
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
@@ -726,6 +743,15 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		DBAE647B1D6D8927006D807C /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				DBAE647C1D6D8927006D807C /* MBProgressHUD.h */,
+				DBAE647D1D6D8927006D807C /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -737,6 +763,7 @@
 				74266F921D5F7C3B00A7E4BF /* HARESTfulOperation.h in Headers */,
 				DB3B28C81D5892180007E576 /* HABathroomDataSourceDelegate.h in Headers */,
 				74266F9A1D5F835A00A7E4BF /* HAHouseItem.h in Headers */,
+				DBAE647E1D6D8927006D807C /* MBProgressHUD.h in Headers */,
 				DB13FCB11D640F74003A8F58 /* HAError.h in Headers */,
 				742B91DF1D4FB731000FF5A1 /* CTAssetsGroupViewCell.h in Headers */,
 				74266FEF1D69D0D400A7E4BF /* SDPieLoopProgressView.h in Headers */,
@@ -780,17 +807,19 @@
 				743F43561D5600AA00D06D19 /* HAHouseInfoViewController.h in Headers */,
 				743F434E1D55F81500D06D19 /* HADiscountPickerTextField.h in Headers */,
 				742B91E11D4FB731000FF5A1 /* CTAssetsGroupViewController.h in Headers */,
-				742670061D6C8EC300A7E4BF /* HAHouseInfoItem.h in Headers */,
+				742670061D6C8EC300A7E4BF /* HAHouseInfoItemCell.h in Headers */,
 				743F43841D58BC8500D06D19 /* HAPhotoCollectionViewController.h in Headers */,
 				DB13FCA51D62EDFB003A8F58 /* HAPosition.h in Headers */,
 				74266FE91D69D0D400A7E4BF /* SDBallProgressView.h in Headers */,
 				74266F7D1D5DF91F00A7E4BF /* HAHouseInfo.h in Headers */,
 				DB12CBF21D61AAAA0069126F /* HAHouseFullInfo.h in Headers */,
+				DBE880681D6D9CBB00A72248 /* HAActiveWheel.h in Headers */,
 				743F43611D57037800D06D19 /* HAEditPickerDelegate.h in Headers */,
 				743F43681D571E6100D06D19 /* HAHouseBathRoomEditViewController.h in Headers */,
 				DB3B28F11D5DC0070007E576 /* NSDate+RFC1123.h in Headers */,
 				DB35A79C1D66FA5500CD6776 /* NSArray+RequestEncoding.h in Headers */,
 				DB3B28CC1D5C1AF50007E576 /* HouseFacilitiesViewController.h in Headers */,
+				DBAE64791D6D6C00006D807C /* EVCircularProgressView.h in Headers */,
 				743F43881D58CD9900D06D19 /* HAAddPhotoViewLayout.h in Headers */,
 				74266F791D5DF8C300A7E4BF /* HAHouseImage.h in Headers */,
 				74266F8A1D5E02EA00A7E4BF /* HARESTfulEngine.h in Headers */,
@@ -967,6 +996,7 @@
 				DB3B28F61D5DC0070007E576 /* NSString+MKNetworkKitAdditions.m in Sources */,
 				7422D79A1D53811C00ACB2B6 /* HATextView.m in Sources */,
 				DB3B28FF1D5DC0070007E576 /* Reachability.m in Sources */,
+				DBAE647A1D6D6C00006D807C /* EVCircularProgressView.m in Sources */,
 				742B91CD1D4FB731000FF5A1 /* HAHouseTypeTableViewController.m in Sources */,
 				74266FEC1D69D0D400A7E4BF /* SDBaseProgressView.m in Sources */,
 				743F434B1D55F0C500D06D19 /* HALocationPickerTextField.m in Sources */,
@@ -987,16 +1017,18 @@
 				DB3B28BD1D5851A90007E576 /* HAOffOnCell.m in Sources */,
 				742B91C71D4FB731000FF5A1 /* HAAddHousePhotoViewController.m in Sources */,
 				742B91CB1D4FB731000FF5A1 /* HAHouseLocationViewController.m in Sources */,
+				DBAE647F1D6D8927006D807C /* MBProgressHUD.m in Sources */,
 				74266F611D5CA31700A7E4BF /* RTArealocationView.m in Sources */,
 				743F43891D58CD9900D06D19 /* HAAddPhotoViewLayout.m in Sources */,
 				74266F9B1D5F835A00A7E4BF /* HAHouseItem.m in Sources */,
 				74266FF71D69D0D400A7E4BF /* SDTransparentPieProgressView.m in Sources */,
 				DB3B28F21D5DC0070007E576 /* NSDate+RFC1123.m in Sources */,
 				DB3B28CD1D5C1AF50007E576 /* HouseFacilitiesViewController.m in Sources */,
+				DBE880691D6D9CBB00A72248 /* HAActiveWheel.m in Sources */,
 				DB13FCA61D62EDFB003A8F58 /* HAPosition.m in Sources */,
 				DB3B28C11D5866370007E576 /* HABedInfoCell.m in Sources */,
 				74266F821D5DFA5B00A7E4BF /* HAHouseOrder.m in Sources */,
-				742670071D6C8EC300A7E4BF /* HAHouseInfoItem.m in Sources */,
+				742670071D6C8EC300A7E4BF /* HAHouseInfoItemCell.m in Sources */,
 				74266F721D5DF7E700A7E4BF /* HAHouseComment.m in Sources */,
 				742B91D71D4FB731000FF5A1 /* HAFloatingButton.m in Sources */,
 				742B91E01D4FB731000FF5A1 /* CTAssetsGroupViewCell.m in Sources */,
@@ -1107,6 +1139,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				INFOPLIST_FILE = HOAKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1128,6 +1161,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				INFOPLIST_FILE = HOAKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

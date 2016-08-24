@@ -122,7 +122,7 @@ static HARESTfulEngine* defaultEngine;
             completion([houseItems copy]);
         }
     } onError:^(NSError *engineError) {
-        
+        errorBlock(engineError);
     }];
 
 }
@@ -185,7 +185,7 @@ static HARESTfulEngine* defaultEngine;
             completion(fullInfo);
         }
     } onError:^(NSError *engineError) {
-        
+        errorBlock(engineError);
     }];
 }
 
@@ -218,7 +218,7 @@ static HARESTfulEngine* defaultEngine;
          HAHouseFacility* facitility = [[HAHouseFacility alloc] initWithDictionary:dic];
          completion(facitility);
      } onError:^(NSError *engineError) {
-         
+         errorBlcok(engineError);
      }];
 }
 
@@ -247,7 +247,7 @@ static HARESTfulEngine* defaultEngine;
         completion([mutablePostions copy],[mutableSubways copy]);
         
     } onError:^(NSError *engineError) {
-        
+        errorBlock(engineError);
     }];
 }
 
@@ -262,7 +262,7 @@ static HARESTfulEngine* defaultEngine;
         completion(bedresult);
         
     } onError:^(NSError *engineError) {
-        
+        errBlock(engineError);
     }];
 }
 
@@ -274,7 +274,7 @@ static HARESTfulEngine* defaultEngine;
     [self httpRequestWithPath:path generalParams:nil httpMethod:@"DELETE" completion:^(NSDictionary *object) {
         completion(nil);
     } onError:^(NSError *engineError) {
-        
+        errBlock(engineError);
     }];
 }
 
@@ -291,7 +291,7 @@ static HARESTfulEngine* defaultEngine;
         HAHouse* house = [[HAHouse alloc] initWithDictionary:houseDic];
         completion(house);
     } onError:^(NSError *engineError) {
-        
+        errorBlcok(engineError);
     }];
 }
 
@@ -312,7 +312,7 @@ static HARESTfulEngine* defaultEngine;
         }];
         completion([mutablArray copy]);
     } onError:^(NSError *engineError) {
-        
+        errorBlcok(engineError);
     }];
 }
 
@@ -347,6 +347,7 @@ static HARESTfulEngine* defaultEngine;
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* err){
         
         NSLog(@"Upload file error: %@", err);
+        errorBlcok(err);
         
     }];
     

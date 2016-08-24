@@ -404,6 +404,7 @@ NSString* gen_uuid()
         NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
         NSError* error;
         [[NSFileManager defaultManager]  removeItemAtPath:filePath error:&error];
+        [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
     } onError:^(NSError *engineError) {
         
     }];

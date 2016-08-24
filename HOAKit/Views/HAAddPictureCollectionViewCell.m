@@ -7,12 +7,12 @@
 //
 
 #import "HAAddPictureCollectionViewCell.h"
-#import "SDLoopProgressView.h"
+#import "SDProgressView.h"
 
 @interface HAAddPictureCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
-@property (weak, nonatomic) IBOutlet SDLoopProgressView *progressView;
+@property (weak, nonatomic) IBOutlet SDBallProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @end
 

@@ -12,27 +12,27 @@
 #import "HAHouseInfoBaseCell.h"
 #import "HAHouse.h"
 #import "HAPublishHouseInfoTableViewController.h"
+#import "HAActiveWheel.h"
+#import "HAHouseInfoItemCell.h"
 
-@interface HAHouseTableController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HAHouseTableController ()<UITableViewDelegate,UITableViewDataSource,HAHouseInfoItemCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet HAFloatingButton *addButton;
 @property (nonatomic,strong) NSArray* dataSource;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation HAHouseTableController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.activityIndicator startAnimating];
     
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
     [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:1 completion:^(NSArray<HAJSONModel *> *objects) {
         self.dataSource = objects;
-        [self.activityIndicator stopAnimating];
-        self.activityIndicator.hidden = YES;
+        [HAActiveWheel dismissForView:self.navigationController.view];
         [self.tableView reloadData];
     } onError:^(NSError *engineError) {
-        
+        [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
     }];
 }
 
@@ -72,6 +72,8 @@
     
     if (2 == item.checkStatus) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
+        HAHouseInfoItemCell* itemCell = cell;
+        itemCell.delegate = self;
     }
     else{
         
@@ -122,5 +124,12 @@
     }
 }
 
+#pragma mark - *** HAHouseInfoItemCellDelegate ***
+- (void)changePriceButtonClickedOfCell:(UITableViewCell *)cell
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    HAHouse* item = self.dataSource[indexPath.row];
+    
+}
 
 @end

@@ -236,6 +236,6 @@ typedef void (^ErrorBlock)(NSError* engineError);
 
 - (void) submitHouseInfoForCheckOfHouseId:(NSInteger)houseId
                                    params:(HAHouse*)house
-                               completion:(VoidBlock)completion
+                               completion:(void (^) (HAHouse* house))completion
                                   onError:(ErrorBlock)errorBlcok;
 @end

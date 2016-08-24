@@ -116,9 +116,6 @@ const NSInteger MAXLEVEL =  3;
 //        [self.arealocationView selectRowWithSelectedIndex:select];
         [self.arealocationView showArealocationInView:self.view];
         [HAActiveWheel dismissForView:self.view];
-        
-
-        
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.view warningText:@"载入失败，请检查网络"];
     }];

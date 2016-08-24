@@ -77,6 +77,11 @@
     [HAActiveWheel performSelector:@selector(dismissForView:) withObject:view afterDelay:interval];
 }
 
++ (void)dismissForView:(UIView *)view delay:(NSTimeInterval)interval
+{
+       [HAActiveWheel performSelector:@selector(dismissForView:) withObject:view afterDelay:interval];
+}
+
 - (void)setProcessString:(NSString *)processString
 {
     //self.labelColor = [UIColor colorWithRed:219/255.0f green:78/255.0f blue:32/255.0f alpha:1];

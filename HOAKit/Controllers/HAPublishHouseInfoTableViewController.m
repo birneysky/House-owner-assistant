@@ -18,12 +18,16 @@
 #import "HAAddHousePhotoViewController.h"
 #import "HAHouseLocationViewController.h"
 #import "HAHouseTypeTableViewController.h"
+#import "HAActiveWheel.h"
 
 @interface HAPublishHouseInfoTableViewController ()<HADataExchangeDelegate>
 
 @property(nonatomic,strong) NSArray* dataSource;
 
 
+@property (strong, nonatomic) IBOutlet UIView *coverView;
+@property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
 @end
 
@@ -41,20 +45,49 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId completion:^(HAHouseFullInfo *info) {
-        self.houseFullInfo = info;
-        [self.tableView reloadData];
-        NSLog(@"fetch house full info finished");
-    } onError:^(NSError *engineError) {
-        
-    }];
+    self.coverView.frame = [UIScreen mainScreen].bounds;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+//    [self.view addSubview:self.coverView];
+//    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
+//    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId completion:^(HAHouseFullInfo *info) {
+//        self.houseFullInfo = info;
+//        [HAActiveWheel dismissForView:self.navigationController.view delay:1];
+//        [self.coverView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
+//        [self.tableView reloadData];
+//
+//        NSLog(@"fetch house full info finished");
+//    } onError:^(NSError *engineError) {
+//        [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
+//        self.refreshBtn.hidden = NO;
+//    }];
+    [self fetchHouseInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+}
+
+
+#pragma mark - *** Helper ****
+- (void)fetchHouseInfo{
+    [self.view addSubview:self.coverView];
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
+    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId completion:^(HAHouseFullInfo *info) {
+        self.houseFullInfo = info;
+        [HAActiveWheel dismissForView:self.navigationController.view delay:1];
+        [self.coverView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
+        [self.tableView reloadData];
+        if (2 == self.houseFullInfo.house.checkStatus) {
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+            self.submitBtn.hidden = YES;
+        }
+        NSLog(@"fetch house full info finished");
+    } onError:^(NSError *engineError) {
+        [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
+        self.refreshBtn.hidden = NO;
+    }];
 }
 
 
@@ -181,6 +214,45 @@
 }
 
 
+#pragma mark - *** Target Action ***
+- (IBAction)reloadBtnClicked:(id)sender {
+    [self fetchHouseInfo];
+}
+
+- (IBAction)submitBtnClicked:(id)sender {
+    if (self.houseFullInfo.houseDescriptionComplete &&
+        self.houseFullInfo.priceInfoComplete &&
+        self.houseFullInfo.houseGeneralInfoComplete &&
+        self.houseFullInfo.bedInfoComplete &&
+        self.houseFullInfo.rentTypeComplete &&
+        self.houseFullInfo.addressInfoComplete &&
+        self.houseFullInfo.facilityInfoComplete &&
+        self.houseFullInfo.regionInfoComplete) {
+        
+        [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
+        [NETWORKENGINE submitHouseInfoForCheckOfHouseId:self.houseFullInfo.house.houseId
+                                                 params:self.houseFullInfo.house
+                                             completion:^(HAHouse* house){
+                                                 self.houseFullInfo.house = house;
+                                                 [HAActiveWheel dismissForView:self.navigationController.view delay:1];
+                                                 if (4 == house.checkStatus) {
+                                                     self.submitBtn.hidden = YES;
+                                                 }
+                                             }
+                                                onError:^(NSError *engineError) {
+                                                 [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
+            
+        }];
+        
+    }
+    else{
+        [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"信息未满足提交条件";
+        [HAActiveWheel dismissForView:self.navigationController.view delay:2];
+    }
+
+
+    
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

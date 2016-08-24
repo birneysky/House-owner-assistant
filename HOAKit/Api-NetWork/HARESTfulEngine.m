@@ -435,14 +435,19 @@ static HARESTfulEngine* defaultEngine;
 
 - (void) submitHouseInfoForCheckOfHouseId:(NSInteger)houseId
                                    params:(HAHouse*)house
-                               completion:(VoidBlock)completion
+                               completion:(void (^) (HAHouse* house))completion
                                   onError:(ErrorBlock)errorBlcok;
 {
     NSString* path = [NSString stringWithFormat:@"api/houses/%d",houseId];
-    [self httpRequestWithPath:path generalParams:[house toFullDictionary] httpMethod:@"PUT" completion:^(NSDictionary *object) {
-        completion();
-    } onError:^(NSError *engineError) {
-        errorBlcok(engineError);
+    [self httpRequestWithPath:path
+                generalParams:[house toFullDictionary]
+                   httpMethod:@"PUT"
+                   completion:^(NSDictionary *object) {
+                       NSDictionary* houseDic = [object objectForKey:@"data"];
+                       HAHouse* house = [[HAHouse alloc] initWithDictionary:houseDic];
+                       completion(house);
+                   } onError:^(NSError *engineError) {
+                       errorBlcok(engineError);
     }];
 }
 

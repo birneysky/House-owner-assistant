@@ -22,6 +22,8 @@
 + (HAActiveWheel*)showHUDAddedToWindow:(UIWindow *)window;
 + (void)dismissForView:(UIView*)view;
 
++ (void)dismissForView:(UIView *)view delay:(NSTimeInterval)interval;
+
 + (void)dismissViewDelay:(NSTimeInterval)interval forView:(UIView*)view warningText:(NSString*)text;
 
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7422D7991D53811C00ACB2B6 /* HATextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7422D7971D53811C00ACB2B6 /* HATextView.h */; };
 		7422D79A1D53811C00ACB2B6 /* HATextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7422D7981D53811C00ACB2B6 /* HATextView.m */; };
-		7425B80D1D50CBDF00288A46 /* province.json in Resources */ = {isa = PBXBuildFile; fileRef = 7425B80C1D50CBDF00288A46 /* province.json */; };
 		74266F601D5CA31700A7E4BF /* RTArealocationView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F5E1D5CA31700A7E4BF /* RTArealocationView.h */; };
 		74266F611D5CA31700A7E4BF /* RTArealocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F5F1D5CA31700A7E4BF /* RTArealocationView.m */; };
 		74266F641D5CA6E800A7E4BF /* HAHouseAreaSelectViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F621D5CA6E800A7E4BF /* HAHouseAreaSelectViewController.h */; };
@@ -918,7 +917,6 @@
 				DBAE09231D5043DF008A85C4 /* HOA.xcassets in Resources */,
 				742B91ED1D4FB731000FF5A1 /* Images.xcassets in Resources */,
 				742B91DC1D4FB731000FF5A1 /* House-owner-assistant.storyboard in Resources */,
-				7425B80D1D50CBDF00288A46 /* province.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1139,7 +1137,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				INFOPLIST_FILE = HOAKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1161,7 +1159,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				INFOPLIST_FILE = HOAKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

@@ -229,12 +229,28 @@
     self.houseCopy.hallNumber = hallNum;
     self.houseCopy.kitchenNumber = cookNum;
     self.houseCopy.balconyNumber = bNum;
+    
+    BOOL change = ![self.house isEqualToHouse:self.houseCopy];
+    if (change) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 - (void) didSelectPublicBathroom:(NSInteger) pubNum privateBathroom:(NSInteger)privateNum
 {
     self.houseCopy.publicToiletNumber = pubNum;
     self.houseCopy.toiletNumber = privateNum;
+    
+    BOOL change = ![self.house isEqualToHouse:self.houseCopy];
+    if (change) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 #pragma mark - *** HAEditorNumberCellDelegate ***

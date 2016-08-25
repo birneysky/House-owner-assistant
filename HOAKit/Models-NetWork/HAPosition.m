@@ -8,8 +8,15 @@
 
 #import "HAPosition.h"
 
-@implementation HAPosition
+@interface HAPosition ()
 
+
+@end
+
+@implementation HAPosition
+{
+    NSString* _name;
+}
 
 - (void) setValue:(id)value forUndefinedKey:(NSString *)key
 {
@@ -33,6 +40,17 @@
 -(NSArray<id<HAGeneralPosition>>*) subItems
 {
     return nil;
+}
+
+
+- (void)setName:(NSString *)name
+{
+    _name = [name copy];
+}
+
+- (NSString*)name
+{
+    return _name;
 }
 
 @end

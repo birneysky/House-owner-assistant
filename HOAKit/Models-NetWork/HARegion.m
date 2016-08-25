@@ -54,7 +54,7 @@
 {
     if([item respondsToSelector:@selector(subwayId)])
     {
-        [self.indexDic setObject:@(self.items.count) forKey:[NSString stringWithFormat:@"%d",[(HASubWay*)item subwayId]]];
+        [self.indexDic setObject:@(self.items.count) forKey:[NSString stringWithFormat:@"%ld",[(HASubWay*)item subwayId]]];
     }
     
     [self.items addObject:item];
@@ -72,7 +72,7 @@
 
 - (id<HAGeneralPosition>)subItemWithID:(NSInteger)Id
 {
-    NSString* strId = [NSString stringWithFormat:@"%d",Id];
+    NSString* strId = [NSString stringWithFormat:@"%ld",Id];
     NSNumber* index = self.indexDic[strId];
     
     if (index) {

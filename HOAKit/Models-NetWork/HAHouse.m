@@ -132,37 +132,34 @@
     if([text isEqualToString:@"日价"])
     {
         self.price = [value floatValue];
+        if (self.price > 99999 || self.price <= 0) {
+            valid = NO;
+        }
     }
     
     if([text isEqualToString:@"押金"])
     {
         self.depositAmount = [value floatValue];
+        if (self.depositAmount > 99999 || self.depositAmount < 0) {
+            valid = NO;
+        }
     }
     
     if ([text isEqualToString:@"房屋面积"]) {
         self.area = value;
+        if ([self.area floatValue] > 99999 || [self.area floatValue] <= 0) {
+            valid = NO;
+        }
     }
     
     if ([text isEqualToString:@"几位访客"]) {
         self.toliveinNumber = [value integerValue];
+        if(self.toliveinNumber > 10 || self.toliveinNumber < 1)
+        {
+            valid = NO;
+        }
     }
-    
-    if ([self.area floatValue] > 99999) {
-        valid = NO;
-    }
-    
-    if (self.price > 99999) {
-        valid = NO;
-    }
-    
-    if (self.depositAmount > 99999) {
-        valid = NO;
-    }
-    
-    if(self.toliveinNumber > 10 || self.toliveinNumber < 1)
-    {
-        valid = NO;
-    }
+
     return valid;
 }
 

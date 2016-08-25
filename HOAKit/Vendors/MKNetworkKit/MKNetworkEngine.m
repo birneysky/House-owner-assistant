@@ -379,13 +379,13 @@ static NSOperationQueue *_sharedNetworkQueue;
                                    httpMethod:(NSString*)method{
     MKNetworkOperation *operation = nil;
     if ([body isKindOfClass:[NSDictionary class]]) {
-        operation = [[self.customOperationSubclass alloc] initWithURLString:urlString params:body httpMethod:method];
+        operation = [[self.customOperationSubclass alloc] initWithURLString:urlString params:(NSDictionary*)body httpMethod:method];
     }
     else if([body isKindOfClass:[NSArray class]]) {
-        operation = [[self.customOperationSubclass alloc] initWithURLString:urlString paramsArray:body httpMethod:method];
+        operation = [[self.customOperationSubclass alloc] initWithURLString:urlString paramsArray:(NSArray*)body httpMethod:method];
     }
     else{
-        operation = [[self.customOperationSubclass alloc] initWithURLString:urlString params:body httpMethod:method];
+        operation = [[self.customOperationSubclass alloc] initWithURLString:urlString params:(NSDictionary*)body httpMethod:method];
     }
     
     

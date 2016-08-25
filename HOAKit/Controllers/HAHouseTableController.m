@@ -72,7 +72,7 @@
     
     if (2 == item.checkStatus) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
-        HAHouseInfoItemCell* itemCell = cell;
+        HAHouseInfoItemCell* itemCell = (HAHouseInfoItemCell*)cell;
         itemCell.delegate = self;
     }
     else{
@@ -93,7 +93,6 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     HAHouse* item = self.dataSource[indexPath.section];
-    NSLog(@" checkStatus  %d",item.checkStatus);
     switch (item.checkStatus) {
         case 1://待审核
             // show toast;
@@ -137,8 +136,8 @@
 #pragma mark - *** HAHouseInfoItemCellDelegate ***
 - (void)changePriceButtonClickedOfCell:(UITableViewCell *)cell
 {
-    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-    HAHouse* item = self.dataSource[indexPath.row];
+   // NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+   // HAHouse* item = self.dataSource[indexPath.row];
     [self performSegueWithIdentifier:@"push_price_trand_rule" sender:nil];
 }
 

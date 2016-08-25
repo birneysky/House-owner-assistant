@@ -14,6 +14,8 @@
 
 @property (nonatomic,assign) NSInteger typeId;
 
+@property(nonatomic,copy)  NSString* name;
+
 @end
 
 @implementation HASubWay
@@ -66,5 +68,7 @@
 {
     return self.subwayId;
 }
+
+
 
 @end

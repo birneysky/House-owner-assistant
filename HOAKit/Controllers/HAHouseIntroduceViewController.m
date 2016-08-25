@@ -172,37 +172,37 @@
     [self.scrollView scrollRectToVisible:rect animated:YES];
     
     if (self.titleTextView == textView) {
-        if(self.validFlag | PRTValidStateTitle == PRTValidStateTitle)
+        if((self.validFlag | PRTValidStateTitle) == PRTValidStateTitle)
         {
             self.textViewInputingLabel.text = @"   请输入5-20个字";
         }
     }
     else if (self.houseDescriptionTextView == textView){
-        if(self.validFlag | PRTValidStateDescription == PRTValidStateDescription)
+        if((self.validFlag | PRTValidStateDescription) == PRTValidStateDescription)
         {
             self.textViewInputingLabel.text = @"   请输入0-250个字";
         }
     }
     else if (self.houseLocationTextView == textView){
-        if(self.validFlag | PRTValidStatePosition == PRTValidStatePosition)
+        if((self.validFlag | PRTValidStatePosition) == PRTValidStatePosition)
         {
             self.textViewInputingLabel.text = @"   请输入0-250个字";
         }
     }
     else if (self.houseTrafficTextView == textView){
-        if(self.validFlag | PRTValidStateTraffic == PRTValidStateTraffic)
+        if((self.validFlag | PRTValidStateTraffic) == PRTValidStateTraffic)
         {
             self.textViewInputingLabel.text = @"   请输入0-250个字";
         }
     }
     else if (self.houseLiftTextView == textView){
-        if(self.validFlag | PRTValidStateSurroundings == PRTValidStateSurroundings)
+        if((self.validFlag | PRTValidStateSurroundings) == PRTValidStateSurroundings)
         {
             self.textViewInputingLabel.text = @"   请输入0-250个字";
         }
     }
     else if (self.houseCommentTextView == textView){
-        if(self.validFlag | PRTValidStateRemarks == PRTValidStateRemarks)
+        if((self.validFlag | PRTValidStateRemarks) == PRTValidStateRemarks)
         {
             self.textViewInputingLabel.text = @"   请输入0-250个字";
         }
@@ -272,7 +272,6 @@
 - (void)textViewTextDidChanged:(NSNotification*)notify
 {
     UITextView* textView = notify.object;
-    NSInteger length = textView.text.length;
     BOOL valid = YES;
     BOOL change = NO;
 
@@ -340,7 +339,7 @@
 
     change = ![self.house isEqualToHouse:self.houseCopy];
     BOOL validTest = (self.validFlag & PRTValidStateNormal) == PRTValidStateNormal;
-    if (change && validTest) {
+    if (change && validTest && self.houseCopy.title.length > 0 && self.houseCopy.houseDescription.length > 0) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else{
@@ -353,7 +352,6 @@
 {
     CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
-    CGFloat keyboardTop = keyboardRect.origin.y ;
     //NSLog(@"keyboarTop %f",keyboardTop);
     //NSLog(@"height %f",self.view.bounds.size.height - keyboardRect.size.height);
     //CGRect newScrollViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, keyboardTop);

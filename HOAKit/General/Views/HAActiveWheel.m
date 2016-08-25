@@ -45,15 +45,15 @@
     HAActiveWheel* hud = [[HAActiveWheel alloc] initWithView:view];
     hud.contentColor = [UIColor whiteColor];
     [view addSubview:hud];
-    [hud show:YES];
+    [hud showAnimated:YES];
     return hud;
 }
 
 + (HAActiveWheel *)showHUDAddedToWindow:(UIWindow *)window{
-    HAActiveWheel* hud = [[HAActiveWheel alloc] initWithWindow:window];
+    HAActiveWheel* hud = [[HAActiveWheel alloc] initWithView:window];
     hud.contentColor = [UIColor whiteColor];
     [window addSubview:hud];
-    [hud show:YES];
+    [hud showAnimated:YES];
     return hud;
 }
 
@@ -61,18 +61,17 @@
 
 +(void)dismissForView:(UIView*)view
 {
-    NSArray *huds = [super allHUDsForView:view];
-    for (HAActiveWheel *hud in huds) {
-        hud.removeFromSuperViewOnHide = YES;
-        [hud hide:YES];
-    }
+    MBProgressHUD* hud = [super HUDForView:view];
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hideAnimated:YES];
+
 
 }
 
 + (void)dismissViewDelay:(NSTimeInterval)interval forView:(UIView*)view warningText:(NSString*)text;
 {
-    NSArray *huds = [super allHUDsForView:view];
-    HAActiveWheel* wheel = huds.firstObject;
+
+    HAActiveWheel* wheel = (HAActiveWheel*)[super HUDForView:view];;
     [wheel performSelector:@selector(setWarningString:) withObject:text afterDelay:0];
     [HAActiveWheel performSelector:@selector(dismissForView:) withObject:view afterDelay:interval];
 }
@@ -85,13 +84,13 @@
 - (void)setProcessString:(NSString *)processString
 {
     //self.labelColor = [UIColor colorWithRed:219/255.0f green:78/255.0f blue:32/255.0f alpha:1];
-    self.labelText = processString;
+    self.label.text = processString;
 }
 
 - (void)setWarningString:(NSString *)warningString
 {
-    self.labelColor = [UIColor redColor];
-    self.labelText = warningString;
+    self.label.textColor = [UIColor redColor];
+    self.label.text = warningString;
 }
 
 @end

@@ -177,7 +177,7 @@
     self.house.province = pid;
     self.house.city = cid;
     self.house.distict = did;
-    NSString *oreillyAddress = @"1005 Gravenstein Highway North, Sebastopol, CA 95472, USA";
+    //NSString *oreillyAddress = @"1005 Gravenstein Highway North, Sebastopol, CA 95472, USA";
     self.cityAddressTextfield.text = address;
     self.locationPromptView.hidden = YES;
     [self.behavior addItem:self.locationPointImgView];
@@ -214,13 +214,13 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (self.fullAddressTextfield == textField) {
-        if(self.validFlag | HAValueValidStateNormal == HAValueValidStateDetailAddress)
+        if((self.validFlag | HAValueValidStateNormal) == HAValueValidStateDetailAddress)
         {
             self.textViewInputingLabel.text = @"     请输1-60个字";
         }
     }
     else if (self.houseNumberTextfield == textField){
-        if (self.validFlag | HAValueValidStateNormal == HAValueValidStateHouseNumber) {
+        if ((self.validFlag | HAValueValidStateNormal) == HAValueValidStateHouseNumber) {
             self.textViewInputingLabel.text = @"    请输1-30个字";
         }
     }

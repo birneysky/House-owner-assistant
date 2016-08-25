@@ -79,11 +79,10 @@
         [HAActiveWheel dismissForView:self.navigationController.view delay:1];
         [self.coverView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
         [self.tableView reloadData];
-        if (2 == self.houseFullInfo.house.checkStatus) {
+        if (2 == self.houseFullInfo.house.checkStatus || 1 == self.houseFullInfo.house.checkStatus) {
             self.navigationItem.rightBarButtonItem.enabled = YES;
             self.submitBtn.hidden = YES;
         }
-        NSLog(@"fetch house full info finished");
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
         self.refreshBtn.hidden = NO;

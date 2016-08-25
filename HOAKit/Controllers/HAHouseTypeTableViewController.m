@@ -11,8 +11,9 @@
 #import "HAHouse.h"
 #import "HARESTfulEngine.h"
 #import "HAPublishHouseInfoTableViewController.h"
+#import "HAActiveWheel.h"
 
-@interface HAHouseTypeTableViewController ()
+@interface HAHouseTypeTableViewController ()<HAOffOnCellDelegate>
 
 @property (nonatomic,strong) NSArray* dataSource;
 @property (nonatomic,assign) NSInteger selectedIndex;
@@ -68,7 +69,11 @@
     }
     else{
         self.isNewHouse = YES;
+        self.house.rentType = 1;
+        self.wholeBtn.selected = YES;
     }
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,7 +100,8 @@
 #pragma mark - *** UITableViewDelegate ***
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HAOffOnCell* offOnCell = cell;
+    HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
+    offOnCell.delegate = self;
     cell.textLabel.text = self.dataSource[indexPath.row];
     if (self.selectedIndex == indexPath.row) {
         offOnCell.accessoryViewSelected = YES;
@@ -111,13 +117,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedIndex = indexPath.row;
-    [tableView reloadData];
+    NSArray* arrayIndexPathes = [tableView indexPathsForVisibleRows];
+   [tableView reloadRowsAtIndexPaths:arrayIndexPathes withRowAnimation:UITableViewRowAnimationFade];
     if (self.isNewHouse) {
-         self.house.houseType = self.selectedIndex + 1;
+        self.house.houseType = self.selectedIndex + 1;
     }
     else{
         self.houseCopy.houseType = self.selectedIndex + 1;
     }
+    
+    [self checkHouseInfo];
    
 }
 
@@ -154,7 +163,24 @@
     return YES;
 }
 */
-
+#pragma mark - *** Helper ***
+- (void) checkHouseInfo
+{
+    if (self.isNewHouse) {
+        if (self.house.rentType > 0 && self.house.houseType > 0) {
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+    }
+    else{
+        BOOL change = ![self.house isEqualToHouse:self.houseCopy];
+        if (change) {
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+        else{
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+        }
+    }
+}
 
 #pragma mark - Navigation
 
@@ -170,34 +196,69 @@
 
 #pragma mark - *** Target Action ***
 - (IBAction)wholeBtnClicked:(UIButton*)sender {
-    self.house.rentType = 1;
+    if (sender.selected) {
+        return;
+    }
+    if(self.isNewHouse){
+        self.house.rentType = 1;
+    }
+    else{
+        self.houseCopy.rentType = 1;
+    }
+    
+    
     sender.selected = !sender.selected;
+    if (sender.selected && self.singleBtn.selected) {
+        self.singleBtn.selected = NO;
+    }
+    
+    [self checkHouseInfo];
 }
 
 - (IBAction)signleBtnClicked:(UIButton*)sender {
-    self.house.rentType = 2;
+    if (sender.selected) {
+        return;
+    }
+    if(self.isNewHouse){
+        self.house.rentType = 2;
+    }
+    else{
+        self.houseCopy.rentType = 2;
+    }
+    
+    
     sender.selected = !sender.selected;
+    if (sender.selected && self.wholeBtn.selected) {
+        self.wholeBtn.selected = NO;
+    }
+    
+    [self checkHouseInfo];
 }
 
 - (IBAction)okBtnClicked:(id)sender {
     self.house.landlordId = 1;
     //self.house.houseNumber = @"9000-1234";
     if (self.isNewHouse) {
-        [[HARESTfulEngine defaultEngine] createNewHouseWithModel:self.house completion:^(HAJSONModel *object) {
+        [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在新建房源";
+        [[HARESTfulEngine defaultEngine] createNewHouseWithModel:self.house completion:^(HAHouse *object) {
             self.house = object;
+             [HAActiveWheel dismissForView:self.navigationController.view];
             [self performSegueWithIdentifier:@"push_publish_house" sender:sender];
         } onError:^(NSError *engineError) {
-            
+            [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
         }];
     }else{
         BOOL change = ![self.house isEqualToHouse:self.houseCopy];
         if (change) {
+            [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
             [NETWORKENGINE modifyHouseGeneralInfoWithID:self.houseCopy.houseId
                                                  params:self.houseCopy
                                              completion:^(HAHouse* hosue){
                                                  [self.delegate houseDidChangned:hosue];
+                                                 [HAActiveWheel dismissForView:self.navigationController.view];
                                                  [self.navigationController popViewControllerAnimated:YES];
                                              }  onError:^(NSError *engineError) {
+                                                 [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
                 
             }];
         }
@@ -210,4 +271,26 @@
     
  
 }
+
+
+#pragma mark - *** HAOffOnCellDelegate ***
+-(void)offONButtonChangedFromCell:(UITableViewCell*)cell sender:(UIButton*)sender;
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    self.selectedIndex = indexPath.row;
+    
+    if (self.isNewHouse) {
+        self.house.houseType = self.selectedIndex + 1;
+    }
+    else{
+        self.houseCopy.houseType = self.selectedIndex + 1;
+    }
+    
+    NSArray* arrayIndexPathes = [self.tableView indexPathsForVisibleRows];
+    [self.tableView reloadRowsAtIndexPaths:arrayIndexPathes withRowAnimation:UITableViewRowAnimationFade];
+    
+     [self checkHouseInfo];
+}
+
+
 @end

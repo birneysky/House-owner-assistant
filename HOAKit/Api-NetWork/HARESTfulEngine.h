@@ -67,7 +67,7 @@ typedef void (^ErrorBlock)(NSError* engineError);
  */
 
 - (void) createNewHouseWithModel:(HAJSONModel*) model
-                      completion:(ModelBlock)completion
+                      completion:(void (^)(HAHouse* house))completion
                          onError:(ErrorBlock)errorBlcok;
 
 
@@ -112,8 +112,8 @@ typedef void (^ErrorBlock)(NSError* engineError);
  *
  */
 
-- (void) addHouseBed:(HAJSONModel*)bed
-          completion:(ModelBlock)completion
+- (void) addHouseBed:(HAHouseBed*)bed
+          completion:(void(^)(HAHouseBed* bed))completion
              onError:(ErrorBlock)errBlock;
 
 

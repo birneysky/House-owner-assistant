@@ -15,9 +15,6 @@
 @property(nonatomic,copy) NSString* toastString;
 @property(nonatomic,copy) NSString* warningString;
 
-//转轮消失前，需保证TimeoutFlag指针是有效的
-+ (HAActiveWheel*)showHUDAddedTo:(UIView *)view Timeout:(NSTimeInterval)time TimeoutFlag:(BOOL*)flag;
-
 + (HAActiveWheel*)showHUDAddedTo:(UIView *)view;
 + (HAActiveWheel*)showHUDAddedToWindow:(UIWindow *)window;
 + (void)dismissForView:(UIView*)view;

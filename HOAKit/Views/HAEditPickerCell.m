@@ -77,6 +77,12 @@
     }
 }
 
+- (BOOL) textFieldShouldBeginEditing:(UITextField*)textField
+                            fromCell:(UITableViewCell*)cell
+{
+    return YES;
+}
+
 
 #pragma mark - ***PickerViewDidSelectResultDelegate ***
 - (void)pickerView:(UIPickerView *)pickerView didSelectResultText:(NSString*)text

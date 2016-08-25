@@ -422,12 +422,12 @@ NSString* gen_uuid()
     }
     
     NSArray* array = [self.collectionView indexPathsForVisibleItems];
-    NSArray* arrayCell = [self.collectionView visibleCells];
+    //NSArray* arrayCell = [self.collectionView visibleCells];
 
     [self.collectionView reloadItemsAtIndexPaths:array];//
     
     
-    self.collectionView.indexPathsForVisibleItems;
+    //self.collectionView.indexPathsForVisibleItems;
 //     [self.photoCollectionViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
     //[self.collectionView reloadData];
 }

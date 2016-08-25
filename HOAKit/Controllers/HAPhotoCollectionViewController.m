@@ -89,10 +89,6 @@ static NSString * const reuseIdentifier = @"Cell";
        return  CGSizeMake(width, width * 0.56);
     }
     else{
-        CGFloat left = flowLayout.sectionInset.left;
-        CGFloat right = flowLayout.sectionInset.right;
-        CGFloat minimumInteritemSpacing = flowLayout.minimumInteritemSpacing;
-        CGFloat lineSpace = flowLayout.minimumLineSpacing;
         CGFloat width = (rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumLineSpacing * 2) / 3;
         return CGSizeMake(floor(width) , floor(width));
     }
@@ -130,7 +126,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 */
 
-- (void)setDatasource:(NSArray *)datasource
+- (void)setDatasource:(NSMutableArray<HAPhotoItem*>*)datasource
 {
     _datasource = datasource;
 }

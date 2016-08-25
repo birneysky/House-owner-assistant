@@ -153,7 +153,7 @@
     
 
     
-    NSMutableArray* selectedIndexArray = [[NSMutableArray alloc] initWithCapacity:5];
+    //NSMutableArray* selectedIndexArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (int i=0; i<tableViewArr.count; i++) {
         
         UITableView *tempTableView = tableViewArr[i];

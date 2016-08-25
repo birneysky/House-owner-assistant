@@ -146,7 +146,7 @@
 {
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     NSString* text = self.dataSource[indexPath.row];
-    HAOffOnCell* offCell = cell;
+    HAOffOnCell* offCell = (HAOffOnCell*)cell;
     [self.factilities setValue:offCell.accessoryViewSelected forChineseName:text];
 }
 

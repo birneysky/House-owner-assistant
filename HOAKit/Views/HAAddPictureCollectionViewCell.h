@@ -25,6 +25,5 @@
 
 @property (nonatomic,assign) double uploadProgress;
 
-- (void)startProgressAnimation;
 
 @end

@@ -168,7 +168,7 @@
     //@"平台提供洗漱用品"
 
     if ([textString isEqualToString:@"需要第三方保洁"]) {
-        HAOffOnCell* offOnCell = cell;
+        HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         NSInteger section = indexPath.section;
         NSMutableArray* mutableArray = self.dataSource[indexPath.section];
         if (!offOnCell.accessoryViewSelected) {
@@ -188,7 +188,7 @@
     }
     
     if ([cell respondsToSelector:@selector(setAccessoryViewSelected:)]) {
-        HAOffOnCell* offOnCell = cell;
+        HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         offOnCell.accessoryViewSelected = ! offOnCell.accessoryViewSelected;
         if ([textString isEqualToString:@"平台提供洗漱用品"]) {
             self.houseCopy.platformToiletries = offOnCell.accessoryViewSelected;
@@ -217,7 +217,7 @@
     NSString* textString = cell.textLabel.text;
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     if ([textString isEqualToString:@"需要第三方保洁"]) {
-        HAOffOnCell* offOnCell = cell;
+        HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         NSInteger section = indexPath.section;
         NSMutableArray* mutableArray = self.dataSource[indexPath.section];
         if (offOnCell.accessoryViewSelected) {
@@ -235,13 +235,13 @@
     }
     
     if ([textString isEqualToString:@"平台提供洗漱用品"]) {
-        HAOffOnCell* offOnCell = cell;
+        HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         self.houseCopy.platformToiletries = offOnCell.accessoryViewSelected;
     }
     
     
     if ([textString isEqualToString:@"线上收取押金"]) {
-        HAOffOnCell* offOnCell = cell;
+        HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         self.houseCopy.needDeposit = offOnCell.accessoryViewSelected;
     }
     

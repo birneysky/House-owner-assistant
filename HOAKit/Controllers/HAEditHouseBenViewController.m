@@ -14,7 +14,7 @@
 #import "HAAppDataHelper.h"
 #import "HARESTfulEngine.h"
 
-@interface HAEditHouseBenViewController ()
+@interface HAEditHouseBenViewController () <HAEditPickerCellDelegate,HAEditorNumberCellDelegate>
 
 @property(nonatomic,strong) NSArray* dataSource;
 
@@ -96,7 +96,7 @@
         editCell.unitName = @"m";
         if([text isEqualToString:@"数量"]){
             editCell.unitName = @"张";
-            NSString* value = self.bed.number <= 0 ? @"" : [NSString stringWithFormat:@"%d",self.bed.number];
+            NSString* value = self.bed.number <= 0 ? @"" : [NSString stringWithFormat:@"%ld",self.bed.number];
             editCell.textField.text = value;
         }
         else if([text isEqualToString:@"长度"]){

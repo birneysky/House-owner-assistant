@@ -97,7 +97,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
-    UIView* view  = nil;
     NSString* text = self.dataSource[indexPath.row];
     if ([text isEqualToString:@"户型"]) {
         HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
@@ -105,7 +104,7 @@
         [pickerCell.textField setDefultText:@"1室0厅0厨0阳台"];
         //view = cell.accessoryView;
         if (self.house) {
-            pickerCell.textField.text = [NSString stringWithFormat:@"%d室%d厅%d厨%d阳台",self.house.roomNumber,self.house.hallNumber,self.house.kitchenNumber,self.house.balconyNumber];
+            pickerCell.textField.text = [NSString stringWithFormat:@"%ld室%ld厅%ld厨%ld阳台",self.house.roomNumber,self.house.hallNumber,self.house.kitchenNumber,self.house.balconyNumber];
         }
        
         cell = pickerCell;
@@ -117,7 +116,7 @@
         [pickerCell.textField setDefultText:@"公共0独立0"];
         
         if (self.house) {
-            pickerCell.textField.text = [NSString stringWithFormat:@"公共%d独立%d",self.house.publicToiletNumber,self.house.toiletNumber];
+            pickerCell.textField.text = [NSString stringWithFormat:@"公共%ld独立%ld",self.house.publicToiletNumber,self.house.toiletNumber];
         }
         cell = pickerCell;
     }
@@ -133,7 +132,7 @@
         else if([text isEqualToString:@"几位访客"]){
             editorCell.unitName = @"人";
             if (self.house) {
-                editorCell.textField.text = [NSString stringWithFormat:@"%d",self.house.toliveinNumber];
+                editorCell.textField.text = [NSString stringWithFormat:@"%ld",self.house.toliveinNumber];
             }
         }
         

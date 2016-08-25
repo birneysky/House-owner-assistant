@@ -21,7 +21,7 @@
 @property(nonatomic,assign) NSInteger subwayId;
 @property(nonatomic,assign) NSInteger levelType;
 @property(nonatomic,assign) NSInteger lineType;
-@property(nonatomic,copy)  NSString* name;
+@property(nonatomic,readonly)  NSString* name;
 @property(nonatomic,assign) NSInteger parentId;
 @property(nonatomic,copy) NSString* pinyin;
 @property(nonatomic,copy) NSString* transfer;
@@ -30,6 +30,7 @@
 @property (nonatomic,readonly,getter=subItems) NSArray<id<HAGeneralPosition>>* stations;
 
 - (void) addItem:(HASubWay*) item;
+
 
 //- (HASubWay*)subItemWithID:(NSInteger)subwayId;
 

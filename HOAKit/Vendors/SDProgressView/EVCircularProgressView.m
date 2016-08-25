@@ -41,7 +41,6 @@
 {
     CGContextSetFillColorWithColor(ctx, self.tintColor.CGColor);
     CGContextSetStrokeColorWithColor(ctx, self.tintColor.CGColor);
-    
     CGRect rect = CGRectMake((self.bounds.size.width - self.bounds.size.height) / 2, 0, self.bounds.size.height, self.bounds.size.height);
     
     CGContextStrokeEllipseInRect(ctx, CGRectInset(rect, 1, 1));
@@ -125,13 +124,19 @@
     //[self startIndeterminateAnimation];
 }
 
-//- (void)layoutSubviews
-//{
-//    //[super layoutSubviews];
-//     CGRect rect = CGRectMake((self.bounds.size.width - self.bounds.size.height) / 2, 0, self.bounds.size.height, self.bounds.size.height);
-//    self.backgroundLayer.frame = rect;
-//    self.shapeLayer.frame = rect;
-//}
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+     CGRect rect = CGRectMake((self.bounds.size.width - self.bounds.size.height) / 2, 0, self.bounds.size.height, self.bounds.size.height);
+    self.backgroundLayer.frame = rect;
+    self.shapeLayer.frame = rect;
+    
+    self.shapeLayer.path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(self.shapeLayer.bounds), CGRectGetMidY(self.shapeLayer.bounds))
+                                                          radius:self.shapeLayer.bounds.size.height/2 - 1
+                                                      startAngle:DEGREES_TO_RADIANS(348)
+                                                        endAngle:DEGREES_TO_RADIANS(12)
+                                                       clockwise:NO].CGPath;
+}
 
 #pragma mark - Accessors
 

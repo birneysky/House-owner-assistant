@@ -7,16 +7,23 @@
 //
 
 #import "HAAddPictureCollectionViewCell.h"
-#import "SDProgressView.h"
+//#import "SDProgressView.h"
+#import "EVCircularProgressView.h"
 
 @interface HAAddPictureCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
-@property (weak, nonatomic) IBOutlet SDBallProgressView *progressView;
+@property (weak, nonatomic) IBOutlet EVCircularProgressView *progressView;  //SDBallProgressView
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @end
 
 @implementation HAAddPictureCollectionViewCell
+
+- (void)awakeFromNib
+{
+    //NSLog(@"CollectionCell Frame %@",NSStringFromCGRect(self.frame));
+    //[self.progressView startIndeterminateAnimation];
+}
 
 - (void)setEdited:(BOOL)edited
 {

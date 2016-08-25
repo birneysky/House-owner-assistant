@@ -107,22 +107,22 @@ NSString* gen_uuid()
     [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //NSLog(@"imagePath %@",obj.imagePath);
         if(obj.localPath.length <= 0){
-            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
-                NSInteger index = [self.netOperationDic[certificate] integerValue];
-                HAPhotoItem* item = self.selectedPhotoPathes[index];
-                item.path = [basePath stringByAppendingPathComponent:fileName];
-                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-                
-            } progress:^(NSString *certificate, float progress) {
-                NSInteger index = [self.netOperationDic[certificate] integerValue];
-                HAPhotoItem* item = self.selectedPhotoPathes[index];
-                item.progress = progress;
-                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-            } onError:^(NSError *engineError) {
-                
-            }];
-            
-            [self.netOperationDic setObject:@(idx) forKey:op.clientCertificate];
+//            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
+//                NSInteger index = [self.netOperationDic[certificate] integerValue];
+//                HAPhotoItem* item = self.selectedPhotoPathes[index];
+//                item.path = [basePath stringByAppendingPathComponent:fileName];
+//                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+//                
+//            } progress:^(NSString *certificate, float progress) {
+//                NSInteger index = [self.netOperationDic[certificate] integerValue];
+//                HAPhotoItem* item = self.selectedPhotoPathes[index];
+//                item.progress = progress;
+//                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+//            } onError:^(NSError *engineError) {
+//                
+//            }];
+//            
+//            [self.netOperationDic setObject:@(idx) forKey:op.clientCertificate];
         }
 
     }];

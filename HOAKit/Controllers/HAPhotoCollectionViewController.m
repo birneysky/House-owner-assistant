@@ -68,9 +68,9 @@ static NSString * const reuseIdentifier = @"Cell";
     // Configure the cell
     HAPhotoItem* item = self.datasource[indexPath.row];
     UIView* selectBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    selectBackgroundView.backgroundColor = [UIColor redColor];
+    selectBackgroundView.backgroundColor = [UIColor orangeColor];
  
-    cell.image = [UIImage imageWithContentsOfFile:item.path];
+    //cell.image = [UIImage imageWithContentsOfFile:item.path];
     cell.selectedBackgroundView = selectBackgroundView;
     cell.edited = self.edited ? YES : NO;
     cell.delegate = self;
@@ -92,6 +92,13 @@ static NSString * const reuseIdentifier = @"Cell";
         CGFloat width = (rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumLineSpacing * 2) / 3;
         return CGSizeMake(floor(width) , floor(width));
     }
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.collectionViewTemp deselectItemAtIndexPath:indexPath animated:YES];
+    
     
 }
 

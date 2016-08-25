@@ -227,12 +227,13 @@ const NSInteger MAXLEVEL =  3;
 
 #pragma mark - *** Taget action ***
 - (IBAction)resetBtnClciked:(id)sender {
-    
+    [HAActiveWheel showHUDAddedTo:self.view].processString = @"正在处理";
     [[HARESTfulEngine defaultEngine] modifyHousePositionWithArray:[self.positionDic allValues] completion:^(NSArray<HAHousePosition*>* positions){
+        [HAActiveWheel dismissForView:self.view];
         [self.delegate positionsOfHouseDidChange:positions];
         [self.navigationController popViewControllerAnimated:YES];
     } onError:^(NSError *engineError) {
-        
+        [HAActiveWheel dismissViewDelay:2 forView:self.view warningText:@"处理失败，请检查网络"];
     }];
     
     

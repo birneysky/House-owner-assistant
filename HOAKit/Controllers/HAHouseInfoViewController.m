@@ -13,6 +13,7 @@
 #import "HAEditPickerCell.h"
 #import "HAHouse.h"
 #import "HARESTfulEngine.h"
+#import "HAActiveWheel.h"
 
 @interface HAHouseInfoViewController ()<HAHouseTypeSelectDetailResult,HAHouseBathrommSelectDetailResult,HAEditorNumberCellDelegate>
 
@@ -101,6 +102,7 @@
     if ([text isEqualToString:@"户型"]) {
         HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
         pickerCell.pickerDataSouce = self.houseTypeDataSource;
+        pickerCell.delegate = self;
         [pickerCell.textField setDefultText:@"1室0厅0厨0阳台"];
         //view = cell.accessoryView;
         if (self.house) {
@@ -113,6 +115,7 @@
     {
         HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
         pickerCell.pickerDataSouce = self.bathroomDataSource;
+        pickerCell.delegate = self;
         [pickerCell.textField setDefultText:@"公共0独立0"];
         
         if (self.house) {
@@ -208,13 +211,16 @@
 - (IBAction)saveButtonClicked:(id)sender {
     
     [self.view endEditing:YES];
-    
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
     [NETWORKENGINE modifyHouseGeneralInfoWithID:self.houseCopy.houseId
                                          params:self.houseCopy
                                      completion:^(HAHouse *house){
+                                          [HAActiveWheel dismissForView:self.navigationController.view];
                                          [self.delegate houseDidChangned:house];
                                          [self.navigationController popViewControllerAnimated:YES];}
-                                        onError:^(NSError *engineError) {}
+                                        onError:^(NSError *engineError) {
+                                            [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
+                                        }
      ];
 
 }

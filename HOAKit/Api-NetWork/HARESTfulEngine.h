@@ -40,7 +40,7 @@ typedef void (^ErrorBlock)(NSError* engineError);
  */
 
 - (void) fetchHouseItemsWithHouseOwnerID:(NSInteger) hoid
-                              completion:(ArrayBlock) completion
+                              completion:(void (^)(NSArray<HAHouse*>* objects)) completion
                                  onError:(ErrorBlock) errorBlock;
 
 
@@ -54,7 +54,7 @@ typedef void (^ErrorBlock)(NSError* engineError);
  */
 
 - (void) fetchHouseInfoWithHouseID:(NSInteger) houseId
-                        completion:(HAHouseFullInfoBlock) completion
+                        completion:(void(^)(HAHouseFullInfo* info)) completion
                            onError:(ErrorBlock) errorBlock;
 
 /**
@@ -127,7 +127,7 @@ typedef void (^ErrorBlock)(NSError* engineError);
  */
 
 - (void) removeHouseBedWithID:(NSInteger)bedId
-                   completion:(ModelBlock)completion
+                   completion:(void(^)(void))completion
                       onError:(ErrorBlock)errBlock;
 
 

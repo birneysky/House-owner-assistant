@@ -252,10 +252,10 @@
     CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
     [myGeocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
         if ([placemarks count] > 0 && error == nil) {
-            NSLog(@"Found %lu placemark(s).", (unsigned long)[placemarks count]);
+            //NSLog(@"Found %lu placemark(s).", (unsigned long)[placemarks count]);
             CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
-            NSLog(@"Longitude = %f", firstPlacemark.location.coordinate.longitude);
-            NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
+            //NSLog(@"Longitude = %f", firstPlacemark.location.coordinate.longitude);
+            //NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
             CLLocationDegrees lat = firstPlacemark.location.coordinate.latitude;
             CLLocationDegrees lng = firstPlacemark.location.coordinate.longitude;
             self.house.lat = lat;
@@ -269,9 +269,9 @@
             //self.navigationItem.rightBarButtonItem.enabled = YES;
         }
         else if ([placemarks count] == 0 && error == nil) {
-            NSLog(@"Found no placemarks.");
+            //NSLog(@"Found no placemarks.");
         } else if (error != nil) {
-            NSLog(@"An error occurred = %@", error);
+           // NSLog(@"An error occurred = %@", error);
         }
     }];
 }

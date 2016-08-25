@@ -266,9 +266,6 @@
                                                             <state key="highlighted">
                                                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="commentsBtnClicked:" destination="Srf-JZ-Qft" eventType="touchUpInside" id="R7P-w7-Xgy"/>
-                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-XR-Zw6">
                                                             <rect key="frame" x="300" y="8" width="276" height="30"/>
@@ -279,7 +276,7 @@
                                                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="priceBtnClicked:" destination="Srf-JZ-Qft" eventType="touchUpInside" id="XL0-oZ-zqs"/>
+                                                                <action selector="priceBtnClicked:" destination="Srf-JZ-Qft" eventType="touchUpInside" id="1ad-Gv-e51"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -988,7 +985,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="SJ8-ux-BGq" firstAttribute="centerX" secondItem="tdm-Rs-sPI" secondAttribute="centerX" id="7jo-My-Ine"/>
                         <constraint firstItem="SJ8-ux-BGq" firstAttribute="centerY" secondItem="tdm-Rs-sPI" secondAttribute="centerY" id="wE0-xM-Iak"/>
@@ -1752,8 +1749,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FiJ-Aa-niN"/>
-        <segue reference="wTa-yi-rbG"/>
-        <segue reference="DVT-YJ-7kO"/>
+        <segue reference="yMh-cr-Tlz"/>
+        <segue reference="07F-D8-dhg"/>
         <segue reference="WNT-mR-AND"/>
         <segue reference="efl-mY-tkK"/>
     </inferredMetricsTieBreakers>

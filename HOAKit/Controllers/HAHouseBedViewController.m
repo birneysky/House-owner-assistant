@@ -12,6 +12,7 @@
 #import "HAHouseBed.h"
 #import "HAAppDataHelper.h"
 #import "HARESTfulEngine.h"
+#import "HAActiveWheel.h"
 
 @interface HAHouseBedViewController ()<HAEditHouseBenViewControllerDelegate,HABedInfoCellDelegate>
 
@@ -117,12 +118,14 @@
 {
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     HAHouseBed* targetBed = self.beds[indexPath.row];
-    [[HARESTfulEngine defaultEngine] removeHouseBedWithID:targetBed.bedId completion:^(HAJSONModel *object) {
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在删除";
+    [[HARESTfulEngine defaultEngine] removeHouseBedWithID:targetBed.bedId completion:^{
         [self.beds removeObjectAtIndex:indexPath.row];
         [self.delegate bedsOfHouseDidChange:[self.beds copy]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [HAActiveWheel dismissForView:self.navigationController.view];
     } onError:^(NSError *engineError) {
-        
+        [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"删除失败，请检查网络"];
     }];
 
 }

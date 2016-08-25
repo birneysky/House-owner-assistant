@@ -83,6 +83,8 @@
             self.navigationItem.rightBarButtonItem.enabled = YES;
             self.submitBtn.hidden = YES;
         }
+        NSArray* viewControllers = self.navigationController.viewControllers;
+        self.navigationController.viewControllers = @[viewControllers.firstObject,self];
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
         self.refreshBtn.hidden = NO;
@@ -229,6 +231,7 @@
         self.houseFullInfo.regionInfoComplete) {
         
         [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
+        self.houseFullInfo.house.checkStatus = 1;
         [NETWORKENGINE submitHouseInfoForCheckOfHouseId:self.houseFullInfo.house.houseId
                                                  params:self.houseFullInfo.house
                                              completion:^(HAHouse* house){

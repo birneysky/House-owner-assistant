@@ -9,6 +9,7 @@
 #import "HAHouseIntroduceViewController.h"
 #import "HAHouse.h"
 #import "HARESTfulEngine.h"
+#import "HAActiveWheel.h"
 
 @interface HAHouseIntroduceViewController ()<UITextViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -99,12 +100,16 @@
 - (IBAction)saveButtonClicked:(id)sender {
     [self.view endEditing:YES];
     
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
     [NETWORKENGINE  modifyHouseGeneralInfoWithID:self.houseCopy.houseId
                                           params:self.houseCopy
                                       completion:^(HAHouse *house){
+                                          [HAActiveWheel dismissForView:self.navigationController.view];
                                           [self.delegate houseDidChangned:house];
                                           [self.navigationController popViewControllerAnimated:YES];}
-                                         onError:^(NSError *engineError) {}
+                                         onError:^(NSError *engineError) {
+                                             [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
+                                         }
     ];
 
  //    NSArray* controllers = self.navigationController.viewControllers;

@@ -108,7 +108,7 @@ static HARESTfulEngine* defaultEngine;
 
 #pragma mark - *** Api-Net ***
 - (void) fetchHouseItemsWithHouseOwnerID:(NSInteger) hoid
-                              completion:(ArrayBlock) completion
+                              completion:(void (^)(NSArray<HAHouse*>* objects)) completion
                                  onError:(ErrorBlock) errorBlock
 {
     NSString* path = [NSString stringWithFormat:@"api/houses?landlordId=%ld",hoid];
@@ -128,7 +128,7 @@ static HARESTfulEngine* defaultEngine;
 }
 
 - (void)fetchHouseInfoWithHouseID:(NSInteger) houseId
-                       completion:(HAHouseFullInfoBlock) completion
+                       completion:(void(^)(HAHouseFullInfo* info)) completion
                           onError:(ErrorBlock) errorBlock
 {
     NSString* path = [NSString stringWithFormat:@"api/houses/%ld",houseId];
@@ -194,13 +194,10 @@ static HARESTfulEngine* defaultEngine;
                       completion:(void (^)(HAHouse* house))completion
                          onError:(ErrorBlock)errorBlcok
 {
-    NSLog(@" model %@",[model toJsonString]);
     [self httpRequestWithPath:@"api/houses" generalParams:[model toDictionary] httpMethod:@"POST" completion:^(NSDictionary *info) {
-        //if ([info isKindOfClass:[NSDictionary class]]) {
             NSDictionary* houseJson = [info objectForKey:@"data"];
             HAHouse* houseObj = [[HAHouse alloc] initWithDictionary:houseJson];
             completion(houseObj);
-        //}
     } onError:^(NSError *engineError) {
         errorBlcok(engineError);
     }];
@@ -211,7 +208,6 @@ static HARESTfulEngine* defaultEngine;
                                completion:(void (^)(HAHouseFacility* facility))completion
                                   onError:(ErrorBlock)errorBlcok
 {
-     NSLog(@" model %@",[param toFullJsonString]);
      NSString* path = [NSString stringWithFormat:@"api/house_facilities/%ld",houseId];
      [self httpRequestWithPath:path generalParams:[param toFullDictionary] httpMethod:@"PUT" completion:^(NSDictionary *object) {
          NSDictionary* dic = [(NSDictionary*)object objectForKey:@"data"];
@@ -266,12 +262,12 @@ static HARESTfulEngine* defaultEngine;
 }
 
 - (void) removeHouseBedWithID:(NSInteger)bedId
-                   completion:(ModelBlock)completion
+                   completion:(void(^)(void))completion
                       onError:(ErrorBlock)errBlock
 {
     NSString* path = [NSString stringWithFormat:@"api/house_beds/%ld",bedId];
     [self httpRequestWithPath:path generalParams:nil httpMethod:@"DELETE" completion:^(NSDictionary *object) {
-        completion(nil);
+        completion();
     } onError:^(NSError *engineError) {
         errBlock(engineError);
     }];

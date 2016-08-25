@@ -27,7 +27,7 @@
     [super viewDidLoad];
     
     [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
-    [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:1 completion:^(NSArray<HAJSONModel *> *objects) {
+    [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:1 completion:^(NSArray<HAHouse*> *objects) {
         self.dataSource = objects;
         [HAActiveWheel dismissForView:self.navigationController.view];
         [self.tableView reloadData];
@@ -36,10 +36,6 @@
     }];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
 
 #pragma mark - Table view data source
 
@@ -131,14 +127,18 @@
         HAPublishHouseInfoTableViewController* vc = segue.destinationViewController;
         vc.houseId = item.houseId;
     }
+    
+    if ([segue.identifier isEqualToString:@"push_price_trand_rule"]) {
+        
+    }
 }
 
 #pragma mark - *** HAHouseInfoItemCellDelegate ***
 - (void)changePriceButtonClickedOfCell:(UITableViewCell *)cell
 {
-   // NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
    // HAHouse* item = self.dataSource[indexPath.row];
-    [self performSegueWithIdentifier:@"push_price_trand_rule" sender:nil];
+    [self performSegueWithIdentifier:@"push_price_trand_rule" sender:indexPath];
 }
 
 @end

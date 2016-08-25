@@ -105,7 +105,7 @@ NSString* gen_uuid()
     //检测图片在不在，不在开始下载，暂时先直接开下
     
     [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"imagePath %@",obj.imagePath);
+        //NSLog(@"imagePath %@",obj.imagePath);
         if(obj.localPath.length <= 0){
             MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
                 NSInteger index = [self.netOperationDic[certificate] integerValue];

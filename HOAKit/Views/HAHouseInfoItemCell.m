@@ -19,14 +19,14 @@
 */
 
 - (IBAction)commentsBtnClicked:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(changePriceButtonClickedOfCell:)]) {
-        [self.delegate changePriceButtonClickedOfCell:self];
-    }
+
 }
 
 
 - (IBAction)priceBtnClicked:(id)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(changePriceButtonClickedOfCell:)]) {
+        [self.delegate changePriceButtonClickedOfCell:self];
+    }
 }
 
 @end

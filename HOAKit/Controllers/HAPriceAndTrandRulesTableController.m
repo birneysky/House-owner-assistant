@@ -12,6 +12,7 @@
 #import "HADiscountEditorCell.h"
 #import "HAHouse.h"
 #import "HARESTfulEngine.h"
+#import "HAActiveWheel.h"
 
 @interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate,HADiscountEditorCellDelegate,HAOffOnCellDelegate,HAEditorNumberCellDelegate>
 
@@ -204,7 +205,6 @@
 #pragma mark - *** Cells Delegate ***
 - (void)selectItemDoneForPickerTextField:(UITextField *)textfield fromCell:(UITableViewCell *)cell
 {
-     NSLog(@"selectItemDoneForPickerTextField");
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     NSString* text = self.dataSource[indexPath.section][indexPath.row];
     [self.houseCopy setValue:textfield.text forChineseName:text];
@@ -213,7 +213,6 @@
 
 - (void)offONButtonChangedFromCell:(UITableViewCell *)cell sender:(UIButton *)sender
 {
-    NSLog(@"switchButtonChangedFromCell");
     NSString* textString = cell.textLabel.text;
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     if ([textString isEqualToString:@"需要第三方保洁"]) {
@@ -311,12 +310,15 @@
 
 - (IBAction)saveButtonClicked:(UIBarButtonItem *)sender {
     [self.view endEditing:YES];
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
     [NETWORKENGINE modifyHouseGeneralInfoWithID:self.houseCopy.houseId
                                          params:self.houseCopy
                                      completion:^(HAHouse* house){
+                                         [HAActiveWheel dismissForView:self.navigationController.view];
                                          [self.delegate houseDidChangned:house];
                                          [self.navigationController popViewControllerAnimated:YES];
                                      } onError:^(NSError *engineError) {
+                                         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
         
     }];
  

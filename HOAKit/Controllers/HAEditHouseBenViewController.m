@@ -13,6 +13,7 @@
 #import "HAHouseBed.h"
 #import "HAAppDataHelper.h"
 #import "HARESTfulEngine.h"
+#import "HAActiveWheel.h"
 
 @interface HAEditHouseBenViewController () <HAEditPickerCellDelegate,HAEditorNumberCellDelegate>
 
@@ -206,14 +207,16 @@
     
     [self.view endEditing:YES];
     self.bed.houseId = self.houseId;
-    [[HARESTfulEngine defaultEngine] addHouseBed:self.bed completion:^(HAJSONModel *object) {
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在添加";
+    [[HARESTfulEngine defaultEngine] addHouseBed:self.bed completion:^(HAHouseBed *object) {
+        [HAActiveWheel dismissForView:self.navigationController.view];
         if ([self.delegate respondsToSelector:@selector(houseBedInfoDidEndEditing:)]) {
             [self.delegate houseBedInfoDidEndEditing:object];
         }
         [self.navigationController popViewControllerAnimated:YES];
 
     } onError:^(NSError *engineError) {
-        
+        [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"添加失败，请检查网络"];
     }];
     
     

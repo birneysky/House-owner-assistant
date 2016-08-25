@@ -10,6 +10,7 @@
 #import "HAOffOnCell.h"
 #import "HAHouseFacility.h"
 #import "HARESTfulEngine.h"
+#import "HAActiveWheel.h"
 
 @interface HouseFacilitiesViewController ()<HAOffOnCellDelegate>
 
@@ -129,12 +130,15 @@
 #pragma mark - *** Target Action ***
 - (IBAction)okButtonClicked:(id)sender {
     self.factilities.houseId = self.houseId;
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
     [NETWORKENGINE modifyHouseFacilitiesWithHouseID:self.houseId
                                              params:self.factilities
                                          completion:^(HAHouseFacility* facility) {
+                                             [HAActiveWheel dismissForView:self.navigationController.view];
                                             [self.delegate facilityOfHouseDidChange:facility];
                                              [self.navigationController popViewControllerAnimated:YES];
                                          } onError:^(NSError *engineError) {
+                                            [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
         
     }];
 

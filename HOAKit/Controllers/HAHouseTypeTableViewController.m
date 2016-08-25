@@ -170,6 +170,9 @@
         if (self.house.rentType > 0 && self.house.houseType > 0) {
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
+        else{
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+        }
     }
     else{
         BOOL change = ![self.house isEqualToHouse:self.houseCopy];

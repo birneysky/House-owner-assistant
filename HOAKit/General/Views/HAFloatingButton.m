@@ -54,9 +54,9 @@
         centerX = SCREENWIDTH - winWidth / 2;
     }
     
-    if(centerY < winHeight / 2)
+    if(centerY < (64 + (winHeight / 2)))
     {
-        centerY = winHeight / 2;
+        centerY = 64 + (winHeight / 2);
     }
     else if(centerY > SCREENHEIGHT - winHeight / 2)
     {

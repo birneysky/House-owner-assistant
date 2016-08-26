@@ -27,7 +27,13 @@
 
 - (BOOL) facilityInfoComplete
 {
-    return self.facility.hotShower && self.facility.wifi && self.facility.tv && self.facility.airCondition;
+    if (self.facility) {
+        return YES;
+    }
+    else{
+        return NO;
+    }
+     /*self.facility.hotShower && self.facility.wifi && self.facility.tv && self.facility.airCondition;*/
 }
 
 - (BOOL) priceInfoComplete

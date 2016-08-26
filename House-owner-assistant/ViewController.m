@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import <HOAKit/HOAKit.h>
 
-@interface ViewController ()
+@interface ViewController ()<HASelectHousePositionDelegate>
 
 @end
 
@@ -28,6 +28,27 @@
     
     UINavigationController* hoaRoot = GetHOAKitRootViewController();
     [self presentViewController:hoaRoot animated:YES completion:nil];
+}
+- (IBAction)testPostionAction:(id)sender {
+    //110100
+   HASelectHousePositionViewController* pvc = [[HASelectHousePositionViewController alloc] initWithCityID:110100];
+    pvc.delegate = self;
+    pvc.positionTypeSelected = 1;
+    pvc.positionIdSelected = 586;
+    [self.navigationController pushViewController:pvc animated:YES];
+    
+}
+
+
+
+- (void)didSelectHousePosition:(id<HAGeneralPosition>)position
+{
+    NSLog(@"position Name %@ type %ld, positionId %ld",position.name,position.typeId,position.positionId);
+}
+
+- (void)clearSelectPostions
+{
+    NSLog(@"postion name");
 }
 
 /*

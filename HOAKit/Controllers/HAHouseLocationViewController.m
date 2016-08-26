@@ -15,6 +15,7 @@
 #import "HAHouseTypeTableViewController.h"
 #import "HAAppDataHelper.h"
 #import "HARESTfulEngine.h"
+#import "HAActiveWheel.h"
 
 @interface HAHouseLocationViewController ()<MKMapViewDelegate,HALocationPickerTextFieldDelegate,UIDynamicAnimatorDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -35,6 +36,8 @@
 @property (nonatomic,copy) HAHouse* houseCopy;
 
 @property (nonatomic,assign) BOOL newHouse;
+
+@property (nonatomic,assign) BOOL latAndLngValidityFlag;
 
 @end
 
@@ -94,16 +97,19 @@
     self.validFlag = HAValueValidStateNormal;
     if(_house)
     {
-        self.navigationItem.rightBarButtonItem.title = @"确定";
+        self.navigationItem.rightBarButtonItem.title = @"修改";
         self.fullAddressTextfield.text = self.house.address;
         self.cityAddressTextfield.text = [HAAppDataHelper provincesAndCityAddress:self.house.province city:self.house.city distict:self.house.distict];
         self.houseNumberTextfield.text = self.house.houseNumber;
-        
+        self.fullAddressTextfield.returnKeyType = UIReturnKeyDone;
+        //39.938946 lat
+        //116.48163 lng
         CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.house.lat longitude:self.house.lng];
         CLLocationCoordinate2D coord = [loc coordinate];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
         [self.mapView setRegion:region animated:YES];
         self.houseCopy = self.house;
+        self.latAndLngValidityFlag = YES;   
     }
     else{
         self.newHouse = YES;
@@ -181,6 +187,8 @@
     self.cityAddressTextfield.text = address;
     self.locationPromptView.hidden = YES;
     [self.behavior addItem:self.locationPointImgView];
+    
+    [self geocodeAddressString:address ignoreLatAndLng:YES];
 //    HALocationPoint *centerPoint = [[HALocationPoint alloc] initWithCoordinate:coord];
 //    [self.mapView addAnnotation:centerPoint];
 }
@@ -198,7 +206,7 @@
 #pragma mark - *** TextField Delegate ***
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (self.fullAddressTextfield == textField) {
-        [self.houseNumberTextfield becomeFirstResponder];
+        self.houseNumberTextfield.text.length > 0 ? [textField resignFirstResponder] : [self.houseNumberTextfield becomeFirstResponder];
     }
     if (self.houseNumberTextfield == textField) {
         [self.houseNumberTextfield resignFirstResponder];
@@ -231,7 +239,7 @@
 {
     if (self.fullAddressTextfield == textField) {
 
-        [self geocodeAddressString:self.fullAddressTextfield.text];
+        [self geocodeAddressString:self.fullAddressTextfield.text ignoreLatAndLng:NO];
     }
 }
 
@@ -248,7 +256,7 @@
 }
 
 #pragma mark - *** Helper ***
-- (void)geocodeAddressString:(NSString*)address{
+- (void)geocodeAddressString:(NSString*)address ignoreLatAndLng:(BOOL) ignore{
     CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
     [myGeocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
         if ([placemarks count] > 0 && error == nil) {
@@ -258,10 +266,14 @@
             //NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
             CLLocationDegrees lat = firstPlacemark.location.coordinate.latitude;
             CLLocationDegrees lng = firstPlacemark.location.coordinate.longitude;
-            self.house.lat = lat;
-            self.house.lng = lng;
-            self.house.address = address;
-            
+            if(!ignore){
+                self.house.lat = lat;
+                self.house.lng = lng;
+                self.house.address = address;
+                self.latAndLngValidityFlag = YES;
+                [self checkAdressValidity];
+            }
+
             CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
             CLLocationCoordinate2D coord = [loc coordinate];
             MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
@@ -272,6 +284,8 @@
             //NSLog(@"Found no placemarks.");
         } else if (error != nil) {
            // NSLog(@"An error occurred = %@", error);
+            [self.view endEditing:YES];
+            [HAActiveWheel showErrorHUDAddedTo:self.navigationController.view errText:@"输入地址有误"];
         }
     }];
 }
@@ -319,6 +333,8 @@
         else{
             self.validFlag |= ~ HAValueValidStateDetailAddress;
         }
+        
+        self.latAndLngValidityFlag = NO;
     }
     
     if (textField == self.cityAddressTextfield) {
@@ -343,15 +359,31 @@
         }
     }
     
-    change = ![self.house isEqualToHouse:self.houseCopy];
+//    change = ![self.house isEqualToHouse:self.houseCopy];
+//    BOOL validTest = (self.validFlag & HAValueValidStateNormal) == HAValueValidStateNormal;
+//    BOOL complete = self.newHouse ? self.house.address.length > 0 && self.house.houseNumber > 0 :  self.houseCopy.address.length > 0 && self.houseCopy.houseNumber > 0;
+//    if (change && validTest && complete && self.latAndLngValidityFlag) {
+//        self.navigationItem.rightBarButtonItem.enabled = YES;
+//    }
+//    else{
+//        self.navigationItem.rightBarButtonItem.enabled = NO;
+//    }
+    [self checkAdressValidity];
+}
+
+#pragma mark - *** Helper ***
+- (void)checkAdressValidity
+{
+    BOOL change = ![self.house isEqualToHouse:self.houseCopy];
     BOOL validTest = (self.validFlag & HAValueValidStateNormal) == HAValueValidStateNormal;
     BOOL complete = self.newHouse ? self.house.address.length > 0 && self.house.houseNumber > 0 :  self.houseCopy.address.length > 0 && self.houseCopy.houseNumber > 0;
-    if (change && validTest && complete) {
+    if (change && validTest && complete && self.latAndLngValidityFlag) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else{
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
+
 
 @end

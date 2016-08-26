@@ -41,7 +41,16 @@
 #pragma mark - **** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
+
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil message:@"请务必配备电视，沙发，淋浴和wifi" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
 
 #pragma mark - Table view data source
 

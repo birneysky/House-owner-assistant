@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HASelectHousePositionViewController.h"
 
 //! Project version number for HOAKit.
 FOUNDATION_EXPORT double HOAKitVersionNumber;

@@ -13,11 +13,15 @@
 
 @protocol ArealocationViewDelegate;
 
+typedef NS_ENUM(NSInteger, RTViewSelectionStyle) {
+    RTViewSelectionStyleSingle,          // regular table view
+    RTViewSelectionStylemultiple         // preferences style table view
+};
 
 @interface RTArealocationView : UIView
 
 @property (nonatomic, weak) id<ArealocationViewDelegate> delegate;
-
+@property (nonatomic, assign) RTViewSelectionStyle selectionStyle;
 /**
  *  显示 arealocationView
  *

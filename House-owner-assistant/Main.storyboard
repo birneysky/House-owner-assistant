@@ -19,6 +19,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="pUg-Ls-oOt">
+                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="Bcd-dI-m59">
+                            <connections>
+                                <action selector="testPostionAction:" destination="vtk-W7-Y8F" id="uzU-21-BYb"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="nBE-NG-xth">
                             <connections>
                                 <action selector="testAction:" destination="vtk-W7-Y8F" id="aEo-fJ-Od2"/>

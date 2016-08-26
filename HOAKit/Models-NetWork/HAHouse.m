@@ -66,11 +66,11 @@
     NSString* value = nil;
     
     if([text isEqualToString:@"日价"] ){
-        value = [NSString stringWithFormat:@"%.0f",self.price];
+        value = self.price > 0 ? [NSString stringWithFormat:@"%.0f",self.price] : @"";
     }
     
     if ([text isEqualToString:@"押金"]) {
-        value = [NSString stringWithFormat:@"%.0f", self.depositAmount];
+        value = self.depositAmount > 0 ? [NSString stringWithFormat:@"%.0f", self.depositAmount] : 0;
     }
     
     if([text isEqualToString:@"3天折扣"]){

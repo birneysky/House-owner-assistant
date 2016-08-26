@@ -17,6 +17,11 @@
 
 + (HAActiveWheel*)showHUDAddedTo:(UIView *)view;
 + (HAActiveWheel*)showHUDAddedToWindow:(UIWindow *)window;
+
++ (void )showErrorHUDAddedTo:(UIView*) view errText:(NSString*)text;
+
++ (void)showWarningHUDAddedTo:(UIView *)view warningText:(NSString *)text;
+
 + (void)dismissForView:(UIView*)view;
 
 + (void)dismissForView:(UIView *)view delay:(NSTimeInterval)interval;

@@ -21,7 +21,7 @@
 - (NSArray*) dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@"双人床",@"单人床",@"双层床",@"单人沙发床",@"双人沙发床",@"儿童床",@"园床",@"气垫床", nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@"双人床",@"单人床",@"双层床",@"榻榻米",@"其他", nil];
     }
     return _dataSource;
 }
@@ -76,6 +76,10 @@
     if ([self.resultDelegate respondsToSelector:@selector(pickerView:didSelectResultText:)]) {
         //NSString* result = [NSString stringWithFormat:@"%d.%d 折",self.dataSource ]
         [self.resultDelegate pickerView:pickerView didSelectResultText:restult];
+    }
+    
+    if([self.detailResultDelegate respondsToSelector:@selector(didSelectBedType:)]){
+        [self.detailResultDelegate didSelectBedType:index+1];
     }
 }
 

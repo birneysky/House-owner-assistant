@@ -56,7 +56,7 @@
     backgroundView = [[UIView alloc] init];
     [backgroundView addSubview:tableViewArr[0]];
     backgroundView.backgroundColor = [UIColor whiteColor];
-    
+    self.selectionStyle = RTViewSelectionStylemultiple;
 }
 
 #pragma mark - setupSubViews
@@ -211,7 +211,7 @@
         //[cell.contentView addSubview:selIcon];
         
         // 改变选中颜色
-       // cell.textLabel.textColor = [UIColor orangeColor];
+        //cell.textLabel.textColor = [UIColor orangeColor];
         
         //[self dismissArealocationView];
         
@@ -222,7 +222,14 @@
             [self.delegate arealocationView:self atLevel:level finishChooseLocationAtIndexs:selectedIndex];
             
         }
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        if (RTViewSelectionStylemultiple == self.selectionStyle) {
+             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        else{
+            [tableView reloadData];
+        }
+       
     }
     
     [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
@@ -331,7 +338,6 @@
         UITableView *tableView = tableViewArr[i];
         
         if (selectIndex[i]!=-1) {
-            
             [self tableView:tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:selectIndex[i] inSection:0]];
         }
   

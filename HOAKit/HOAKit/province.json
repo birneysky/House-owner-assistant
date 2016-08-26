@@ -26517,13 +26517,6 @@
             "parentId": 100000,
             "FirstChar": "M",
             "ID": 820000
-        },
-        {
-            "child": [],
-            "Name": "钓鱼岛",
-            "parentId": 100000,
-            "FirstChar": "D",
-            "ID": 900000
         }
     ]
 }

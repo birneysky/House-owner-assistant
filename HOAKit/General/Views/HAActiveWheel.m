@@ -58,6 +58,40 @@
 }
 
 
++ (void )showErrorHUDAddedTo:(UIView*) view errText:(NSString*)text;
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    
+    // Set the custom view mode to show any view.
+    hud.mode = MBProgressHUDModeCustomView;
+    // Set an image view with a checkmark.
+    UIImage *image = [[UIImage imageNamed:@"HOAKit.bundle/HA_Error_Icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    hud.square = YES;
+    hud.customView = [[UIImageView alloc] initWithImage:image];
+    // Optional label text.
+    hud.label.text = text;
+    hud.label.textColor = [UIColor redColor];
+    
+    [hud hideAnimated:YES afterDelay:3.f];
+}
+
++ (void)showWarningHUDAddedTo:(UIView *)view warningText:(NSString *)text
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    
+    // Set the custom view mode to show any view.
+    hud.mode = MBProgressHUDModeCustomView;
+    // Set an image view with a checkmark.
+    UIImage *image = [[UIImage imageNamed:@"HOAKit.bundle/HA_Warning_Icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    hud.square = YES;
+    hud.customView = [[UIImageView alloc] initWithImage:image];
+    // Optional label text.
+    hud.label.text = text;
+    hud.label.textColor = [UIColor redColor];
+    
+    [hud hideAnimated:YES afterDelay:3.f];
+}
+
 
 +(void)dismissForView:(UIView*)view
 {

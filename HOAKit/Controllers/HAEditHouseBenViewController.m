@@ -15,12 +15,13 @@
 #import "HARESTfulEngine.h"
 #import "HAActiveWheel.h"
 
-@interface HAEditHouseBenViewController () <HAEditPickerCellDelegate,HAEditorNumberCellDelegate>
+@interface HAEditHouseBenViewController () <HAEditPickerCellDelegate,HAEditorNumberCellDelegate,HAHouseBedTypeSelectDetailResult>
 
 @property(nonatomic,strong) NSArray* dataSource;
 
 @property(nonatomic,strong) HABedTypeDataSourceDelegate* bedTypeDataSouce;
 
+@property(nonatomic,assign) BOOL isNewBed;
 
 @end
 
@@ -40,6 +41,7 @@
 {
     if (!_bedTypeDataSouce) {
         _bedTypeDataSouce = [[HABedTypeDataSourceDelegate alloc] init];
+        _bedTypeDataSouce.detailResultDelegate = self;
     }
     return _bedTypeDataSouce;
 }
@@ -64,8 +66,14 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     //如果不设置表示添加床铺信息，这里不要使用self.bed.
     if (_bed) {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.isNewBed = NO;
+
     }
+    else{
+        self.isNewBed = YES;
+    }
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 
@@ -128,23 +136,50 @@
     [cell.accessoryView becomeFirstResponder];
 }
 
-#pragma mark - *** ***
+#pragma mark - *** Helper ***
+- (void) checkBedInfoCompleteness
+{
+    if (self.isNewBed&&self.bed.bedTypeId > 0 && self.bed.width > 0 && self.bed.length > 0 && self.bed.number > 0) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+}
+
+#pragma mark - *** HAHouseBedTypeSelectDetailResult ***
+- (void)didSelectBedType:(NSInteger)type
+{
+    if (!self.isNewBed) {
+        return;
+    }
+    self.bed.bedTypeId = type;
+    [self checkBedInfoCompleteness];
+}
+
+#pragma mark - *** Textfield pickeer delegate ***
 - (void)selectItemDoneForPickerTextField:(UITextField*)textfield
                                 fromCell:(UITableViewCell*) cell
 {
     //@"床型",@"长度",@"宽度",@"数量"
+    if (!self.isNewBed) {
+        return;
+    }
     NSString* text = cell.textLabel.text;
     if ([text isEqualToString:@"床型"]) {
         self.bed.bedTypeId = [HAAppDataHelper typeForBedName:textfield.text];
     }
     
-    
+    [self checkBedInfoCompleteness];
 }
 
 - (void) textFieldDidEndEditing:(UITextField*)textfield
                        fromCell:(UITableViewCell*) cell
 {
     //@"床型",@"长度",@"宽度",@"数量"
+    if (!self.isNewBed) {
+        return;
+    }
     NSString* text = cell.textLabel.text;
     if ([text isEqualToString:@"长度"]) {
         self.bed.length = [textfield.text floatValue];
@@ -224,4 +259,26 @@
     //NSLog(@"bed type  %@ lenght %f,widht %f,count %f",self.bed.bedTypeId,self.bed.length,self.bed.width,self.bed.number);
 }
 
+#pragma mark - *** HAEditorNumberCellDelegate ***
+- (void) textFieldTextDidChange:(UITextField*)textfield
+                     changeText:(NSString*)text
+                       fromCell:(UITableViewCell*) cell{
+    
+    if (!self.isNewBed) {
+        return;
+    }
+    NSString* textTitle = cell.textLabel.text;
+    if ([textTitle isEqualToString:@"长度"]) {
+        self.bed.length = [text floatValue];
+    }
+    else if ([textTitle isEqualToString:@"宽度"]){
+        self.bed.width = [text floatValue];
+    }
+    else if ([textTitle isEqualToString:@"数量"]){
+        //CGFloat value = [textfield.text floatValue];
+        self.bed.number = [text integerValue];
+    }
+    
+    [self checkBedInfoCompleteness];
+}
 @end

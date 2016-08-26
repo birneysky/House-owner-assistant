@@ -23,6 +23,7 @@
     NSMutableDictionary* mutableDic = [[NSMutableDictionary alloc] initWithDictionary:dic copyItems:NO];
     [mutableDic removeObjectForKey:@"houseId"];
     [mutableDic setObject:@(self.houseId) forKey:@"id"];
+    [mutableDic removeObjectForKey:@"resetFlag"];
     return [mutableDic copy];
 }
 

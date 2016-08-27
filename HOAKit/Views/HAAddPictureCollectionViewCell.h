@@ -25,5 +25,9 @@
 
 @property (nonatomic,assign) double uploadProgress;
 
+- (void) showProgressView;
 
+- (void) hideProgressView;
+
+- (void) showErrorImage;
 @end

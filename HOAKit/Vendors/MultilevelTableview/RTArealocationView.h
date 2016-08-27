@@ -14,8 +14,8 @@
 @protocol ArealocationViewDelegate;
 
 typedef NS_ENUM(NSInteger, RTViewSelectionStyle) {
-    RTViewSelectionStyleSingle,          // regular table view
-    RTViewSelectionStylemultiple         // preferences style table view
+    RTViewSelectionStyleSingle,
+    RTViewSelectionStylemultiple
 };
 
 @interface RTArealocationView : UIView

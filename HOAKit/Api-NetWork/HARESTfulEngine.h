@@ -206,7 +206,7 @@ typedef void (^ErrorBlock)(NSError* engineError);
 - (MKNetworkOperation*) downloadHouseImageWithPath:(NSString*)path
                                         completion:(void (^)(NSString* certificate, NSString* fileName))completion
                                           progress:(void (^)(NSString* certificate, float progress))progressBlock
-                                           onError:(ErrorBlock)errorBlcok;
+                                           onError:(void (^)(NSString* certificate,NSError* error))errorBlcok;
 
 
 

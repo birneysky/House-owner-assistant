@@ -15,15 +15,29 @@
 
 @property (weak, nonatomic) IBOutlet EVCircularProgressView *progressView;  //SDBallProgressView
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+
 @end
 
 @implementation HAAddPictureCollectionViewCell
 
+//- (EVCircularProgressView*) progressViewTest
+//{
+//    if (!_progressViewTest) {
+//        _progressViewTest = [[EVCircularProgressView alloc] init];
+//    }
+//    return _progressViewTest;
+//}
+
 - (void)awakeFromNib
 {
-    //NSLog(@"CollectionCell Frame %@",NSStringFromCGRect(self.frame));
-    //[self.progressView startIndeterminateAnimation];
+    [self.progressView startIndeterminateAnimation];
 }
+
+//- (void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    self.progressViewTest.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+//}
 
 - (void)setEdited:(BOOL)edited
 {
@@ -45,7 +59,33 @@
 
 - (void)setUploadProgress:(double)uploadProgress
 {
-    self.progressView.progress = uploadProgress;
+    //if (!self.progressView.hidden){
+        self.progressView.progress = uploadProgress;
+    //}
+    
+
+}
+
+- (void) showProgressView
+{
+    if (self.progressView.hidden) {
+        self.progressView.hidden = NO;
+        
+    }
+
+}
+
+- (void) hideProgressView
+{
+    if(!self.progressView.hidden)
+    self.progressView.hidden = YES;
+    //[self.progressViewTest removeFromSuperview];
+}
+
+- (void) showErrorImage
+{
+    self.imageView.image = [UIImage imageNamed:@"HOAKit.bundle/HA_Download_Failed"];
+    [self.progressView reset];
 }
 
 @end

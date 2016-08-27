@@ -45,7 +45,10 @@
     
     CGContextStrokeEllipseInRect(ctx, CGRectInset(rect, 1, 1));
     
+    
+    
 //    CGContextFillRect(ctx, CGRectMake(CGRectGetMidX(self.bounds) - 4, CGRectGetMidY(self.bounds) - 4, 8, 8));
+
 }
 
 @end
@@ -57,6 +60,7 @@
 @property (nonatomic, strong) EVCircularProgressViewBackgroundLayer *backgroundLayer;
 @property (nonatomic, strong) CAShapeLayer *shapeLayer;
 @property (nonatomic, strong) UILabel* percentLabel;
+@property (nonatomic, assign) BOOL startAnimation;
 
 @end
 
@@ -67,9 +71,10 @@
 - (UILabel*) percentLabel
 {
     if (!_percentLabel) {
-        _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 64, 44)];
+        _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         _percentLabel.textAlignment = NSTextAlignmentCenter;
         _percentLabel.textColor = self.progressTintColor;
+        _percentLabel.font = [UIFont systemFontOfSize:12.0f];
         _percentLabel.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height /2);
     }
     return _percentLabel;
@@ -77,7 +82,7 @@
 
 - (instancetype)init
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 128, 128)];
+    self = [super initWithFrame:CGRectMake(0, 0, 40, 40)];
     
     if (self) {
         [self commonInit];
@@ -89,12 +94,17 @@
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
-    NSLog(@"%@",NSStringFromCGRect(self.bounds));
     if (self) {
         [self commonInit];
     }
     
     return self;
+}
+
+- (void)drawRect:(CGRect)rect
+{
+//    [[UIImage imageNamed:@"HOAKit.bundle/HA_Error_Icon"] drawInRect:CGRectMake(CGRectGetMidX(self.bounds) - 15, CGRectGetMidY(self.bounds) - 15, 30, 30)];
+    //[@"" drawInRect: withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}];
 }
 
 - (void)commonInit
@@ -124,19 +134,7 @@
     //[self startIndeterminateAnimation];
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-     CGRect rect = CGRectMake((self.bounds.size.width - self.bounds.size.height) / 2, 0, self.bounds.size.height, self.bounds.size.height);
-    self.backgroundLayer.frame = rect;
-    self.shapeLayer.frame = rect;
-    
-    self.shapeLayer.path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(self.shapeLayer.bounds), CGRectGetMidY(self.shapeLayer.bounds))
-                                                          radius:self.shapeLayer.bounds.size.height/2 - 1
-                                                      startAngle:DEGREES_TO_RADIANS(348)
-                                                        endAngle:DEGREES_TO_RADIANS(12)
-                                                       clockwise:NO].CGPath;
-}
+
 
 #pragma mark - Accessors
 
@@ -172,29 +170,36 @@
             [CATransaction commit];
         }
         
-        self.percentLabel.text = [NSString stringWithFormat:@"%.0f %%",progress * 100];
+        self.percentLabel.text = [NSString stringWithFormat:@"%.0f%%",progress * 100];
         
-        if(progress >= 1)
-        {
-            // If progress is zero, then add the indeterminate animation
-
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if([self.shapeLayer animationForKey:@"animation"])
-                    [self.shapeLayer removeAnimationForKey:@"animation"];
-                self.percentLabel.text = @"0 %";
-                self.hidden = YES;
-            });
-            
-            _progress  = 0;
-            [self stopIndeterminateAnimation];
-            //[self startIndeterminateAnimation];
-        }
+ 
     }
 }
 
 - (void)setProgress:(float)progress
 {
-    [self setProgress:progress animated:YES];
+    [self setProgress:progress animated:NO];
+    
+    if(progress >= 1)
+    {
+        // If progress is zero, then add the indeterminate animation
+        
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    if([self.shapeLayer animationForKey:@"animation"])
+//                                [self.shapeLayer removeAnimationForKey:@"animation"];
+//            _progress  = 0;
+//            //self.percentLabel.text = @"0 %";
+//            //self.alpha = 0;
+//            //[self removeFromSuperview];
+//        });
+        
+        
+        //[self stopIndeterminateAnimation];
+        //[self startIndeterminateAnimation];
+        _progress  = 0;
+        self.startAnimation = NO;
+        //self.shapeLayer.strokeEnd = 0;
+    }
 }
 
 - (void)setProgressTintColor:(UIColor *)progressTintColor
@@ -238,8 +243,7 @@
 
 - (void)startIndeterminateAnimation
 {
-    self.hidden = NO;
-    if([self.shapeLayer animationForKey:@"indeterminateAnimation"]){
+    if(self.startAnimation){
         return;
     }
     [CATransaction begin];
@@ -264,6 +268,7 @@
     rotationAnimation.repeatCount = HUGE_VALF;
     
     [self.shapeLayer addAnimation:rotationAnimation forKey:@"indeterminateAnimation"];
+    self.startAnimation = YES;
 }
 
 - (void)stopIndeterminateAnimation
@@ -274,6 +279,14 @@
     [CATransaction setDisableActions:YES];
     self.backgroundLayer.hidden = NO;
     [CATransaction commit];
+}
+
+- (void)reset
+{
+    [self setProgress:0 animated:NO];
+    self.percentLabel.text = @"0%";
+    self.startAnimation = NO;
+    [self startIndeterminateAnimation];
 }
 
 @end

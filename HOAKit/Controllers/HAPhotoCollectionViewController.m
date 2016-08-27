@@ -20,7 +20,7 @@
 
 @implementation HAPhotoCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSString * const reuseIdentifier = @"HAAddPictureCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,16 +67,42 @@ static NSString * const reuseIdentifier = @"Cell";
     HAAddPictureCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HAAddPictureCell" forIndexPath:indexPath];
     // Configure the cell
     HAPhotoItem* item = self.datasource[indexPath.row];
-    UIView* selectBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    selectBackgroundView.backgroundColor = [UIColor orangeColor];
+//    UIView* selectBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+//    selectBackgroundView.backgroundColor = [UIColor orangeColor];
  
     //cell.image = [UIImage imageWithContentsOfFile:item.path];
-    cell.selectedBackgroundView = selectBackgroundView;
-    cell.edited = self.edited ? YES : NO;
-    cell.delegate = self;
-    cell.uploadProgress = item.progress;
+    //cell.selectedBackgroundView = selectBackgroundView;
+    //cell.edited = self.edited ? YES : NO;
+    //cell.delegate = self;
+    //cell.uploadProgress = item.progress;
+    
     return cell;
 }
+
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    HAPhotoItem* item = self.datasource[indexPath.row];
+    HAAddPictureCollectionViewCell* pictureCell = (HAAddPictureCollectionViewCell*)cell;
+    pictureCell.edited = self.edited ? YES : NO;
+    pictureCell.delegate = self;
+    pictureCell.uploadProgress = item.progress;
+    if (HAPhotoUploadOrDownloadStateBegin == item.state) {
+        [pictureCell showProgressView];
+    }
+    if (HAPhotoUploadOrDownloadStateFinsish == item.state) {
+        [pictureCell hideProgressView];
+        pictureCell.image = [UIImage imageWithContentsOfFile:item.localPath];
+    }
+    if (HAPhotoUploadOrDownloadStateFalied == item.state) {
+        [pictureCell hideProgressView];
+        [pictureCell showErrorImage];
+        
+        [[NSFileManager defaultManager] removeItemAtPath:item.localPath error:nil];
+    }
+    
+}
+
 
 #pragma mark - *** ***
 
@@ -86,7 +112,7 @@ static NSString * const reuseIdentifier = @"Cell";
     CGRect rect = [UIScreen mainScreen].bounds;
     if (0 == indexPath.row) {
         CGFloat width = rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right;
-       return  CGSizeMake(width, width * 0.56);
+       return  CGSizeMake(width, floor(width * 0.56));
     }
     else{
         CGFloat width = (rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumLineSpacing * 2) / 3;
@@ -98,7 +124,30 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.collectionViewTemp deselectItemAtIndexPath:indexPath animated:YES];
-    
+     NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+    HAPhotoItem* item = self.datasource[indexPath.row];
+    HAAddPictureCollectionViewCell* pictureCell = (HAAddPictureCollectionViewCell*)[self.collectionViewTemp cellForItemAtIndexPath:indexPath];
+    if (HAPhotoUploadOrDownloadStateFalied == item.state) {
+        [pictureCell showProgressView];
+        pictureCell.image = nil;
+        if (HAPhotoLoadTypeDownload == item.loadType) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                item.state = HAPhotoUploadOrDownloadStateBegin;
+                [NETWORKENGINE downloadHouseImageWithPath:item.netPath completion:^(NSString *certificate, NSString *fileName) {
+                    item.localPath = [basePath stringByAppendingPathComponent:fileName];
+                    item.state = HAPhotoUploadOrDownloadStateFinsish;
+                    [self.collectionViewTemp reloadItemsAtIndexPaths:@[indexPath]];
+                } progress:^(NSString *certificate, float progress) {
+                    item.progress = progress;
+                    [self.collectionViewTemp reloadItemsAtIndexPaths:@[indexPath]];
+                } onError:^(NSString *certificate, NSError *error) {
+                    item.state = HAPhotoUploadOrDownloadStateFalied;
+                    [self.collectionViewTemp reloadItemsAtIndexPaths:@[indexPath]];
+                }];
+            });
+
+        }
+    }
     
 }
 

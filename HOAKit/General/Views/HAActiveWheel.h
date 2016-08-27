@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MBProgressHUD.h"
+#import "HAProgressHUD.h"
 
-@interface HAActiveWheel : MBProgressHUD
+@interface HAActiveWheel : HAProgressHUD
 
 @property(nonatomic,copy) NSString* processString;
 @property(nonatomic,copy) NSString* toastString;

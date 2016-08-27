@@ -93,10 +93,13 @@ NSString* gen_uuid()
     [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         HAPhotoItem* item = [[HAPhotoItem alloc] init];
         item.imageId = obj.imageId;
+        item.loadType = HAPhotoLoadTypeDownload;
+        item.netPath = obj.imagePath;
         NSString* path = [basePath stringByAppendingPathComponent:[obj.imagePath lastPathComponent]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
             obj.localPath = path;
-            item.path = path;
+            item.localPath = path;
+            item.state = HAPhotoUploadOrDownloadStateDownloaded;
         }
         [self.selectedPhotoPathes addObject:item];
     }];
@@ -106,24 +109,32 @@ NSString* gen_uuid()
     
     [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //NSLog(@"imagePath %@",obj.imagePath);
-        if(obj.localPath.length <= 0){
-//            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
-//                NSInteger index = [self.netOperationDic[certificate] integerValue];
-//                HAPhotoItem* item = self.selectedPhotoPathes[index];
-//                item.path = [basePath stringByAppendingPathComponent:fileName];
-//                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-//                
-//            } progress:^(NSString *certificate, float progress) {
-//                NSInteger index = [self.netOperationDic[certificate] integerValue];
-//                HAPhotoItem* item = self.selectedPhotoPathes[index];
-//                item.progress = progress;
-//                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-//            } onError:^(NSError *engineError) {
-//                
-//            }];
-//            
-//            [self.netOperationDic setObject:@(idx) forKey:op.clientCertificate];
-        }
+        //if(obj.localPath.length <= 0){
+            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
+                NSInteger index = [self.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                item.localPath = [basePath stringByAppendingPathComponent:fileName];
+                item.state = HAPhotoUploadOrDownloadStateFinsish;
+                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+                
+            } progress:^(NSString *certificate, float progress) {
+                NSInteger index = [self.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                item.progress = progress;
+                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+                //[self.collectionView reloadData];
+
+            } onError:^(NSString *certificate,NSError *engineError) {
+                NSInteger index = [self.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                item.state = HAPhotoUploadOrDownloadStateFalied;
+                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+            }];
+            HAPhotoItem* item = self.selectedPhotoPathes[idx];
+            item.state = HAPhotoUploadOrDownloadStateBegin;
+            [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]]];
+            [self.netOperationDic setObject:@(idx) forKey:op.clientCertificate];
+       // }
 
     }];
     
@@ -255,8 +266,9 @@ NSString* gen_uuid()
             NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",fileID,@"thumbnail"];
             NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
             HAPhotoItem* allocItem = [[HAPhotoItem alloc] init];
-            allocItem.path = thumbnailImgPath;
+            allocItem.localPath = thumbnailImgPath;
             allocItem.progress = 0;
+            allocItem.loadType = HAPhotoLoadTypeUpload;
             [self.selectedPhotoPathes addObject:allocItem];
             //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
@@ -292,10 +304,6 @@ NSString* gen_uuid()
             //});
             
         }
-        
-        
- 
-
     });
 
     

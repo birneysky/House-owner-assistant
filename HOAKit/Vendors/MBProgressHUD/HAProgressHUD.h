@@ -30,7 +30,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@class MBBackgroundView;
+@class HABackgroundView;
 @protocol MBProgressHUDDelegate;
 
 
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @note To still allow touches to pass through the HUD, you can set hud.userInteractionEnabled = NO.
  * @attention MBProgressHUD is a UI class and should therefore only be accessed on the main thread.
  */
-@interface MBProgressHUD : UIView
+@interface HAProgressHUD : UIView
 
 /**
  * Creates a new HUD, adds it to provided view and shows it. The counterpart to this method is hideHUDForView:animated:.
@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param view The view that is going to be searched.
  * @return A reference to the last HUD subview discovered.
  */
-+ (nullable MBProgressHUD *)HUDForView:(UIView *)view;
++ (nullable HAProgressHUD *)HUDForView:(UIView *)view;
 
 /**
  * A convenience constructor that initializes the HUD with the view's bounds. Calls the designated constructor with
@@ -273,12 +273,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The view containing the labels and indicator (or customView).
  */
-@property (strong, nonatomic, readonly) MBBackgroundView *bezelView;
+@property (strong, nonatomic, readonly) HABackgroundView *bezelView;
 
 /**
  * View covering the entire HUD area, placed behind bezelView.
  */
-@property (strong, nonatomic, readonly) MBBackgroundView *backgroundView;
+@property (strong, nonatomic, readonly) HABackgroundView *backgroundView;
 
 /**
  * The UIView (e.g., a UIImageView) to be shown when the HUD is in MBProgressHUDModeCustomView.
@@ -305,14 +305,14 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@protocol MBProgressHUDDelegate <NSObject>
+@protocol HAProgressHUDDelegate <NSObject>
 
 @optional
 
 /** 
  * Called after the HUD was fully hidden from the screen. 
  */
-- (void)hudWasHidden:(MBProgressHUD *)hud;
+- (void)hudWasHidden:(HAProgressHUD *)hud;
 
 @end
 
@@ -320,7 +320,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * A progress view for showing definite progress by filling up a circle (pie chart).
  */
-@interface MBRoundProgressView : UIView 
+@interface HARoundProgressView : UIView
 
 /**
  * Progress (0.0 to 1.0)
@@ -351,7 +351,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * A flat bar progress view. 
  */
-@interface MBBarProgressView : UIView
+@interface HABarProgressView : UIView
 
 /**
  * Progress (0.0 to 1.0)
@@ -379,7 +379,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface MBBackgroundView : UIView
+@interface HABackgroundView : UIView
 
 /**
  * The background style. 
@@ -396,7 +396,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface MBProgressHUD (Deprecated)
+@interface HAProgressHUD (Deprecated)
 
 + (NSArray *)allHUDsForView:(UIView *)view __attribute__((deprecated("Store references when using more than one HUD per view.")));
 + (NSUInteger)hideAllHUDsForView:(UIView *)view animated:(BOOL)animated __attribute__((deprecated("Store references when using more than one HUD per view.")));

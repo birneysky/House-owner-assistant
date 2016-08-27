@@ -42,4 +42,6 @@
 
 - (void)stopIndeterminateAnimation;
 
+- (void)reset;
+
 @end

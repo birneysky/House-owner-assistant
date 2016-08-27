@@ -378,7 +378,7 @@ static HARESTfulEngine* defaultEngine;
 - (MKNetworkOperation*) downloadHouseImageWithPath:(NSString*)path
                                         completion:(void (^)(NSString* certificate, NSString* fileName))completion
                                           progress:(void (^)(NSString* certificate, float progress))progressBlock
-                                           onError:(ErrorBlock)errorBlcok
+                                           onError:(void (^)(NSString* certificate,NSError* error))errorBlcok
 {
     HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:path];
     
@@ -398,7 +398,7 @@ static HARESTfulEngine* defaultEngine;
         completion(weakOp.clientCertificate,[path lastPathComponent]);
         
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* err){
-        errorBlcok(err);
+        errorBlcok(weakOp.clientCertificate,err);
     }];
     
     [self enqueueOperation:op];

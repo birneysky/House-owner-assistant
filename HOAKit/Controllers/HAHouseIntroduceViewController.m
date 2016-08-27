@@ -87,7 +87,6 @@
         self.contentViewBottomConstraint.constant = self.contentOffset ;
         [self.scrollView layoutIfNeeded];
     }
-       NSLog(@"scroll frame %@,contentsize %@,contentofffset %@,torect %@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize),NSStringFromCGPoint(self.scrollView.contentOffset),NSStringFromCGRect(rect));
 }
 
 

@@ -60,7 +60,7 @@
 
 + (void )showErrorHUDAddedTo:(UIView*) view errText:(NSString*)text;
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    HAProgressHUD *hud = [HAProgressHUD showHUDAddedTo:view animated:YES];
     
     // Set the custom view mode to show any view.
     hud.mode = MBProgressHUDModeCustomView;
@@ -77,7 +77,7 @@
 
 + (void)showWarningHUDAddedTo:(UIView *)view warningText:(NSString *)text
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    HAProgressHUD *hud = [HAProgressHUD showHUDAddedTo:view animated:YES];
     
     // Set the custom view mode to show any view.
     hud.mode = MBProgressHUDModeCustomView;
@@ -95,7 +95,7 @@
 
 +(void)dismissForView:(UIView*)view
 {
-    MBProgressHUD* hud = [super HUDForView:view];
+    HAProgressHUD* hud = [super HUDForView:view];
     hud.removeFromSuperViewOnHide = YES;
     [hud hideAnimated:YES];
 

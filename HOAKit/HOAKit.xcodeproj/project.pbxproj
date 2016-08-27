@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74209AA61D71C7B50090C87C /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE64781D6D6C00006D807C /* EVCircularProgressView.m */; };
 		7422D7991D53811C00ACB2B6 /* HATextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7422D7971D53811C00ACB2B6 /* HATextView.h */; };
 		7422D79A1D53811C00ACB2B6 /* HATextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7422D7981D53811C00ACB2B6 /* HATextView.m */; };
 		74266F601D5CA31700A7E4BF /* RTArealocationView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F5E1D5CA31700A7E4BF /* RTArealocationView.h */; };
@@ -158,8 +159,8 @@
 		DB3B28FB1D5DC0070007E576 /* MKNetworkKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28E71D5DC0070007E576 /* MKNetworkKit.h */; };
 		DB3B28FC1D5DC0070007E576 /* MKNetworkOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28E81D5DC0070007E576 /* MKNetworkOperation.h */; };
 		DB3B28FD1D5DC0070007E576 /* MKNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28E91D5DC0070007E576 /* MKNetworkOperation.m */; };
-		DB3B28FE1D5DC0070007E576 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28EB1D5DC0070007E576 /* Reachability.h */; };
-		DB3B28FF1D5DC0070007E576 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28EC1D5DC0070007E576 /* Reachability.m */; };
+		DB3B28FE1D5DC0070007E576 /* HAReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28EB1D5DC0070007E576 /* HAReachability.h */; };
+		DB3B28FF1D5DC0070007E576 /* HAReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28EC1D5DC0070007E576 /* HAReachability.m */; };
 		DB8EF91B1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */; };
 		DB8EF91C1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */; };
 		DBAE09231D5043DF008A85C4 /* HOA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBAE09221D5043DF008A85C4 /* HOA.xcassets */; };
@@ -168,9 +169,8 @@
 		DBAE09291D506275008A85C4 /* HAHouseIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE09271D506275008A85C4 /* HAHouseIntroduceViewController.m */; };
 		DBAE64761D6C2077006D807C /* HADataExchangeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE64751D6C2077006D807C /* HADataExchangeDelegate.h */; };
 		DBAE64791D6D6C00006D807C /* EVCircularProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE64771D6D6C00006D807C /* EVCircularProgressView.h */; };
-		DBAE647A1D6D6C00006D807C /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE64781D6D6C00006D807C /* EVCircularProgressView.m */; };
-		DBAE647E1D6D8927006D807C /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE647C1D6D8927006D807C /* MBProgressHUD.h */; };
-		DBAE647F1D6D8927006D807C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE647D1D6D8927006D807C /* MBProgressHUD.m */; };
+		DBAE647E1D6D8927006D807C /* HAProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = DBAE647C1D6D8927006D807C /* HAProgressHUD.h */; };
+		DBAE647F1D6D8927006D807C /* HAProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE647D1D6D8927006D807C /* HAProgressHUD.m */; };
 		DBE880681D6D9CBB00A72248 /* HAActiveWheel.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE880661D6D9CBB00A72248 /* HAActiveWheel.h */; };
 		DBE880691D6D9CBB00A72248 /* HAActiveWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE880671D6D9CBB00A72248 /* HAActiveWheel.m */; };
 		DBE880811D6EF55300A72248 /* HAAddPhotoViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE8806B1D6EF55300A72248 /* HAAddPhotoViewLayout.h */; };
@@ -354,8 +354,8 @@
 		DB3B28E71D5DC0070007E576 /* MKNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkKit.h; sourceTree = "<group>"; };
 		DB3B28E81D5DC0070007E576 /* MKNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkOperation.h; sourceTree = "<group>"; };
 		DB3B28E91D5DC0070007E576 /* MKNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNetworkOperation.m; sourceTree = "<group>"; };
-		DB3B28EB1D5DC0070007E576 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		DB3B28EC1D5DC0070007E576 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		DB3B28EB1D5DC0070007E576 /* HAReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAReachability.h; sourceTree = "<group>"; };
+		DB3B28EC1D5DC0070007E576 /* HAReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAReachability.m; sourceTree = "<group>"; };
 		DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPriceAndTrandRulesTableController.h; sourceTree = "<group>"; };
 		DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPriceAndTrandRulesTableController.m; sourceTree = "<group>"; };
 		DBAE09221D5043DF008A85C4 /* HOA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HOA.xcassets; sourceTree = SOURCE_ROOT; };
@@ -365,8 +365,8 @@
 		DBAE64751D6C2077006D807C /* HADataExchangeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HADataExchangeDelegate.h; sourceTree = "<group>"; };
 		DBAE64771D6D6C00006D807C /* EVCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCircularProgressView.h; sourceTree = "<group>"; };
 		DBAE64781D6D6C00006D807C /* EVCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCircularProgressView.m; sourceTree = "<group>"; };
-		DBAE647C1D6D8927006D807C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		DBAE647D1D6D8927006D807C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		DBAE647C1D6D8927006D807C /* HAProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAProgressHUD.h; sourceTree = "<group>"; };
+		DBAE647D1D6D8927006D807C /* HAProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAProgressHUD.m; sourceTree = "<group>"; };
 		DBE880661D6D9CBB00A72248 /* HAActiveWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAActiveWheel.h; sourceTree = "<group>"; };
 		DBE880671D6D9CBB00A72248 /* HAActiveWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAActiveWheel.m; sourceTree = "<group>"; };
 		DBE8806B1D6EF55300A72248 /* HAAddPhotoViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAAddPhotoViewLayout.h; sourceTree = "<group>"; };
@@ -713,8 +713,8 @@
 		DB3B28EA1D5DC0070007E576 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				DB3B28EB1D5DC0070007E576 /* Reachability.h */,
-				DB3B28EC1D5DC0070007E576 /* Reachability.m */,
+				DB3B28EB1D5DC0070007E576 /* HAReachability.h */,
+				DB3B28EC1D5DC0070007E576 /* HAReachability.m */,
 			);
 			path = Reachability;
 			sourceTree = "<group>";
@@ -722,8 +722,8 @@
 		DBAE647B1D6D8927006D807C /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				DBAE647C1D6D8927006D807C /* MBProgressHUD.h */,
-				DBAE647D1D6D8927006D807C /* MBProgressHUD.m */,
+				DBAE647C1D6D8927006D807C /* HAProgressHUD.h */,
+				DBAE647D1D6D8927006D807C /* HAProgressHUD.m */,
 			);
 			path = MBProgressHUD;
 			sourceTree = "<group>";
@@ -769,7 +769,7 @@
 				DBE880991D70284000A72248 /* HASelectHousePositionViewController.h in Headers */,
 				74266F921D5F7C3B00A7E4BF /* HARESTfulOperation.h in Headers */,
 				74266F9A1D5F835A00A7E4BF /* HAHouseItem.h in Headers */,
-				DBAE647E1D6D8927006D807C /* MBProgressHUD.h in Headers */,
+				DBAE647E1D6D8927006D807C /* HAProgressHUD.h in Headers */,
 				DB13FCB11D640F74003A8F58 /* HAError.h in Headers */,
 				742B91DF1D4FB731000FF5A1 /* CTAssetsGroupViewCell.h in Headers */,
 				74266FEF1D69D0D400A7E4BF /* SDPieLoopProgressView.h in Headers */,
@@ -803,7 +803,7 @@
 				742B91D41D4FB731000FF5A1 /* HALeapBehavior.h in Headers */,
 				742B91C61D4FB731000FF5A1 /* HAAddHousePhotoViewController.h in Headers */,
 				743F435A1D5625CE00D06D19 /* HAEditorNumberCell.h in Headers */,
-				DB3B28FE1D5DC0070007E576 /* Reachability.h in Headers */,
+				DB3B28FE1D5DC0070007E576 /* HAReachability.h in Headers */,
 				742B91EB1D4FB731000FF5A1 /* CTAssetsViewController.h in Headers */,
 				DB3B28FC1D5DC0070007E576 /* MKNetworkOperation.h in Headers */,
 				742B91E31D4FB731000FF5A1 /* CTAssetsPickerConstants.h in Headers */,
@@ -996,8 +996,7 @@
 				742B91D11D4FB731000FF5A1 /* CALayer+Additions.m in Sources */,
 				DB3B28F61D5DC0070007E576 /* NSString+MKNetworkKitAdditions.m in Sources */,
 				7422D79A1D53811C00ACB2B6 /* HATextView.m in Sources */,
-				DB3B28FF1D5DC0070007E576 /* Reachability.m in Sources */,
-				DBAE647A1D6D6C00006D807C /* EVCircularProgressView.m in Sources */,
+				DB3B28FF1D5DC0070007E576 /* HAReachability.m in Sources */,
 				742B91CD1D4FB731000FF5A1 /* HAHouseTypeTableViewController.m in Sources */,
 				DBE880861D6EF55300A72248 /* HABathroomDataSourceDelegate.m in Sources */,
 				DBE880951D6EF55300A72248 /* HAProvinceDataSourceDelegate.m in Sources */,
@@ -1012,6 +1011,7 @@
 				DBE880931D6EF55300A72248 /* HAPhotoItem.m in Sources */,
 				DB3B28FD1D5DC0070007E576 /* MKNetworkOperation.m in Sources */,
 				DBE8808A1D6EF55300A72248 /* HADiscountDataSourceDelegate.m in Sources */,
+				74209AA61D71C7B50090C87C /* EVCircularProgressView.m in Sources */,
 				743F43651D570CE700D06D19 /* HADiscountEditorCell.m in Sources */,
 				DB13FCAE1D63007F003A8F58 /* HARegion.m in Sources */,
 				742B91E41D4FB731000FF5A1 /* CTAssetsPickerConstants.m in Sources */,
@@ -1022,7 +1022,7 @@
 				DB3B28BD1D5851A90007E576 /* HAOffOnCell.m in Sources */,
 				742B91C71D4FB731000FF5A1 /* HAAddHousePhotoViewController.m in Sources */,
 				742B91CB1D4FB731000FF5A1 /* HAHouseLocationViewController.m in Sources */,
-				DBAE647F1D6D8927006D807C /* MBProgressHUD.m in Sources */,
+				DBAE647F1D6D8927006D807C /* HAProgressHUD.m in Sources */,
 				74266F611D5CA31700A7E4BF /* RTArealocationView.m in Sources */,
 				74266F9B1D5F835A00A7E4BF /* HAHouseItem.m in Sources */,
 				74266FF71D69D0D400A7E4BF /* SDTransparentPieProgressView.m in Sources */,

@@ -406,7 +406,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="VKO-7S-yhz" firstAttribute="centerX" secondItem="F2F-BU-Czp" secondAttribute="centerX" id="ITN-eF-qvk"/>
                         <constraint firstItem="VKO-7S-yhz" firstAttribute="centerY" secondItem="F2F-BU-Czp" secondAttribute="centerY" id="WRn-f5-6TN"/>
@@ -1050,6 +1050,9 @@
                                         <state key="normal" title="添加照片">
                                             <color key="titleColor" red="0.82352941180000006" green="0.38431372549999998" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="5"/>
@@ -1069,6 +1072,9 @@
                                         <rect key="frame" x="304" y="8" width="288" height="48"/>
                                         <state key="normal" title="保存">
                                             <color key="titleColor" red="0.85882352939999995" green="0.30588235289999999" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1100,7 +1106,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nSL-R1-FaR">
-                                <rect key="frame" x="0.0" y="64" width="600" height="472"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YCY-Hn-Tdi">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1174,7 +1180,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eaL-ig-Vfl" firstAttribute="leading" secondItem="4MI-3u-WZs" secondAttribute="leading" id="CPc-pB-gej"/>
-                            <constraint firstItem="nSL-R1-FaR" firstAttribute="top" secondItem="vnQ-t0-7tN" secondAttribute="bottom" id="SPY-Dp-I15"/>
+                            <constraint firstItem="nSL-R1-FaR" firstAttribute="top" secondItem="vnQ-t0-7tN" secondAttribute="bottom" constant="-64" id="SPY-Dp-I15"/>
                             <constraint firstItem="eaL-ig-Vfl" firstAttribute="top" secondItem="nSL-R1-FaR" secondAttribute="bottom" id="WTW-IG-qxJ"/>
                             <constraint firstAttribute="trailing" secondItem="eaL-ig-Vfl" secondAttribute="trailing" id="irB-p4-tfq"/>
                             <constraint firstItem="nSL-R1-FaR" firstAttribute="leading" secondItem="4MI-3u-WZs" secondAttribute="leading" id="maj-7R-TP6"/>
@@ -1190,6 +1196,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addPhotoBtn" destination="jcw-hQ-fqz" id="6J5-l2-wJy"/>
+                        <outlet property="saveBtn" destination="6BP-2v-VH8" id="Tnq-sE-Lzj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nis-xO-6Wi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="bFD-5U-3dK" customClass="HAPhotoCollectionViewController"/>

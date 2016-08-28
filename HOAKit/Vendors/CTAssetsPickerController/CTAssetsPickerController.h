@@ -66,6 +66,7 @@
 @property (nonatomic, assign) BOOL showsCancelButton;
 
 
+@property (nonatomic, assign) NSInteger totalNumberOfChoices;
 /**
  *  @name Managing Selections
  */

@@ -357,6 +357,9 @@ NSString * const CTAssetsSupplementaryViewIdentifier = @"CTAssetsSupplementaryVi
 //        [self.picker.view makeToast:@"同时上传的文件或图片数量最多不超过5个" duration:1 position:@"top"];
 //        return NO;
 //    }
+    if (self.picker.selectedAssets.count >= self.picker.totalNumberOfChoices) {
+        return NO;
+    }
     
     CTAssetsViewCell *cell = (CTAssetsViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     

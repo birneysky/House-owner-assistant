@@ -344,16 +344,18 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
     
     NSString *format;
     
-    if (photoSelected && videoSelected)
-        format = NSLocalizedString(@"已选择%ld项", nil);
+//    if (photoSelected && videoSelected)
+//        format = NSLocalizedString(@"已选择%ld项", nil);
+//    
+//    else if (photoSelected)
+//        format = (self.selectedAssets.count > 1) ? NSLocalizedString(@"已选择%ld张照片", nil) : NSLocalizedString(@"已选择%ld张照片", nil);
+//    
+//    else
+//        format = (self.selectedAssets.count > 1) ? NSLocalizedString(@"已选择%ld个视频", nil) : NSLocalizedString(@"已选择%ld个视频", nil);
     
-    else if (photoSelected)
-        format = (self.selectedAssets.count > 1) ? NSLocalizedString(@"已选择%ld张照片", nil) : NSLocalizedString(@"已选择%ld张照片", nil);
     
-    else
-        format = (self.selectedAssets.count > 1) ? NSLocalizedString(@"已选择%ld个视频", nil) : NSLocalizedString(@"已选择%ld个视频", nil);
-    
-    return [NSString stringWithFormat:format, (long)self.selectedAssets.count];
+    //return [NSString stringWithFormat:format, (long)self.selectedAssets.count];
+    return [NSString stringWithFormat:@"%ld/%ld",self.selectedAssets.count,self.totalNumberOfChoices];
 }
 
 

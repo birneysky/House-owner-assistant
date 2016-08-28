@@ -335,12 +335,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
             NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
             NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",fileID,@"thumbnail"];
             NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
-            HAPhotoItem* allocItem = [[HAPhotoItem alloc] init];
-            allocItem.localPath = thumbnailImgPath;
-            allocItem.progress = 0;
-            allocItem.loadType = HAPhotoLoadTypeUpload;
-            allocItem.state = HAPhotoUploadOrDownloadStateBegin;
-            [self.selectedPhotoPathes addObject:allocItem];
+
             //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             
@@ -348,6 +343,12 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
             [thumbnailJPGData writeToFile:thumbnailImgPath atomically:YES];
             
             dispatch_sync(dispatch_get_main_queue(), ^{
+                HAPhotoItem* allocItem = [[HAPhotoItem alloc] init];
+                allocItem.localPath = thumbnailImgPath;
+                allocItem.progress = 0;
+                allocItem.loadType = HAPhotoLoadTypeUpload;
+                allocItem.state = HAPhotoUploadOrDownloadStateBegin;
+                [self.selectedPhotoPathes addObject:allocItem];
                 [self.collectionView reloadData];
             });
             

@@ -28,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIView *coverView;
 @property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageview;
 
 @end
 
@@ -45,8 +46,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.coverView.frame = [UIScreen mainScreen].bounds;
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    self.coverView.frame = CGRectMake(0, 0, size.width, size.height - 64);
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    
 //    [self.view addSubview:self.coverView];
 //    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
 //    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId completion:^(HAHouseFullInfo *info) {
@@ -85,9 +88,38 @@
         }
         NSArray* viewControllers = self.navigationController.viewControllers;
         self.navigationController.viewControllers = @[viewControllers.firstObject,self];
+        if (self.houseFullInfo.images.count <= 0) {
+            return;
+        }
+        NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+        NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:headerImgPath]) {
+            UIImage* headerImg = [UIImage imageWithContentsOfFile:headerImgPath];
+                self.headerImageview.image = headerImg;
+        }
+        else{
+            [self downloadHeaderImage];
+        }
+
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
         self.refreshBtn.hidden = NO;
+    }];
+}
+
+- (void)downloadHeaderImage
+{
+    NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+    if(self.houseFullInfo.images.firstObject)
+    [NETWORKENGINE downloadHouseImageWithPath:self.houseFullInfo.images.firstObject.imagePath completion:^(NSString *certificate, NSString *fileName) {
+        NSString* headerImgPath = [basePath stringByAppendingPathComponent:fileName];
+        UIImage* image = [UIImage imageWithContentsOfFile:headerImgPath];
+        self.headerImageview.image = image;
+    } progress:^(NSString *certificate, float progress) {
+        
+    } onError:^(NSString *certificate, NSError *error) {
+        NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
+        [[NSFileManager defaultManager] removeItemAtPath:headerImgPath error:nil];
     }];
 }
 
@@ -351,6 +383,7 @@
 - (void) imagesOfHouseDidChange:(NSArray<HAHouseImage*>*) images
 {
     self.houseFullInfo.images = images;
+    //NSLog(@"%@",images.firstObject.localPath);
 }
 
 

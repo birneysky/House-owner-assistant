@@ -19,9 +19,13 @@ FOUNDATION_EXPORT const unsigned char HOAKitVersionString[];
 
 @interface HOAKit : NSObject
 
-+ (UINavigationController*) rootViewController;
++ (HOAKit*)defaultInstance;
+
+@property (nonatomic, assign)   NSInteger userId;
+
+@property (nonatomic, copy)     NSString* token;
+
+@property (nonatomic, readonly) UINavigationController* rootViewController;
 
 
 @end
-
-UINavigationController* GetHOAKitRootViewController();

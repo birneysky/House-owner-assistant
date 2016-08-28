@@ -16,6 +16,8 @@
 
 @property (nonatomic,strong) HAHouse* house;
 
+@property (nonatomic,assign) BOOL changePrice;
+
 @property (nonatomic,weak) id<HADataExchangeDelegate> delegate;
 
 @end

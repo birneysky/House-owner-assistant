@@ -12,6 +12,8 @@
 #import "HAPhotoCollectionViewController.h"
 #import "HARESTfulEngine.h"
 #import "HAPhotoItem.h"
+#import "HAAddPictureCollectionViewCell.h"
+#import "HAActiveWheel.h"
 
 
 @interface HAAddHousePhotoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
@@ -23,6 +25,8 @@
 @property (nonatomic,strong) NSMutableDictionary* netOperationDic;
 
 @property (nonatomic,strong) NSMutableArray <HAHouseImage*>* photosArray;
+
+@property(nonatomic,assign) BOOL edited;
 
 @end
 
@@ -44,6 +48,9 @@ NSString* gen_uuid()
     return uuid;
     
 }
+
+static NSString * const reuseIdentifier = @"HAAddPictureCell";
+
 
 @implementation HAAddHousePhotoViewController
 
@@ -79,10 +86,10 @@ NSString* gen_uuid()
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    
+    [self.collectionView registerClass:[HAAddPictureCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     // Do any additional setup after loading the view.
-    self.collectionView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-    self.photoCollectionViewController.datasource = self.selectedPhotoPathes;
+    self.collectionView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+    //self.photoCollectionViewController.datasource = self.selectedPhotoPathes;
     //NSInteger count = self.photoCollectionViewController.datasource.count;
     
     if (self.photoes.count > 0) {
@@ -127,6 +134,8 @@ NSString* gen_uuid()
             } onError:^(NSString *certificate,NSError *engineError) {
                 NSInteger index = [self.netOperationDic[certificate] integerValue];
                 HAPhotoItem* item = self.selectedPhotoPathes[index];
+                NSString* path = [basePath stringByAppendingPathComponent:[obj.imagePath lastPathComponent]];
+                [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
                 item.state = HAPhotoUploadOrDownloadStateFalied;
                 [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
             }];
@@ -141,10 +150,10 @@ NSString* gen_uuid()
 
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-   [super viewDidAppear:animated];
-
+   [super viewDidDisappear:animated];
+   [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
 }
 
 #pragma mark - *** camera  helper***
@@ -269,6 +278,7 @@ NSString* gen_uuid()
             allocItem.localPath = thumbnailImgPath;
             allocItem.progress = 0;
             allocItem.loadType = HAPhotoLoadTypeUpload;
+            allocItem.state = HAPhotoUploadOrDownloadStateBegin;
             [self.selectedPhotoPathes addObject:allocItem];
             //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
@@ -279,7 +289,11 @@ NSString* gen_uuid()
             
             [self.collectionView reloadData];
             
-            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] uploadHouseImageWithPath:thumbnailImgPath completion:^(HAHouseImage *obj) {
+            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] uploadHouseImageWithPath:thumbnailImgPath completion:^(NSString* certificate,HAHouseImage *obj) {
+                NSInteger index = [self.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                item.state = HAPhotoUploadOrDownloadStateFinsish;
+                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
                 obj.userId = self.house.landlordId;
                 obj.houseId = self.house.houseId;
                 [self.photosArray addObject:obj];
@@ -334,28 +348,71 @@ NSString* gen_uuid()
 }
 */
 
+#pragma mark - ***Cell Layout ***
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewFlowLayout* flowLayout = (UICollectionViewFlowLayout*)collectionViewLayout;
+    CGRect rect = [UIScreen mainScreen].bounds;
+    if (0 == indexPath.row) {
+        CGFloat width = rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right;
+        return  CGSizeMake(width, floor(width * 0.56));
+    }
+    else{
+        CGFloat width = (rect.size.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumLineSpacing * 2) / 3;
+        return CGSizeMake(floor(width) , floor(width));
+    }
+    
+}
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-
+    self.collectionView = collectionView;
     return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return self.selectedPhotoPathes.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BOOL lastOneFlag = indexPath.row == 9;
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lastOneFlag ? @"HAAddPictureCell" : @"HAPictureCell" forIndexPath:indexPath];
-    
+    //BOOL lastOneFlag = indexPath.row == 9;
+    HAAddPictureCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HAAddPictureCell" forIndexPath:indexPath];
     // Configure the cell
-    UIView* selectBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    selectBackgroundView.backgroundColor = [UIColor redColor];
-    cell.selectedBackgroundView = selectBackgroundView;
+    HAPhotoItem* item = self.selectedPhotoPathes[indexPath.row];
+    //    UIView* selectBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    //    selectBackgroundView.backgroundColor = [UIColor orangeColor];
+    
+    //cell.image = [UIImage imageWithContentsOfFile:item.path];
+    //cell.selectedBackgroundView = selectBackgroundView;
+    //cell.edited = self.edited ? YES : NO;
+    //cell.delegate = self;
+    //cell.uploadProgress = item.progress;
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    HAPhotoItem* item = self.selectedPhotoPathes[indexPath.row];
+    HAAddPictureCollectionViewCell* pictureCell = (HAAddPictureCollectionViewCell*)cell;
+    pictureCell.edited = self.edited ? YES : NO;
+    pictureCell.delegate = self;
+    pictureCell.uploadProgress = item.progress;
+    if (HAPhotoUploadOrDownloadStateBegin == item.state) {
+        [pictureCell showProgressView];
+    }
+    if (HAPhotoUploadOrDownloadStateFinsish == item.state) {
+        [pictureCell hideProgressView];
+        pictureCell.image = [UIImage imageWithContentsOfFile:item.localPath];
+    }
+    if (HAPhotoUploadOrDownloadStateFalied == item.state) {
+        [pictureCell hideProgressView];
+        [pictureCell showErrorImage];
+    }
+    
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -375,28 +432,36 @@ NSString* gen_uuid()
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    
-     BOOL lastOneFlag = indexPath.row == 9;
-    if (lastOneFlag) {
-        [self showActionSheet];
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+    HAPhotoItem* item = self.selectedPhotoPathes[indexPath.row];
+    HAAddPictureCollectionViewCell* pictureCell = (HAAddPictureCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    if (HAPhotoUploadOrDownloadStateFalied == item.state) {
+        [pictureCell showProgressView];
+        pictureCell.image = nil;
+        if (HAPhotoLoadTypeDownload == item.loadType) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                item.state = HAPhotoUploadOrDownloadStateBegin;
+                [NETWORKENGINE downloadHouseImageWithPath:item.netPath completion:^(NSString *certificate, NSString *fileName) {
+                    item.localPath = [basePath stringByAppendingPathComponent:fileName];
+                    item.state = HAPhotoUploadOrDownloadStateFinsish;
+                    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                } progress:^(NSString *certificate, float progress) {
+                    item.progress = progress;
+                    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                } onError:^(NSString *certificate, NSError *error) {
+                    item.state = HAPhotoUploadOrDownloadStateFalied;
+                    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                }];
+            });
+        }
+        else if (HAPhotoLoadTypeUpload == item.loadType){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            });
+        }
     }
 }
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 #pragma mark - *** Target Action ***
 - (IBAction)addPhotoBtnClicked:(id)sender {
@@ -407,14 +472,16 @@ NSString* gen_uuid()
     if (self.photosArray.count <= 0) {
         return;
     }
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
     [[HARESTfulEngine defaultEngine] relationshipBetweenHousesAndPictures:([self.photosArray copy]) completion:^{
         [self.navigationController popViewControllerAnimated:YES];
         NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImages"];
         NSError* error;
         [[NSFileManager defaultManager]  removeItemAtPath:filePath error:&error];
         [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
+        [HAActiveWheel dismissForView:self.navigationController.view];
     } onError:^(NSError *engineError) {
-        
+        [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
     }];
 }
 #pragma mark - *** Target Action***
@@ -422,11 +489,11 @@ NSString* gen_uuid()
     //[self.collectionView ];
     if ([sender.title isEqualToString:@"编辑"]) {
         sender.title = @"取消";
-        self.photoCollectionViewController.edited = YES;
+        self.edited = YES;
     }
     else{
         sender.title = @"编辑";
-        self.photoCollectionViewController.edited = NO;
+        self.edited = NO;
     }
     
     NSArray* array = [self.collectionView indexPathsForVisibleItems];
@@ -439,5 +506,25 @@ NSString* gen_uuid()
 //     [self.photoCollectionViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
     //[self.collectionView reloadData];
 }
+
+
+#pragma mark - *** HAAddPictureCollectionViewCellDelegate ***
+- (void)deleteItemFromCell:(UICollectionViewCell *)cell
+{
+    NSIndexPath* indexPath = [self.collectionView indexPathForCell:cell];
+    HAPhotoItem* item = self.selectedPhotoPathes[indexPath.row];
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
+    [[HARESTfulEngine defaultEngine] delteHouseImageWithImageId:item.imageId completion:^{
+        [HAActiveWheel dismissForView:self.navigationController.view];
+        [self.selectedPhotoPathes removeObjectAtIndex:indexPath.row];
+        [self.photosArray removeObjectAtIndex:indexPath.row];
+        [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+        [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
+    } onError:^(NSError *engineError) {
+        [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"删除失败，请检查网络"];
+    }];
+}
+
+
 
 @end

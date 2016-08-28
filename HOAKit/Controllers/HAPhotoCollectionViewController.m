@@ -11,6 +11,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "HAPhotoItem.h"
 #import "HARESTfulEngine.h"
+#import "HAActiveWheel.h"
 
 @interface HAPhotoCollectionViewController ()<HAAddPictureCollectionViewCellDelegate>
 
@@ -20,7 +21,7 @@
 
 @implementation HAPhotoCollectionViewController
 
-static NSString * const reuseIdentifier = @"HAAddPictureCell";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,7 +30,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    [self.collectionView registerClass:[HAAddPictureCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+
     
     // Do any additional setup after loading the view.
 }
@@ -97,8 +98,6 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
     if (HAPhotoUploadOrDownloadStateFalied == item.state) {
         [pictureCell hideProgressView];
         [pictureCell showErrorImage];
-        
-        [[NSFileManager defaultManager] removeItemAtPath:item.localPath error:nil];
     }
     
 }
@@ -193,11 +192,13 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
 {
     NSIndexPath* indexPath = [self.collectionViewTemp indexPathForCell:cell];
     HAPhotoItem* item = self.datasource[indexPath.row];
+    [HAActiveWheel showHUDAddedTo:self.collectionViewTemp.superview].processString = @"正在处理";
     [[HARESTfulEngine defaultEngine] delteHouseImageWithImageId:item.imageId completion:^{
+        [HAActiveWheel dismissForView:self.collectionViewTemp.superview];
         [self.datasource removeObjectAtIndex:indexPath.row];
         [self.collectionViewTemp deleteItemsAtIndexPaths:@[indexPath]];
     } onError:^(NSError *engineError) {
-        
+        [HAActiveWheel dismissViewDelay:3 forView:self.collectionViewTemp.superview warningText:@"删除失败，请检查网络"];
     }];
 }
 

@@ -25,8 +25,9 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)testAction:(id)sender {
-    
-    UINavigationController* hoaRoot = GetHOAKitRootViewController();
+    [HOAKit defaultInstance].userId = 1;
+    [HOAKit defaultInstance].token = @"xxxxx";
+    UINavigationController* hoaRoot = [HOAKit defaultInstance].rootViewController;
     [self presentViewController:hoaRoot animated:YES completion:nil];
 }
 - (IBAction)testPostionAction:(id)sender {

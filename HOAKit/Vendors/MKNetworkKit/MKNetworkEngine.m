@@ -113,7 +113,7 @@ static NSOperationQueue *_sharedNetworkQueue;
     if(hostName) {
       [[NSNotificationCenter defaultCenter] addObserver:self
                                                selector:@selector(reachabilityChanged:)
-                                                   name:kReachabilityChangedNotification
+                                                   name:kHAReachabilityChangedNotification
                                                  object:nil];
       
       self.hostName = hostName;
@@ -153,7 +153,7 @@ static NSOperationQueue *_sharedNetworkQueue;
 
 -(void) dealloc {
   
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:kHAReachabilityChangedNotification object:nil];
 #if TARGET_OS_IPHONE
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];

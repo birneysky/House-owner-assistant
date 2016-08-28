@@ -16,6 +16,8 @@
 
 @interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate,HADiscountEditorCellDelegate,HAOffOnCellDelegate,HAEditorNumberCellDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *coverView;
+@property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
 @property (strong, nonatomic) IBOutlet UILabel *textViewInputingLabel;
 @property(nonatomic,strong) NSArray* dataSource;
 
@@ -59,6 +61,10 @@
     if(self.houseCopy.cleanType){
         [self.cleaningDataSouce addObject:@"平台提供洗漱用品"];
     }
+    
+    if (self.changePrice) {
+        [self fetchHouseInfo];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -66,9 +72,23 @@
     [super viewDidAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - *** Helper ***
+- (void) fetchHouseInfo
+{
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    self.coverView.frame = CGRectMake(0, 65, size.width, size.height -64 );
+    [self.navigationController.view addSubview:self.coverView];
+    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
+    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.house.houseId completion:^(HAHouseFullInfo *info) {
+        self.house = info.house;
+        self.houseCopy = self.house;
+        [HAActiveWheel dismissForView:self.navigationController.view delay:1];
+        [self.coverView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
+        [self.tableView reloadData];
+    } onError:^(NSError *engineError) {
+        [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
+        self.refreshBtn.hidden = NO;
+    }];
 }
 
 #pragma mark - Table view data source
@@ -321,6 +341,9 @@
         
     }];
  
+}
+- (IBAction)refreshBtnClicked:(id)sender {
+    [self fetchHouseInfo];
 }
 
 #pragma mark - *** HAEditorNumberCellDelegate ***

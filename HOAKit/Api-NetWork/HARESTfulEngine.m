@@ -312,7 +312,7 @@ static HARESTfulEngine* defaultEngine;
 
 
 - (MKNetworkOperation*) uploadHouseImageWithPath:(NSString*)path
-                                      completion:(void (^)(HAHouseImage* obj))completion
+                                      completion:(void (^)(NSString* certificate,HAHouseImage* obj))completion
                                         progress:(void (^)(NSString* certificate, float progress))progressBlock
                                          onError:(ErrorBlock)errorBlcok
 {
@@ -336,7 +336,7 @@ static HARESTfulEngine* defaultEngine;
         NSDictionary* data = [responseDictionary objectForKey:@"data"];
         HAHouseImage* houseImage = [[HAHouseImage alloc] initWithDictionary:data];
         
-        completion(houseImage);
+        completion(op.clientCertificate,houseImage);
         
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* err){
         errorBlcok(err);

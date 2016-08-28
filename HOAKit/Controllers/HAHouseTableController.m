@@ -14,10 +14,14 @@
 #import "HAPublishHouseInfoTableViewController.h"
 #import "HAActiveWheel.h"
 #import "HAHouseInfoItemCell.h"
+#import "HOAKit.h"
+#import "HAPriceAndTrandRulesTableController.h"
 
 @interface HAHouseTableController ()<UITableViewDelegate,UITableViewDataSource,HAHouseInfoItemCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet HAFloatingButton *addButton;
+@property (strong, nonatomic) IBOutlet UIView *coverView;
+@property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
 @property (nonatomic,strong) NSArray* dataSource;
 @end
 
@@ -26,13 +30,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    [self fethHouseItem];
+}
+
+
+#pragma mark - *** Helper ***
+- (void)fethHouseItem
+{
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    self.coverView.frame = CGRectMake(0, 0, size.width, size.height);
+    [self.view addSubview:self.coverView];
     [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
-    [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:1 completion:^(NSArray<HAHouse*> *objects) {
+    [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:[HOAKit defaultInstance].userId completion:^(NSArray<HAHouse*> *objects) {
+        [self.coverView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0];
         self.dataSource = objects;
         [HAActiveWheel dismissForView:self.navigationController.view];
         [self.tableView reloadData];
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
+        self.refreshBtn.hidden = NO;
     }];
 }
 
@@ -121,6 +138,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
     if ([segue.identifier isEqualToString:@"push_publish_house"]) {
         NSIndexPath* indexPath = sender;
         HAHouse* item = self.dataSource[indexPath.section];
@@ -129,7 +147,11 @@
     }
     
     if ([segue.identifier isEqualToString:@"push_price_trand_rule"]) {
-        
+        NSIndexPath* indexPath = sender;
+        HAHouse* item = self.dataSource[indexPath.section];
+        HAPriceAndTrandRulesTableController* vc = segue.destinationViewController ;
+        vc.changePrice = YES;
+        vc.house = item;
     }
 }
 
@@ -139,6 +161,11 @@
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
    // HAHouse* item = self.dataSource[indexPath.row];
     [self performSegueWithIdentifier:@"push_price_trand_rule" sender:indexPath];
+}
+
+#pragma mark - *** Target Action ***
+- (IBAction)refreshBtnClicked:(id)sender {
+    [self fethHouseItem];
 }
 
 @end

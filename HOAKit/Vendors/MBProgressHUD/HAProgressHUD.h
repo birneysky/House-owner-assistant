@@ -31,7 +31,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 @class HABackgroundView;
-@protocol MBProgressHUDDelegate;
+@protocol HAProgressHUDDelegate;
 
 
 extern CGFloat const MBProgressMaxOffset;
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, MBProgressHUDBackgroundStyle) {
     MBProgressHUDBackgroundStyleBlur
 };
 
-typedef void (^MBProgressHUDCompletionBlock)();
+typedef void (^HAProgressHUDCompletionBlock)();
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -176,12 +176,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The HUD delegate object. Receives HUD state notifications.
  */
-@property (weak, nonatomic) id<MBProgressHUDDelegate> delegate;
+@property (weak, nonatomic) id<HAProgressHUDDelegate> delegate;
 
 /**
  * Called after the HUD is hiden.
  */
-@property (copy, nullable) MBProgressHUDCompletionBlock completionBlock;
+@property (copy, nullable) HAProgressHUDCompletionBlock completionBlock;
 
 /*
  * Grace period is the time (in seconds) that the invoked method may be run without
@@ -409,10 +409,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)showWhileExecuting:(SEL)method onTarget:(id)target withObject:(id)object animated:(BOOL)animated __attribute__((deprecated("Use GCD directly.")));
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block __attribute__((deprecated("Use GCD directly.")));
-- (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block completionBlock:(nullable MBProgressHUDCompletionBlock)completion __attribute__((deprecated("Use GCD directly.")));
+- (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block completionBlock:(nullable HAProgressHUDCompletionBlock)completion __attribute__((deprecated("Use GCD directly.")));
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue __attribute__((deprecated("Use GCD directly.")));
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue
-     completionBlock:(nullable MBProgressHUDCompletionBlock)completion __attribute__((deprecated("Use GCD directly.")));
+     completionBlock:(nullable HAProgressHUDCompletionBlock)completion __attribute__((deprecated("Use GCD directly.")));
 @property (assign) BOOL taskInProgress __attribute__((deprecated("No longer needed.")));
 
 @property (nonatomic, copy) NSString *labelText __attribute__((deprecated("Use label.text instead.")));

@@ -22,6 +22,8 @@
 
 + (void)showWarningHUDAddedTo:(UIView *)view warningText:(NSString *)text;
 
++ (void)showPromptHUDAddedTo:(UIView*)view text:(NSString*)text;
+
 + (void)dismissForView:(UIView*)view;
 
 + (void)dismissForView:(UIView *)view delay:(NSTimeInterval)interval;

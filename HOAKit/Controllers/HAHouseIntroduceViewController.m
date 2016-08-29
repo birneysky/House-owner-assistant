@@ -293,7 +293,7 @@
     }
     
     if (self.houseDescriptionTextView == textView ){
-       valid = [self limitTextViewTextLengthMin:0 max:250 textView:textView warningText:@"请输入0-250个字"];
+       valid = [self limitTextViewTextLengthMin:5 max:250 textView:textView warningText:@"请输入5-250个字"];
         self.houseCopy.houseDescription = textView.text;
         if (!valid) {
             self.validFlag &= PRTValidStateDescription;

@@ -138,6 +138,7 @@
         editorCell.unitName = @"元";
         editorCell.delegate = self;
         editorCell.textField.text = [self.houseCopy stringValueOfChineseName:text];
+        editorCell.textField.placeholder = [text isEqualToString:@"日价"] ?  @"请输入日价" : @"请输入押金";
         cell = editorCell;
         
     }
@@ -150,7 +151,6 @@
         discountCell.delegate = self;
         discountCell.unitName = @"折";
         discountCell.textField.text = [self.houseCopy stringValueOfChineseName:text];
-        
         cell = discountCell;
     }
     

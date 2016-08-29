@@ -1506,7 +1506,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
                                                 <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="标题：房屋有何特色，地理优势(5-20字)"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="标题：房屋有何特色(5-20字)"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="0tW-ru-FLD"/>
@@ -1530,7 +1530,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
                                                 <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="50字描述：周边环境，内置装饰等方面介绍"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="周边环境，内部装饰等方面介绍"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="eqK-dZ-vGh"/>
@@ -1554,7 +1554,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
                                                 <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="地理位置描述，可填写周边公交站和地铁线路"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="地理位置描述，具体地点和标志性建筑"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="Blt-To-aue"/>
@@ -1578,7 +1578,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
                                                 <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="周边生活，可描述周边的商场等"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="如附近饭馆、银行、商城等"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="kKC-aB-0Dk"/>
@@ -1626,7 +1626,7 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
                                                 <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="交通描述，可描述周边公交站和地铁线路"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="交通描述，如周边公交站和地铁线路"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="bXN-Jg-OJg" id="HlU-ga-pLj"/>
@@ -1684,7 +1684,7 @@
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="房屋标题与房屋介绍"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="房屋标题与介绍"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="contentViewBottomConstraint" destination="LAL-Do-GwJ" id="PAe-jS-6wD"/>

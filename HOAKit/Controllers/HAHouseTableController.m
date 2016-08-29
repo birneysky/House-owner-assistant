@@ -29,11 +29,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
     [self fethHouseItem];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.title = @"伊妹";
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.title = nil;
+}
 
 #pragma mark - *** Helper ***
 - (void)fethHouseItem
@@ -109,6 +118,7 @@
     switch (item.checkStatus) {
         case 1://待审核
             // show toast;
+            [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"当前房源正在审核"];
             break;
         case 2://通过
             [self performSegueWithIdentifier:@"push_publish_house" sender:[indexPath copy]];

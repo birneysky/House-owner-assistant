@@ -92,6 +92,17 @@
     [hud hideAnimated:YES afterDelay:3.f];
 }
 
++ (void)showPromptHUDAddedTo:(UIView*)view text:(NSString*)text
+{
+    HAProgressHUD *hud = [HAProgressHUD showHUDAddedTo:view animated:YES];
+    
+    hud.mode = MBProgressHUDModeText;
+    hud.label.text = text;
+     hud.label.textColor = [UIColor whiteColor];
+    
+    [hud hideAnimated:YES afterDelay:3.f];
+}
+
 
 +(void)dismissForView:(UIView*)view
 {

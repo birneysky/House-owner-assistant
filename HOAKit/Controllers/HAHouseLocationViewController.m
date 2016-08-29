@@ -141,13 +141,16 @@
         [self performSegueWithIdentifier:@"push_house_type" sender:nil];
     }
     else{
+        [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
         [NETWORKENGINE modifyHouseGeneralInfoWithID:self.houseCopy.houseId
                                              params:self.houseCopy
                                          completion:^(HAHouse* house){
                                              [self.delegate houseDidChangned:house];
+                                             [HAActiveWheel dismissForView:self.navigationController.view];
                                              [self.navigationController popViewControllerAnimated:YES];
                                          }
                                             onError:^(NSError *engineError) {
+                                                 [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
                                             
         }];
         
@@ -267,9 +270,17 @@
             CLLocationDegrees lat = firstPlacemark.location.coordinate.latitude;
             CLLocationDegrees lng = firstPlacemark.location.coordinate.longitude;
             if(!ignore){
-                self.house.lat = lat;
-                self.house.lng = lng;
-                self.house.address = address;
+                if (self.newHouse) {
+                    self.house.lat = lat;
+                    self.house.lng = lng;
+                    self.house.address = address;
+                }
+                else{
+                    self.houseCopy.lat = lat;
+                    self.houseCopy.lng = lng;
+                    self.house.address = address;
+                }
+                
                 self.latAndLngValidityFlag = YES;
                 [self checkAdressValidity];
             }

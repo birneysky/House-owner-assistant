@@ -36,7 +36,7 @@
 - (NSArray*) dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@"房屋面积",@"户型",@"卫生间数量",@"几位访客", nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@"房屋面积",@"户型",@"卫生间",@"可住人数", nil];
     }
     return _dataSource;
 }
@@ -79,10 +79,6 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 
@@ -111,7 +107,7 @@
        
         cell = pickerCell;
     }
-    else if([text isEqualToString:@"卫生间数量"] )
+    else if([text isEqualToString:@"卫生间"] )
     {
         HAEditPickerCell* pickerCell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoCell" forIndexPath:indexPath];
         pickerCell.pickerDataSouce = self.bathroomDataSource;
@@ -130,12 +126,14 @@
             editorCell.unitName = @"平";
             if (self.house) {
                 editorCell.textField.text = self.house.area;
+                editorCell.textField.placeholder = @"请输入面积";
             }
         }
-        else if([text isEqualToString:@"几位访客"]){
+        else if([text isEqualToString:@"可住人数"]){
             editorCell.unitName = @"人";
             if (self.house) {
-                editorCell.textField.text = [NSString stringWithFormat:@"%ld",self.house.toliveinNumber];
+                editorCell.textField.text = self.house.toliveinNumber > 0 ? [NSString stringWithFormat:@"%ld",self.house.toliveinNumber] : @"";
+                editorCell.textField.placeholder = @"请输入人数";
             }
         }
         
@@ -268,7 +266,7 @@
 //    if ([text isEqualToString:@"房屋面积"]) {
 //        self.houseNew.area = textfield.text;
 //    }
-//    if ([text isEqualToString:@"几位访客"]) {
+//    if ([text isEqualToString:@"可住人数"]) {
 //        self.houseNew.toliveinNumber = [textfield.text integerValue];
 //    }
 }
@@ -290,7 +288,7 @@
 //        self.houseCopy.area = textfield.text;
         self.textViewInputingLabel.text = @"    请输入0-99999数值";
     }
-    if ([textTitle isEqualToString:@"几位访客"]) {
+    if ([textTitle isEqualToString:@"可住人数"]) {
 //        self.houseCopy.toliveinNumber = [textfield.text integerValue];
          self.textViewInputingLabel.text = @"    请输入1-10数值";
     }

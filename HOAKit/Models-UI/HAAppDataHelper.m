@@ -57,7 +57,7 @@
 
 + (NSString*)bedName:(NSInteger)type
 {
-    NSArray* array = @[@"双人床",@"单人床",@"双层床",@"单人沙发床",@"双人沙发床",@"儿童床",@"园床",@"气垫床"];
+    NSArray* array = @[@"双人床",@"单人床",@"双层床",@"榻榻米",@"其他"];
     NSString* name = nil;
     NSInteger index = type - 1;
     if (index < array.count) {

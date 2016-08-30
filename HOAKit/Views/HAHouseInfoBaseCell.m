@@ -53,7 +53,7 @@
 
 - (void)setPrice:(float)price
 {
-    NSString* priceString = [NSString stringWithFormat:@"%.1f",price];
+    NSString* priceString = [NSString stringWithFormat:@"¥ %.1f",price];
     self.priceLabel.text = priceString;
 }
 

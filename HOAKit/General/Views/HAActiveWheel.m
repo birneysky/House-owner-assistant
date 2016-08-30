@@ -100,7 +100,7 @@
     hud.label.text = text;
      hud.label.textColor = [UIColor whiteColor];
     
-    [hud hideAnimated:YES afterDelay:3.f];
+    [hud hideAnimated:YES afterDelay:2.0f];
 }
 
 
@@ -115,7 +115,6 @@
 
 + (void)dismissViewDelay:(NSTimeInterval)interval forView:(UIView*)view warningText:(NSString*)text;
 {
-
     HAActiveWheel* wheel = (HAActiveWheel*)[super HUDForView:view];;
     [wheel performSelector:@selector(setWarningString:) withObject:text afterDelay:0];
     [HAActiveWheel performSelector:@selector(dismissForView:) withObject:view afterDelay:interval];
@@ -123,7 +122,7 @@
 
 + (void)dismissForView:(UIView *)view delay:(NSTimeInterval)interval
 {
-       [HAActiveWheel performSelector:@selector(dismissForView:) withObject:view afterDelay:interval];
+    [HAActiveWheel performSelector:@selector(dismissForView:) withObject:view afterDelay:interval];
 }
 
 - (void)setProcessString:(NSString *)processString

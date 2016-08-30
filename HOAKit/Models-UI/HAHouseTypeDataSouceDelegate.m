@@ -88,21 +88,43 @@
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
     CGSize size = [UIScreen mainScreen].bounds.size;
-    return floor(size.width / 4);
+    return floor((size.width-16) / 4);
 
 }
 
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    NSString* text = nil;
+//    if (0 == component) {
+//        text = [NSString stringWithFormat:@"%@%@",self.dataSource[row],self.nameArray[component]];
+//    }
+//    else{
+//        text = [NSString stringWithFormat:@"%@%@",self.otherDataSource[row],self.nameArray[component]];
+//    }
+//    
+//    return text;
+//}
+
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
 {
     NSString* text = nil;
     if (0 == component) {
-        text = [NSString stringWithFormat:@"%@ %@",self.dataSource[row],self.nameArray[component]];
+        text = [NSString stringWithFormat:@"%@%@",self.dataSource[row],self.nameArray[component]];
     }
     else{
-        text = [NSString stringWithFormat:@"%@ %@",self.otherDataSource[row],self.nameArray[component]];
+        text = [NSString stringWithFormat:@"%@%@",self.otherDataSource[row],self.nameArray[component]];
     }
-    
-    return text;
+    if ([view isKindOfClass:[UILabel class]]) {
+        UILabel* label = view;
+        label.text = text;
+        return view;
+    }
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, floor((size.width-16) / 4), 30)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = text;
+    return label;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component

@@ -22,7 +22,7 @@
 - (NSArray*) dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@[@"5",@"6",@"7",@"8",@"9"],@[@"0",@"5"], nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@[@"5",@"6",@"7",@"8",@"9",@"10"],@[@"0",@"5"], nil];
     }
     return _dataSource;
 }

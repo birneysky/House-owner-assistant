@@ -39,7 +39,7 @@
 - (NSArray*) dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"床铺信息",@"位置区域",@"设施列表",@"出租方式与房源类型",@"地址", nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"设施列表",@"床铺信息",@"位置区域",@"出租方式与房源类型",@"地址", nil];
     }
     return _dataSource;
 }
@@ -66,12 +66,17 @@
     [self fetchHouseInfo];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    //[self.tableView reloadData];
+    [super viewWillAppear:animated];
+    self.title = @"发布房源";
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.title = @"";
+}
 
 #pragma mark - *** Helper ****
 - (void)fetchHouseInfo{
@@ -217,7 +222,7 @@
 {
     NSString* text = self.dataSource[indexPath.row];
     cell.textLabel.textColor = [UIColor blackColor];
-    UIColor* color = [UIColor colorWithRed:219 / 255.0f green:78 / 255.0f blue:32 / 255.0f alpha:1];
+    UIColor* color = [UIColor colorWithRed:245 / 255.0f green:2 / 255.0f blue:63 / 255.0f alpha:1];
     if ([text isEqualToString:@"房屋标题与介绍"] && self.houseFullInfo.houseDescriptionComplete) {
         cell.textLabel.textColor = color;
     }
@@ -383,6 +388,7 @@
 - (void) imagesOfHouseDidChange:(NSArray<HAHouseImage*>*) images
 {
     self.houseFullInfo.images = images;
+    [self downloadHeaderImage];
     //NSLog(@"%@",images.firstObject.localPath);
 }
 

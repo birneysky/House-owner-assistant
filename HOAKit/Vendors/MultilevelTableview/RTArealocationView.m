@@ -119,7 +119,7 @@
                 
                 BOOL selected = [self.delegate isSelectedLocationInAreaLocationView:self atLevel:idx selectedIndex:selectedIndex index:indexPath.row];
                 if (selected) {
-                    cell.textLabel.textColor = [UIColor orangeColor];
+                    cell.textLabel.textColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1];
                 }
                 else{
                     cell.textLabel.textColor = [UIColor grayColor];

@@ -78,18 +78,63 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    return 30.0f;
+    return 44.0f;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
     CGSize size = [UIScreen mainScreen].bounds.size;
-    return floor(size.width / 3);
+    return floor((size.width - 8) / 3);
 }
 
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    //return [self.pickerData objectAtIndex:row];
+//    NSString* title = nil;
+//    NSInteger provinceIndex = [pickerView selectedRowInComponent:0];
+//    if(-1 == provinceIndex)
+//    {
+//        assert(0);
+//    }
+//    
+//    if(0 == component)
+//    {
+//        NSArray* provinces = self.dataSource[@"child"];
+//        NSDictionary* province = provinces[row];
+//        title = province[@"Name"];
+//    }
+//    else if (1 == component){
+//        NSArray* provinces = self.dataSource[@"child"];
+//        NSDictionary* province = provinces[provinceIndex];
+//        NSArray* citys = province[@"child"];
+//        if (row >= citys.count) {
+//            return title;
+//        }
+//        NSDictionary* city =citys[row];
+//        title = city[@"Name"];
+//    }
+//    else{
+//        NSArray* provinces = self.dataSource[@"child"];
+//        NSDictionary* province = provinces[provinceIndex];
+//        NSArray* citys = province[@"child"];
+//        NSInteger cityIndex = [pickerView selectedRowInComponent:1];
+//        if (cityIndex >= citys.count) {
+//            return title;
+//        }
+//        NSDictionary* city = citys[cityIndex];
+//        NSArray* towns = city[@"child"];
+//        if (row >= towns.count) {
+//            return title;
+//        }
+//        NSDictionary* town = towns[row];
+//        title = town[@"Name"];
+//    }
+//    
+//    return title;
+//}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
 {
-    //return [self.pickerData objectAtIndex:row];
     NSString* title = nil;
     NSInteger provinceIndex = [pickerView selectedRowInComponent:0];
     if(-1 == provinceIndex)
@@ -130,7 +175,19 @@
         title = town[@"Name"];
     }
     
-    return title;
+    if ([view isKindOfClass:[UILabel class]]) {
+        UILabel* label = view;
+        label.text = title;
+        return view;
+    }
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, floor((size.width - 8) / 3), 44)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = title;
+    label.numberOfLines = 0;
+    return label;
+
+   
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component

@@ -152,7 +152,7 @@
         }
     }
     
-    if ([text isEqualToString:@"几位访客"]) {
+    if ([text isEqualToString:@"可住人数"]) {
         self.toliveinNumber = [value integerValue];
         if(self.toliveinNumber > 10 || self.toliveinNumber < 1)
         {

@@ -49,7 +49,7 @@ const NSInteger MAXLEVEL =  3;
 - (NSArray*) regionNames
 {
     if (!_regionNames) {
-        _regionNames = @[@"景点",@"车站/机场",@"地铁线路",@"商圈",@"行政区",@"医院",@"学校"];
+        _regionNames = @[@"景点",@"车站/机场",@"地铁线路",@"商圈",@"医院",@"学校"];
     }
     return _regionNames;
 }
@@ -78,13 +78,13 @@ const NSInteger MAXLEVEL =  3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     // 初始化选择的cell
 
-    NSInteger distictId = [self.regionNames indexOfObject:@"行政区"];
-    NSArray* positions = [HAAppDataHelper positionsFromProvince:self.house.province city:self.house.city house:self.house.houseId];
-    HARegion* region = self.allRegions[distictId];
-    [region addItems:positions];
+//    NSInteger distictId = [self.regionNames indexOfObject:@"行政区"];
+//    NSArray* positions = [HAAppDataHelper positionsFromProvince:self.house.province city:self.house.city house:self.house.houseId];
+//    HARegion* region = self.allRegions[distictId];
+//    [region addItems:positions];
     // 显示 menu
 
     //加载该房源已选的位置区域信息
@@ -97,7 +97,9 @@ const NSInteger MAXLEVEL =  3;
     [HAActiveWheel showHUDAddedTo:self.view].processString = @"正在载入";
     [[HARESTfulEngine defaultEngine] fetchPositionInfoWithCityID:self.house.city completion:^(NSArray<HAPosition *> *postions, NSArray<HASubWay *> *subways) {
         [postions enumerateObjectsUsingBlock:^(HAPosition * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            HARegion* region = self.allRegions[obj.typeId - 1];
+            NSInteger offset = obj.typeId >=5 ? 2 : 1;
+            HARegion* region = self.allRegions[obj.typeId - offset];
+            //HARegion* region = self.allRegions[obj.typeId - 1];
             [region addSubItem:obj];
         }];
         
@@ -121,11 +123,6 @@ const NSInteger MAXLEVEL =  3;
     }];
     
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
 }
 
 

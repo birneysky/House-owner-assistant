@@ -67,10 +67,6 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
 
 #pragma mark - *** Helper ***
 - (void) fetchHouseInfo
@@ -215,9 +211,15 @@
         }
     }
     
-
-    
     [cell.accessoryView becomeFirstResponder];
+    
+    BOOL change = ![self.house isEqualToHouse:self.houseCopy];
+    if (change) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 

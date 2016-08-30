@@ -129,7 +129,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
                 [self.netOperationDic removeObjectForKey:certificate];
                 if (self.photosArray.count < 12 && self.netOperationDic.count == 0) {
                     self.addPhotoBtn.enabled = YES;
-                    self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:210/255.0f green:98/255.0f blue:43/255.0f alpha:1].CGColor;
+                    self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
                 }
                 
             } progress:^(NSString *certificate, float progress) {
@@ -137,9 +137,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
                 HAPhotoItem* item = self.selectedPhotoPathes[index];
                 item.progress = progress;
                 [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-                
                 //[self.collectionView reloadData];
-
             } onError:^(NSString *certificate,NSError *engineError) {
                 NSInteger index = [self.netOperationDic[certificate] integerValue];
                 HAPhotoItem* item = self.selectedPhotoPathes[index];
@@ -148,6 +146,10 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
                 item.state = HAPhotoUploadOrDownloadStateFalied;
                 [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
                 [self.netOperationDic removeObjectForKey:certificate];
+                if (self.photosArray.count < 12 && self.netOperationDic.count == 0) {
+                    self.addPhotoBtn.enabled = YES;
+                    self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
+                }
             }];
             HAPhotoItem* item = self.selectedPhotoPathes[idx];
             item.state = HAPhotoUploadOrDownloadStateBegin;
@@ -166,7 +168,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
 
     }else if(downloadedCount == 0){
         self.addPhotoBtn.enabled = YES;
-        self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:210/255.0f green:98/255.0f blue:43/255.0f alpha:1].CGColor;
+        self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
     }
     
 
@@ -180,6 +182,8 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
    [super viewDidDisappear:animated];
    [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
 }
+
+
 
 #pragma mark - *** Helper ***
 
@@ -200,7 +204,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
             self.addPhotoBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
         }
         self.saveBtn.enabled = YES;
-        self.saveBtn.layer.borderColor = [UIColor colorWithRed:210/255.0f green:98/255.0f blue:43/255.0f alpha:1].CGColor;
+        self.saveBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
     } progress:^(NSString *certificate, float progress) {
         NSInteger index = [self.netOperationDic[certificate] integerValue];
         HAPhotoItem* item = self.selectedPhotoPathes[index];
@@ -546,6 +550,8 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
                 } onError:^(NSString *certificate, NSError *error) {
                     item.state = HAPhotoUploadOrDownloadStateFalied;
                     [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                     NSString* path = [basePath stringByAppendingPathComponent:[item.netPath lastPathComponent]];
+                    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
                 }];
             });
         }
@@ -617,7 +623,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
         [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
         pictureCell.image = nil;
         self.addPhotoBtn.enabled = YES;
-        self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:210/255.0f green:98/255.0f blue:43/255.0f alpha:1].CGColor;
+        self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
         [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"删除失败，请检查网络"];

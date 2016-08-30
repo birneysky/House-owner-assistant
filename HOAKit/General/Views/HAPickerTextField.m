@@ -26,7 +26,7 @@
     if (!_pickerView) {
         _pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
         _pickerView.showsSelectionIndicator = YES;
-        _pickerView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _pickerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _pickerView.backgroundColor = [UIColor whiteColor];
     }
     return _pickerView;

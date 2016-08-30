@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     [self fethHouseItem];
 }
 
@@ -41,7 +42,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.title = nil;
+    self.title = @"";
 }
 
 #pragma mark - *** Helper ***

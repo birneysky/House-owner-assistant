@@ -28,8 +28,6 @@
 		74266F7E1D5DF91F00A7E4BF /* HAHouseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F7C1D5DF91F00A7E4BF /* HAHouseInfo.m */; };
 		74266F811D5DFA5B00A7E4BF /* HAHouseOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F7F1D5DFA5B00A7E4BF /* HAHouseOrder.h */; };
 		74266F821D5DFA5B00A7E4BF /* HAHouseOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F801D5DFA5B00A7E4BF /* HAHouseOrder.m */; };
-		74266F851D5DFC1B00A7E4BF /* HAHousePosition.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F831D5DFC1B00A7E4BF /* HAHousePosition.h */; };
-		74266F861D5DFC1B00A7E4BF /* HAHousePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F841D5DFC1B00A7E4BF /* HAHousePosition.m */; };
 		74266F8A1D5E02EA00A7E4BF /* HARESTfulEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F881D5E02EA00A7E4BF /* HARESTfulEngine.h */; };
 		74266F8B1D5E02EA00A7E4BF /* HARESTfulEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74266F891D5E02EA00A7E4BF /* HARESTfulEngine.m */; };
 		74266F8E1D5F6F6E00A7E4BF /* HAJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 74266F8C1D5F6F6E00A7E4BF /* HAJSONModel.h */; };
@@ -146,6 +144,8 @@
 		DB3B28FD1D5DC0070007E576 /* MKNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28E91D5DC0070007E576 /* MKNetworkOperation.m */; };
 		DB3B28FE1D5DC0070007E576 /* HAReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3B28EB1D5DC0070007E576 /* HAReachability.h */; };
 		DB3B28FF1D5DC0070007E576 /* HAReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3B28EC1D5DC0070007E576 /* HAReachability.m */; };
+		DB6DA7011D757F6800430922 /* HAHousePosition.h in Headers */ = {isa = PBXBuildFile; fileRef = DB6DA6FF1D757F6800430922 /* HAHousePosition.h */; };
+		DB6DA7021D757F6800430922 /* HAHousePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6DA7001D757F6800430922 /* HAHousePosition.m */; };
 		DB8EF91B1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */; };
 		DB8EF91C1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */; };
 		DBAE09231D5043DF008A85C4 /* HOA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBAE09221D5043DF008A85C4 /* HOA.xcassets */; };
@@ -206,8 +206,6 @@
 		74266F7C1D5DF91F00A7E4BF /* HAHouseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseInfo.m; sourceTree = "<group>"; };
 		74266F7F1D5DFA5B00A7E4BF /* HAHouseOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseOrder.h; sourceTree = "<group>"; };
 		74266F801D5DFA5B00A7E4BF /* HAHouseOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseOrder.m; sourceTree = "<group>"; };
-		74266F831D5DFC1B00A7E4BF /* HAHousePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHousePosition.h; sourceTree = "<group>"; };
-		74266F841D5DFC1B00A7E4BF /* HAHousePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHousePosition.m; sourceTree = "<group>"; };
 		74266F881D5E02EA00A7E4BF /* HARESTfulEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HARESTfulEngine.h; sourceTree = "<group>"; };
 		74266F891D5E02EA00A7E4BF /* HARESTfulEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HARESTfulEngine.m; sourceTree = "<group>"; };
 		74266F8C1D5F6F6E00A7E4BF /* HAJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAJSONModel.h; sourceTree = "<group>"; };
@@ -326,6 +324,8 @@
 		DB3B28E91D5DC0070007E576 /* MKNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNetworkOperation.m; sourceTree = "<group>"; };
 		DB3B28EB1D5DC0070007E576 /* HAReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAReachability.h; sourceTree = "<group>"; };
 		DB3B28EC1D5DC0070007E576 /* HAReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAReachability.m; sourceTree = "<group>"; };
+		DB6DA6FF1D757F6800430922 /* HAHousePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHousePosition.h; sourceTree = "<group>"; };
+		DB6DA7001D757F6800430922 /* HAHousePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHousePosition.m; sourceTree = "<group>"; };
 		DB8EF9191D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPriceAndTrandRulesTableController.h; sourceTree = "<group>"; };
 		DB8EF91A1D506E5F00EE8231 /* HAPriceAndTrandRulesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPriceAndTrandRulesTableController.m; sourceTree = "<group>"; };
 		DBAE09221D5043DF008A85C4 /* HOA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HOA.xcassets; sourceTree = SOURCE_ROOT; };
@@ -388,6 +388,8 @@
 		74266F661D5DF26500A7E4BF /* Models-NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				DB6DA6FF1D757F6800430922 /* HAHousePosition.h */,
+				DB6DA7001D757F6800430922 /* HAHousePosition.m */,
 				74266F671D5DF29200A7E4BF /* HAHouse.h */,
 				74266F681D5DF29200A7E4BF /* HAHouse.m */,
 				74266F6B1D5DF6E300A7E4BF /* HAHouseBed.h */,
@@ -402,8 +404,6 @@
 				74266F7C1D5DF91F00A7E4BF /* HAHouseInfo.m */,
 				74266F7F1D5DFA5B00A7E4BF /* HAHouseOrder.h */,
 				74266F801D5DFA5B00A7E4BF /* HAHouseOrder.m */,
-				74266F831D5DFC1B00A7E4BF /* HAHousePosition.h */,
-				74266F841D5DFC1B00A7E4BF /* HAHousePosition.m */,
 				74266F981D5F835A00A7E4BF /* HAHouseItem.h */,
 				74266F991D5F835A00A7E4BF /* HAHouseItem.m */,
 				DB12CBF01D61AAAA0069126F /* HAHouseFullInfo.h */,
@@ -768,6 +768,7 @@
 				743F436C1D573F8A00D06D19 /* HAHouseBedViewController.h in Headers */,
 				742B91CA1D4FB731000FF5A1 /* HAHouseLocationViewController.h in Headers */,
 				743F43561D5600AA00D06D19 /* HAHouseInfoViewController.h in Headers */,
+				DB6DA7011D757F6800430922 /* HAHousePosition.h in Headers */,
 				743F434E1D55F81500D06D19 /* HADiscountPickerTextField.h in Headers */,
 				742B91E11D4FB731000FF5A1 /* CTAssetsGroupViewController.h in Headers */,
 				742670061D6C8EC300A7E4BF /* HAHouseInfoItemCell.h in Headers */,
@@ -805,7 +806,6 @@
 				742B91CC1D4FB731000FF5A1 /* HAHouseTypeTableViewController.h in Headers */,
 				DB3B28F31D5DC0070007E576 /* NSDictionary+RequestEncoding.h in Headers */,
 				DB3B28FB1D5DC0070007E576 /* MKNetworkKit.h in Headers */,
-				74266F851D5DFC1B00A7E4BF /* HAHousePosition.h in Headers */,
 				743F435E1D56E1AE00D06D19 /* HASwitchCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -897,7 +897,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74266F861D5DFC1B00A7E4BF /* HAHousePosition.m in Sources */,
 				742B91E61D4FB731000FF5A1 /* CTAssetsPickerController.m in Sources */,
 				74266F761D5DF85E00A7E4BF /* HAHouseFacility.m in Sources */,
 				74266F6E1D5DF6E300A7E4BF /* HAHouseBed.m in Sources */,
@@ -980,6 +979,7 @@
 				742B91E01D4FB731000FF5A1 /* CTAssetsGroupViewCell.m in Sources */,
 				DB35A79D1D66FA5500CD6776 /* NSArray+RequestEncoding.m in Sources */,
 				743F436D1D573F8A00D06D19 /* HAHouseBedViewController.m in Sources */,
+				DB6DA7021D757F6800430922 /* HAHousePosition.m in Sources */,
 				742B91CF1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1092,6 +1092,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.birneysky.HOAKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1113,6 +1115,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.birneysky.HOAKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

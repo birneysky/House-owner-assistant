@@ -98,6 +98,7 @@
         pickerCell.pickerDataSouce = self.bedTypeDataSouce;
         pickerCell.delegate = self;
         pickerCell.textField.text = [HAAppDataHelper bedName:self.bed.bedTypeId] ;
+        pickerCell.textField.placeholder = @"请输入床型";
         cell = pickerCell;
     }
     else {
@@ -107,14 +108,17 @@
             editCell.unitName = @"张";
             NSString* value = self.bed.number <= 0 ? @"" : [NSString stringWithFormat:@"%ld",self.bed.number];
             editCell.textField.text = value;
+            editCell.textField.placeholder = @"请输入数量";
         }
         else if([text isEqualToString:@"长度"]){
             NSString* value = self.bed.length <= 0 ? @"" : [NSString stringWithFormat:@"%.1f",self.bed.length];
             editCell.textField.text = value;
+            editCell.textField.placeholder = @"请输入长度";
         }
         else if ([text isEqualToString:@"宽度"]){
             NSString* value = self.bed.width <= 0 ? @"" : [NSString stringWithFormat:@"%.1f",self.bed.width];
             editCell.textField.text = value;
+            editCell.textField.placeholder = @"请输入宽度";
         }
         
        

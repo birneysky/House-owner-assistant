@@ -86,6 +86,9 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectResultText:(NSString*)text
 {
     self.textField.text = text;
+    if ([self.delegate respondsToSelector:@selector(didSelectDiscount:fromCell:)]) {
+        [self.delegate didSelectDiscount:text fromCell:self];
+    }
 }
 
 

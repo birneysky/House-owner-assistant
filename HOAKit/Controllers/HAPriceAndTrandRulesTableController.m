@@ -226,10 +226,26 @@
 #pragma mark - *** Cells Delegate ***
 - (void)selectItemDoneForPickerTextField:(UITextField *)textfield fromCell:(UITableViewCell *)cell
 {
+//    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+//    NSString* text = self.dataSource[indexPath.section][indexPath.row];
+//    [self.houseCopy setValue:textfield.text forChineseName:text];
+    
+}
+
+
+- (void) didSelectDiscount:(NSString*)value fromCell:(UITableViewCell*)cell
+{
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     NSString* text = self.dataSource[indexPath.section][indexPath.row];
-    [self.houseCopy setValue:textfield.text forChineseName:text];
+    [self.houseCopy setValue:value forChineseName:text];
     
+    BOOL change = ![self.house isEqualToHouse:self.houseCopy];
+    if (change) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 - (void)offONButtonChangedFromCell:(UITableViewCell *)cell sender:(UIButton *)sender

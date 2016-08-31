@@ -127,7 +127,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
                 item.state = HAPhotoUploadOrDownloadStateFinsish;
                 [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
                 [self.netOperationDic removeObjectForKey:certificate];
-                if (self.photosArray.count < 12 && self.netOperationDic.count == 0) {
+                if (self.photosArray.count < 10 && self.netOperationDic.count == 0) {
                     self.addPhotoBtn.enabled = YES;
                     self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
                 }
@@ -146,7 +146,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
                 item.state = HAPhotoUploadOrDownloadStateFalied;
                 [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
                 [self.netOperationDic removeObjectForKey:certificate];
-                if (self.photosArray.count < 12 && self.netOperationDic.count == 0) {
+                if (self.photosArray.count < 10 && self.netOperationDic.count == 0) {
                     self.addPhotoBtn.enabled = YES;
                     self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
                 }
@@ -162,7 +162,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
 
     }];
     
-    if (self.photosArray.count >= 12 || downloadedCount > 0 ) {
+    if (self.photosArray.count >= 10 || downloadedCount > 0 ) {
         self.addPhotoBtn.enabled = NO;
         self.addPhotoBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
 
@@ -199,7 +199,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
         obj.userId = self.house.landlordId;
         obj.houseId = self.house.houseId;
         [self.photosArray addObject:obj];
-        if (self.photosArray.count >= 12) {
+        if (self.photosArray.count >= 10) {
             self.addPhotoBtn.enabled = NO;
             self.addPhotoBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
         }
@@ -229,7 +229,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
     picker.showsCancelButton    = YES;
     picker.delegate             = self;
     picker.selectedAssets       = [[NSMutableArray alloc] initWithCapacity:0];
-    picker.totalNumberOfChoices = 12 - self.photosArray.count;
+    picker.totalNumberOfChoices = 10 - self.photosArray.count;
     
     [self presentViewController:picker animated:YES completion:nil];
 }

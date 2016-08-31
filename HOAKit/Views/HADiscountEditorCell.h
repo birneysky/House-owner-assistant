@@ -16,6 +16,8 @@
                                 fromCell:(UITableViewCell*) cell;
 - (BOOL) textFieldShouldBeginEditing:(UITextField*)textField
                             fromCell:(UITableViewCell*)cell;
+
+- (void) didSelectDiscount:(NSString*)value fromCell:(UITableViewCell*)cell;
 @end
 
 

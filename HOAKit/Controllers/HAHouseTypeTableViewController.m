@@ -201,6 +201,7 @@
     if ([segue.identifier isEqualToString:@"push_publish_house"]) {
         HAPublishHouseInfoTableViewController* vc = segue.destinationViewController;
         vc.houseId = self.house.houseId;
+        vc.firstEnter = YES;
     }
 }
 

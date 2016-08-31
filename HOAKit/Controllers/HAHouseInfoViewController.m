@@ -209,6 +209,24 @@
 - (IBAction)saveButtonClicked:(id)sender {
     
     [self.view endEditing:YES];
+    
+    if (self.houseCopy.area.length <= 0) {
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房屋面积未填写"];
+        return;
+    }
+    else if(self.houseCopy.roomNumber <=0){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"户型未填写"];
+        return;
+    }
+    else if (self.houseCopy.toiletNumber <= 0){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"卫生间未填写"];
+        return;
+    }
+    else if (self.houseCopy.toliveinNumber <=0){
+      [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"可住人数未填写"];
+      return;
+    }
+    
     [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
     [NETWORKENGINE modifyHouseGeneralInfoWithID:self.houseCopy.houseId
                                          params:self.houseCopy

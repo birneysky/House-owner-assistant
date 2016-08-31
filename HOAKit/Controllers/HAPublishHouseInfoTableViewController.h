@@ -14,6 +14,8 @@
 
 @property (nonatomic,assign) NSInteger houseId;
 
+@property (nonatomic,assign) BOOL firstEnter;
+
 @property(nonatomic,strong) HAHouseFullInfo* houseFullInfo;
 
 @end

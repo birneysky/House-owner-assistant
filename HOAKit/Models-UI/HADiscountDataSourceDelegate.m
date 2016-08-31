@@ -22,7 +22,7 @@
 - (NSArray*) dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@[@"5",@"6",@"7",@"8",@"9",@"10"],@[@"0",@"5"], nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@[@"5",@"6",@"7",@"8",@"9",@"10"],[[NSMutableArray alloc] initWithObjects:@"0",@"5", nil], nil];
     }
     return _dataSource;
 }
@@ -71,7 +71,16 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-
+    NSMutableArray* array = self.dataSource[1];
+    NSString* title = self.dataSource[component][row];
+    if ([title isEqualToString:@"10"]) {
+        [self.dataSource[1] removeObject:@"5"];
+        [pickerView reloadComponent:1];
+    }
+    else if (array.count < 2){
+        [array addObject:@"5"];
+        [pickerView reloadComponent:1];
+    }
     
     NSString* result = [self currentResult];
     

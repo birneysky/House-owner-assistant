@@ -243,7 +243,7 @@
         cell.textLabel.textColor = color;
         
     }
-    else if([text isEqualToString:@"设施列表"] && self.houseFullInfo.facilityInfoComplete){
+    else if([text isEqualToString:@"设施列表"] && self.houseFullInfo.facilityInfoComplete && !self.firstEnter){
         cell.textLabel.textColor = color;
     }
     else if([text isEqualToString:@"位置区域"] && self.houseFullInfo.regionInfoComplete){
@@ -284,11 +284,24 @@
         }];
         
     }
-    else{
-        [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"信息未满足提交条件";
-        [HAActiveWheel dismissForView:self.navigationController.view delay:2];
+    else if(!self.houseFullInfo.houseDescriptionComplete){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源标题与介绍未完善"];
     }
-
+    else if(!self.houseFullInfo.priceInfoComplete){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"价格与交易规则未完善"];
+    }
+    else if(!self.houseFullInfo.houseGeneralInfoComplete){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源信息未完善"];
+    }
+    else if (!!self.firstEnter){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"设施列表未完善"];
+    }
+    else if(!self.houseFullInfo.bedInfoComplete){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"床铺信息未完善"];
+    }
+    else if(!self.houseFullInfo.regionInfoComplete){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"位置区域未完善"];
+    }
 
     
 }
@@ -307,6 +320,7 @@
         vc.houseId = self.houseId;
         vc.factilities = self.houseFullInfo.facility;
         vc.delegate = self;
+        self.firstEnter = NO;
     }
     
     if ([segue.identifier isEqualToString:@"push_house_area"]) {

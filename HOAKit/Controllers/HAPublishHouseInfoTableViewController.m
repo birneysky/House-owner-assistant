@@ -284,7 +284,7 @@
         }];
         
     }
-    else if (self.houseFullInfo.houseImageComplete){
+    else if (!self.houseFullInfo.houseImageComplete){
         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"图片少于5张"];
     }
     else if(!self.houseFullInfo.houseDescriptionComplete){

@@ -10,6 +10,11 @@
 
 @implementation HAHouseFullInfo
 
+- (BOOL) houseImageComplete
+{
+    return self.images.count >= 5;
+}
+
 - (BOOL) houseGeneralInfoComplete
 {
     return self.house.area.length > 0 && self.house.roomNumber > 0 && self.house.toliveinNumber > 0 && self.house.toiletNumber > 0;

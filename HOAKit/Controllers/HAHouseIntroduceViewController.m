@@ -74,6 +74,8 @@
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -167,13 +169,16 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    CGRect rect = self.firstResponderView.frame;
-    rect.size.height += 5;
-    rect.origin.y += self.keyboardHeight ;//self.scrollView.contentSize.height - self.scrollView.frame.size.height;
+    if(self.keyboardHeight > 0){
+        CGRect rect = self.firstResponderView.frame;
+        rect.size.height += 5;
+        rect.origin.y += self.keyboardHeight ;//self.scrollView.contentSize.height - self.scrollView.frame.size.height;
+        
+        // rect = [self.scrollView convertRect:rect fromView:nil];
+        //    NSLog(@"scroll frame %@,contentsize %@,contentofffset %@,torect %@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize),NSStringFromCGPoint(self.scrollView.contentOffset),NSStringFromCGRect(rect));
+        [self.scrollView scrollRectToVisible:rect animated:YES];
+    }
 
-   // rect = [self.scrollView convertRect:rect fromView:nil];
-//    NSLog(@"scroll frame %@,contentsize %@,contentofffset %@,torect %@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize),NSStringFromCGPoint(self.scrollView.contentOffset),NSStringFromCGRect(rect));
-    [self.scrollView scrollRectToVisible:rect animated:YES];
     
     if (self.titleTextView == textView) {
         if((self.validFlag | PRTValidStateTitle) == PRTValidStateTitle)
@@ -184,7 +189,7 @@
     else if (self.houseDescriptionTextView == textView){
         if((self.validFlag | PRTValidStateDescription) == PRTValidStateDescription)
         {
-            self.textViewInputingLabel.text = @"   请输入0-250个字";
+            self.textViewInputingLabel.text = @"   请输入5-250个字";
         }
     }
     else if (self.houseLocationTextView == textView){
@@ -208,7 +213,7 @@
     else if (self.houseCommentTextView == textView){
         if((self.validFlag | PRTValidStateRemarks) == PRTValidStateRemarks)
         {
-            self.textViewInputingLabel.text = @"   请输入0-250个字";
+            self.textViewInputingLabel.text = @"   请输入0-60个字";
         }
     }
 }
@@ -326,12 +331,12 @@
         self.houseCopy.surroundings = textView.text;
         if (!valid) {
             self.validFlag &= PRTValidStateSurroundings;
-        }{
+        }else{
              self.validFlag |= ~ PRTValidStateSurroundings;
         }
     }
     else if (self.houseCommentTextView == textView){
-        valid = [self limitTextViewTextLengthMin:0 max:250 textView:textView warningText:@"请输入0-250个字"];
+        valid = [self limitTextViewTextLengthMin:0 max:60 textView:textView warningText:@"请输入0-60个字"];
         self.houseCopy.remarks = textView.text;
         if (!valid) {
             self.validFlag &= PRTValidStateRemarks;
@@ -356,13 +361,26 @@
 {
     CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+    CGRect begin                                        = [[[notification userInfo] objectForKey:@"UIKeyboardFrameBeginUserInfoKey"] CGRectValue];
+    CGRect end                                          = [[[notification userInfo] objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     //NSLog(@"keyboarTop %f",keyboardTop);
     //NSLog(@"height %f",self.view.bounds.size.height - keyboardRect.size.height);
     //CGRect newScrollViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, keyboardTop);
-    self.keyboardHeight = keyboardRect.size.height;
-    self.contentViewBottomConstraint.constant = keyboardRect.size.height + self.contentOffset;
-    //[self.scrollView updateConstraintsIfNeeded];
-    [self.scrollView layoutIfNeeded];
+    if (begin.size.height > 0 && (begin.origin.y - end.origin.y) > 0) {
+        self.keyboardHeight = keyboardRect.size.height;
+        self.contentViewBottomConstraint.constant = keyboardRect.size.height + self.contentOffset;
+        //[self.scrollView updateConstraintsIfNeeded];
+        [self.scrollView layoutIfNeeded];
+        
+        CGRect rect = self.firstResponderView.frame;
+        rect.size.height += 5;
+        rect.origin.y += self.keyboardHeight ;//self.scrollView.contentSize.height - self.scrollView.frame.size.height;
+        
+        // rect = [self.scrollView convertRect:rect fromView:nil];
+        //    NSLog(@"scroll frame %@,contentsize %@,contentofffset %@,torect %@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize),NSStringFromCGPoint(self.scrollView.contentOffset),NSStringFromCGRect(rect));
+        [self.scrollView scrollRectToVisible:rect animated:YES];
+    }
+
     //self.scrollViewConstraint.constant = keyboardRect.size.height;
     //self.scrollView.frame = newScrollViewFrame;
     

@@ -72,7 +72,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     NSMutableArray* array = self.dataSource[1];
-    NSString* title = self.dataSource[component][row];
+    NSString* title = self.dataSource[0][row];
     if ([title isEqualToString:@"10"]) {
         [self.dataSource[1] removeObject:@"5"];
         [pickerView reloadComponent:1];

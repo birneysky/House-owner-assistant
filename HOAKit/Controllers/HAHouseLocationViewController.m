@@ -41,6 +41,41 @@
 
 @end
 
+
+void GCJ02FromBD09(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
+
+{
+    double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+    
+    double x = gg_lon - 0.0065, y = gg_lat - 0.006;
+    
+    double z = sqrt(x * x + y * y) - 0.00002 * sin(y * x_pi);
+    
+    double theta = atan2(y, x) - 0.000003 * cos(x * x_pi);
+    
+    *bd_lon = z * cos(theta);
+    
+    *bd_lat = z * sin(theta);
+    
+}
+
+void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
+
+{
+    double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+    
+    double x = gg_lon , y = gg_lat;
+    
+    double z = sqrt(x * x + y * y) + 0.00002 * sin(y * x_pi);
+    
+    double theta = atan2(y, x) + 0.000003 * cos(x * x_pi);
+    
+    *bd_lon = z * cos(theta) +  0.0065;
+    
+    *bd_lat = z * sin(theta) + + 0.006;
+    
+}
+
 @implementation HAHouseLocationViewController
 
 #pragma mark - *** Properties ***
@@ -102,9 +137,16 @@
         self.cityAddressTextfield.text = [HAAppDataHelper provincesAndCityAddress:self.house.province city:self.house.city distict:self.house.distict];
         self.houseNumberTextfield.text = self.house.houseNumber;
         self.fullAddressTextfield.returnKeyType = UIReturnKeyDone;
-        //39.938946 lat
-        //116.48163 lng
-        CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.house.lat longitude:self.house.lng];
+        //39.93894620587984 lat   ---->39.933165000000002
+        //116.48163155993817 lng   ---->116.475174
+        double testLat = 0;
+        double testLng = 0;
+        BD09FromGCJ02(39.933165000000002,116.475174,&testLat,&testLng);
+        double lat = 0;
+        double lng = 0;
+        GCJ02FromBD09(testLat,testLng,&lat,&lng);
+        //CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.house.lat longitude:self.house.lng];
+         CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
         CLLocationCoordinate2D coord = [loc coordinate];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
         [self.mapView setRegion:region animated:YES];

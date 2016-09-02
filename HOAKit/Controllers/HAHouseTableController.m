@@ -83,7 +83,7 @@
         return 180;
     }
     else{
-        return 125;
+        return 140;
     }
 }
 

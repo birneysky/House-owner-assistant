@@ -45,10 +45,7 @@
 {
     NSString* text = [HAAppDataHelper checkStatusText:status];
     
-    NSMutableAttributedString* atrributedString = [[NSMutableAttributedString alloc] initWithAttributedString:self.checkStatusLabel.attributedText];
-    [atrributedString replaceCharactersInRange:NSMakeRange(0, atrributedString.length) withString:text];
-    
-    self.checkStatusLabel.attributedText = atrributedString;
+    self.checkStatusLabel.text = text;
 }
 
 - (void)setPrice:(float)price

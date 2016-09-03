@@ -80,10 +80,10 @@
 {
     HAHouse* item = self.dataSource[indexPath.section];
     if (2 == item.checkStatus) {
-        return 210;
+        return 170;
     }
     else{
-        return 140;
+        return 124;
     }
 }
 

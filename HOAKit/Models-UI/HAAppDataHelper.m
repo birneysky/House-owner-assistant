@@ -40,16 +40,16 @@
     NSString* name = nil;
     switch (status) {
         case 1:
-            name = @"待审核";
+            name = @"上线中";
             break;
         case 2:
             name = @"已通过";
             break;
         case 3:
-            name = @"已拒绝";
+            name = @"被拒绝";
             break;
         case 4:
-            name = @"补充材料";
+            name = @"待完善";
             break;
     }
     return name;

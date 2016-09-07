@@ -77,12 +77,19 @@ static HARESTfulEngine* defaultEngine;
                     onError:(ErrorBlock) errorBlock
 {
     HARESTfulOperation* op = nil;
-    op = (HARESTfulOperation*) [self operationWithPath:path params:(NSDictionary*)object httpMethod:method];
+    NSString* realMethod;
+    if ([method isEqualToString:@"POSTS"]) {
+        realMethod = @"POST";
+    }
+    else{
+        realMethod = method;
+    }
+    op = (HARESTfulOperation*) [self operationWithPath:path params:(NSDictionary*)object httpMethod:realMethod];
     if ([object isKindOfClass:[NSArray class]]) {
-         op = (HARESTfulOperation*) [self operationWithPath:path paramsArray:(NSArray*)object httpMethod:method];
+         op = (HARESTfulOperation*) [self operationWithPath:path paramsArray:(NSArray*)object httpMethod:realMethod];
     }
 
-    if ([method isEqualToString:@"PUT"]) {
+    if ([method isEqualToString:@"PUT"] || [method isEqualToString:@"POSTS"]) {
         [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
     }
     
@@ -251,7 +258,7 @@ static HARESTfulEngine* defaultEngine;
           completion:(void(^)(HAHouseBed* bed))completion
              onError:(ErrorBlock)errBlock
 {
-    [self httpRequestWithPath:@"api/house_beds" generalParams:[bed toFullDictionary] httpMethod:@"POST" completion:^(NSDictionary *object) {
+    [self httpRequestWithPath:@"api/house_beds" generalParams:[bed toFullDictionary] httpMethod:@"POSTS" completion:^(NSDictionary *object) {
         NSDictionary* dic = [(NSDictionary*)object objectForKey:@"data"];
         HAHouseBed* bedresult = [[HAHouseBed alloc] initWithDictionary:dic];
         completion(bedresult);

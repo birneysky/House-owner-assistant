@@ -139,14 +139,17 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
         self.fullAddressTextfield.returnKeyType = UIReturnKeyDone;
         //39.93894620587984 lat   ---->39.933165000000002
         //116.48163155993817 lng   ---->116.475174
-        double testLat = 0;
-        double testLng = 0;
-        BD09FromGCJ02(39.933165000000002,116.475174,&testLat,&testLng);
+//        double testLat = 0;
+//        double testLng = 0;
+//        BD09FromGCJ02(39.933165000000002,116.475174,&testLat,&testLng);
+//        double lat = 0;
+//        double lng = 0;
+//        GCJ02FromBD09(testLat,testLng,&lat,&lng);
+        //CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.house.lat longitude:self.house.lng];
         double lat = 0;
         double lng = 0;
-        GCJ02FromBD09(testLat,testLng,&lat,&lng);
-        //CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.house.lat longitude:self.house.lng];
-         CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
+        BD09FromGCJ02(self.house.lat, self.house.lng, &lat, &lng);
+        CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
         CLLocationCoordinate2D coord = [loc coordinate];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
         [self.mapView setRegion:region animated:YES];
@@ -313,15 +316,18 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
             //NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
             CLLocationDegrees lat = firstPlacemark.location.coordinate.latitude;
             CLLocationDegrees lng = firstPlacemark.location.coordinate.longitude;
+            double blat = 0;
+            double blng = 0;
+            GCJ02FromBD09(lat,lng,&blat,&blng);
             if(!ignore){
                 if (self.newHouse) {
-                    self.house.lat = lat;
-                    self.house.lng = lng;
+                    self.house.lat = blat;
+                    self.house.lng = blng;
                     self.house.address = address;
                 }
                 else{
-                    self.houseCopy.lat = lat;
-                    self.houseCopy.lng = lng;
+                    self.houseCopy.lat = blat;
+                    self.houseCopy.lng = blng;
                     self.house.address = address;
                 }
                 

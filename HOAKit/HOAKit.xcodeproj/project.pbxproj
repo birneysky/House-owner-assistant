@@ -568,6 +568,7 @@
 		742B91B11D4FB731000FF5A1 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				743E97E21D806E2C00F86194 /* PhotoBrowser */,
 				DBAE647B1D6D8927006D807C /* MBProgressHUD */,
 				74266FD91D69D0D400A7E4BF /* SDProgressView */,
 				DB3B28D71D5DC0070007E576 /* MKNetworkKit */,
@@ -601,6 +602,13 @@
 				742B91C51D4FB731000FF5A1 /* NSDate+timeDescription.m */,
 			);
 			path = CTAssetsPickerController;
+			sourceTree = "<group>";
+		};
+		743E97E21D806E2C00F86194 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		743F43471D55F0C500D06D19 /* Views */ = {

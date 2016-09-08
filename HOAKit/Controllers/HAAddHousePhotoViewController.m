@@ -332,7 +332,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
             const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
             
 //            NSData * pngData = UIImagePNGRepresentation([UIImage imageWithCGImage:fullimg]);
-            NSData* thumbnailData = UIImagePNGRepresentation([UIImage imageWithCGImage:thumbnailImg]);
+            //NSData* thumbnailData = UIImagePNGRepresentation([UIImage imageWithCGImage:thumbnailImg]);
             NSData* thumbnailJPGData = UIImageJPEGRepresentation([UIImage imageWithCGImage:thumbnailImg], 1);
             
             

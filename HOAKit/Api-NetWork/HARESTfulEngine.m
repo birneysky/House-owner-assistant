@@ -373,7 +373,7 @@ static HARESTfulEngine* defaultEngine;
     }];
 
     
-    [self httpRequestWithPath:@"api/house_images/relation" generalParams:[mutableArray copy ] httpMethod:@"PUT" completion:^(NSDictionary *object) {
+    [self httpRequestWithPath:@"api/house_images/relation" generalParams:[mutableArray copy] httpMethod:@"PUT" completion:^(NSDictionary *object) {
         completion();
     } onError:^(NSError *engineError) {
         errorBlcok(engineError);

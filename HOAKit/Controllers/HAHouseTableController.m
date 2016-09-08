@@ -7,7 +7,6 @@
 //
 
 #import "HAHouseTableController.h"
-#import "HAFloatingButton.h"
 #import "HARESTfulEngine.h"
 #import "HAHouseInfoBaseCell.h"
 #import "HAHouse.h"
@@ -19,7 +18,6 @@
 
 @interface HAHouseTableController ()<UITableViewDelegate,UITableViewDataSource,HAHouseInfoItemCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet HAFloatingButton *addButton;
 @property (strong, nonatomic) IBOutlet UIView *coverView;
 @property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
 @property (nonatomic,strong) NSArray* dataSource;

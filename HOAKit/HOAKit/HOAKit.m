@@ -11,6 +11,12 @@
 
 static HOAKit* defaultKitInstance = nil;
 
+@interface HOAKit ()
+
+@property (nonatomic,strong) UINavigationController* rootViewController;
+
+@end
+
 @implementation HOAKit
 
 
@@ -34,14 +40,18 @@ static HOAKit* defaultKitInstance = nil;
     return defaultKitInstance;
 }
 
-
 - (UINavigationController*) rootViewController
 {
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"HOAKit" ofType:@"bundle"];
-    NSBundle* bundle = [NSBundle bundleWithPath:path];
-    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"House-owner-assistant" bundle:bundle];
-    UINavigationController* nav = [sb instantiateViewControllerWithIdentifier:@"house_owner_assisnt_nav"];
-    return nav;
+    if (!_rootViewController) {
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"HOAKit" ofType:@"bundle"];
+        NSBundle* bundle = [NSBundle bundleWithPath:path];
+        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"House-owner-assistant" bundle:bundle];
+        _rootViewController = [sb instantiateViewControllerWithIdentifier:@"house_owner_assisnt_nav"];
+
+    }
+    return _rootViewController;
 }
+
+
 
 @end

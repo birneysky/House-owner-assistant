@@ -35,18 +35,29 @@
     return name;
 }
 
-+ (NSString*)checkStatusText:(NSInteger)status
++ (NSString*)checkStatusText:(NSInteger)status operationStatus:(NSInteger)operStatus;
 {
     NSString* name = nil;
     switch (status) {
         case 1:
-            name = @"上线中";
+            name = @"待审核";
             break;
         case 2:
-            name = @"已通过";
+            if (1 == operStatus) {
+                name = @"上线中";
+            }
+            else if(2 == operStatus){
+                name = @"已下线";
+            }
+            else if(3 == operStatus){
+                name = @"已锁定";
+            }
+            else{
+               name = @"已通过";
+            }
             break;
         case 3:
-            name = @"被拒绝";
+            name = @"未通过";
             break;
         case 4:
             name = @"待完善";

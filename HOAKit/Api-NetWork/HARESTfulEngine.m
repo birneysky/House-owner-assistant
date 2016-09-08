@@ -319,11 +319,13 @@ static HARESTfulEngine* defaultEngine;
 
 
 - (MKNetworkOperation*) uploadHouseImageWithPath:(NSString*)path
+                                         houseId:(NSInteger)houseId
                                       completion:(void (^)(NSString* certificate,HAHouseImage* obj))completion
                                         progress:(void (^)(NSString* certificate, float progress))progressBlock
                                          onError:(ErrorBlock)errorBlcok
 {
-    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:@"api/houses/images/"  params:nil httpMethod:@"POST"];
+    NSString* url = [NSString stringWithFormat:@"api/houses/%ld/images",(long)houseId];
+    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:url  params:nil httpMethod:@"POST"];
 
     op.clientCertificate = [NSString stringWithFormat:@"%p",op];
     [op addFile:path forKey:@"file" mimeType:@"image/jpg"];

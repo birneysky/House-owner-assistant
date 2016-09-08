@@ -41,10 +41,8 @@
     
 }
 
-- (void)setCheckStatus:(NSInteger)status
+- (void)setCheckText:(NSString*)text;
 {
-    NSString* text = [HAAppDataHelper checkStatusText:status];
-    
     self.checkStatusLabel.text = text;
 }
 

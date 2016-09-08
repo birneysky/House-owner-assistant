@@ -173,6 +173,7 @@ typedef void (^ErrorBlock)(NSError* engineError);
  */
 
 - (MKNetworkOperation*) uploadHouseImageWithPath:(NSString*)path
+                                         houseId:(NSInteger)houseId
                                       completion:(void (^)(NSString* certificate,HAHouseImage* obj))completion
                                         progress:(void (^)(NSString* certificate, float progress))progressBlock
                                          onError:(ErrorBlock)errorBlcok;

@@ -115,17 +115,27 @@
 - (void)downloadHeaderImage
 {
     NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
-    if(self.houseFullInfo.images.firstObject)
-    [NETWORKENGINE downloadHouseImageWithPath:self.houseFullInfo.images.firstObject.imagePath completion:^(NSString *certificate, NSString *fileName) {
-        NSString* headerImgPath = [basePath stringByAppendingPathComponent:fileName];
-        UIImage* image = [UIImage imageWithContentsOfFile:headerImgPath];
-        self.headerImageview.image = image;
-    } progress:^(NSString *certificate, float progress) {
-        
-    } onError:^(NSString *certificate, NSError *error) {
-        NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
-        [[NSFileManager defaultManager] removeItemAtPath:headerImgPath error:nil];
-    }];
+    if(self.houseFullInfo.images.firstObject){
+        HAHouseImage* imageItem = self.houseFullInfo.images.firstObject;
+        NSString* path = [basePath stringByAppendingPathComponent:[imageItem.imagePath lastPathComponent]];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return;
+        }
+        [NETWORKENGINE downloadHouseImageWithPath:self.houseFullInfo.images.firstObject.imagePath completion:^(NSString *certificate, NSString *fileName) {
+            NSString* headerImgPath = [basePath stringByAppendingPathComponent:fileName];
+            UIImage* image = [UIImage imageWithContentsOfFile:headerImgPath];
+            self.headerImageview.image = image;
+        } progress:^(NSString *certificate, float progress) {
+            
+        } onError:^(NSString *certificate, NSError *error) {
+            NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
+            NSLog(@"remove headImagePath %@",headerImgPath);
+            //[[NSFileManager defaultManager] removeItemAtPath:headerImgPath error:nil];
+        }];
+    }
+
+    
+    
 }
 
 

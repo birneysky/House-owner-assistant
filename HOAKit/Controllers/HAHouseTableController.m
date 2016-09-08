@@ -15,6 +15,7 @@
 #import "HAHouseInfoItemCell.h"
 #import "HOAKit.h"
 #import "HAPriceAndTrandRulesTableController.h"
+#import "HAAppDataHelper.h"
 
 @interface HAHouseTableController ()<UITableViewDelegate,UITableViewDataSource,HAHouseInfoItemCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -100,15 +101,21 @@
         
         cell = [tableView dequeueReusableCellWithIdentifier:@"HAHouseInfoBaseCell" forIndexPath:indexPath];
     }
-    
-    [cell setCheckStatus:item.checkStatus];
-    [cell setPrice:item.price];
-    [cell setAddress:item.address];
-    [cell setHouseType:item.houseType roomCount:item.roomNumber];
+
     
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HAHouse* item = self.dataSource[indexPath.section];
+    NSString* checkText = [HAAppDataHelper checkStatusText:item.checkStatus operationStatus:item.operationStatus];
+    HAHouseInfoBaseCell* itemcell = (HAHouseInfoBaseCell*)cell;
+    [itemcell setCheckText:checkText];
+    [itemcell setPrice:item.price];
+    [itemcell setAddress:item.address];
+    [itemcell setHouseType:item.houseType roomCount:item.roomNumber];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

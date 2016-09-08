@@ -12,7 +12,7 @@
 
 - (void)setAddress:(NSString*)text;
 
-- (void)setCheckStatus:(NSInteger)status;
+- (void)setCheckText:(NSString*)text;
 
 - (void)setPrice:(float)price;
 

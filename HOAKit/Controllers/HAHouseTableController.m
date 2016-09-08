@@ -34,7 +34,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.title = @"伊妹";
+    self.title = @"房源";
 }
 
 - (void)viewWillDisappear:(BOOL)animated

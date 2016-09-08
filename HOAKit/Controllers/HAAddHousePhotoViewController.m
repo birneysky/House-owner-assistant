@@ -510,6 +510,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
     pictureCell.delegate = self;
     pictureCell.uploadProgress = item.progress;
     if (HAPhotoUploadOrDownloadStateBegin == item.state) {
+        pictureCell.image = nil;
         [pictureCell showProgressView];
     }
     if (HAPhotoUploadOrDownloadStateFinsish == item.state ||

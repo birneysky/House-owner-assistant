@@ -104,6 +104,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
     }
     NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
     //检测图片是否存在
+    __weak HAAddHousePhotoViewController* weakSelf = self;
     [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         HAPhotoItem* item = [[HAPhotoItem alloc] init];
         item.imageId = obj.imageId;
@@ -115,51 +116,52 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
             item.localPath = path;
             item.state = HAPhotoUploadOrDownloadStateDownloaded;
         }
-        [self.selectedPhotoPathes addObject:item];
+        [weakSelf.selectedPhotoPathes addObject:item];
     }];
     
     [self.collectionView reloadData];
     //检测图片在不在，不在开始下载，暂时先直接开下
     __block NSInteger downloadedCount = 0;
+    
     [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //NSLog(@"imagePath %@",obj.imagePath);
         if(obj.localPath.length <= 0){
             downloadedCount ++;
             MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
-                NSInteger index = [self.netOperationDic[certificate] integerValue];
-                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
                 item.localPath = [basePath stringByAppendingPathComponent:fileName];
                 item.state = HAPhotoUploadOrDownloadStateFinsish;
-                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-                [self.netOperationDic removeObjectForKey:certificate];
-                if (self.photosArray.count < PHOTO_COUNT_MAX && self.netOperationDic.count == 0) {
-                    self.addPhotoBtn.enabled = YES;
-                    self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
+                [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+                [weakSelf.netOperationDic removeObjectForKey:certificate];
+                if (weakSelf.photosArray.count < PHOTO_COUNT_MAX && weakSelf.netOperationDic.count == 0) {
+                    weakSelf.addPhotoBtn.enabled = YES;
+                    weakSelf.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
                 }
                 
             } progress:^(NSString *certificate, float progress) {
-                NSInteger index = [self.netOperationDic[certificate] integerValue];
-                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
                 item.progress = progress;
                 [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
                 //[self.collectionView reloadData];
             } onError:^(NSString *certificate,NSError *engineError) {
-                NSInteger index = [self.netOperationDic[certificate] integerValue];
-                HAPhotoItem* item = self.selectedPhotoPathes[index];
+                NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
+                HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
                 NSString* path = [basePath stringByAppendingPathComponent:[obj.imagePath lastPathComponent]];
                 [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
                 item.state = HAPhotoUploadOrDownloadStateFalied;
-                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-                [self.netOperationDic removeObjectForKey:certificate];
-                if (self.photosArray.count < PHOTO_COUNT_MAX && self.netOperationDic.count == 0) {
-                    self.addPhotoBtn.enabled = YES;
-                    self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
+                [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+                [weakSelf.netOperationDic removeObjectForKey:certificate];
+                if (weakSelf.photosArray.count < PHOTO_COUNT_MAX && weakSelf.netOperationDic.count == 0) {
+                    weakSelf.addPhotoBtn.enabled = YES;
+                    weakSelf.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
                 }
             }];
-            HAPhotoItem* item = self.selectedPhotoPathes[idx];
+            HAPhotoItem* item = weakSelf.selectedPhotoPathes[idx];
             item.state = HAPhotoUploadOrDownloadStateBegin;
-            [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]]];
-            [self.netOperationDic setObject:@(idx) forKey:op.clientCertificate];
+            [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]]];
+            [weakSelf.netOperationDic setObject:@(idx) forKey:op.clientCertificate];
         }
         else{
             
@@ -195,40 +197,41 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
 - (void)uploadHouseImageWithPath:(NSString*)path
 {
     NSString* downloadsBasePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+    __weak HAAddHousePhotoViewController* weakSelf = self;
     MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] uploadHouseImageWithPath:path houseId:self.house.houseId completion:^(NSString* certificate,HAHouseImage *obj) {
-        NSInteger index = [self.netOperationDic[certificate] integerValue];
-        HAPhotoItem* item = self.selectedPhotoPathes[index];
+        NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
+        HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
         item.imageId = obj.imageId;
         item.state = HAPhotoUploadOrDownloadStateFinsish;
         NSString* targetPath = [downloadsBasePath stringByAppendingPathComponent:[obj.imagePath lastPathComponent]];
         [[NSFileManager defaultManager] moveItemAtPath:path toPath:targetPath error:nil];
         item.localPath = targetPath;
-        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-        [self.netOperationDic removeObjectForKey:certificate];
-        obj.userId = self.house.landlordId;
-        obj.houseId = self.house.houseId;
+        [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+        [weakSelf.netOperationDic removeObjectForKey:certificate];
+        obj.userId = weakSelf.house.landlordId;
+        obj.houseId = weakSelf.house.houseId;
 
         
-        [self.photosArray addObject:obj];
-        if (self.photosArray.count >= PHOTO_COUNT_MAX) {
-            self.addPhotoBtn.enabled = NO;
-            self.addPhotoBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [weakSelf.photosArray addObject:obj];
+        if (weakSelf.photosArray.count >= PHOTO_COUNT_MAX) {
+            weakSelf.addPhotoBtn.enabled = NO;
+            weakSelf.addPhotoBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
         }
-        self.saveBtn.enabled = YES;
-        self.saveBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
+        weakSelf.saveBtn.enabled = YES;
+        weakSelf.saveBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
     } progress:^(NSString *certificate, float progress) {
-        NSInteger index = [self.netOperationDic[certificate] integerValue];
-        HAPhotoItem* item = self.selectedPhotoPathes[index];
+        NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
+        HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
         item.progress = progress;
-        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-    } onError:^(NSError *engineError) {
-        NSInteger index = [self.netOperationDic[op.clientCertificate] integerValue];
-        HAPhotoItem* item = self.selectedPhotoPathes[index];
+        [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+    } onError:^(NSString *certificate,NSError *engineError) {
+        NSInteger index = [weakSelf.netOperationDic[op.clientCertificate] integerValue];
+        HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
         item.state = HAPhotoUploadOrDownloadStateFalied;
-        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
-        [self.netOperationDic removeObjectForKey:op.clientCertificate];
+        [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+        [weakSelf.netOperationDic removeObjectForKey:certificate];
     }];
-    [self.netOperationDic setObject:@(self.selectedPhotoPathes.count-1) forKey:op.clientCertificate];
+    [weakSelf.netOperationDic setObject:@(weakSelf.selectedPhotoPathes.count-1) forKey:op.clientCertificate];
 }
 
 #pragma mark - *** camera  helper***

@@ -176,7 +176,7 @@ typedef void (^ErrorBlock)(NSError* engineError);
                                          houseId:(NSInteger)houseId
                                       completion:(void (^)(NSString* certificate,HAHouseImage* obj))completion
                                         progress:(void (^)(NSString* certificate, float progress))progressBlock
-                                         onError:(ErrorBlock)errorBlcok;
+                                         onError:(void (^)(NSString* certificate, NSError* err))errorBlcok;
 
 
 /**

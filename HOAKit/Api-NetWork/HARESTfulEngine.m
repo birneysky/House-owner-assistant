@@ -322,7 +322,7 @@ static HARESTfulEngine* defaultEngine;
                                          houseId:(NSInteger)houseId
                                       completion:(void (^)(NSString* certificate,HAHouseImage* obj))completion
                                         progress:(void (^)(NSString* certificate, float progress))progressBlock
-                                         onError:(ErrorBlock)errorBlcok
+                                         onError:(void (^)(NSString* certificate, NSError* err))errorBlcok
 {
     NSString* url = [NSString stringWithFormat:@"api/houses/%ld/images",(long)houseId];
     HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:url  params:nil httpMethod:@"POST"];
@@ -331,7 +331,7 @@ static HARESTfulEngine* defaultEngine;
     [op addFile:path forKey:@"file" mimeType:@"image/jpg"];
     
     [op setFreezable:YES];
-    
+    __weak HARESTfulOperation* weakOp = op;
     [op addCompletionHandler:^(MKNetworkOperation* completedOperation) {
         
         NSMutableDictionary* responseDictionary = [completedOperation responseJSON];
@@ -340,22 +340,22 @@ static HARESTfulEngine* defaultEngine;
         if (code != 0){
             NSString* text = [responseDictionary objectForKey:@"msg"];
             HAError* error = [[HAError alloc] initWithCode:code reason:text];
-            errorBlcok(error);
+            errorBlcok(op.clientCertificate,error);
         }
         NSDictionary* data = [responseDictionary objectForKey:@"data"];
         HAHouseImage* houseImage = [[HAHouseImage alloc] initWithDictionary:data];
         
-        completion(op.clientCertificate,houseImage);
+        completion(weakOp.clientCertificate,houseImage);
         
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* err){
-        errorBlcok(err);
+        errorBlcok(errorOp.clientCertificate,err);
         
     }];
     
     [self enqueueOperation:op];
     
     [op onUploadProgressChanged:^(double progress) {
-        progressBlock(op.clientCertificate,progress);
+        progressBlock(weakOp.clientCertificate,progress);
        // DLog(@"Upload file progress: %.2f", progress*100.0);
     }];
     return op;
@@ -413,7 +413,7 @@ static HARESTfulEngine* defaultEngine;
     [self enqueueOperation:op];
     
     [op onDownloadProgressChanged:^(double progress) {
-        progressBlock(op.clientCertificate,progress);
+        progressBlock(weakOp.clientCertificate,progress);
         // DLog(@"Upload file progress: %.2f", progress*100.0);
     }];
 

@@ -179,6 +179,12 @@
     [self performSegueWithIdentifier:@"push_price_trand_rule" sender:indexPath];
 }
 
+- (void)reviewCommentsButtonClickedOfCell:(UITableViewCell*)cell
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    //[HOAKit defaultInstance]
+}
+
 #pragma mark - *** Target Action ***
 - (IBAction)refreshBtnClicked:(id)sender {
     [self fethHouseItem];

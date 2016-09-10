@@ -212,6 +212,9 @@
                                                             <state key="highlighted">
                                                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="commentsBtnClicked:" destination="Srf-JZ-Qft" eventType="touchUpInside" id="OO7-4J-2GH"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-XR-Zw6">
                                                             <rect key="frame" x="300" y="8" width="276" height="32"/>
@@ -1729,9 +1732,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FiJ-Aa-niN"/>
+        <segue reference="WlA-29-xe6"/>
+        <segue reference="DVT-YJ-7kO"/>
         <segue reference="WNT-mR-AND"/>
-        <segue reference="07F-D8-dhg"/>
-        <segue reference="yMh-cr-Tlz"/>
         <segue reference="efl-mY-tkK"/>
     </inferredMetricsTieBreakers>
 </document>

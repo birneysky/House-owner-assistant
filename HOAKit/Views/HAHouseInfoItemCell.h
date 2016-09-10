@@ -11,7 +11,9 @@
 @protocol HAHouseInfoItemCellDelegate <NSObject>
 
 @optional
--(void)changePriceButtonClickedOfCell:(UITableViewCell*)cell;
+- (void)changePriceButtonClickedOfCell:(UITableViewCell*)cell;
+
+- (void)reviewCommentsButtonClickedOfCell:(UITableViewCell*)cell;
 
 @end
 

@@ -77,7 +77,7 @@
         [self.dataSource[1] removeObject:@"5"];
         [pickerView reloadComponent:1];
     }
-    else if (array.count < 2){
+    else if (array.count < 2 && component == 0){
         [array addObject:@"5"];
         [pickerView reloadComponent:1];
     }

@@ -19,7 +19,9 @@
 */
 
 - (IBAction)commentsBtnClicked:(id)sender {
-
+    if ([self.delegate respondsToSelector:@selector(reviewCommentsButtonClickedOfCell:)]) {
+        [self.delegate reviewCommentsButtonClickedOfCell:self];
+    }
 }
 
 

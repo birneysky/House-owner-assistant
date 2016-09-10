@@ -24,6 +24,9 @@
     [mutableDic removeObjectForKey:@"imageId"];
     [mutableDic setObject:@(self.imageId) forKey:@"id"];
     [mutableDic removeObjectForKey:@"localPath"];
+    [mutableDic removeObjectForKey:@"progress"];
+    [mutableDic removeObjectForKey:@"stauts"];
+    [mutableDic removeObjectForKey:@"loadType"];
     return [mutableDic copy];
 }
 

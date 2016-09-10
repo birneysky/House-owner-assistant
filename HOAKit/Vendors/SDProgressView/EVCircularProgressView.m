@@ -174,6 +174,16 @@
         
  
     }
+    else{
+        
+        if(self.startAnimation){
+            return;
+        }else{
+            self.percentLabel.text = @"";
+            self.shapeLayer.strokeEnd = 0;
+            [self startIndeterminateAnimation];
+        }
+    }
 }
 
 - (void)setProgress:(float)progress
@@ -279,6 +289,8 @@
     [CATransaction setDisableActions:YES];
     self.backgroundLayer.hidden = NO;
     [CATransaction commit];
+    
+    self.startAnimation = NO;
 }
 
 - (void)reset

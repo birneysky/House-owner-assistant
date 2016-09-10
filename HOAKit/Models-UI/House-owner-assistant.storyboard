@@ -51,8 +51,8 @@
                                                     <color key="textColor" red="0.96078431372549022" green="0.0078431372549019607" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ncR-uf-eoF">
-                                                    <rect key="frame" x="0.0" y="29" width="600" height="101"/>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ncR-uf-eoF">
+                                                    <rect key="frame" x="0.0" y="29" width="600" height="94.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公寓1居" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpm-yd-HNf">
                                                             <rect key="frame" x="116" y="45" width="476" height="17"/>
@@ -75,8 +75,8 @@
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HA_Test_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="gxX-rx-NhF">
-                                                            <rect key="frame" x="8" y="8" width="100" height="85"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HA_Test_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="gxX-rx-NhF">
+                                                            <rect key="frame" x="8" y="8" width="100" height="78.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="GVb-8a-3zC"/>
                                                             </constraints>
@@ -134,8 +134,8 @@
                                                     <color key="textColor" red="0.96078431372549022" green="0.0078431372549019607" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="emg-ae-etX">
-                                                    <rect key="frame" x="0.0" y="29" width="600" height="113"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emg-ae-etX">
+                                                    <rect key="frame" x="0.0" y="29" width="600" height="92.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公寓1居" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nID-CH-pqE">
                                                             <rect key="frame" x="116" y="45" width="476" height="21"/>
@@ -155,8 +155,8 @@
                                                             <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HA_Test_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-XO-wQb">
-                                                            <rect key="frame" x="8" y="8" width="100" height="97"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HA_Test_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-XO-wQb">
+                                                            <rect key="frame" x="8" y="8" width="100" height="76.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="yhV-pp-raN"/>
                                                             </constraints>
@@ -187,8 +187,8 @@
                                                         <constraint firstItem="nID-CH-pqE" firstAttribute="leading" secondItem="0Za-XO-wQb" secondAttribute="trailing" constant="8" id="wYr-9G-COg"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ubt-mb-ILT">
-                                                    <rect key="frame" x="8" y="141" width="584" height="40"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ubt-mb-ILT">
+                                                    <rect key="frame" x="8" y="121" width="584" height="40"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cE-mX-zNX">
                                                             <rect key="frame" x="0.0" y="0.0" width="584" height="1"/>
@@ -832,7 +832,7 @@
                                     <inset key="imageEdgeInsets" minX="12" minY="-20" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" title="添加照片" image="HA_Camera_Icon"/>
                                     <connections>
-                                        <segue destination="YnO-r7-TMs" kind="show" identifier="push_add_photoes" id="8e6-3c-Ouc"/>
+                                        <action selector="addBtnClicked:" destination="KLx-va-RGR" eventType="touchUpInside" id="Msj-dU-dcf"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -915,6 +915,7 @@
                         <segue destination="bM6-DD-82v" kind="push" identifier="push_house_area" id="Yda-pt-UNY"/>
                         <segue destination="hcb-rF-c85" kind="show" identifier="push_location" id="yMh-cr-Tlz"/>
                         <segue destination="uOt-M8-ctJ" kind="show" identifier="push_back_house_type_select" id="WNT-mR-AND"/>
+                        <segue destination="YnO-r7-TMs" kind="show" identifier="push_add_photoes" id="cax-Zw-45L"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bob-Hx-xez" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -963,44 +964,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaL-ig-Vfl">
-                                <rect key="frame" x="0.0" y="536" width="600" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcw-hQ-fqz">
-                                        <rect key="frame" x="8" y="8" width="584" height="48"/>
-                                        <state key="normal" title="添加照片">
-                                            <color key="titleColor" red="0.96078431369999995" green="0.0078431372550000003" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <state key="disabled">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
-                                                <color key="value" red="0.96078431372549022" green="0.0078431372549019607" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="addPhotoBtnClicked:" destination="YnO-r7-TMs" eventType="touchUpInside" id="hYR-zW-YK6"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="5SW-gT-5cw"/>
-                                    <constraint firstAttribute="trailing" secondItem="jcw-hQ-fqz" secondAttribute="trailing" constant="8" id="Xca-Y6-iPJ"/>
-                                    <constraint firstItem="jcw-hQ-fqz" firstAttribute="leading" secondItem="eaL-ig-Vfl" secondAttribute="leading" constant="8" id="cRg-m8-Plj"/>
-                                    <constraint firstItem="jcw-hQ-fqz" firstAttribute="top" secondItem="eaL-ig-Vfl" secondAttribute="top" constant="8" id="hFH-de-AxO"/>
-                                    <constraint firstAttribute="bottom" secondItem="jcw-hQ-fqz" secondAttribute="bottom" constant="8" id="lLn-Kw-VAB"/>
-                                </constraints>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nSL-R1-FaR">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YCY-Hn-Tdi">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1010,7 +975,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HAAddPictureCell" id="Zd5-pF-m8q" customClass="HAAddPictureCollectionViewCell">
-                                        <rect key="frame" x="8" y="8" width="130" height="130"/>
+                                        <rect key="frame" x="8" y="72" width="130" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
@@ -1070,16 +1035,62 @@
                                     <outlet property="delegate" destination="YnO-r7-TMs" id="HdB-yK-N9g"/>
                                 </connections>
                             </collectionView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e48-vK-w3D">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="center" id="dr6-bo-NXQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcw-hQ-fqz">
+                                            <rect key="frame" x="8" y="2" width="584" height="40"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="0VO-q8-vHa"/>
+                                            </constraints>
+                                            <state key="normal" title="添加照片">
+                                                <color key="titleColor" red="0.96078431369999995" green="0.0078431372550000003" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="disabled">
+                                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                    <integer key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                    <color key="value" red="0.96078431372549022" green="0.0078431372549019607" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="addPhotoBtnClicked:" destination="YnO-r7-TMs" eventType="touchUpInside" id="hYR-zW-YK6"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jcw-hQ-fqz" firstAttribute="leading" secondItem="dr6-bo-NXQ" secondAttribute="leading" constant="8" id="AKo-mj-JNW"/>
+                                        <constraint firstItem="jcw-hQ-fqz" firstAttribute="top" secondItem="dr6-bo-NXQ" secondAttribute="top" constant="2" id="TJa-gC-yml"/>
+                                        <constraint firstAttribute="trailing" secondItem="jcw-hQ-fqz" secondAttribute="trailing" constant="8" id="eZY-Wt-iRa"/>
+                                        <constraint firstAttribute="bottom" secondItem="jcw-hQ-fqz" secondAttribute="bottom" constant="2" id="imf-bz-eap"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="y6t-Bc-HHZ"/>
+                                </constraints>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eaL-ig-Vfl" firstAttribute="leading" secondItem="4MI-3u-WZs" secondAttribute="leading" id="CPc-pB-gej"/>
+                            <constraint firstAttribute="trailing" secondItem="e48-vK-w3D" secondAttribute="trailing" id="3bq-c4-NoU"/>
                             <constraint firstItem="nSL-R1-FaR" firstAttribute="top" secondItem="vnQ-t0-7tN" secondAttribute="bottom" constant="-64" id="SPY-Dp-I15"/>
-                            <constraint firstItem="eaL-ig-Vfl" firstAttribute="top" secondItem="nSL-R1-FaR" secondAttribute="bottom" id="WTW-IG-qxJ"/>
-                            <constraint firstAttribute="trailing" secondItem="eaL-ig-Vfl" secondAttribute="trailing" id="irB-p4-tfq"/>
+                            <constraint firstItem="al3-IX-4BK" firstAttribute="top" secondItem="e48-vK-w3D" secondAttribute="bottom" id="lwP-Cg-pM3"/>
                             <constraint firstItem="nSL-R1-FaR" firstAttribute="leading" secondItem="4MI-3u-WZs" secondAttribute="leading" id="maj-7R-TP6"/>
+                            <constraint firstItem="al3-IX-4BK" firstAttribute="top" secondItem="nSL-R1-FaR" secondAttribute="bottom" id="p50-54-SIz"/>
                             <constraint firstAttribute="trailing" secondItem="nSL-R1-FaR" secondAttribute="trailing" id="pcV-I1-fSY"/>
-                            <constraint firstItem="al3-IX-4BK" firstAttribute="top" secondItem="eaL-ig-Vfl" secondAttribute="bottom" id="xKI-IH-1Yn"/>
+                            <constraint firstItem="e48-vK-w3D" firstAttribute="leading" secondItem="4MI-3u-WZs" secondAttribute="leading" id="tLm-Bk-t3x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="I9d-zG-Zlz">
@@ -1090,12 +1101,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="添加照片"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="addPhotoBtn" destination="jcw-hQ-fqz" id="6J5-l2-wJy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nis-xO-6Wi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="bFD-5U-3dK" customClass="HAPhotoCollectionViewController"/>
             </objects>
             <point key="canvasLocation" x="6405" y="750"/>
         </scene>
@@ -1716,9 +1729,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FiJ-Aa-niN"/>
-        <segue reference="DVT-YJ-7kO"/>
-        <segue reference="WlA-29-xe6"/>
         <segue reference="WNT-mR-AND"/>
+        <segue reference="07F-D8-dhg"/>
+        <segue reference="yMh-cr-Tlz"/>
         <segue reference="efl-mY-tkK"/>
     </inferredMetricsTieBreakers>
 </document>

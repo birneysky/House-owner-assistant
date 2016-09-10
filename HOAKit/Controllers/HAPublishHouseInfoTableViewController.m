@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageview;
 
+@property (weak, nonatomic) HAAddHousePhotoViewController* addPhotoVC;
+
 @end
 
 @implementation HAPublishHouseInfoTableViewController
@@ -84,7 +86,6 @@
     [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
     [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId completion:^(HAHouseFullInfo *info) {
         self.houseFullInfo = info;
-        [HAActiveWheel dismissForView:self.navigationController.view delay:1];
         [self.coverView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
         [self.tableView reloadData];
         if (2 == self.houseFullInfo.house.checkStatus || 1 == self.houseFullInfo.house.checkStatus) {
@@ -101,6 +102,7 @@
         if ([[NSFileManager defaultManager] fileExistsAtPath:headerImgPath]) {
             UIImage* headerImg = [UIImage imageWithContentsOfFile:headerImgPath];
                 self.headerImageview.image = headerImg;
+                [HAActiveWheel dismissForView:self.navigationController.view delay:1];
         }
         else{
             [self downloadHeaderImage];
@@ -125,13 +127,18 @@
             NSString* headerImgPath = [basePath stringByAppendingPathComponent:fileName];
             UIImage* image = [UIImage imageWithContentsOfFile:headerImgPath];
             self.headerImageview.image = image;
+            [HAActiveWheel dismissForView:self.navigationController.view delay:1];
         } progress:^(NSString *certificate, float progress) {
             
         } onError:^(NSString *certificate, NSError *error) {
+            [HAActiveWheel dismissForView:self.navigationController.view delay:1];
             NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
             NSLog(@"remove headImagePath %@",headerImgPath);
-            //[[NSFileManager defaultManager] removeItemAtPath:headerImgPath error:nil];
+            [[NSFileManager defaultManager] removeItemAtPath:headerImgPath error:nil];
         }];
+    }
+    else{
+        [HAActiveWheel dismissForView:self.navigationController.view delay:1];
     }
 
     
@@ -266,6 +273,15 @@
 - (IBAction)reloadBtnClicked:(id)sender {
     [self fetchHouseInfo];
 }
+- (IBAction)addBtnClicked:(UIButton *)sender {
+    if (self.addPhotoVC) {
+        [self.navigationController pushViewController:self.addPhotoVC animated:YES];
+    }
+    else{
+        [self performSegueWithIdentifier:@"push_add_photoes" sender:sender];
+    }
+ 
+}
 
 - (IBAction)submitBtnClicked:(id)sender {
     if (self.houseFullInfo.houseDescriptionComplete &&
@@ -365,6 +381,7 @@
     
     if ([segue.identifier isEqualToString:@"push_add_photoes"]) {
         HAAddHousePhotoViewController* vc = segue.destinationViewController;
+        self.addPhotoVC = vc;
         vc.house = self.houseFullInfo.house;
         vc.photoes = self.houseFullInfo.images;
         vc.delegate = self;
@@ -415,7 +432,7 @@
 - (void) imagesOfHouseDidChange:(NSArray<HAHouseImage*>*) images
 {
     self.houseFullInfo.images = images;
-    [self downloadHeaderImage];
+    //[self downloadHeaderImage];
     //NSLog(@"%@",images.firstObject.localPath);
 }
 

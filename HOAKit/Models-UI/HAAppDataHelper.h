@@ -16,7 +16,7 @@
 
 + (NSString*)houseTypeName:(NSInteger)type;
 
-+ (NSString*)checkStatusText:(NSInteger)status operationStatus:(NSInteger)operStatus;
++ (NSString*)TextFromCheckStatus:(NSInteger)status operationStatus:(NSInteger)operStatus;
 
 + (NSString*)bedName:(NSInteger)type;
 

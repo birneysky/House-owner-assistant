@@ -35,7 +35,7 @@
     return name;
 }
 
-+ (NSString*)checkStatusText:(NSInteger)status operationStatus:(NSInteger)operStatus;
++ (NSString*)TextFromCheckStatus:(NSInteger)status operationStatus:(NSInteger)operStatus;
 {
     NSString* name = nil;
     switch (status) {

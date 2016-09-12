@@ -187,6 +187,9 @@
         HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         NSInteger section = indexPath.section;
         NSMutableArray* mutableArray = self.dataSource[indexPath.section];
+        if (self.houseCopy.checkStatus != 2) {
+            return;
+        }
         if (!offOnCell.accessoryViewSelected) {
             //offOnCell.accessoryViewSelected = YES;
             [mutableArray addObject:@"平台提供洗漱用品"];
@@ -206,7 +209,7 @@
     if ([cell respondsToSelector:@selector(setAccessoryViewSelected:)]) {
         HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         offOnCell.accessoryViewSelected = ! offOnCell.accessoryViewSelected;
-        if ([textString isEqualToString:@"平台提供洗漱用品"]) {
+        if ([textString isEqualToString:@"平台提供洗漱用品"] && self.houseCopy.checkStatus != 2) {
             self.houseCopy.platformToiletries = offOnCell.accessoryViewSelected;
         }
     }
@@ -256,6 +259,9 @@
         HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         NSInteger section = indexPath.section;
         NSMutableArray* mutableArray = self.dataSource[indexPath.section];
+        if (self.houseCopy.checkStatus != 2) {
+            return;
+        }
         if (offOnCell.accessoryViewSelected) {
             [mutableArray addObject:@"平台提供洗漱用品"];
             [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
@@ -270,7 +276,7 @@
         
     }
     
-    if ([textString isEqualToString:@"平台提供洗漱用品"]) {
+    if ([textString isEqualToString:@"平台提供洗漱用品"] && self.houseCopy.checkStatus != 2) {
         HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         self.houseCopy.platformToiletries = offOnCell.accessoryViewSelected;
     }

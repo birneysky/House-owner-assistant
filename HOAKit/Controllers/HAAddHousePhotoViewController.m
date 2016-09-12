@@ -29,7 +29,9 @@
 
 @property (nonatomic,strong) NSMutableArray <HAHouseImage*>* photosArray;
 
-@property(nonatomic,assign) BOOL edited;
+@property (nonatomic,assign) BOOL edited;
+
+@property (nonatomic,strong) dispatch_queue_t uploadQueue;
 
 @end
 
@@ -54,14 +56,15 @@ NSString* gen_uuid()
 
 static NSString * const reuseIdentifier = @"HAAddPictureCell";
 
+static  HAAddHousePhotoViewController* strongSelf = nil;
 
 @implementation HAAddHousePhotoViewController
 
 - (void)dealloc
 {
-    NSLog(@"HAAddHousePhotoViewController dealloc ~");
+    //NSLog(@"HAAddHousePhotoViewController dealloc ~");
 }
-
+#pragma mark - *** Properties ***
 - (NSMutableArray*) selectedPhotoPathes
 {
     if (!_selectedPhotoPathes) {
@@ -86,6 +89,14 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
     return _photosArray;
 }
 
+- (dispatch_queue_t) uploadQueue
+{
+    if (!_uploadQueue) {
+        _uploadQueue = dispatch_queue_create("com.upload.file", DISPATCH_QUEUE_SERIAL);
+    }
+    return _uploadQueue;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -95,9 +106,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
     // Register cell classes
     [self.collectionView registerClass:[HAAddPictureCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     // Do any additional setup after loading the view.
-   // self.automaticallyAdjustsScrollViewInsets = NO;
-    //self.photoCollectionViewController.datasource = self.selectedPhotoPathes;
-    //NSInteger count = self.photoCollectionViewController.datasource.count;
+
     
     if (self.photoes.count > 0) {
         [self.photosArray addObjectsFromArray:self.photoes];
@@ -130,6 +139,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
         //NSLog(@"imagePath %@",obj.imagePath);
         if(obj.localPath.length <= 0 && HAPhotoUploadOrDownloadStateUnknown == obj.stauts){
             downloadedCount ++;
+            strongSelf = self;
             MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
                 NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
 //                HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
@@ -144,12 +154,15 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
                     weakSelf.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
                 }
                 
+                if(weakSelf.netOperationDic.count == 0){
+                    strongSelf = nil;
+                }
             } progress:^(NSString *certificate, float progress) {
                 NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
 //                HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
 //                item.progress = progress;
                 obj.progress = progress;
-                [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+                [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
                 //[self.collectionView reloadData];
                 //NSLog(@"progess %f imageId %ld",progress,(long)obj.imageId);
             } onError:^(NSString *certificate,NSError *engineError) {
@@ -164,6 +177,9 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
                 if (weakSelf.photosArray.count < PHOTO_COUNT_MAX && weakSelf.netOperationDic.count == 0) {
                     weakSelf.addPhotoBtn.enabled = YES;
                     weakSelf.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
+                }
+                if(weakSelf.netOperationDic.count == 0){
+                    strongSelf = nil;
                 }
             }];
 //            HAPhotoItem* item = weakSelf.selectedPhotoPathes[idx];
@@ -207,6 +223,7 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
 {
     NSString* downloadsBasePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
     __weak HAAddHousePhotoViewController* weakSelf = self;
+    strongSelf = self;
     MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] uploadHouseImageWithPath:path houseId:self.house.houseId completion:^(NSString* certificate,HAHouseImage *obj) {
         NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
 //        HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
@@ -234,13 +251,16 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
         }
         weakSelf.saveBtn.enabled = YES;
         weakSelf.saveBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
+        if (weakSelf.netOperationDic.count == 0) {
+            strongSelf = nil;
+        }
     } progress:^(NSString *certificate, float progress) {
         NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
 //        HAPhotoItem* item = weakSelf.selectedPhotoPathes[index];
 //        item.progress = progress;
         HAHouseImage* houseImageObj = weakSelf.photosArray[index];
         houseImageObj.progress = progress;
-        
+        NSLog(@"bulabulabulabulabulabulabulabulabula");
         [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
     } onError:^(NSString *certificate,NSError *engineError) {
         NSInteger index = [weakSelf.netOperationDic[op.clientCertificate] integerValue];
@@ -250,6 +270,9 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
         houseImageObj.stauts = HAPhotoUploadOrDownloadStateFalied;
         [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
         [weakSelf.netOperationDic removeObjectForKey:certificate];
+        if (weakSelf.netOperationDic.count == 0) {
+            strongSelf = nil;
+        }
     }];
     [weakSelf.netOperationDic setObject:@(weakSelf.photosArray.count-1) forKey:op.clientCertificate];
 }
@@ -356,8 +379,8 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
     {
         [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    dispatch_queue_t queue = dispatch_queue_create("com.upload.file", DISPATCH_QUEUE_SERIAL);
-    dispatch_async(queue, ^{
+    __weak HAAddHousePhotoViewController* weakSelf = self;
+    dispatch_async(self.uploadQueue, ^{
         for (ALAsset * asset in assets)
         {
             CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
@@ -393,11 +416,11 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
                 houseImageObj.progress = 0;
                 houseImageObj.loadType = HAPhotoLoadTypeUpload;
                 houseImageObj.stauts = HAPhotoUploadOrDownloadStateBegin;
-                [self.photosArray addObject:houseImageObj];
-                [self.collectionView reloadData];
+                [weakSelf.photosArray addObject:houseImageObj];
+                [weakSelf.collectionView reloadData];
             });
             
-            [self uploadHouseImageWithPath:thumbnailImgPath];
+            [weakSelf uploadHouseImageWithPath:thumbnailImgPath];
 //            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] uploadHouseImageWithPath:thumbnailImgPath completion:^(NSString* certificate,HAHouseImage *obj) {
 //                NSInteger index = [self.netOperationDic[certificate] integerValue];
 //                HAPhotoItem* item = self.selectedPhotoPathes[index];
@@ -623,11 +646,10 @@ static NSString * const reuseIdentifier = @"HAAddPictureCell";
             HAHouseImage* imageItem = self.photosArray[i];
             UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             CGRect rect = [self.view convertRect:cell.frame fromView:collectionView];
-            NSLog(@"rect %@",NSStringFromCGRect(rect));
             NSString* itemPath = [basePath stringByAppendingPathComponent:[imageItem.imagePath lastPathComponent]];
             LWImageBrowserModel* imageModel = [[LWImageBrowserModel alloc] initWithplaceholder:nil
-                                                                                  thumbnailURL:[NSURL URLWithString:itemPath]
-                                                                                         HDURL:[NSURL URLWithString:itemPath]
+                                                                                  thumbnailURL:[NSURL URLWithString:imageItem.localPath]
+                                                                                         HDURL:[NSURL URLWithString:imageItem.localPath]
                                                                             imageViewSuperView:cell.contentView
                                                                            positionAtSuperView:rect
                                                                                          index:indexPath.row];

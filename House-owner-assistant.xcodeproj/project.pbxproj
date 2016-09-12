@@ -46,6 +46,7 @@
 		742B916E1D4CA7D7000FF5A1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		742B918B1D4FAA93000FF5A1 /* HOAKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HOAKit.framework; sourceTree = "<group>"; };
 		742B91F41D4FB908000FF5A1 /* HOAKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HOAKit.bundle; sourceTree = SOURCE_ROOT; };
+		DB19F7211D86799100F996C6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		DB32CE6A1D48893000F6FDA0 /* House-owner-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "House-owner-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB32CE6E1D48893000F6FDA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB32CE701D48893000F6FDA0 /* HAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAAppDelegate.h; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		DB32CEA71D4891BC00F6FDA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB19F7211D86799100F996C6 /* CoreImage.framework */,
 				742B918B1D4FAA93000FF5A1 /* HOAKit.framework */,
 				DBAE08FB1D4F291B008A85C4 /* AVFoundation.framework */,
 				DB32CEA51D4891AE00F6FDA0 /* CoreLocation.framework */,
@@ -453,7 +455,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huseowner.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "77c1d359-efb6-41a3-9b84-3d9dead1969c";
+				PROVISIONING_PROFILE = "c4a5ead0-fc5b-4baf-8360-1db43dbcdc3d";
 			};
 			name = Debug;
 		};
@@ -475,7 +477,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huseowner.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "77c1d359-efb6-41a3-9b84-3d9dead1969c";
+				PROVISIONING_PROFILE = "c4a5ead0-fc5b-4baf-8360-1db43dbcdc3d";
 			};
 			name = Release;
 		};

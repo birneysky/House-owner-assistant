@@ -24,7 +24,7 @@
 - (NSArray*) dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] initWithObjects:@"热水淋浴",@"沙发",@"沐浴露",@"电视",@"微波炉",@"电脑",@"空调",@"饮水机",@"冰箱",@"洗衣机",@"wifi",@"有线网络",@"有停车位",@"允许抽烟",@"允许做饭",@"允许带宠物",@"允许聚会", nil];
+        _dataSource = [[NSArray alloc] initWithObjects:@"热水淋浴",@"沙发",/*@"沐浴露",*/@"电视",@"微波炉",@"电脑",@"空调",@"饮水机",@"冰箱",@"洗衣机",@"wifi",@"有线网络",@"有停车位",@"允许抽烟",@"允许做饭",@"允许带宠物",@"允许聚会", nil];
     }
     
     return _dataSource;

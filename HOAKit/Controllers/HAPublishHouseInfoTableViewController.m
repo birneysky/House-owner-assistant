@@ -19,6 +19,7 @@
 #import "HAHouseLocationViewController.h"
 #import "HAHouseTypeTableViewController.h"
 #import "HAActiveWheel.h"
+#import "HOAkit.h"
 
 @interface HAPublishHouseInfoTableViewController ()<HADataExchangeDelegate>
 
@@ -71,6 +72,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
     self.title = @"发布房源";
 }
 
@@ -95,14 +97,17 @@
         NSArray* viewControllers = self.navigationController.viewControllers;
         self.navigationController.viewControllers = @[viewControllers.firstObject,self];
         if (self.houseFullInfo.images.count <= 0) {
+            [HAActiveWheel dismissForView:self.navigationController.view delay:1];
             return;
         }
         NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
         NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:headerImgPath]) {
             UIImage* headerImg = [UIImage imageWithContentsOfFile:headerImgPath];
-                self.headerImageview.image = headerImg;
-                [HAActiveWheel dismissForView:self.navigationController.view delay:1];
+                //self.headerImageview.image = headerImg;
+            self.houseFullInfo.images.firstObject.localPath = headerImgPath;
+            [self configHeaderImage];
+            [HAActiveWheel dismissForView:self.navigationController.view delay:1];
         }
         else{
             [self downloadHeaderImage];
@@ -121,12 +126,16 @@
         HAHouseImage* imageItem = self.houseFullInfo.images.firstObject;
         NSString* path = [basePath stringByAppendingPathComponent:[imageItem.imagePath lastPathComponent]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            imageItem.localPath = path;
+            [self configHeaderImage];
             return;
         }
         [NETWORKENGINE downloadHouseImageWithPath:self.houseFullInfo.images.firstObject.imagePath completion:^(NSString *certificate, NSString *fileName) {
             NSString* headerImgPath = [basePath stringByAppendingPathComponent:fileName];
-            UIImage* image = [UIImage imageWithContentsOfFile:headerImgPath];
-            self.headerImageview.image = image;
+            self.houseFullInfo.images.firstObject.localPath = headerImgPath;
+//            UIImage* image = [UIImage imageWithContentsOfFile:headerImgPath];
+//            self.headerImageview.image = image;
+            [self configHeaderImage];
             [HAActiveWheel dismissForView:self.navigationController.view delay:1];
         } progress:^(NSString *certificate, float progress) {
             
@@ -143,6 +152,22 @@
 
     
     
+}
+
+- (void)configHeaderImage
+{
+    HAHouseImage* imageItem = self.houseFullInfo.images.firstObject;
+    UIImage* image = [UIImage imageWithContentsOfFile:imageItem.localPath];
+    if (image) {
+        CIFilter* gaussFileter = [CIFilter filterWithName:@"CIGaussianBlur"];
+        CIImage* inputImage = [CIImage imageWithCGImage:image.CGImage];
+        [gaussFileter setValue:inputImage forKey:@"inputImage"];
+        [gaussFileter setValue:@(5.0) forKey:@"inputRadius"];
+        CIImage* outputimage = gaussFileter.outputImage;
+        CIContext *context = [CIContext contextWithOptions:nil];
+        CGImageRef resultImage =[context createCGImage:outputimage fromRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+        self.headerImageview.image = [UIImage imageWithCGImage:resultImage];
+    }
 }
 
 
@@ -300,7 +325,7 @@
                                              completion:^(HAHouse* house){
                                                  self.houseFullInfo.house = house;
                                                  [HAActiveWheel dismissForView:self.navigationController.view delay:1];
-                                                 if (4 == house.checkStatus) {
+                                                 if (1 == house.checkStatus) {
                                                      self.submitBtn.hidden = YES;
                                                  }
                                              }
@@ -334,6 +359,15 @@
 
     
 }
+
+- (IBAction)reviewBtnClicked:(id)sender {
+    
+    if ([[HOAKit defaultInstance].delegate respondsToSelector:@selector(previewHouseInformationOfHouseId:)]) {
+        [[HOAKit defaultInstance].delegate previewHouseInformationOfHouseId:self.houseId];
+    }
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -434,6 +468,19 @@
     self.houseFullInfo.images = images;
     //[self downloadHeaderImage];
     //NSLog(@"%@",images.firstObject.localPath);
+    HAHouseImage* imageItem = images.firstObject;
+    UIImage* image = [UIImage imageWithContentsOfFile:imageItem.localPath];
+    if (image) {
+         CIFilter* gaussFileter = [CIFilter filterWithName:@"CIGaussianBlur"];
+        CIImage* inputImage = [CIImage imageWithCGImage:image.CGImage];
+        [gaussFileter setValue:inputImage forKey:@"inputImage"];
+        [gaussFileter setValue:@(2.0) forKey:@"inputRadius"];
+        CIImage* outputimage = gaussFileter.outputImage;
+        CIContext *context = [CIContext contextWithOptions:nil];
+        CGImageRef resultImage =[context createCGImage:outputimage fromRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+        self.headerImageview.image = [UIImage imageWithCGImage:resultImage];
+    }
+   
 }
 
 

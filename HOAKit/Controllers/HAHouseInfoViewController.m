@@ -252,7 +252,7 @@
     self.houseCopy.balconyNumber = bNum;
     
     BOOL change = ![self.house isEqualToHouse:self.houseCopy];
-    if (change) {
+    if (change && self.houseCopy.checkStatus != 2) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else{
@@ -266,7 +266,7 @@
     self.houseCopy.toiletNumber = privateNum;
     
     BOOL change = ![self.house isEqualToHouse:self.houseCopy];
-    if (change) {
+    if (change && self.houseCopy.checkStatus != 2) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else{
@@ -325,7 +325,7 @@
     }
     
     BOOL change = ![self.house isEqualToHouse:self.houseCopy];
-    if (valid&&change) {
+    if (valid&&change && self.house.checkStatus != 2) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else{

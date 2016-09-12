@@ -109,7 +109,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HAHouse* item = self.dataSource[indexPath.section];
-    NSString* checkText = [HAAppDataHelper checkStatusText:item.checkStatus operationStatus:item.operationStatus];
+    NSString* checkText = [HAAppDataHelper TextFromCheckStatus:item.checkStatus operationStatus:item.operationStatus];
     HAHouseInfoBaseCell* itemcell = (HAHouseInfoBaseCell*)cell;
     [itemcell setCheckText:checkText];
     [itemcell setPrice:item.price];
@@ -182,7 +182,10 @@
 - (void)reviewCommentsButtonClickedOfCell:(UITableViewCell*)cell
 {
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-    //[HOAKit defaultInstance]
+    HAHouse* item = self.dataSource[indexPath.row];
+    if( [[HOAKit defaultInstance].delegate respondsToSelector:@selector(reviewHouseCommentsOfHouseId:)]){
+        [[HOAKit defaultInstance].delegate reviewHouseCommentsOfHouseId:item.houseId];
+    }
 }
 
 #pragma mark - *** Target Action ***

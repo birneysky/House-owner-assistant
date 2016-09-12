@@ -438,7 +438,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
     BOOL change = ![self.house isEqualToHouse:self.houseCopy];
     BOOL validTest = (self.validFlag & HAValueValidStateNormal) == HAValueValidStateNormal;
     BOOL complete = self.newHouse ? self.house.address.length > 0 && self.house.houseNumber > 0 :  self.houseCopy.address.length > 0 && self.houseCopy.houseNumber > 0;
-    if (change && validTest && complete && self.latAndLngValidityFlag) {
+    if (change && validTest && complete && self.latAndLngValidityFlag && self.houseCopy.checkStatus != 2) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else{

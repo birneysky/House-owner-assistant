@@ -72,7 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearBtnClicked:)];
-    rightItem.tintColor = [UIColor orangeColor];
+    rightItem.tintColor = [UIColor colorWithRed:245 / 255.0f green:2 / 255.0f blue:63 / 255.0f alpha:1];
     self.navigationItem.rightBarButtonItem = rightItem;
     /*
      1:景点

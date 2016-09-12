@@ -10,6 +10,7 @@
 #import <HOAKit/HOAKit.h>
 
 @interface ViewController ()<HASelectHousePositionDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *userIdTextField;
 
 @end
 
@@ -25,7 +26,14 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)testAction:(id)sender {
-    [HOAKit defaultInstance].userId = 1;
+    NSInteger userId = [self.userIdTextField.text integerValue];
+    if (0 != userId) {
+        [HOAKit defaultInstance].userId = userId;
+    }
+    else{
+       [HOAKit defaultInstance].userId = 1;
+    }
+    
     [HOAKit defaultInstance].token = @"xxxxx";
     UINavigationController* hoaRoot = [HOAKit defaultInstance].rootViewController;
     [self presentViewController:hoaRoot animated:YES completion:nil];

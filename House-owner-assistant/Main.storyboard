@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M1u-N2-GTn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M1u-N2-GTn">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,7 +16,20 @@
                     <view key="view" contentMode="scaleToFill" id="pvx-zH-MPH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入房东id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4fs-or-GJu">
+                                <rect key="frame" x="20" y="285" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4fs-or-GJu" firstAttribute="leading" secondItem="pvx-zH-MPH" secondAttribute="leading" constant="20" id="Db8-6f-bi6"/>
+                            <constraint firstItem="4fs-or-GJu" firstAttribute="centerX" secondItem="pvx-zH-MPH" secondAttribute="centerX" id="emk-Xa-HaQ"/>
+                            <constraint firstAttribute="trailing" secondItem="4fs-or-GJu" secondAttribute="trailing" constant="20" id="nrF-Xo-Whk"/>
+                            <constraint firstItem="4fs-or-GJu" firstAttribute="centerY" secondItem="pvx-zH-MPH" secondAttribute="centerY" id="ywa-H8-E26"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pUg-Ls-oOt">
                         <barButtonItem key="leftBarButtonItem" systemItem="reply" id="Bcd-dI-m59">
@@ -30,6 +43,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="userIdTextField" destination="4fs-or-GJu" id="d0p-f5-tGt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2U9-MR-ogZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -21,8 +21,8 @@
 {
     if (!_onOff) {
         _onOff = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        //◎◉
-        [_onOff setTitle:@"◎" forState:UIControlStateNormal];
+        //◎◉⃝⃝⃝◦◌⃝⃝⃝○○
+        [_onOff setTitle:@"○" forState:UIControlStateNormal];
         [_onOff setTitle:@"◉" forState:UIControlStateSelected];
 
         UIColor* color = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1];

@@ -126,7 +126,9 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
         [self.locationManager requestWhenInUseAuthorization];
     self.cityAddressTextfield.locationPickerDelegate = self;
     UIImageView* leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Green_Location_Icon"]];
-    UIImageView* rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Arrow_Right"]];
+    leftView.frame = CGRectMake(0, 0, 30, 30);
+    UIImageView* rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOAKit.bundle/HA_Arrow_Down"]];
+    rightView.frame = CGRectMake(0, 0, 20, 20);
     self.cityAddressTextfield.leftView = leftView;
     self.cityAddressTextfield.rightView = rightView;
     self.validFlag = HAValueValidStateNormal;

@@ -51,11 +51,7 @@
     [super viewDidLoad];
     
     self.selectedIndex = -1;
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
     if (self.house.houseId > 0) {
         self.selectedIndex = self.house.houseType - 1;
         if (self.house.rentType == 1) {
@@ -112,10 +108,8 @@
     cell.textLabel.text = self.dataSource[indexPath.row];
     if (self.selectedIndex == indexPath.row) {
         offOnCell.accessoryViewSelected = YES;
-        //cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else{
-        //cell.accessoryType = UITableViewCellAccessoryNone;
         offOnCell.accessoryViewSelected = NO;
     }
 }
@@ -123,9 +117,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (2 == self.houseCopy.checkStatus) {
+         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+        return;
+    }
+    
     self.selectedIndex = indexPath.row;
     NSArray* arrayIndexPathes = [tableView indexPathsForVisibleRows];
    [tableView reloadRowsAtIndexPaths:arrayIndexPathes withRowAnimation:UITableViewRowAnimationFade];
+
+    
     if (self.isNewHouse) {
         self.house.houseType = self.selectedIndex + 1;
     }
@@ -193,11 +195,8 @@
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
     if ([segue.identifier isEqualToString:@"push_publish_house"]) {
         HAPublishHouseInfoTableViewController* vc = segue.destinationViewController;
         vc.houseId = self.house.houseId;
@@ -208,6 +207,10 @@
 #pragma mark - *** Target Action ***
 - (IBAction)wholeBtnClicked:(UIButton*)sender {
     if (sender.selected) {
+        return;
+    }
+    if (2 == self.houseCopy.checkStatus) {
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
         return;
     }
     if(self.isNewHouse){
@@ -230,6 +233,10 @@
     if (sender.selected) {
         return;
     }
+    if (2 == self.houseCopy.checkStatus) {
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+        return;
+    }
     if(self.isNewHouse){
         self.house.rentType = 2;
     }
@@ -248,7 +255,7 @@
 
 - (IBAction)okBtnClicked:(id)sender {
     self.house.landlordId = 1;
-    //self.house.houseNumber = @"9000-1234";
+
     if (self.isNewHouse) {
         [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在新建房源";
         [[HARESTfulEngine defaultEngine] createNewHouseWithModel:self.house completion:^(HAHouse *object) {

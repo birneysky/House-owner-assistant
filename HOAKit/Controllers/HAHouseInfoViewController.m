@@ -80,6 +80,15 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (2 == self.houseCopy.checkStatus) {
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+        return;
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -100,7 +109,6 @@
         pickerCell.pickerDataSouce = self.houseTypeDataSource;
         pickerCell.delegate = self;
         [pickerCell.textField setDefultText:@"1室0厅0厨0阳台"];
-        //view = cell.accessoryView;
         if (self.house) {
             pickerCell.textField.text = [NSString stringWithFormat:@"%ld室%ld厅%ld厨%ld阳台",self.house.roomNumber,self.house.hallNumber,self.house.kitchenNumber,self.house.balconyNumber];
         }
@@ -142,7 +150,6 @@
         cell = editorCell;
     }
     
-    // Configure the cell...
     
     cell.textLabel.text = self.dataSource[indexPath.row];
     
@@ -158,51 +165,6 @@
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell.accessoryView becomeFirstResponder];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 #pragma mark - *** Target Action ***
 
@@ -278,15 +240,6 @@
 - (void) textFieldDidEndEditing:(UITextField*)textfield
                        fromCell:(UITableViewCell*) cell
 {
-//    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-//    NSString* text = self.dataSource[indexPath.row];
-//    
-//    if ([text isEqualToString:@"房屋面积"]) {
-//        self.houseNew.area = textfield.text;
-//    }
-//    if ([text isEqualToString:@"可住人数"]) {
-//        self.houseNew.toliveinNumber = [textfield.text integerValue];
-//    }
 }
 
 - (BOOL) textFieldShouldBeginEditing:(UITextField*)textField
@@ -301,13 +254,11 @@
                        fromCell:(UITableViewCell*) cell{
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     NSString* textTitle = self.dataSource[indexPath.row];
-//    
+  
     if ([textTitle isEqualToString:@"房屋面积"]) {
-//        self.houseCopy.area = textfield.text;
         self.textViewInputingLabel.text = @"    请输入0-99999数值";
     }
     if ([textTitle isEqualToString:@"可住人数"]) {
-//        self.houseCopy.toliveinNumber = [textfield.text integerValue];
          self.textViewInputingLabel.text = @"    请输入1-10数值";
     }
     

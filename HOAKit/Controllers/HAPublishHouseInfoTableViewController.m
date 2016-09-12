@@ -52,20 +52,7 @@
     CGSize size = [UIScreen mainScreen].bounds.size;
     self.coverView.frame = CGRectMake(0, 0, size.width, size.height - 64);
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    
-//    [self.view addSubview:self.coverView];
-//    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
-//    [[HARESTfulEngine defaultEngine] fetchHouseInfoWithHouseID:self.houseId completion:^(HAHouseFullInfo *info) {
-//        self.houseFullInfo = info;
-//        [HAActiveWheel dismissForView:self.navigationController.view delay:1];
-//        [self.coverView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
-//        [self.tableView reloadData];
-//
-//        NSLog(@"fetch house full info finished");
-//    } onError:^(NSError *engineError) {
-//        [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
-//        self.refreshBtn.hidden = NO;
-//    }];
+
     [self fetchHouseInfo];
 }
 
@@ -104,7 +91,7 @@
         NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:headerImgPath]) {
             UIImage* headerImg = [UIImage imageWithContentsOfFile:headerImgPath];
-                //self.headerImageview.image = headerImg;
+
             self.houseFullInfo.images.firstObject.localPath = headerImgPath;
             [self configHeaderImage];
             [HAActiveWheel dismissForView:self.navigationController.view delay:1];
@@ -133,8 +120,6 @@
         [NETWORKENGINE downloadHouseImageWithPath:self.houseFullInfo.images.firstObject.imagePath completion:^(NSString *certificate, NSString *fileName) {
             NSString* headerImgPath = [basePath stringByAppendingPathComponent:fileName];
             self.houseFullInfo.images.firstObject.localPath = headerImgPath;
-//            UIImage* image = [UIImage imageWithContentsOfFile:headerImgPath];
-//            self.headerImageview.image = image;
             [self configHeaderImage];
             [HAActiveWheel dismissForView:self.navigationController.view delay:1];
         } progress:^(NSString *certificate, float progress) {
@@ -203,7 +188,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString* text = self.dataSource[indexPath.row];
-    /**@"房屋标题与介绍",@"价格与交易规则",@"房源信息",@"床铺信息",@"位置区域",@"设施列表",@"出租方式与房源类型",@"地址"*/
+
     if ([text isEqualToString:@"房屋标题与介绍"]) {
         [self performSegueWithIdentifier:@"push_house_introduce" sender:nil];
     }
@@ -466,8 +451,7 @@
 - (void) imagesOfHouseDidChange:(NSArray<HAHouseImage*>*) images
 {
     self.houseFullInfo.images = images;
-    //[self downloadHeaderImage];
-    //NSLog(@"%@",images.firstObject.localPath);
+
     HAHouseImage* imageItem = images.firstObject;
     UIImage* image = [UIImage imageWithContentsOfFile:imageItem.localPath];
     if (image) {

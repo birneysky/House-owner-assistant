@@ -1728,7 +1728,6 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="textViewInputingLabel" destination="zJD-eu-gc2" id="FZB-cm-SfH"/>
-                        <segue destination="aDK-4U-w2o" kind="show" identifier="push_house_bathroom_edit" id="vPZ-ln-nkg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDU-Q3-ysU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1742,25 +1741,6 @@
                 </label>
             </objects>
             <point key="canvasLocation" x="5809" y="1655"/>
-        </scene>
-        <!--House Bath Room Edit View Controller-->
-        <scene sceneID="O73-vY-xaP">
-            <objects>
-                <viewController id="aDK-4U-w2o" customClass="HAHouseBathRoomEditViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JjS-ZR-x9W"/>
-                        <viewControllerLayoutGuide type="bottom" id="WV5-Gm-S3Y"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8o0-q2-Sog">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="9Kr-XC-eqt"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mtU-NM-f0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5809" y="2481"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="X9H-Qi-OP2">

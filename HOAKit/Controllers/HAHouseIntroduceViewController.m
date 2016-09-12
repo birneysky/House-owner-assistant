@@ -42,8 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //self.scrollView.contentOffset = CGPointMake(0, 44);
+
     self.validFlag = PRTValidStateNormal;
     if (self.house) {
         self.titleTextView.text = self.house.title;
@@ -83,7 +82,6 @@
     [super viewDidAppear:animated];
 
     CGRect rect = [self.view convertRect:self.houseCommentTextView.frame fromView:self.scrollView];
-    //NSLog(@"viewframe %@,rect %@",NSStringFromCGRect(self.view.frame),NSStringFromCGRect(rect));
     if (rect.origin.y + rect.size.height > self.view.frame.size.height) {
         self.contentOffset = (rect.origin.y + rect.size.height  - self.view.frame.size.height)  + 64;
         self.contentViewBottomConstraint.constant = self.contentOffset ;
@@ -112,26 +110,9 @@
                                              [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
                                          }
     ];
-
- //    NSArray* controllers = self.navigationController.viewControllers;
-//    [self.navigationController popToViewController:controllers[controllers.count - 3] animated:YES];
 }
 
-//#pragma mark - *** TextField Delegate ***
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-//    if (self.titleTextView == textField) {
-//        [self.houseDescriptionTextView becomeFirstResponder];
-//        return NO;
-//    }
-//    return YES;
-//}
-//
-//
-//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-//{
-//    self.firstResponderView = textField;
-//    return YES;
-//}
+
 #pragma mark - *** Helper ***
 - (BOOL) limitTextViewTextLengthMin:(NSInteger)min max:(NSInteger)max textView:(UITextView*)textView warningText:(NSString*)text
 {
@@ -158,7 +139,6 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     self.firstResponderView = textView;
-    //textView.text = @"";
     return YES;
 }
 
@@ -172,10 +152,8 @@
     if(self.keyboardHeight > 0){
         CGRect rect = self.firstResponderView.frame;
         rect.size.height += 5;
-        rect.origin.y += self.keyboardHeight ;//self.scrollView.contentSize.height - self.scrollView.frame.size.height;
+        rect.origin.y += self.keyboardHeight ;
         
-        // rect = [self.scrollView convertRect:rect fromView:nil];
-        //    NSLog(@"scroll frame %@,contentsize %@,contentofffset %@,torect %@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize),NSStringFromCGPoint(self.scrollView.contentOffset),NSStringFromCGRect(rect));
         [self.scrollView scrollRectToVisible:rect animated:YES];
     }
 
@@ -220,15 +198,6 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    /*
-     self.titleTextView.text = self.house.title;
-     self.houseDescriptionTextView.text = self.house.houseDescription;
-     self.houseLocationTextView.text = self.house.position;
-     self.houseTrafficTextView.text = self.house.traffic;
-     self.houseLiftTextView.text = self.house.surroundings;
-     self.houseCommentTextView.text = self.house.remark;
-
-     */
     if (self.titleTextView == textView) {
         self.houseCopy.title = textView.text;
     }
@@ -287,7 +256,6 @@
     if(textView == self.titleTextView){
         valid = [self limitTextViewTextLengthMin:5 max:20 textView:textView warningText:@"请输入5-20个字"];
                self.houseCopy.title = textView.text;
-        //change = ![self.houseCopy.title isEqualToString:self.house.title];
         if (!valid) {
             self.validFlag &= PRTValidStateTitle;
         }
@@ -363,32 +331,24 @@
     keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
     CGRect begin                                        = [[[notification userInfo] objectForKey:@"UIKeyboardFrameBeginUserInfoKey"] CGRectValue];
     CGRect end                                          = [[[notification userInfo] objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    //NSLog(@"keyboarTop %f",keyboardTop);
-    //NSLog(@"height %f",self.view.bounds.size.height - keyboardRect.size.height);
-    //CGRect newScrollViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, keyboardTop);
+
     if (begin.size.height > 0 && (begin.origin.y - end.origin.y) > 0) {
         self.keyboardHeight = keyboardRect.size.height;
         self.contentViewBottomConstraint.constant = keyboardRect.size.height + self.contentOffset;
-        //[self.scrollView updateConstraintsIfNeeded];
+
         [self.scrollView layoutIfNeeded];
         
         CGRect rect = self.firstResponderView.frame;
         rect.size.height += 5;
-        rect.origin.y += self.keyboardHeight ;//self.scrollView.contentSize.height - self.scrollView.frame.size.height;
+        rect.origin.y += self.keyboardHeight ;
         
-        // rect = [self.scrollView convertRect:rect fromView:nil];
-        //    NSLog(@"scroll frame %@,contentsize %@,contentofffset %@,torect %@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize),NSStringFromCGPoint(self.scrollView.contentOffset),NSStringFromCGRect(rect));
         [self.scrollView scrollRectToVisible:rect animated:YES];
     }
 
-    //self.scrollViewConstraint.constant = keyboardRect.size.height;
-    //self.scrollView.frame = newScrollViewFrame;
-    
 }
 
 - (void)keyboardWillHide:(NSNotification*)notification
 {
-//    self.scrollView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     CGRect rect = self.titleTextView.frame;
     rect.origin.y -= 15;
     [self.scrollView scrollRectToVisible:rect animated:YES];

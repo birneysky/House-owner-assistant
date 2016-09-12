@@ -139,15 +139,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
         self.cityAddressTextfield.text = [HAAppDataHelper provincesAndCityAddress:self.house.province city:self.house.city distict:self.house.distict];
         self.houseNumberTextfield.text = self.house.houseNumber;
         self.fullAddressTextfield.returnKeyType = UIReturnKeyDone;
-        //39.93894620587984 lat   ---->39.933165000000002
-        //116.48163155993817 lng   ---->116.475174
-//        double testLat = 0;
-//        double testLng = 0;
-//        BD09FromGCJ02(39.933165000000002,116.475174,&testLat,&testLng);
-//        double lat = 0;
-//        double lng = 0;
-//        GCJ02FromBD09(testLat,testLng,&lat,&lng);
-        //CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.house.lat longitude:self.house.lng];
+        
         double lat = 0;
         double lng = 0;
         BD09FromGCJ02(self.house.lat, self.house.lng, &lat, &lng);
@@ -164,8 +156,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
-//    CLLocationCoordinate2D touchMapCoordinate =
-//        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -208,21 +199,17 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
 
 #pragma mark - *** MKMapViewDelegate ***
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
-//    CLLocationCoordinate2D loc = [userLocation coordinate];
-//    
-//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 500, 500);
-//    [mapView setRegion:region animated:YES];
+
 }
 
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
-    //NSLog(@"touch begin");
+
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    //NSLog(@"touch end");
     self.locationPromptView.hidden = YES;
     [self.behavior addItem:self.locationPointImgView];
 }
@@ -235,14 +222,12 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
     self.house.province = pid;
     self.house.city = cid;
     self.house.distict = did;
-    //NSString *oreillyAddress = @"1005 Gravenstein Highway North, Sebastopol, CA 95472, USA";
+
     self.cityAddressTextfield.text = address;
     self.locationPromptView.hidden = YES;
     [self.behavior addItem:self.locationPointImgView];
     
     [self geocodeAddressString:address ignoreLatAndLng:YES];
-//    HALocationPoint *centerPoint = [[HALocationPoint alloc] initWithCoordinate:coord];
-//    [self.mapView addAnnotation:centerPoint];
 }
 
 #pragma mark - *** UIDynamicAnimatorDelegate ***
@@ -274,6 +259,11 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (self.fullAddressTextfield == textField) {
+        if(2 == self.houseCopy.checkStatus)
+        {
+            [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+            return NO;
+        }
         if((self.validFlag | HAValueValidStateNormal) == HAValueValidStateDetailAddress)
         {
             self.textViewInputingLabel.text = @"     请输1-60个字";
@@ -296,11 +286,8 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
     HAHouseTypeTableViewController* destController = segue.destinationViewController;
     if ([destController respondsToSelector:@selector(setHouse:)]) {
         [destController setHouse:self.house];
@@ -312,10 +299,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
     CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
     [myGeocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
         if ([placemarks count] > 0 && error == nil) {
-            //NSLog(@"Found %lu placemark(s).", (unsigned long)[placemarks count]);
             CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
-            //NSLog(@"Longitude = %f", firstPlacemark.location.coordinate.longitude);
-            //NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
             CLLocationDegrees lat = firstPlacemark.location.coordinate.latitude;
             CLLocationDegrees lng = firstPlacemark.location.coordinate.longitude;
             double blat = 0;
@@ -341,12 +325,11 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
             CLLocationCoordinate2D coord = [loc coordinate];
             MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
             [self.mapView setRegion:region animated:YES];
-            //self.navigationItem.rightBarButtonItem.enabled = YES;
         }
         else if ([placemarks count] == 0 && error == nil) {
-            //NSLog(@"Found no placemarks.");
+
         } else if (error != nil) {
-           // NSLog(@"An error occurred = %@", error);
+
             [self.view endEditing:YES];
             [HAActiveWheel showErrorHUDAddedTo:self.navigationController.view errText:@"输入地址有误"];
         }
@@ -389,7 +372,6 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
            self.houseCopy.address = textField.text;
         }
         
-        //change = ![self.houseCopy.title isEqualToString:self.house.title];
         if (!valid) {
             self.validFlag &= HAValueValidStateDetailAddress;
         }
@@ -422,15 +404,6 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
         }
     }
     
-//    change = ![self.house isEqualToHouse:self.houseCopy];
-//    BOOL validTest = (self.validFlag & HAValueValidStateNormal) == HAValueValidStateNormal;
-//    BOOL complete = self.newHouse ? self.house.address.length > 0 && self.house.houseNumber > 0 :  self.houseCopy.address.length > 0 && self.houseCopy.houseNumber > 0;
-//    if (change && validTest && complete && self.latAndLngValidityFlag) {
-//        self.navigationItem.rightBarButtonItem.enabled = YES;
-//    }
-//    else{
-//        self.navigationItem.rightBarButtonItem.enabled = NO;
-//    }
     [self checkAdressValidity];
 }
 
@@ -440,7 +413,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
     BOOL change = ![self.house isEqualToHouse:self.houseCopy];
     BOOL validTest = (self.validFlag & HAValueValidStateNormal) == HAValueValidStateNormal;
     BOOL complete = self.newHouse ? self.house.address.length > 0 && self.house.houseNumber > 0 :  self.houseCopy.address.length > 0 && self.houseCopy.houseNumber > 0;
-    if (change && validTest && complete && self.latAndLngValidityFlag && self.houseCopy.checkStatus != 2) {
+    if (change && validTest && complete && self.latAndLngValidityFlag) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else{

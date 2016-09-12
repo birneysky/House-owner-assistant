@@ -59,11 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
     //如果不设置表示添加床铺信息，这里不要使用self.bed.
     if (_bed) {
         self.isNewBed = NO;
@@ -125,9 +121,7 @@
         editCell.delegate = self;
         cell = editCell;
     }
-    
-    
-    // Configure the cell...
+
     cell.textLabel.text = text;
     return cell;
 }
@@ -165,7 +159,6 @@
 - (void)selectItemDoneForPickerTextField:(UITextField*)textfield
                                 fromCell:(UITableViewCell*) cell
 {
-    //@"床型",@"长度",@"宽度",@"数量"
     if (!self.isNewBed) {
         return;
     }
@@ -180,7 +173,6 @@
 - (void) textFieldDidEndEditing:(UITextField*)textfield
                        fromCell:(UITableViewCell*) cell
 {
-    //@"床型",@"长度",@"宽度",@"数量"
     if (!self.isNewBed) {
         return;
     }
@@ -192,54 +184,9 @@
         self.bed.width = [textfield.text floatValue];
     }
     else if ([text isEqualToString:@"数量"]){
-        //CGFloat value = [textfield.text floatValue];
         self.bed.number = [textfield.text integerValue];
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - ***Target Action  ***
 - (IBAction)saveBtnClicked:(id)sender {
@@ -257,10 +204,6 @@
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"添加失败，请检查网络"];
     }];
-    
-    
-
-    //NSLog(@"bed type  %@ lenght %f,widht %f,count %f",self.bed.bedTypeId,self.bed.length,self.bed.width,self.bed.number);
 }
 
 #pragma mark - *** HAEditorNumberCellDelegate ***
@@ -279,7 +222,6 @@
         self.bed.width = [text floatValue];
     }
     else if ([textTitle isEqualToString:@"数量"]){
-        //CGFloat value = [textfield.text floatValue];
         self.bed.number = [text integerValue];
     }
     

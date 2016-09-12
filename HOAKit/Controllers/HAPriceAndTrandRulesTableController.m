@@ -36,7 +36,6 @@
 {
     if (!_dataSource) {
         _dataSource = [[NSArray alloc] initWithObjects:@[@"日价"],@[@"押金",@"线上收取押金"],@[@"3天折扣",@"7天折扣",@"15天折扣",@"30天折扣"],self.cleaningDataSouce,@[@"退订规则"], nil];
-        //@"平台提供洗漱用品"
     }
     return _dataSource;
 }
@@ -114,7 +113,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
     
-    // Configure the cell...
     NSString* text = self.dataSource[indexPath.section][indexPath.row];
     cell.accessoryView = nil;
 
@@ -138,7 +136,7 @@
         cell = editorCell;
         
     }
-    ///@"7天折扣",@"15天折扣",@"30天折扣"
+  
     if([text isEqualToString:@"3天折扣"]||
        [text isEqualToString:@"7天折扣"] ||
        [text isEqualToString:@"15天折扣"] ||
@@ -159,19 +157,7 @@
     return cell;
 }
 
-//- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    if (0 == section) {
-//        return nil;
-//    }
-//    else if (1 == section){
-//        return @"以下是非必填选项";
-//    }
-//    else{
-//        return @"勾选一下部分，将分出部分收益给人员";
-//    }
-// 
-//}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -181,23 +167,21 @@
     }
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString* textString = cell.textLabel.text;
-    //@"平台提供洗漱用品"
 
     if ([textString isEqualToString:@"需要第三方保洁"]) {
         HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         NSInteger section = indexPath.section;
         NSMutableArray* mutableArray = self.dataSource[indexPath.section];
-        if (self.houseCopy.checkStatus != 2) {
+        if (2 == self.houseCopy.checkStatus) {
+            [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
             return;
         }
         if (!offOnCell.accessoryViewSelected) {
-            //offOnCell.accessoryViewSelected = YES;
             [mutableArray addObject:@"平台提供洗漱用品"];
             [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
             self.houseCopy.cleanType = YES;
         }
         else{
-            //offOnCell.accessoryViewSelected = NO;
             [mutableArray removeLastObject];
             [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:section]] withRowAnimation:UITableViewRowAnimationMiddle];
             self.houseCopy.cleanType = NO;
@@ -209,7 +193,11 @@
     if ([cell respondsToSelector:@selector(setAccessoryViewSelected:)]) {
         HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         offOnCell.accessoryViewSelected = ! offOnCell.accessoryViewSelected;
-        if ([textString isEqualToString:@"平台提供洗漱用品"] && self.houseCopy.checkStatus != 2) {
+        if ([textString isEqualToString:@"平台提供洗漱用品"]) {
+            if (2 == self.houseCopy.checkStatus) {
+                [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+                return;
+            }
             self.houseCopy.platformToiletries = offOnCell.accessoryViewSelected;
         }
     }
@@ -229,10 +217,6 @@
 #pragma mark - *** Cells Delegate ***
 - (void)selectItemDoneForPickerTextField:(UITextField *)textfield fromCell:(UITableViewCell *)cell
 {
-//    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-//    NSString* text = self.dataSource[indexPath.section][indexPath.row];
-//    [self.houseCopy setValue:textfield.text forChineseName:text];
-    
 }
 
 
@@ -259,7 +243,8 @@
         HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         NSInteger section = indexPath.section;
         NSMutableArray* mutableArray = self.dataSource[indexPath.section];
-        if (self.houseCopy.checkStatus != 2) {
+        if (2 == self.houseCopy.checkStatus) {
+            [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
             return;
         }
         if (offOnCell.accessoryViewSelected) {
@@ -276,7 +261,11 @@
         
     }
     
-    if ([textString isEqualToString:@"平台提供洗漱用品"] && self.houseCopy.checkStatus != 2) {
+    if ([textString isEqualToString:@"平台提供洗漱用品"]) {
+        if (2 == self.houseCopy.checkStatus) {
+            [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+            return;
+        }
         HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         self.houseCopy.platformToiletries = offOnCell.accessoryViewSelected;
     }
@@ -337,18 +326,6 @@
     return 1;
 }
 
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark - *** Target Action ***
 
 - (IBAction)saveButtonClicked:(UIBarButtonItem *)sender {
@@ -373,10 +350,6 @@
 #pragma mark - *** HAEditorNumberCellDelegate ***
 - (void)textFieldDidEndEditing:(UITextField *)textfield fromCell:(UITableViewCell *)cell
 {
-    //    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-    //     NSString* text = self.dataSource[indexPath.section][indexPath.row];
-    //
-    //    [self.houseCopy setValue:[textfield.text floatValue] forChineseName:text];
     
 }
 

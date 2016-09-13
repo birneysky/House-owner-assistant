@@ -1,0 +1,4 @@
+dependencies: \
+  /Users/zhangguang/mysource/source_git/House-owner-assistant/HOAKit/General/Views/HAPickerTextField.m \
+  /Users/zhangguang/mysource/source_git/House-owner-assistant/HOAKit/General/Views/HAPickerTextField.h \
+  /Users/zhangguang/mysource/source_git/House-owner-assistant/HOAKit/General/Views/HATextField.h

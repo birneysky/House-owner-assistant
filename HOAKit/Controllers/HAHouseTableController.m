@@ -212,6 +212,7 @@
             obj.houseType   = house.houseType;
             obj.price       =  house.price;
             obj.checkStatus = house.checkStatus;
+            obj.roomNumber = house.roomNumber;
             *stop = YES;
             [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:idx]] withRowAnimation:UITableViewRowAnimationFade];
         }

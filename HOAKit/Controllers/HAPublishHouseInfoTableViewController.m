@@ -190,6 +190,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString* text = self.dataSource[indexPath.row];
 
+    if (([text isEqualToString:@"房源信息"] ||
+        [text isEqualToString:@"出租方式与房源类型"] ||
+        [text isEqualToString:@"地址"] ) && 2 == self.houseFullInfo.house.checkStatus) {
+
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+        return;
+
+    }
     if ([text isEqualToString:@"房屋标题与介绍"]) {
         [self performSegueWithIdentifier:@"push_house_introduce" sender:nil];
     }

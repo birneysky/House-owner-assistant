@@ -224,7 +224,7 @@
         NSMutableArray* array = [[NSMutableArray alloc] initWithArray:self.dataSource];
         [array addObject:notification.object];
         self.dataSource = [array copy];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:array.count -1]] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView reloadData];
     }
 }
 

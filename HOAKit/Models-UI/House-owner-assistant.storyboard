@@ -902,8 +902,9 @@
                                         <action selector="addBtnClicked:" destination="KLx-va-RGR" eventType="touchUpInside" id="Msj-dU-dcf"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uns-Dq-07L">
-                                    <rect key="frame" x="550" y="211" width="42" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uns-Dq-07L">
+                                    <rect key="frame" x="558" y="219" width="42" height="21"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="AUp-Uf-PjH"/>
                                         <constraint firstAttribute="width" constant="42" id="Y0p-0j-zJa"/>
@@ -911,11 +912,17 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="Uns-Dq-07L" secondAttribute="bottom" constant="8" id="8J5-tb-CPe"/>
-                                <constraint firstAttribute="trailing" secondItem="Uns-Dq-07L" secondAttribute="trailing" constant="8" id="BIU-EO-znl"/>
+                                <constraint firstAttribute="bottom" secondItem="Uns-Dq-07L" secondAttribute="bottom" id="8J5-tb-CPe"/>
+                                <constraint firstAttribute="trailing" secondItem="Uns-Dq-07L" secondAttribute="trailing" id="BIU-EO-znl"/>
                                 <constraint firstAttribute="bottom" secondItem="Fey-Di-g1C" secondAttribute="bottom" id="DGk-Gu-PWu"/>
                                 <constraint firstItem="leX-lG-Uva" firstAttribute="centerX" secondItem="RJh-4a-VLp" secondAttribute="centerX" id="DgZ-Pn-JYA"/>
                                 <constraint firstItem="Fey-Di-g1C" firstAttribute="top" secondItem="RJh-4a-VLp" secondAttribute="top" id="IIS-84-9Rr"/>

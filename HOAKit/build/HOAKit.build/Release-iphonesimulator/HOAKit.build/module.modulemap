@@ -1,6 +1,0 @@
-framework module HOAKit {
-  umbrella header "HOAKit.h"
-
-  export *
-  module * { export * }
-}

@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageview;
+@property (weak, nonatomic) IBOutlet UILabel *pictureCountLabel;
 
 @property (weak, nonatomic) HAAddHousePhotoViewController* addPhotoVC;
 
@@ -99,7 +100,7 @@
         else{
             [self downloadHeaderImage];
         }
-
+        self.pictureCountLabel.text = [NSString stringWithFormat:@"%d",self.houseFullInfo.images.count];
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
         self.refreshBtn.hidden = NO;
@@ -451,7 +452,7 @@
 - (void) imagesOfHouseDidChange:(NSArray<HAHouseImage*>*) images
 {
     self.houseFullInfo.images = images;
-
+    self.pictureCountLabel.text = [NSString stringWithFormat:@"%d",images.count];
     HAHouseImage* imageItem = images.firstObject;
     UIImage* image = [UIImage imageWithContentsOfFile:imageItem.localPath];
     if (image) {

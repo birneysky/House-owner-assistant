@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *coverView;
 @property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
-@property (nonatomic,strong) NSArray* dataSource;
+@property (nonatomic,strong) NSArray<HAHouse*>* dataSource;
 @end
 
 @implementation HAHouseTableController
@@ -30,6 +30,8 @@
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     [self fethHouseItem];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHouseInfo:) name:HAHouseModifyInformationNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNewHouse:) name:HANewHouseNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -191,6 +193,34 @@
 #pragma mark - *** Target Action ***
 - (IBAction)refreshBtnClicked:(id)sender {
     [self fethHouseItem];
+}
+
+
+#pragma mark - *** HAHouseModifyInformationNotification ***
+- (void)updateHouseInfo:(NSNotification*)notification
+{
+    HAHouse* house = notification.object;
+    __weak HAHouseTableController* weakSelf = self;
+    [self.dataSource enumerateObjectsUsingBlock:^(HAHouse * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.houseId == house.houseId) {
+            obj.address     = house.address;
+            obj.houseType   = house.houseType;
+            obj.price       =  house.price;
+            obj.checkStatus = house.checkStatus;
+            *stop = YES;
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:idx]] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }];
+}
+
+- (void)addNewHouse:(NSNotification*)notification
+{
+    if (notification.object) {
+        NSMutableArray* array = [[NSMutableArray alloc] initWithArray:self.dataSource];
+        [array addObject:notification.object];
+        self.dataSource = [array copy];
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:array.count -1]] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 @end

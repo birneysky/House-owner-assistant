@@ -17,7 +17,7 @@
 
 - (BOOL) houseGeneralInfoComplete
 {
-    return self.house.area.length > 0 && self.house.roomNumber > 0 && self.house.toliveinNumber > 0 && self.house.toiletNumber > 0;
+    return self.house.area.length > 0 && self.house.roomNumber > 0 && self.house.toliveinNumber > 0 && (self.house.toiletNumber > 0 || self.house.publicToiletNumber > 0);
 }
 
 - (BOOL) bedInfoComplete

@@ -17,6 +17,8 @@ FOUNDATION_EXPORT const unsigned char HOAKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <HOAKit/PublicHeader.h>
 
+
+
 @protocol HOAKitDelegate <NSObject>
 
 @optional
@@ -69,5 +71,8 @@ FOUNDATION_EXPORT const unsigned char HOAKitVersionString[];
 
 @property (nonatomic, readonly) UINavigationController* rootViewController;
 
-
 @end
+
+
+#define HAHouseModifyInformationNotification  @"HAHouseModifyInformationNotification"
+#define HANewHouseNotification                @"HANewHouseNotification"

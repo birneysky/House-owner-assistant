@@ -13,6 +13,7 @@
 #import "HAHouse.h"
 #import "HARESTfulEngine.h"
 #import "HAActiveWheel.h"
+#import "HOAKit.h"
 
 @interface HAPriceAndTrandRulesTableController () <UITextFieldDelegate,HADiscountEditorCellDelegate,HAOffOnCellDelegate,HAEditorNumberCellDelegate>
 
@@ -189,15 +190,14 @@
         }
 
     }
-    
+    if (2 == self.houseCopy.checkStatus && [textString isEqualToString:@"平台提供洗漱用品"]) {
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+        return;
+    }
     if ([cell respondsToSelector:@selector(setAccessoryViewSelected:)]) {
         HAOffOnCell* offOnCell = (HAOffOnCell*)cell;
         offOnCell.accessoryViewSelected = ! offOnCell.accessoryViewSelected;
         if ([textString isEqualToString:@"平台提供洗漱用品"]) {
-            if (2 == self.houseCopy.checkStatus) {
-                [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
-                return;
-            }
             self.houseCopy.platformToiletries = offOnCell.accessoryViewSelected;
         }
     }
@@ -337,6 +337,7 @@
                                          [HAActiveWheel dismissForView:self.navigationController.view];
                                          [self.delegate houseDidChangned:house];
                                          [self.navigationController popViewControllerAnimated:YES];
+                                         [[NSNotificationCenter defaultCenter] postNotificationName:HAHouseModifyInformationNotification object:house];
                                      } onError:^(NSError *engineError) {
                                          [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
         
@@ -392,6 +393,11 @@
 - (BOOL) offOnButtonShouldResponseEvent:(UIButton*)offOnBtn
                                fromCell:(UITableViewCell*)cell
 {
+    NSString* textString = cell.textLabel.text;
+    if (2 == self.houseCopy.checkStatus && ([textString isEqualToString:@"平台提供洗漱用品"] || [textString isEqualToString:@"需要第三方保洁"])) {
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+        return NO;
+    }
     if(self.invalidFlag) return NO;
     else return YES;
 }

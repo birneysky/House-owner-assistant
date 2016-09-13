@@ -16,6 +16,7 @@
 #import "HAAppDataHelper.h"
 #import "HARESTfulEngine.h"
 #import "HAActiveWheel.h"
+#import "HOAKit.h"
 
 @interface HAHouseLocationViewController ()<MKMapViewDelegate,HALocationPickerTextFieldDelegate,UIDynamicAnimatorDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -188,6 +189,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
                                              [self.delegate houseDidChangned:house];
                                              [HAActiveWheel dismissForView:self.navigationController.view];
                                              [self.navigationController popViewControllerAnimated:YES];
+                                             [[NSNotificationCenter defaultCenter] postNotificationName:HAHouseModifyInformationNotification object:house];
                                          }
                                             onError:^(NSError *engineError) {
                                                  [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];

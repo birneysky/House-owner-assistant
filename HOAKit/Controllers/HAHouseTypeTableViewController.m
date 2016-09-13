@@ -12,6 +12,7 @@
 #import "HARESTfulEngine.h"
 #import "HAPublishHouseInfoTableViewController.h"
 #import "HAActiveWheel.h"
+#import "HOAKit.h"
 
 @interface HAHouseTypeTableViewController ()<HAOffOnCellDelegate>
 
@@ -209,6 +210,7 @@
     if (sender.selected) {
         return;
     }
+    
     if (2 == self.houseCopy.checkStatus) {
         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
         return;
@@ -262,6 +264,7 @@
             self.house = object;
              [HAActiveWheel dismissForView:self.navigationController.view];
             [self performSegueWithIdentifier:@"push_publish_house" sender:sender];
+            [[NSNotificationCenter defaultCenter] postNotificationName:HANewHouseNotification object:object];
         } onError:^(NSError *engineError) {
             [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
         }];
@@ -271,10 +274,11 @@
             [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
             [NETWORKENGINE modifyHouseGeneralInfoWithID:self.houseCopy.houseId
                                                  params:self.houseCopy
-                                             completion:^(HAHouse* hosue){
-                                                 [self.delegate houseDidChangned:hosue];
+                                             completion:^(HAHouse* house){
+                                                 [self.delegate houseDidChangned:house];
                                                  [HAActiveWheel dismissForView:self.navigationController.view];
                                                  [self.navigationController popViewControllerAnimated:YES];
+                                                 [[NSNotificationCenter defaultCenter] postNotificationName:HAHouseModifyInformationNotification object:house];
                                              }  onError:^(NSError *engineError) {
                                                  [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
                 
@@ -308,6 +312,16 @@
     [self.tableView reloadRowsAtIndexPaths:arrayIndexPathes withRowAnimation:UITableViewRowAnimationFade];
     
      [self checkHouseInfo];
+}
+
+- (BOOL) offOnButtonShouldResponseEvent:(UIButton*)offOnBtn
+                               fromCell:(UITableViewCell*)cell
+{
+    if (self.houseCopy.checkStatus ==2 ) {
+         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源已通过审核，不可修改"];
+        return NO;
+    }
+    return YES;
 }
 
 

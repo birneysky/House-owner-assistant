@@ -15,34 +15,24 @@
 
 @property (weak, nonatomic) IBOutlet EVCircularProgressView *progressView;  //SDBallProgressView
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *topButton;
 
 @end
 
 @implementation HAAddPictureCollectionViewCell
 
-//- (EVCircularProgressView*) progressViewTest
-//{
-//    if (!_progressViewTest) {
-//        _progressViewTest = [[EVCircularProgressView alloc] init];
-//    }
-//    return _progressViewTest;
-//}
 
 - (void)awakeFromNib
 {
     [self.progressView startIndeterminateAnimation];
 }
 
-//- (void)layoutSubviews
-//{
-//    [super layoutSubviews];
-//    self.progressViewTest.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-//}
 
 - (void)setEdited:(BOOL)edited
 {
     _edited = edited;
     self.deleteButton.hidden = !_edited;
+    self.topButton.hidden = !_edited;
 }
 
 #pragma mark - ***Target Action ***
@@ -52,6 +42,12 @@
     }
 }
 
+- (IBAction)topButtonClicked:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(placeOnTopItemFromCell:)]) {
+        [self.delegate placeOnTopItemFromCell:self];
+    }
+}
+#pragma mark - *** Api ***
 - (void)setImage:(UIImage *)image
 {
     self.imageView.image = image;
@@ -59,27 +55,20 @@
 
 - (void)setUploadProgress:(double)uploadProgress
 {
-    //if (!self.progressView.hidden){
-        self.progressView.progress = uploadProgress;
-    //}
-    
-
+    self.progressView.progress = uploadProgress;
 }
 
 - (void) showProgressView
 {
     if (self.progressView.hidden) {
         self.progressView.hidden = NO;
-        
     }
-
 }
 
 - (void) hideProgressView
 {
     if(!self.progressView.hidden)
     self.progressView.hidden = YES;
-    //[self.progressViewTest removeFromSuperview];
 }
 
 - (void) showErrorImage
@@ -87,5 +76,7 @@
     self.imageView.image = [UIImage imageNamed:@"HOAKit.bundle/HA_Download_Failed"];
     [self.progressView reset];
 }
+
+
 
 @end

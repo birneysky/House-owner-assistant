@@ -118,19 +118,22 @@
             [self configHeaderImage];
             return;
         }
-        [NETWORKENGINE downloadHouseImageWithPath:self.houseFullInfo.images.firstObject.imagePath completion:^(NSString *certificate, NSString *fileName) {
-            NSString* headerImgPath = [basePath stringByAppendingPathComponent:fileName];
-            self.houseFullInfo.images.firstObject.localPath = headerImgPath;
-            [self configHeaderImage];
-            [HAActiveWheel dismissForView:self.navigationController.view delay:1];
-        } progress:^(NSString *certificate, float progress) {
-            
-        } onError:^(NSString *certificate, NSError *error) {
-            [HAActiveWheel dismissForView:self.navigationController.view delay:1];
-            NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
-            NSLog(@"remove headImagePath %@",headerImgPath);
-            [[NSFileManager defaultManager] removeItemAtPath:headerImgPath error:nil];
-        }];
+        [NETWORKENGINE downloadHouseImageWithURL:self.houseFullInfo.images.firstObject.imagePath
+                                     storagePath:basePath
+                                      completion:^(NSString* certificate,NSString *fileName) {
+                                          NSString* headerImgPath = [basePath stringByAppendingPathComponent:fileName];
+                                          self.houseFullInfo.images.firstObject.localPath = headerImgPath;
+                                          [self configHeaderImage];
+                                          [HAActiveWheel dismissForView:self.navigationController.view delay:1];
+                                      }
+                                        progress:^(NSString* certificate,float progress) {}
+                                         onError:^(NSString* certificate,NSError *error) {
+                                             [HAActiveWheel dismissForView:self.navigationController.view delay:1];
+                                             NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
+                                             NSLog(@"remove headImagePath %@",headerImgPath);
+                                             [[NSFileManager defaultManager] removeItemAtPath:headerImgPath error:nil];
+                                         }
+         ];
     }
     else{
         [HAActiveWheel dismissForView:self.navigationController.view delay:1];

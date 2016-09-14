@@ -197,14 +197,16 @@ typedef void (^ErrorBlock)(NSError* engineError);
 /**
  *  下载房源图片
  *
- *  @param path            图片URL路径
+ *  @param url            图片URL路径
+ *  @param path           存储目录
  *  @param completion      图片下载完成 block  // certificate 下载会话标示  fileName 文件名
  *  @param progress        下载进度 block     // progress 现在进度
  *  @param errorBlcok      调用出错 block     //
  *
  */
 
-- (MKNetworkOperation*) downloadHouseImageWithPath:(NSString*)path
+- (MKNetworkOperation*) downloadHouseImageWithURL:(NSString*)url
+                                      storagePath:(NSString*)path
                                         completion:(void (^)(NSString* certificate, NSString* fileName))completion
                                           progress:(void (^)(NSString* certificate, float progress))progressBlock
                                            onError:(void (^)(NSString* certificate,NSError* error))errorBlcok;

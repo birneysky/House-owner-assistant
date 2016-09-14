@@ -13,6 +13,8 @@
 @optional
 - (void)deleteItemFromCell:(UICollectionViewCell*)cell;
 
+- (void)placeOnTopItemFromCell:(UICollectionViewCell*)cell;
+
 @end
 
 @interface HAAddPictureCollectionViewCell : UICollectionViewCell

@@ -384,27 +384,28 @@ static HARESTfulEngine* defaultEngine;
 
 
 
-- (MKNetworkOperation*) downloadHouseImageWithPath:(NSString*)path
+- (MKNetworkOperation*) downloadHouseImageWithURL:(NSString*)url
+                                       storagePath:(NSString*)path
                                         completion:(void (^)(NSString* certificate, NSString* fileName))completion
                                           progress:(void (^)(NSString* certificate, float progress))progressBlock
                                            onError:(void (^)(NSString* certificate,NSError* error))errorBlcok
 {
-    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:path];
+    HARESTfulOperation* op = (HARESTfulOperation*) [self operationWithPath:url];
     
     op.clientCertificate = [NSString stringWithFormat:@"%p",op];
     
-    NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    //NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path])
     {
-        [[NSFileManager defaultManager]  createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+        [[NSFileManager defaultManager]  createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    NSString* targetFilePath = [filePath stringByAppendingPathComponent:[path lastPathComponent]];
+    NSString* targetFilePath = [path stringByAppendingPathComponent:[url lastPathComponent]];
     [op addDownloadStream:[NSOutputStream outputStreamToFileAtPath:targetFilePath append:YES]];
     __weak HARESTfulOperation* weakOp = op;
     [op addCompletionHandler:^(MKNetworkOperation* completedOperation) {
         
         //NSMutableDictionary* responseDictionary = [completedOperation responseJSON];
-        completion(weakOp.clientCertificate,[path lastPathComponent]);
+        completion(weakOp.clientCertificate,[targetFilePath lastPathComponent]);
         
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* err){
         errorBlcok(weakOp.clientCertificate,err);

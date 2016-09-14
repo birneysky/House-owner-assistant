@@ -75,8 +75,9 @@
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HA_Test_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="gxX-rx-NhF">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxX-rx-NhF">
                                                             <rect key="frame" x="8" y="8" width="100" height="79"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="GVb-8a-3zC"/>
                                                             </constraints>
@@ -155,8 +156,9 @@
                                                             <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HA_Test_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-XO-wQb">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-XO-wQb">
                                                             <rect key="frame" x="8" y="8" width="100" height="77"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="yhV-pp-raN"/>
                                                             </constraints>
@@ -1054,8 +1056,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nSL-R1-FaR">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nSL-R1-FaR">
+                                <rect key="frame" x="0.0" y="-44" width="600" height="644"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YCY-Hn-Tdi">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1095,14 +1097,27 @@
                                                         <action selector="deleteButtonClicked:" destination="Zd5-pF-m8q" eventType="touchUpInside" id="hn5-Xo-i7N"/>
                                                     </connections>
                                                 </button>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpB-3W-Y2Y">
+                                                    <rect key="frame" x="100" y="0.0" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="RCS-J7-RUS"/>
+                                                        <constraint firstAttribute="height" constant="30" id="rdc-da-mhb"/>
+                                                    </constraints>
+                                                    <state key="normal" image="HA_Top_icon"/>
+                                                    <connections>
+                                                        <action selector="topButtonClicked:" destination="Zd5-pF-m8q" eventType="touchUpInside" id="yL4-uW-Fan"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="JWe-J6-r8y" firstAttribute="top" secondItem="Zd5-pF-m8q" secondAttribute="top" id="0PK-ca-9G6"/>
+                                            <constraint firstItem="hpB-3W-Y2Y" firstAttribute="top" secondItem="Zd5-pF-m8q" secondAttribute="topMargin" constant="-8" id="6ie-HF-9yJ"/>
                                             <constraint firstItem="4Tn-3T-E4c" firstAttribute="centerY" secondItem="Zd5-pF-m8q" secondAttribute="centerY" id="ClN-KO-oGP"/>
                                             <constraint firstItem="JWe-J6-r8y" firstAttribute="leading" secondItem="Zd5-pF-m8q" secondAttribute="leading" id="SmI-RR-iHh"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="hpB-3W-Y2Y" secondAttribute="trailing" constant="-8" id="flO-lc-50T"/>
                                             <constraint firstAttribute="trailing" secondItem="JWe-J6-r8y" secondAttribute="trailing" id="iOh-h5-IFa"/>
                                             <constraint firstAttribute="bottom" secondItem="JWe-J6-r8y" secondAttribute="bottom" id="knu-Rr-Hdz"/>
                                             <constraint firstItem="Bgr-Aa-AB0" firstAttribute="top" secondItem="Zd5-pF-m8q" secondAttribute="top" id="sfm-Ox-DCW"/>
@@ -1114,6 +1129,7 @@
                                             <outlet property="deleteButton" destination="Bgr-Aa-AB0" id="jWF-SH-ElQ"/>
                                             <outlet property="imageView" destination="JWe-J6-r8y" id="P5H-cR-HJi"/>
                                             <outlet property="progressView" destination="4Tn-3T-E4c" id="Hip-pv-XDj"/>
+                                            <outlet property="topButton" destination="hpB-3W-Y2Y" id="OoJ-lF-sJg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1785,14 +1801,14 @@
     <resources>
         <image name="HA_Bubble" width="161" height="46"/>
         <image name="HA_Camera_Icon" width="50" height="50"/>
-        <image name="HA_Delete_icon" width="30" height="30"/>
+        <image name="HA_Delete_icon" width="24" height="24"/>
         <image name="HA_Entire_Rent" width="50" height="50"/>
         <image name="HA_HOAKit_Icon_HighLight" width="78" height="78"/>
         <image name="HA_HOAKit_Icon_Normal" width="63" height="60"/>
         <image name="HA_Location_Icon" width="40" height="40"/>
         <image name="HA_Room_Default_Picture" width="375" height="243"/>
         <image name="HA_Single_Rent" width="50" height="50"/>
-        <image name="HA_Test_Picture" width="140" height="96"/>
+        <image name="HA_Top_icon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="76o-Jl-bZk"/>

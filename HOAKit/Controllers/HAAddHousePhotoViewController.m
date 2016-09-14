@@ -62,7 +62,7 @@ static  HAAddHousePhotoViewController* strongSelf = nil;
 
 - (void)dealloc
 {
-    //NSLog(@"HAAddHousePhotoViewController dealloc ~");
+    NSLog(@"HAAddHousePhotoViewController dealloc ~");
 }
 #pragma mark - *** Properties ***
 - (NSMutableArray*) selectedPhotoPathes
@@ -132,7 +132,7 @@ static  HAAddHousePhotoViewController* strongSelf = nil;
         if(obj.localPath.length <= 0 && HAPhotoUploadOrDownloadStateUnknown == obj.stauts){
             downloadedCount ++;
             strongSelf = self;
-            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithPath:obj.imagePath completion:^(NSString *certificate, NSString *fileName) {
+            MKNetworkOperation* op = [[HARESTfulEngine defaultEngine] downloadHouseImageWithURL:obj.imagePath storagePath:basePath completion:^(NSString *certificate, NSString *fileName) {
                 NSInteger index = [weakSelf.netOperationDic[certificate] integerValue];
                 obj.localPath = [basePath stringByAppendingPathComponent:fileName];
                 obj.stauts = HAPhotoUploadOrDownloadStateFinsish;
@@ -512,7 +512,7 @@ static  HAAddHousePhotoViewController* strongSelf = nil;
         if (HAPhotoLoadTypeDownload == item.loadType) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 item.stauts = HAPhotoUploadOrDownloadStateBegin;
-                [NETWORKENGINE downloadHouseImageWithPath:item.imagePath completion:^(NSString *certificate, NSString *fileName) {
+                [NETWORKENGINE downloadHouseImageWithURL:item.imagePath storagePath:basePath completion:^(NSString *certificate, NSString *fileName) {
                     item.localPath = [basePath stringByAppendingPathComponent:fileName];
                     item.stauts = HAPhotoUploadOrDownloadStateFinsish;
                     [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
@@ -602,6 +602,9 @@ static  HAAddHousePhotoViewController* strongSelf = nil;
 #pragma mark - *** HAAddPictureCollectionViewCellDelegate ***
 - (void)deleteItemFromCell:(UICollectionViewCell *)cell
 {
+//    [self.photosArray exchangeObjectAtIndex:0 withObjectAtIndex:self.photosArray.count -1];
+//    [self.collectionView moveItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] toIndexPath:[NSIndexPath indexPathForItem:self.photosArray.count -1 inSection:0]];
+    
     HAAddPictureCollectionViewCell* pictureCell = (HAAddPictureCollectionViewCell*)cell;
     NSIndexPath* indexPath = [self.collectionView indexPathForCell:cell];
     HAHouseImage* item = self.photosArray[indexPath.row];
@@ -617,6 +620,23 @@ static  HAAddHousePhotoViewController* strongSelf = nil;
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"删除失败，请检查网络"];
     }];
+}
+
+- (void)placeOnTopItemFromCell:(UICollectionViewCell*)cell
+{
+    NSIndexPath* indexPath = [self.collectionView indexPathForCell:cell];
+    
+    if (0 == indexPath.row) {
+        return;
+    }
+
+    [self.photosArray exchangeObjectAtIndex:0 withObjectAtIndex:indexPath.row];
+    [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    
+    HAHouse* hosueCopy = [self.house copy];
+    
+    //[NETWORKENGINE modifyHouseGeneralInfoWithID:houseCopy.houseId params:<#(HAHouse *)#> completion:<#^(HAHouse *house)completion#> onError:<#^(NSError *engineError)errorBlcok#>]
+    
 }
 
 

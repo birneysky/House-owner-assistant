@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet EVCircularProgressView *progressView;  //SDBallProgressView
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *topButton;
+@property (weak, nonatomic) IBOutlet UIImageView *mainImage;
 
 @end
 
@@ -77,6 +78,9 @@
     [self.progressView reset];
 }
 
-
+- (void)setMainImageIconHidden:(BOOL)mainImageIconHidden
+{
+    self.mainImage.hidden = mainImageIconHidden;
+}
 
 @end

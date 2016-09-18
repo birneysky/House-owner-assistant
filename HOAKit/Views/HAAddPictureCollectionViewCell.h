@@ -27,9 +27,13 @@
 
 @property (nonatomic,assign) double uploadProgress;
 
+@property (nonatomic,assign) BOOL mainImageIconHidden;
+
+
 - (void) showProgressView;
 
 - (void) hideProgressView;
 
 - (void) showErrorImage;
+
 @end

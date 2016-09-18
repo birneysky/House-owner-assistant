@@ -469,6 +469,10 @@ static  HAAddHousePhotoViewController* strongSelf = nil;
     pictureCell.edited = self.edited ? YES : NO;
     pictureCell.delegate = self;
     pictureCell.uploadProgress = item.progress;
+    pictureCell.mainImageIconHidden = YES;
+    if (0 == indexPath.row){
+        pictureCell.mainImageIconHidden = NO;
+    }
     if (HAPhotoUploadOrDownloadStateBegin == item.stauts) {
         pictureCell.image = nil;
         [pictureCell showProgressView];

@@ -34,21 +34,17 @@
 {
     _tintColor = tintColor;
     
-    [self setNeedsDisplay];
+    //[self setNeedsDisplay];
+    [self display];
 }
 
 - (void)drawInContext:(CGContextRef)ctx
 {
-    CGContextSetFillColorWithColor(ctx, self.tintColor.CGColor);
-    CGContextSetStrokeColorWithColor(ctx, self.tintColor.CGColor);
+    CGContextSetFillColorWithColor(ctx, _tintColor.CGColor);
+    CGContextSetStrokeColorWithColor(ctx, _tintColor.CGColor);
     CGRect rect = CGRectMake((self.bounds.size.width - self.bounds.size.height) / 2, 0, self.bounds.size.height, self.bounds.size.height);
     
     CGContextStrokeEllipseInRect(ctx, CGRectInset(rect, 1, 1));
-    
-    
-    
-//    CGContextFillRect(ctx, CGRectMake(CGRectGetMidX(self.bounds) - 4, CGRectGetMidY(self.bounds) - 4, 8, 8));
-
 }
 
 @end
@@ -80,6 +76,14 @@
     return _percentLabel;
 }
 
+- (EVCircularProgressViewBackgroundLayer*)backgroundLayer
+{
+    if (!_backgroundLayer) {
+        _backgroundLayer = [[EVCircularProgressViewBackgroundLayer alloc] init];
+    }
+    return _backgroundLayer;
+}
+
 - (instancetype)init
 {
     self = [super initWithFrame:CGRectMake(0, 0, 40, 40)];
@@ -95,17 +99,14 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
+        self.frame = CGRectMake(0, 0, 44, 44);
         [self commonInit];
     }
     
     return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{
-//    [[UIImage imageNamed:@"HOAKit.bundle/HA_Error_Icon"] drawInRect:CGRectMake(CGRectGetMidX(self.bounds) - 15, CGRectGetMidY(self.bounds) - 15, 30, 30)];
-    //[@"" drawInRect: withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}];
-}
+
 
 - (void)commonInit
 {
@@ -113,11 +114,10 @@
     
     // Set up the background layer
     
-    EVCircularProgressViewBackgroundLayer *backgroundLayer = [[EVCircularProgressViewBackgroundLayer alloc] init];
-    backgroundLayer.frame = self.bounds;
-    backgroundLayer.tintColor = self.progressTintColor;
-    [self.layer addSublayer:backgroundLayer];
-    self.backgroundLayer = backgroundLayer;
+//    EVCircularProgressViewBackgroundLayer *backgroundLayer = [[EVCircularProgressViewBackgroundLayer alloc] init];
+    self.backgroundLayer.frame = self.bounds;
+    self.backgroundLayer.tintColor = self.progressTintColor;
+    [self.layer addSublayer:self.backgroundLayer];
     
     // Set up the shape layer
     

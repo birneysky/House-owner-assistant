@@ -1,16 +1,17 @@
 //
-//  HAAddPictureCollectionViewCell.m
+//  HAImagePictureCell.m
 //  HOAKit
 //
-//  Created by birneysky on 16/8/9.
+//  Created by zhangguang on 16/9/20.
 //  Copyright © 2016年 birneysky. All rights reserved.
 //
 
-#import "HAAddPictureCollectionViewCell.h"
-//#import "SDProgressView.h"
+#import "HAImagePictureCell.h"
+
+
 #import "EVCircularProgressView.h"
 
-@interface HAAddPictureCollectionViewCell ()
+@interface HAImagePictureCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (weak, nonatomic) IBOutlet EVCircularProgressView *progressView;  //SDBallProgressView
@@ -20,14 +21,13 @@
 
 @end
 
-@implementation HAAddPictureCollectionViewCell
+@implementation HAImagePictureCell
 
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    [self.progressView startIndeterminateAnimation];
-}
+//- (void)awakeFromNib
+//{
+//    [super awakeFromNib];
+//    [self.progressView startIndeterminateAnimation];
+//}
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -40,7 +40,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-    
+        
     }
     return self;
 }
@@ -82,14 +82,18 @@
 - (void) showProgressView
 {
     if (self.progressView.hidden) {
+        [self.progressView startIndeterminateAnimation];
         self.progressView.hidden = NO;
     }
 }
 
 - (void) hideProgressView
 {
-    if(!self.progressView.hidden)
-    self.progressView.hidden = YES;
+    if(!self.progressView.hidden){
+        self.progressView.hidden = YES;
+        [self.progressView stopIndeterminateAnimation];
+        [self.progressView reset];
+    }
 }
 
 - (void) showErrorImage
@@ -102,5 +106,6 @@
 {
     self.mainImage.hidden = mainImageIconHidden;
 }
+
 
 @end

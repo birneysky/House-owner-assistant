@@ -59,6 +59,7 @@
 @property (nonatomic,copy)   NSString*   remarks;		// '备注'
 @property (nonatomic,copy)   NSArray* houseImages;
 @property (nonatomic,copy)   NSString* headerImage;
+@property (nonatomic,copy)   NSString* firstImage;
 @property (nonatomic,assign) NSInteger commentCount;
 @property (nonatomic,assign) float averageGeneralScore;
 @property (nonatomic,assign) NSInteger hasConllected;

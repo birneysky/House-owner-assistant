@@ -324,6 +324,7 @@
                                                  [HAActiveWheel dismissForView:self.navigationController.view delay:1];
                                                  if (1 == house.checkStatus) {
                                                      self.submitBtn.hidden = YES;
+                                                     [self.navigationController popViewControllerAnimated:YES];
                                                  }
                                              }
                                                 onError:^(NSError *engineError) {

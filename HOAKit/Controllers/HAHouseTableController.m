@@ -22,6 +22,9 @@
 @property (strong, nonatomic) IBOutlet UIView *coverView;
 @property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
 @property (nonatomic,strong) NSArray<HAHouse*>* dataSource;
+
+@property (nonatomic,strong) NSMutableDictionary<NSString*,NSNumber*>* downloadingSets;
+
 @end
 
 @implementation HAHouseTableController
@@ -29,6 +32,14 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (NSMutableDictionary<NSString*,NSNumber*>*) downloadingSets
+{
+    if (!_downloadingSets) {
+        _downloadingSets = [[NSMutableDictionary alloc] init];
+    }
+    return _downloadingSets;
 }
 
 - (void)viewDidLoad {
@@ -57,10 +68,19 @@
     CGSize size = [UIScreen mainScreen].bounds.size;
     self.coverView.frame = CGRectMake(0, 0, size.width, size.height);
     [self.view addSubview:self.coverView];
+    NSString* stogagePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseFirstImages"];
     [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
     [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:[HOAKit defaultInstance].userId completion:^(NSArray<HAHouse*> *objects) {
         [self.coverView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0];
         self.dataSource = objects;
+        
+        [self.dataSource enumerateObjectsUsingBlock:^(HAHouse * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString* firstImagePath = [stogagePath stringByAppendingPathComponent:[obj.firstImage lastPathComponent]];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:firstImagePath]) {
+                obj.firstImageLocalPath = firstImagePath;
+            }
+        }];
+        
         [HAActiveWheel dismissForView:self.navigationController.view];
         [self.tableView reloadData];
     } onError:^(NSError *engineError) {
@@ -69,6 +89,29 @@
     }];
 }
 
+
+- (void)downloadImageFromURL:(NSString*)url atIndex:(NSInteger)index
+{
+    if ([self.downloadingSets objectForKey:url]) {
+        return;
+    }
+    
+    NSString* stogagePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseFirstImages"];
+    
+    [self.downloadingSets setObject:@(index) forKey:url];
+    [NETWORKENGINE downloadHouseImageWithURL:url storagePath:stogagePath
+      completion:^(NSString *certificate, NSString *fileName) {
+          NSInteger idx = [[self.downloadingSets objectForKey:url] integerValue];
+          self.dataSource[idx].firstImageLocalPath = [stogagePath stringByAppendingPathComponent:[url lastPathComponent]];
+          [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:idx]] withRowAnimation:UITableViewRowAnimationFade];
+          [self.downloadingSets removeObjectForKey:url];
+    } progress:^(NSString *certificate, float progress) {
+        
+    } onError:^(NSString *certificate, NSError *error) {
+        [[NSFileManager defaultManager] removeItemAtPath:[stogagePath stringByAppendingString:[url lastPathComponent]] error:nil];
+        [self.downloadingSets removeObjectForKey:url];
+    }];
+}
 
 #pragma mark - Table view data source
 
@@ -122,6 +165,12 @@
     [itemcell setPrice:item.price];
     [itemcell setAddress:item.address];
     [itemcell setHouseType:item.houseType roomCount:item.roomNumber];
+    if (item.firstImageLocalPath.length > 0) {
+        [itemcell setHeadImage:[UIImage imageWithContentsOfFile:item.firstImageLocalPath]];
+    }
+    else if(item.firstImage.length > 0){
+        [self downloadImageFromURL:item.firstImage atIndex:indexPath.section];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -227,6 +276,19 @@
         self.dataSource = [array copy];
         [self.tableView reloadData];
     }
+}
+
+
+#pragma mark - *** UIScrollViewDelegate ***
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"scrollViewWillBeginDecelerating ~~~~~~~~~~~~~~~~");
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"scrollViewDidEndDecelerating *********************");
 }
 
 @end

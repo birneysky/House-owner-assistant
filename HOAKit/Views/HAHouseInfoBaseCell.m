@@ -52,6 +52,11 @@
     self.priceLabel.text = priceString;
 }
 
+- (void)setHeadImage:(UIImage*)image
+{
+    self.houseImageView.image = image;
+}
+
 - (void)setHouseType:(NSInteger)type roomCount:(NSInteger)count;
 {
     NSString* typeName = [HAAppDataHelper houseTypeName:type];

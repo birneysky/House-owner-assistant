@@ -42,6 +42,7 @@
     [mutableDic setObject:@(self.houseId) forKey:@"id"];
     [mutableDic removeObjectForKey:@"houseDescription"];
     [mutableDic setObject:self.houseDescription ? self.houseDescription : [NSNull null] forKey:@"description"];
+    [mutableDic removeObjectForKey:@"firstImageLocalPath"];
     return [mutableDic copy];
 }
 

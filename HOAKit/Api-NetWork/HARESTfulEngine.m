@@ -395,7 +395,6 @@ static HARESTfulEngine* defaultEngine;
     
     op.clientCertificate = [NSString stringWithFormat:@"%p",op];
     
-    //NSString* filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:path])
     {
         [[NSFileManager defaultManager]  createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];

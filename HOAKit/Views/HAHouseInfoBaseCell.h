@@ -16,6 +16,8 @@
 
 - (void)setPrice:(float)price;
 
+- (void)setHeadImage:(UIImage*)image;
+
 - (void)setHouseType:(NSInteger)type roomCount:(NSInteger)count;
 
 @end

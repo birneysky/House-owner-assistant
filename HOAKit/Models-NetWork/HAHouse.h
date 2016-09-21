@@ -60,6 +60,7 @@
 @property (nonatomic,copy)   NSArray* houseImages;
 @property (nonatomic,copy)   NSString* headerImage;
 @property (nonatomic,copy)   NSString* firstImage;
+@property (nonatomic,copy)   NSString* firstImageLocalPath;
 @property (nonatomic,assign) NSInteger commentCount;
 @property (nonatomic,assign) float averageGeneralScore;
 @property (nonatomic,assign) NSInteger hasConllected;

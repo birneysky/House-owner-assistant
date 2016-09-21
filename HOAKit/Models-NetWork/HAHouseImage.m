@@ -27,6 +27,7 @@
     [mutableDic removeObjectForKey:@"progress"];
     [mutableDic removeObjectForKey:@"stauts"];
     [mutableDic removeObjectForKey:@"loadType"];
+    [mutableDic removeObjectForKey:@"isFirstImage"];
     return [mutableDic copy];
 }
 

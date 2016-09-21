@@ -42,7 +42,7 @@
             startingLineNumber = "274"
             endingLineNumber = "274"
             landmarkName = "-checkAndRestoreFrozenOperations"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,7 +58,7 @@
             startingLineNumber = "603"
             endingLineNumber = "603"
             landmarkName = "-saveCache"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,7 +74,7 @@
             startingLineNumber = "638"
             endingLineNumber = "638"
             landmarkName = "-saveCacheData:forKey:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,7 +90,7 @@
             startingLineNumber = "730"
             endingLineNumber = "730"
             landmarkName = "-emptyCache"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,7 +106,7 @@
             startingLineNumber = "736"
             endingLineNumber = "736"
             landmarkName = "-emptyCache"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

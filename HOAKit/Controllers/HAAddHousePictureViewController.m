@@ -92,13 +92,23 @@ static  HAAddHousePictureViewController* strongSelf = nil;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
-    
+
     if (self.photoes.count > 0) {
         [self.photosArray addObjectsFromArray:self.photoes];
     }
+    
+    __weak HAAddHousePictureViewController* weakSelf = self;
+    [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.imagePath isEqualToString:weakSelf.house.firstImage]) {
+            *stop = YES;
+            obj.isFirstImage = YES;
+            [weakSelf.photosArray exchangeObjectAtIndex:0 withObjectAtIndex:idx];
+        }
+    }];
+    
     NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
     //检测图片是否存在
-    __weak HAAddHousePictureViewController* weakSelf = self;
+ 
     [self.photosArray enumerateObjectsUsingBlock:^(HAHouseImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.loadType = HAPhotoLoadTypeDownload;
         
@@ -172,6 +182,12 @@ static  HAAddHousePictureViewController* strongSelf = nil;
     }
 }
 
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
+}
 
 
 #pragma mark - *** upload Helper ***
@@ -443,7 +459,7 @@ static  HAAddHousePictureViewController* strongSelf = nil;
     pictureCell.delegate = self;
     pictureCell.uploadProgress = item.progress;
     pictureCell.mainImageIconHidden = YES;
-    if (0 == indexPath.row){
+    if (item.isFirstImage){
         pictureCell.mainImageIconHidden = NO;
     }
     if (HAPhotoUploadOrDownloadStateBegin == item.stauts) {
@@ -603,9 +619,7 @@ static  HAAddHousePictureViewController* strongSelf = nil;
 {
     NSIndexPath* indexPath = [self.collectionView indexPathForCell:cell];
     
-    if (0 == indexPath.row) {
-        return;
-    }
+
     
 //    HAHouseImage* imageItem = self.photosArray[indexPath.row];
 //    [self.photosArray removeObjectAtIndex:indexPath.row];
@@ -628,18 +642,25 @@ static  HAAddHousePictureViewController* strongSelf = nil;
 
     
     HAHouse* houseCopy = [self.house copy];
-    houseCopy.firstImage = self.photosArray.firstObject.imagePath;
+    houseCopy.firstImage = self.photosArray[indexPath.row].imagePath;
     
      [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在处理";
     [NETWORKENGINE modifyHouseGeneralInfoWithID:houseCopy.houseId params:houseCopy completion:^(HAHouse *house) {
         [HAActiveWheel dismissForView:self.navigationController.view];
         self.house.firstImage = house.firstImage;
         HAHouseImage* imageItem = self.photosArray[indexPath.row];
+        imageItem.isFirstImage = YES;
+        if (0 == indexPath.row) {
+            [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            return;
+        }
         [self.photosArray removeObjectAtIndex:indexPath.row];
         [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
         [self.photosArray insertObject:imageItem atIndex:0];
         [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
-        HAImagePictureCell* pictureCell = (HAImagePictureCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];;
+        
+        HAImagePictureCell* pictureCell = (HAImagePictureCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        self.photosArray[1].isFirstImage = NO;
         pictureCell.mainImageIconHidden = YES;
     } onError:^(NSError *engineError) {
          [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];

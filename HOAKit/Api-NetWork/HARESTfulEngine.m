@@ -15,6 +15,7 @@
 #import "HAHousePosition.h"
 #import "HAHouseFacility.h"
 #import "HAError.h"
+#import "HOAKit.h"
 
 NSString* const kBaseURL = @"120.76.28.47:8080/yisu";
 
@@ -25,7 +26,7 @@ static HARESTfulEngine* defaultEngine;
 + (HARESTfulEngine*)defaultEngine
 {
     if (!defaultEngine) {
-        defaultEngine = [[HARESTfulEngine alloc] initWithHostName:kBaseURL];
+        defaultEngine = [[HARESTfulEngine alloc] initWithHostName:kBaseURL customHeaderFields:@{@"token":[HOAKit defaultInstance].token}];
     }
     return defaultEngine;
 }

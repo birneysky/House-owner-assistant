@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, HAPhotoLoadType) {
 
 @property (assign,nonatomic) float progress;
 
+@property (nonatomic,assign) BOOL isFirstImage;
+
 @property (nonatomic, assign) HAPhotoUploadOrDownloadState stauts;
 
 @property (nonatomic, assign) HAPhotoLoadType loadType;

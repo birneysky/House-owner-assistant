@@ -34,7 +34,7 @@
        [HOAKit defaultInstance].userId = 1;
     }
     
-    [HOAKit defaultInstance].token = @"xxxxx";
+    [HOAKit defaultInstance].token = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6IjMy56ys5LiJ5LujIiwiZXhwIjowLCJ1c2VySWQiOjEsImlhdCI6MTQ3NDI3Mzc0MCwiaXNzdWVyIjoiaHR0cHM6Ly93d3cueWltZWkuY29tLyJ9._IM9uqdUnlVcE0P7YMxAfYYK0ahEVpODrs_RFuVmkxg";
     UINavigationController* hoaRoot = [HOAKit defaultInstance].rootViewController;
     [self presentViewController:hoaRoot animated:YES completion:nil];
 }

@@ -262,6 +262,11 @@
             obj.price       =  house.price;
             obj.checkStatus = house.checkStatus;
             obj.roomNumber = house.roomNumber;
+            if (![obj.firstImage isEqualToString:house.firstImage]) {
+                obj.firstImage = house.firstImage;
+                obj.firstImageLocalPath = nil;
+            }
+            
             *stop = YES;
             [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:idx]] withRowAnimation:UITableViewRowAnimationFade];
         }
@@ -278,17 +283,5 @@
     }
 }
 
-
-#pragma mark - *** UIScrollViewDelegate ***
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"scrollViewWillBeginDecelerating ~~~~~~~~~~~~~~~~");
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"scrollViewDidEndDecelerating *********************");
-}
 
 @end

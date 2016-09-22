@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		740AC7EF1D9411A0004BD03B /* MLLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 740AC7EB1D9411A0004BD03B /* MLLabel.h */; };
+		740AC7F01D9411A0004BD03B /* MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AC7EC1D9411A0004BD03B /* MLLabel.m */; };
+		740AC7F11D9411A0004BD03B /* MLLinkLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 740AC7ED1D9411A0004BD03B /* MLLinkLabel.h */; };
+		740AC7F21D9411A0004BD03B /* MLLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AC7EE1D9411A0004BD03B /* MLLinkLabel.m */; };
+		740AC7F71D941217004BD03B /* NSMutableAttributedString+MLLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 740AC7F31D941217004BD03B /* NSMutableAttributedString+MLLabel.h */; };
+		740AC7F81D941217004BD03B /* NSMutableAttributedString+MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AC7F41D941217004BD03B /* NSMutableAttributedString+MLLabel.m */; };
+		740AC7F91D941217004BD03B /* NSString+MLLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 740AC7F51D941217004BD03B /* NSString+MLLabel.h */; };
+		740AC7FA1D941217004BD03B /* NSString+MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AC7F61D941217004BD03B /* NSString+MLLabel.m */; };
+		740AC7FD1D9412C0004BD03B /* NSAttributedString+MLLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 740AC7FB1D9412C0004BD03B /* NSAttributedString+MLLabel.h */; };
+		740AC7FE1D9412C0004BD03B /* NSAttributedString+MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AC7FC1D9412C0004BD03B /* NSAttributedString+MLLabel.m */; };
+		740AC8011D9412E9004BD03B /* MLLabelLayoutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 740AC7FF1D9412E9004BD03B /* MLLabelLayoutManager.h */; };
+		740AC8021D9412E9004BD03B /* MLLabelLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AC8001D9412E9004BD03B /* MLLabelLayoutManager.m */; };
+		740AC8041D941314004BD03B /* MLLabel+Override.h in Headers */ = {isa = PBXBuildFile; fileRef = 740AC8031D941314004BD03B /* MLLabel+Override.h */; };
 		74209AA61D71C7B50090C87C /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAE64781D6D6C00006D807C /* EVCircularProgressView.m */; };
 		7422D7991D53811C00ACB2B6 /* HATextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7422D7971D53811C00ACB2B6 /* HATextView.h */; };
 		7422D79A1D53811C00ACB2B6 /* HATextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7422D7981D53811C00ACB2B6 /* HATextView.m */; };
@@ -76,6 +89,10 @@
 		742B91ED1D4FB731000FF5A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742B91C31D4FB731000FF5A1 /* Images.xcassets */; };
 		742B91EE1D4FB731000FF5A1 /* NSDate+timeDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91C41D4FB731000FF5A1 /* NSDate+timeDescription.h */; };
 		742B91EF1D4FB731000FF5A1 /* NSDate+timeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91C51D4FB731000FF5A1 /* NSDate+timeDescription.m */; };
+		743E13051D94324E00D99C93 /* HAWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743E13031D94324E00D99C93 /* HAWebViewController.h */; };
+		743E13061D94324E00D99C93 /* HAWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E13041D94324E00D99C93 /* HAWebViewController.m */; };
+		743E13091D9439EB00D99C93 /* HAHouseInfoCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 743E13071D9439EB00D99C93 /* HAHouseInfoCell.h */; };
+		743E130A1D9439EB00D99C93 /* HAHouseInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E13081D9439EB00D99C93 /* HAHouseInfoCell.m */; };
 		743F43451D55ED5900D06D19 /* HAPickerTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43431D55ED5900D06D19 /* HAPickerTextField.h */; };
 		743F43461D55ED5900D06D19 /* HAPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F43441D55ED5900D06D19 /* HAPickerTextField.m */; };
 		743F434A1D55F0C500D06D19 /* HALocationPickerTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 743F43481D55F0C500D06D19 /* HALocationPickerTextField.h */; };
@@ -194,6 +211,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		740AC7EB1D9411A0004BD03B /* MLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLabel.h; sourceTree = "<group>"; };
+		740AC7EC1D9411A0004BD03B /* MLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLabel.m; sourceTree = "<group>"; };
+		740AC7ED1D9411A0004BD03B /* MLLinkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLinkLabel.h; sourceTree = "<group>"; };
+		740AC7EE1D9411A0004BD03B /* MLLinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLinkLabel.m; sourceTree = "<group>"; };
+		740AC7F31D941217004BD03B /* NSMutableAttributedString+MLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+MLLabel.h"; sourceTree = "<group>"; };
+		740AC7F41D941217004BD03B /* NSMutableAttributedString+MLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+MLLabel.m"; sourceTree = "<group>"; };
+		740AC7F51D941217004BD03B /* NSString+MLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MLLabel.h"; sourceTree = "<group>"; };
+		740AC7F61D941217004BD03B /* NSString+MLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MLLabel.m"; sourceTree = "<group>"; };
+		740AC7FB1D9412C0004BD03B /* NSAttributedString+MLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+MLLabel.h"; sourceTree = "<group>"; };
+		740AC7FC1D9412C0004BD03B /* NSAttributedString+MLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+MLLabel.m"; sourceTree = "<group>"; };
+		740AC7FF1D9412E9004BD03B /* MLLabelLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLabelLayoutManager.h; sourceTree = "<group>"; };
+		740AC8001D9412E9004BD03B /* MLLabelLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLabelLayoutManager.m; sourceTree = "<group>"; };
+		740AC8031D941314004BD03B /* MLLabel+Override.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MLLabel+Override.h"; sourceTree = "<group>"; };
 		7422D7971D53811C00ACB2B6 /* HATextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HATextView.h; sourceTree = "<group>"; };
 		7422D7981D53811C00ACB2B6 /* HATextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HATextView.m; sourceTree = "<group>"; };
 		7425B80C1D50CBDF00288A46 /* province.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province.json; sourceTree = "<group>"; };
@@ -265,6 +295,10 @@
 		742B91C31D4FB731000FF5A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		742B91C41D4FB731000FF5A1 /* NSDate+timeDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timeDescription.h"; sourceTree = "<group>"; };
 		742B91C51D4FB731000FF5A1 /* NSDate+timeDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timeDescription.m"; sourceTree = "<group>"; };
+		743E13031D94324E00D99C93 /* HAWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAWebViewController.h; sourceTree = "<group>"; };
+		743E13041D94324E00D99C93 /* HAWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAWebViewController.m; sourceTree = "<group>"; };
+		743E13071D9439EB00D99C93 /* HAHouseInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAHouseInfoCell.h; sourceTree = "<group>"; };
+		743E13081D9439EB00D99C93 /* HAHouseInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAHouseInfoCell.m; sourceTree = "<group>"; };
 		743F43431D55ED5900D06D19 /* HAPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAPickerTextField.h; sourceTree = "<group>"; };
 		743F43441D55ED5900D06D19 /* HAPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPickerTextField.m; sourceTree = "<group>"; };
 		743F43481D55F0C500D06D19 /* HALocationPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HALocationPickerTextField.h; sourceTree = "<group>"; };
@@ -394,6 +428,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		740AC7EA1D9411A0004BD03B /* MLLable */ = {
+			isa = PBXGroup;
+			children = (
+				740AC8031D941314004BD03B /* MLLabel+Override.h */,
+				740AC7FF1D9412E9004BD03B /* MLLabelLayoutManager.h */,
+				740AC8001D9412E9004BD03B /* MLLabelLayoutManager.m */,
+				740AC7FB1D9412C0004BD03B /* NSAttributedString+MLLabel.h */,
+				740AC7FC1D9412C0004BD03B /* NSAttributedString+MLLabel.m */,
+				740AC7F31D941217004BD03B /* NSMutableAttributedString+MLLabel.h */,
+				740AC7F41D941217004BD03B /* NSMutableAttributedString+MLLabel.m */,
+				740AC7F51D941217004BD03B /* NSString+MLLabel.h */,
+				740AC7F61D941217004BD03B /* NSString+MLLabel.m */,
+				740AC7EB1D9411A0004BD03B /* MLLabel.h */,
+				740AC7EC1D9411A0004BD03B /* MLLabel.m */,
+				740AC7ED1D9411A0004BD03B /* MLLinkLabel.h */,
+				740AC7EE1D9411A0004BD03B /* MLLinkLabel.m */,
+			);
+			path = MLLable;
+			sourceTree = "<group>";
+		};
 		74266F5D1D5CA31700A7E4BF /* MultilevelTableview */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,6 +582,8 @@
 				DBAE64751D6C2077006D807C /* HADataExchangeDelegate.h */,
 				DBE880971D70284000A72248 /* HASelectHousePositionViewController.h */,
 				DBE880981D70284000A72248 /* HASelectHousePositionViewController.m */,
+				743E13031D94324E00D99C93 /* HAWebViewController.h */,
+				743E13041D94324E00D99C93 /* HAWebViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = SOURCE_ROOT;
@@ -580,8 +636,8 @@
 		742B91B11D4FB731000FF5A1 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				740AC7EA1D9411A0004BD03B /* MLLable */,
 				74A50C7D1D840A68004F8FF6 /* LWImageBrowser */,
-				743E97E21D806E2C00F86194 /* PhotoBrowser */,
 				DBAE647B1D6D8927006D807C /* MBProgressHUD */,
 				74266FD91D69D0D400A7E4BF /* SDProgressView */,
 				DB3B28D71D5DC0070007E576 /* MKNetworkKit */,
@@ -617,13 +673,6 @@
 			path = CTAssetsPickerController;
 			sourceTree = "<group>";
 		};
-		743E97E21D806E2C00F86194 /* PhotoBrowser */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PhotoBrowser;
-			sourceTree = "<group>";
-		};
 		743F43471D55F0C500D06D19 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +700,8 @@
 				742670051D6C8EC300A7E4BF /* HAHouseInfoItemCell.m */,
 				DB0710551D90E22B00906860 /* HAImagePictureCell.h */,
 				DB0710561D90E22B00906860 /* HAImagePictureCell.m */,
+				743E13071D9439EB00D99C93 /* HAHouseInfoCell.h */,
+				743E13081D9439EB00D99C93 /* HAHouseInfoCell.m */,
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
@@ -774,6 +825,7 @@
 				742B91C81D4FB731000FF5A1 /* HAHouseTableController.h in Headers */,
 				7422D7991D53811C00ACB2B6 /* HATextView.h in Headers */,
 				743F43451D55ED5900D06D19 /* HAPickerTextField.h in Headers */,
+				740AC8041D941314004BD03B /* MLLabel+Override.h in Headers */,
 				74266F711D5DF7E700A7E4BF /* HAHouseComment.h in Headers */,
 				DBE880811D6EF55300A72248 /* HAAddPhotoViewLayout.h in Headers */,
 				74A50C9A1D840A68004F8FF6 /* LWImageBrowserFlowLayout.h in Headers */,
@@ -790,6 +842,7 @@
 				74A50C981D840A68004F8FF6 /* LWImageBrowserCell.h in Headers */,
 				DBE880901D6EF55300A72248 /* HALocationPoint.h in Headers */,
 				DBE880871D6EF55300A72248 /* HABedTypeDataSourceDelegate.h in Headers */,
+				740AC7FD1D9412C0004BD03B /* NSAttributedString+MLLabel.h in Headers */,
 				DBE8808D1D6EF55300A72248 /* HAEditPickerDelegate.h in Headers */,
 				DBE8808B1D6EF55300A72248 /* HAEditPickerDataSourceDelegate.h in Headers */,
 				74266F9E1D60054300A7E4BF /* HAHouseInfoBaseCell.h in Headers */,
@@ -819,18 +872,22 @@
 				742B91E11D4FB731000FF5A1 /* CTAssetsGroupViewController.h in Headers */,
 				DB0710571D90E22B00906860 /* HAImagePictureCell.h in Headers */,
 				742670061D6C8EC300A7E4BF /* HAHouseInfoItemCell.h in Headers */,
+				740AC7F11D9411A0004BD03B /* MLLinkLabel.h in Headers */,
 				DBE880941D6EF55300A72248 /* HAProvinceDataSourceDelegate.h in Headers */,
 				DB13FCA51D62EDFB003A8F58 /* HAPosition.h in Headers */,
+				743E13091D9439EB00D99C93 /* HAHouseInfoCell.h in Headers */,
 				74266F7D1D5DF91F00A7E4BF /* HAHouseInfo.h in Headers */,
 				DB12CBF21D61AAAA0069126F /* HAHouseFullInfo.h in Headers */,
 				DBE880681D6D9CBB00A72248 /* HAActiveWheel.h in Headers */,
 				DB3B28F11D5DC0070007E576 /* NSDate+RFC1123.h in Headers */,
+				743E13051D94324E00D99C93 /* HAWebViewController.h in Headers */,
 				DB35A79C1D66FA5500CD6776 /* NSArray+RequestEncoding.h in Headers */,
 				74A50C9E1D840A68004F8FF6 /* LWImageItem.h in Headers */,
 				DB3B28CC1D5C1AF50007E576 /* HouseFacilitiesViewController.h in Headers */,
 				DBAE64791D6D6C00006D807C /* EVCircularProgressView.h in Headers */,
 				DBE880891D6EF55300A72248 /* HADiscountDataSourceDelegate.h in Headers */,
 				74266F791D5DF8C300A7E4BF /* HAHouseImage.h in Headers */,
+				740AC8011D9412E9004BD03B /* MLLabelLayoutManager.h in Headers */,
 				DB0710531D90D7D700906860 /* HAAddHousePictureViewController.h in Headers */,
 				74266F8A1D5E02EA00A7E4BF /* HARESTfulEngine.h in Headers */,
 				74266F691D5DF29200A7E4BF /* HAHouse.h in Headers */,
@@ -840,15 +897,18 @@
 				DBE880831D6EF55300A72248 /* HAAppDataHelper.h in Headers */,
 				74266F641D5CA6E800A7E4BF /* HAHouseAreaSelectViewController.h in Headers */,
 				742B91CE1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.h in Headers */,
+				740AC7F71D941217004BD03B /* NSMutableAttributedString+MLLabel.h in Headers */,
 				743F438C1D58E81F00D06D19 /* HAAddPictureCollectionViewCell.h in Headers */,
 				DB3B28EF1D5DC0070007E576 /* NSData+MKBase64.h in Headers */,
 				74A50CA61D840AEA004F8FF6 /* GallopUtils.h in Headers */,
 				DB3B28F71D5DC0070007E576 /* UIAlertView+MKNetworkKitAdditions.h in Headers */,
 				743F43781D57440300D06D19 /* HAEditPickerCell.h in Headers */,
 				742B91E51D4FB731000FF5A1 /* CTAssetsPickerController.h in Headers */,
+				740AC7EF1D9411A0004BD03B /* MLLabel.h in Headers */,
 				742B91DD1D4FB731000FF5A1 /* ALAssetsGroup+isEqual.h in Headers */,
 				DB3B28BC1D5851A90007E576 /* HAOffOnCell.h in Headers */,
 				DBAE64761D6C2077006D807C /* HADataExchangeDelegate.h in Headers */,
+				740AC7F91D941217004BD03B /* NSString+MLLabel.h in Headers */,
 				DB3B28F51D5DC0070007E576 /* NSString+MKNetworkKitAdditions.h in Headers */,
 				742B91CC1D4FB731000FF5A1 /* HAHouseTypeTableViewController.h in Headers */,
 				74A50CA51D840AEA004F8FF6 /* GallopDefine.h in Headers */,
@@ -949,6 +1009,8 @@
 				74266F761D5DF85E00A7E4BF /* HAHouseFacility.m in Sources */,
 				74266F6E1D5DF6E300A7E4BF /* HAHouseBed.m in Sources */,
 				DB13FCAA1D62EE63003A8F58 /* HASubWay.m in Sources */,
+				740AC7F81D941217004BD03B /* NSMutableAttributedString+MLLabel.m in Sources */,
+				743E130A1D9439EB00D99C93 /* HAHouseInfoCell.m in Sources */,
 				742B91EF1D4FB731000FF5A1 /* NSDate+timeDescription.m in Sources */,
 				DB12CBF31D61AAAA0069126F /* HAHouseFullInfo.m in Sources */,
 				742B91DE1D4FB731000FF5A1 /* ALAssetsGroup+isEqual.m in Sources */,
@@ -969,9 +1031,12 @@
 				742B91EA1D4FB731000FF5A1 /* CTAssetsViewCell.m in Sources */,
 				74266F7E1D5DF91F00A7E4BF /* HAHouseInfo.m in Sources */,
 				743F438D1D58E81F00D06D19 /* HAAddPictureCollectionViewCell.m in Sources */,
+				740AC8021D9412E9004BD03B /* MLLabelLayoutManager.m in Sources */,
+				740AC7F01D9411A0004BD03B /* MLLabel.m in Sources */,
 				74266F651D5CA6E800A7E4BF /* HAHouseAreaSelectViewController.m in Sources */,
 				DB3B28F41D5DC0070007E576 /* NSDictionary+RequestEncoding.m in Sources */,
 				DB3B28FA1D5DC0070007E576 /* MKNetworkEngine.m in Sources */,
+				740AC7FA1D941217004BD03B /* NSString+MLLabel.m in Sources */,
 				DBE880911D6EF55300A72248 /* HALocationPoint.m in Sources */,
 				74266F7A1D5DF8C300A7E4BF /* HAHouseImage.m in Sources */,
 				DB0710541D90D7D700906860 /* HAAddHousePictureViewController.m in Sources */,
@@ -1017,12 +1082,15 @@
 				74266F9B1D5F835A00A7E4BF /* HAHouseItem.m in Sources */,
 				74A50C9F1D840A68004F8FF6 /* LWImageItem.m in Sources */,
 				DB3B28F21D5DC0070007E576 /* NSDate+RFC1123.m in Sources */,
+				743E13061D94324E00D99C93 /* HAWebViewController.m in Sources */,
 				DBE8808C1D6EF55300A72248 /* HAEditPickerDataSourceDelegate.m in Sources */,
 				DB3B28CD1D5C1AF50007E576 /* HouseFacilitiesViewController.m in Sources */,
 				DBE880841D6EF55300A72248 /* HAAppDataHelper.m in Sources */,
 				74A50C9B1D840A68004F8FF6 /* LWImageBrowserFlowLayout.m in Sources */,
+				740AC7F21D9411A0004BD03B /* MLLinkLabel.m in Sources */,
 				DBE880691D6D9CBB00A72248 /* HAActiveWheel.m in Sources */,
 				DB13FCA61D62EDFB003A8F58 /* HAPosition.m in Sources */,
+				740AC7FE1D9412C0004BD03B /* NSAttributedString+MLLabel.m in Sources */,
 				DB3B28C11D5866370007E576 /* HABedInfoCell.m in Sources */,
 				74266F821D5DFA5B00A7E4BF /* HAHouseOrder.m in Sources */,
 				742670071D6C8EC300A7E4BF /* HAHouseInfoItemCell.m in Sources */,

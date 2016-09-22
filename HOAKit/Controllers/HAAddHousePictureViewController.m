@@ -14,6 +14,7 @@
 #import "HAActiveWheel.h"
 #import "LWImageBrowserModel.h"
 #import "LWImageBrowser.h"
+#import "HOAKit.h"
 
 
 #define PHOTO_COUNT_MAX 20
@@ -183,9 +184,9 @@ static  HAAddHousePictureViewController* strongSelf = nil;
 }
 
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
     [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
 }
 
@@ -366,11 +367,6 @@ static  HAAddHousePictureViewController* strongSelf = nil;
             [weakSelf uploadHouseImageWithPath:thumbnailImgPath];
         }
     });
-    
-    
-    
-    
-    
 }
 
 #pragma mark - image picker delegate
@@ -479,14 +475,10 @@ static  HAAddHousePictureViewController* strongSelf = nil;
 }
 
 #pragma mark <UICollectionViewDelegate>
-
-
 // Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-
-
 
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -595,9 +587,6 @@ static  HAAddHousePictureViewController* strongSelf = nil;
 #pragma mark - *** HAAddPictureCollectionViewCellDelegate ***
 - (void)deleteItemFromCell:(UICollectionViewCell *)cell
 {
-    //    [self.photosArray exchangeObjectAtIndex:0 withObjectAtIndex:self.photosArray.count -1];
-    //    [self.collectionView moveItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] toIndexPath:[NSIndexPath indexPathForItem:self.photosArray.count -1 inSection:0]];
-    
     HAImagePictureCell* pictureCell = (HAImagePictureCell*)cell;
     NSIndexPath* indexPath = [self.collectionView indexPathForCell:cell];
     HAHouseImage* item = self.photosArray[indexPath.row];
@@ -618,29 +607,7 @@ static  HAAddHousePictureViewController* strongSelf = nil;
 - (void)placeOnTopItemFromCell:(UICollectionViewCell*)cell
 {
     NSIndexPath* indexPath = [self.collectionView indexPathForCell:cell];
-    
 
-    
-//    HAHouseImage* imageItem = self.photosArray[indexPath.row];
-//    [self.photosArray removeObjectAtIndex:indexPath.row];
-//    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-//    [self.photosArray insertObject:imageItem atIndex:0];
-//    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
-//    HAImagePictureCell* pictureCell = (HAImagePictureCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];;
-//    pictureCell.mainImageIconHidden = YES;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]];
-//    });
-    
-    //[self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]];
-    //[self.photosArray exchangeObjectAtIndex:0 withObjectAtIndex:indexPath.row];
-    //[self.collectionView moveItemAtIndexPath:indexPath toIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        NSArray<NSIndexPath*>* visibleIndexPathes =  [self.collectionView indexPathsForVisibleItems];
-//        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0],[NSIndexPath indexPathForRow:1 inSection:0]]];
-//    });
-
-    
     HAHouse* houseCopy = [self.house copy];
     houseCopy.firstImage = self.photosArray[indexPath.row].imagePath;
     
@@ -650,6 +617,7 @@ static  HAAddHousePictureViewController* strongSelf = nil;
         self.house.firstImage = house.firstImage;
         HAHouseImage* imageItem = self.photosArray[indexPath.row];
         imageItem.isFirstImage = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:HAHouseModifyInformationNotification object:house];
         if (0 == indexPath.row) {
             [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
             return;
@@ -665,7 +633,6 @@ static  HAAddHousePictureViewController* strongSelf = nil;
     } onError:^(NSError *engineError) {
          [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"处理失败，请检查网络"];
     }];
-     //[NETWORKENGINE modifyHouseGeneralInfoWithID:houseCopy.houseId params:<#(HAHouse *)#> completion:<#^(HAHouse *house)completion#> onError:<#^(NSError *engineError)errorBlcok#>]
     
 }
 

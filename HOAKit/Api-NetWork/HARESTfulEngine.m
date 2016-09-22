@@ -174,6 +174,9 @@ static HARESTfulEngine* defaultEngine;
             [houseImages enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 HAHouseImage* image = [[HAHouseImage alloc] initWithDictionary:obj];
                 image.houseId = houseObj.houseId;
+                if ([image.imagePath isEqualToString:houseObj.firstImage]) {
+                    image.isFirstImage = YES;
+                }
                 [images addObject: image];
             }];
             fullInfo.images = [images copy];

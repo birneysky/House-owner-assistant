@@ -18,19 +18,23 @@
 #import "HAAddHousePhotoViewController.h"
 #import "HAHouseLocationViewController.h"
 #import "HAHouseTypeTableViewController.h"
+#import "HAWebViewController.h"
+#import "MLLinkLabel.h"
 #import "HAActiveWheel.h"
 #import "HOAkit.h"
+#import "HAHouseInfoCell.h"
 
 @interface HAPublishHouseInfoTableViewController ()<HADataExchangeDelegate>
 
 @property(nonatomic,strong) NSArray* dataSource;
-
+@property(nonatomic,strong) NSArray* subtitles;
 
 @property (strong, nonatomic) IBOutlet UIView *coverView;
 @property (weak, nonatomic) IBOutlet UIButton *refreshBtn;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageview;
 @property (weak, nonatomic) IBOutlet UILabel *pictureCountLabel;
+@property (weak, nonatomic) IBOutlet MLLinkLabel *protocolLabel;
 
 @property (weak, nonatomic) HAAddHousePhotoViewController* addPhotoVC;
 
@@ -48,6 +52,14 @@
     return _dataSource;
 }
 
+- (NSArray*) subtitles
+{
+    if (!_subtitles) {
+        _subtitles = @[@"填写您房源的基本信息",@"设置您的房源价格与规则",@"填写您房源的基本信息",@"告诉房客有哪些配套便利设施",@"填写床铺的详细信息",@"添加房源附近的位置区域信息",@"选择房源的出租方式",@"选择房源地理位置"];
+    }
+    return _subtitles;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     CGSize size = [UIScreen mainScreen].bounds.size;
@@ -55,6 +67,7 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
 
     [self fetchHouseInfo];
+    [self configProtocolLabel];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -71,6 +84,29 @@
 }
 
 #pragma mark - *** Helper ****
+- (void)configProtocolLabel
+{
+    self.protocolLabel.dataDetectorTypes = MLDataDetectorTypeAll;
+    self.protocolLabel.allowLineBreakInsideLinks = YES;
+    self.protocolLabel.linkTextAttributes = nil;
+    self.protocolLabel.activeLinkTextAttributes = nil;
+    self.protocolLabel.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1]};
+   
+    [self.protocolLabel setDidClickLinkBlock:^(MLLink *link, NSString *linkText, MLLinkLabel *label) {
+        [self performSegueWithIdentifier:@"push_web_view" sender:link];
+    }];
+    
+    NSRange range = [self.protocolLabel.text rangeOfString:@"《房东规则》" options:NSRegularExpressionSearch];
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:self.protocolLabel.text];
+    [attrStr addAttribute:NSLinkAttributeName value:@"http://www.baidu.com" range:range];
+    range = [self.protocolLabel.text rangeOfString:@"《房源线上线标准》" options:NSRegularExpressionSearch];
+    [attrStr addAttribute:NSLinkAttributeName value:@"http://www.sina.com" range:range];
+    range = [self.protocolLabel.text rangeOfString:@"《房东经营行为规范管理》" options:NSBackwardsSearch];
+    [attrStr addAttribute:NSLinkAttributeName value:@"http://www.jd.com" range:range];
+    self.protocolLabel.attributedText = attrStr;
+}
+
+
 - (void)fetchHouseInfo{
     [self.view addSubview:self.coverView];
     [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
@@ -81,6 +117,7 @@
         if (2 == self.houseFullInfo.house.checkStatus || 1 == self.houseFullInfo.house.checkStatus) {
             self.navigationItem.rightBarButtonItem.enabled = YES;
             self.submitBtn.hidden = YES;
+            self.protocolLabel.hidden = YES;
         }
         NSArray* viewControllers = self.navigationController.viewControllers;
         self.navigationController.viewControllers = @[viewControllers.firstObject,self];
@@ -88,6 +125,16 @@
             [HAActiveWheel dismissForView:self.navigationController.view delay:1];
             return;
         }
+        
+        self.houseFullInfo.images = [self.houseFullInfo.images sortedArrayUsingComparator:^NSComparisonResult(HAHouseImage*   obj1, HAHouseImage*   obj2) {
+            if (obj1.isFirstImage > obj2.isFirstImage) {
+                return NSOrderedAscending;
+            }
+            else{
+                return NSOrderedDescending;
+            }
+        }];
+        
         NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
         NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:headerImgPath]) {
@@ -176,7 +223,8 @@
     
     // Configure the cell...
     cell.textLabel.text = self.dataSource[indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
+    //cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
+    cell.detailTextLabel.text = self.subtitles[indexPath.row];
     return cell;
 }
 
@@ -262,31 +310,38 @@
     NSString* text = self.dataSource[indexPath.row];
     cell.textLabel.textColor = [UIColor blackColor];
     UIColor* color = [UIColor colorWithRed:245 / 255.0f green:2 / 255.0f blue:63 / 255.0f alpha:1];
+    HAHouseInfoCell* infoCell = (HAHouseInfoCell*)cell;
     if ([text isEqualToString:@"房屋标题与介绍"] && self.houseFullInfo.houseDescriptionComplete) {
-        cell.textLabel.textColor = color;
+        //cell.textLabel.textColor = color;
+        infoCell.statusText = @"已完成";
     }
     else if ([text isEqualToString:@"价格与交易规则"] && self.houseFullInfo.priceInfoComplete){
-        cell.textLabel.textColor = color;
+        //cell.textLabel.textColor = color;
+        infoCell.statusText = @"已完成";
     }
     else if ([text isEqualToString:@"房源信息"] && self.houseFullInfo.houseGeneralInfoComplete){
-        cell.textLabel.textColor = color;
+        //cell.textLabel.textColor = color;
+        infoCell.statusText = @"已完成";
     }
     else if ([text isEqualToString:@"床铺信息"] && self.houseFullInfo.bedInfoComplete){
-        cell.textLabel.textColor = color;
+        //cell.textLabel.textColor = color;
+        infoCell.statusText = @"已完成";
     }
     else if ([text isEqualToString:@"出租方式与房源类型"] && self.houseFullInfo.rentTypeComplete){
-        cell.textLabel.textColor = color;
-        
+        //cell.textLabel.textColor = color;
+        infoCell.statusText = @"已完成";
     }
     else if ([text isEqualToString:@"地址"] && self.houseFullInfo.addressInfoComplete){
-        cell.textLabel.textColor = color;
-        
+        //cell.textLabel.textColor = color;
+        infoCell.statusText = @"已完成";
     }
     else if([text isEqualToString:@"设施列表"] && self.houseFullInfo.facilityInfoComplete && !self.firstEnter){
-        cell.textLabel.textColor = color;
+        //cell.textLabel.textColor = color;
+        infoCell.statusText = @"已完成";
     }
     else if([text isEqualToString:@"位置区域"] && self.houseFullInfo.regionInfoComplete){
-        cell.textLabel.textColor = color;
+        //cell.textLabel.textColor = color;
+        infoCell.statusText = @"已完成";
     }
 }
 
@@ -324,6 +379,7 @@
                                                  [HAActiveWheel dismissForView:self.navigationController.view delay:1];
                                                  if (1 == house.checkStatus) {
                                                      self.submitBtn.hidden = YES;
+                                                     self.protocolLabel.hidden = YES;
                                                      [self.navigationController popViewControllerAnimated:YES];
                                                  }
                                              }
@@ -430,6 +486,14 @@
         vc.house = self.houseFullInfo.house;
         vc.delegate = self;
     }
+    
+    if ([segue.identifier isEqualToString:@"push_web_view"]) {
+        HAWebViewController* vc = segue.destinationViewController;
+        MLLink* link = (MLLink*)sender;
+        NSString *linkText = [self.protocolLabel.text substringWithRange:link.linkRange];
+        vc.url = link.linkValue;
+        vc.linkTitle = linkText;
+    }
 
 }
 
@@ -468,7 +532,7 @@
     HAHouseImage* imageItem = images.firstObject;
     UIImage* image = [UIImage imageWithContentsOfFile:imageItem.localPath];
     if (image) {
-         CIFilter* gaussFileter = [CIFilter filterWithName:@"CIGaussianBlur"];
+        CIFilter* gaussFileter = [CIFilter filterWithName:@"CIGaussianBlur"];
         CIImage* inputImage = [CIImage imageWithCGImage:image.CGImage];
         [gaussFileter setValue:inputImage forKey:@"inputImage"];
         [gaussFileter setValue:@(2.0) forKey:@"inputRadius"];

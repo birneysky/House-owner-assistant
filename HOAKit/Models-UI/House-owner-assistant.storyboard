@@ -516,7 +516,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2pm-sk-v7C" id="zgS-RL-57f">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -644,10 +644,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseTypeCell" id="yJ6-gU-tEj" customClass="HAOffOnCell">
-                                <rect key="frame" x="0.0" y="265.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="266" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yJ6-gU-tEj" id="Lje-2R-Mbj">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -726,7 +726,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gHQ-IH-I17" id="RjL-1e-m1W">
-                                    <frame key="frameInset" width="342" height="55.5"/>
+                                    <frame key="frameInset" width="342" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAA-b9-4cq">
@@ -803,18 +803,18 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HABedTypeCell" rowHeight="56" id="EZp-S9-Tu8" customClass="HAEditPickerCell">
-                                <rect key="frame" x="0.0" y="119.5" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EZp-S9-Tu8" id="8wI-Ll-6lf">
-                                    <frame key="frameInset" width="375" height="55.5"/>
+                                    <frame key="frameInset" width="375" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HABedSizeCell" id="XZD-EW-RnS" customClass="HAEditorNumberCell">
-                                <rect key="frame" x="0.0" y="175.5" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="176" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XZD-EW-RnS" id="tNZ-jW-oGJ">
-                                    <frame key="frameInset" width="375" height="55.5"/>
+                                    <frame key="frameInset" width="375" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -882,7 +882,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <inset key="separatorInset" minX="27" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="separatorInset" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="RJh-4a-VLp">
                             <rect key="frame" x="0.0" y="64" width="375" height="201"/>
@@ -933,7 +933,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="lNQ-MD-jrA">
-                            <rect key="frame" x="0.0" y="382.5" width="375" height="110"/>
+                            <rect key="frame" x="0.0" y="383" width="375" height="110"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT8-w9-Pz0">
@@ -959,29 +959,45 @@
                                         <action selector="submitBtnClicked:" destination="KLx-va-RGR" eventType="touchUpInside" id="vGI-2N-dcU"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我阅读并同意《房东规则》《房源线上线标准》《房东经营行为规范管理》" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKe-wf-vg2" customClass="MLLinkLabel">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4PM-pc-xJH">
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我阅读并同意《房东规则》《房源线上线标准》《房东经营行为规范管理》" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKe-wf-vg2" customClass="MLLinkLabel">
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HA_selected_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="BUm-Ah-jx2">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="15" id="1tk-gF-IqI"/>
+                                                <constraint firstAttribute="height" constant="15" id="WNC-WI-MPr"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="42" id="bBI-4m-dpX"/>
+                                        <constraint firstItem="kKe-wf-vg2" firstAttribute="leading" secondItem="BUm-Ah-jx2" secondAttribute="trailing" constant="5" id="1Rs-us-pX6"/>
+                                        <constraint firstAttribute="trailing" secondItem="kKe-wf-vg2" secondAttribute="trailing" constant="5" id="4DW-PK-gMu"/>
+                                        <constraint firstAttribute="bottom" secondItem="kKe-wf-vg2" secondAttribute="bottom" constant="5" id="Mtx-5h-mQX"/>
+                                        <constraint firstItem="BUm-Ah-jx2" firstAttribute="leading" secondItem="4PM-pc-xJH" secondAttribute="leading" constant="10" id="P7I-eA-oNb"/>
+                                        <constraint firstItem="BUm-Ah-jx2" firstAttribute="centerY" secondItem="4PM-pc-xJH" secondAttribute="centerY" id="fJL-1T-s2j"/>
+                                        <constraint firstItem="kKe-wf-vg2" firstAttribute="top" secondItem="4PM-pc-xJH" secondAttribute="top" constant="5" id="lDg-Wf-5Zr"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="IT8-w9-Pz0" secondAttribute="trailing" constant="20" id="ARc-O4-Gmv"/>
-                                <constraint firstItem="kKe-wf-vg2" firstAttribute="top" secondItem="lNQ-MD-jrA" secondAttribute="top" constant="8" id="D0t-m2-lDG"/>
+                                <constraint firstItem="IT8-w9-Pz0" firstAttribute="top" secondItem="4PM-pc-xJH" secondAttribute="bottom" constant="8" id="Rgf-wT-AWd"/>
                                 <constraint firstItem="IT8-w9-Pz0" firstAttribute="leading" secondItem="lNQ-MD-jrA" secondAttribute="leading" constant="20" id="T8t-QW-iXS"/>
-                                <constraint firstItem="kKe-wf-vg2" firstAttribute="leading" secondItem="lNQ-MD-jrA" secondAttribute="leading" constant="20" id="WsK-2u-Ru1"/>
                                 <constraint firstAttribute="bottom" secondItem="IT8-w9-Pz0" secondAttribute="bottom" constant="8" id="XuP-oN-G9m"/>
-                                <constraint firstAttribute="trailing" secondItem="kKe-wf-vg2" secondAttribute="trailing" constant="20" id="rWd-Yq-EPe"/>
-                                <constraint firstItem="IT8-w9-Pz0" firstAttribute="top" secondItem="kKe-wf-vg2" secondAttribute="bottom" constant="8" id="u2k-VY-N3H"/>
+                                <constraint firstItem="4PM-pc-xJH" firstAttribute="leading" secondItem="lNQ-MD-jrA" secondAttribute="leading" id="g2Q-lc-hOW"/>
+                                <constraint firstAttribute="trailing" secondItem="4PM-pc-xJH" secondAttribute="trailing" id="oVj-SN-MTI"/>
+                                <constraint firstItem="4PM-pc-xJH" firstAttribute="top" secondItem="lNQ-MD-jrA" secondAttribute="top" id="sn0-QD-Iza"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HAHouseSummaryCell" textLabel="R86-BO-m3x" detailTextLabel="bwE-jj-pio" style="IBUITableViewCellStyleSubtitle" id="HF9-Q7-4I2" customClass="HAHouseInfoCell">
-                                <rect key="frame" x="0.0" y="320.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="321" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HF9-Q7-4I2" id="uR1-dc-qEX">
                                     <frame key="frameInset" width="342" height="43"/>
@@ -1029,6 +1045,7 @@
                         <outlet property="headerImageview" destination="Fey-Di-g1C" id="3T5-sw-MpX"/>
                         <outlet property="pictureCountLabel" destination="Uns-Dq-07L" id="gFe-Qe-cbj"/>
                         <outlet property="protocolLabel" destination="kKe-wf-vg2" id="l0a-TQ-e1d"/>
+                        <outlet property="protocolView" destination="4PM-pc-xJH" id="OD4-IW-7Pt"/>
                         <outlet property="refreshBtn" destination="fVS-iM-zbR" id="CV7-jp-ldw"/>
                         <outlet property="submitBtn" destination="IT8-w9-Pz0" id="XFS-WX-c5y"/>
                         <segue destination="bXN-Jg-OJg" kind="show" identifier="push_house_introduce" id="Ekv-zQ-b43"/>
@@ -1283,34 +1300,34 @@
                         <color key="sectionIndexBackgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HADiscountCell" id="X3c-x3-hG6" customClass="HADiscountEditorCell">
-                                <rect key="frame" x="0.0" y="119.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X3c-x3-hG6" id="qgf-cV-WKM">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAPriceNumberCell" id="3UG-LQ-JsS" customClass="HAEditorNumberCell">
-                                <rect key="frame" x="0.0" y="163.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="164" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3UG-LQ-JsS" id="r35-Ah-ohc">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAPriceOnOffCell" id="ZvH-DZ-6Gy" customClass="HAOffOnCell">
-                                <rect key="frame" x="0.0" y="207.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="208" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZvH-DZ-6Gy" id="uQh-Se-3Rf">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAPriceRuleCell" rowHeight="300" id="jO9-f9-5sQ">
-                                <rect key="frame" x="0.0" y="251.5" width="375" height="300"/>
+                                <rect key="frame" x="0.0" y="252" width="375" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jO9-f9-5sQ" id="oyF-QD-5OE">
-                                    <frame key="frameInset" width="375" height="299.5"/>
+                                    <frame key="frameInset" width="375" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmN-sr-0QO">
@@ -1738,18 +1755,18 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HAHouseInfoEditorrCell" rowHeight="44" id="bHD-gM-mf2" customClass="HAEditorNumberCell">
-                                <rect key="frame" x="0.0" y="119.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHD-gM-mf2" id="zhn-0N-Emu">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HAHouseInfoCell" rowHeight="44" id="qbP-HV-mJs" customClass="HAEditPickerCell">
-                                <rect key="frame" x="0.0" y="163.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="164" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qbP-HV-mJs" id="9P9-Xm-wJz">
-                                    <frame key="frameInset" width="342" height="43.5"/>
+                                    <frame key="frameInset" width="342" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1818,6 +1835,7 @@
         <image name="HA_Room_Default_Picture" width="375" height="243"/>
         <image name="HA_Single_Rent" width="50" height="50"/>
         <image name="HA_Top_icon" width="24" height="24"/>
+        <image name="HA_selected_Icon" width="15" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FiJ-Aa-niN"/>

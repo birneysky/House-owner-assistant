@@ -11,6 +11,7 @@
 
 @interface ViewController ()<HASelectHousePositionDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userIdTextField;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -19,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+    self.versionLabel.text = version;
 }
 
 - (void)didReceiveMemoryWarning {

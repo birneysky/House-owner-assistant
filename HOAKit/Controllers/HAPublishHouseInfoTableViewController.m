@@ -35,10 +35,15 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageview;
 @property (weak, nonatomic) IBOutlet UILabel *pictureCountLabel;
 @property (weak, nonatomic) IBOutlet MLLinkLabel *protocolLabel;
+@property (weak, nonatomic) IBOutlet UIView *protocolView;
 
 @property (weak, nonatomic) HAAddHousePhotoViewController* addPhotoVC;
 
 @end
+
+
+static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
+
 
 @implementation HAPublishHouseInfoTableViewController
 
@@ -96,13 +101,21 @@
         [self performSegueWithIdentifier:@"push_web_view" sender:link];
     }];
     
-    NSRange range = [self.protocolLabel.text rangeOfString:@"《房东规则》" options:NSRegularExpressionSearch];
+   
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:self.protocolLabel.text];
-    [attrStr addAttribute:NSLinkAttributeName value:@"http://www.baidu.com" range:range];
+    
+    NSRange range = [self.protocolLabel.text rangeOfString:@"《房东规则》" options:NSRegularExpressionSearch];
+    NSString* linkValue = [baseUrlDoc stringByAppendingString:@"landlord_rule.html"];
+    [attrStr addAttribute:NSLinkAttributeName value:linkValue range:range];
+    
     range = [self.protocolLabel.text rangeOfString:@"《房源线上线标准》" options:NSRegularExpressionSearch];
-    [attrStr addAttribute:NSLinkAttributeName value:@"http://www.sina.com" range:range];
+    linkValue = [baseUrlDoc stringByAppendingString:@"house_standard.html"];
+    [attrStr addAttribute:NSLinkAttributeName value:linkValue range:range];
+    
     range = [self.protocolLabel.text rangeOfString:@"《房东经营行为规范管理》" options:NSBackwardsSearch];
-    [attrStr addAttribute:NSLinkAttributeName value:@"http://www.jd.com" range:range];
+    linkValue = [baseUrlDoc stringByAppendingString:@"landlord_business.html"];
+    [attrStr addAttribute:NSLinkAttributeName value:linkValue range:range];
+    
     self.protocolLabel.attributedText = attrStr;
 }
 
@@ -117,7 +130,7 @@
         if (2 == self.houseFullInfo.house.checkStatus || 1 == self.houseFullInfo.house.checkStatus) {
             self.navigationItem.rightBarButtonItem.enabled = YES;
             self.submitBtn.hidden = YES;
-            self.protocolLabel.hidden = YES;
+            self.protocolView.hidden = YES;
         }
         NSArray* viewControllers = self.navigationController.viewControllers;
         self.navigationController.viewControllers = @[viewControllers.firstObject,self];
@@ -379,7 +392,7 @@
                                                  [HAActiveWheel dismissForView:self.navigationController.view delay:1];
                                                  if (1 == house.checkStatus) {
                                                      self.submitBtn.hidden = YES;
-                                                     self.protocolLabel.hidden = YES;
+                                                     self.protocolView.hidden = YES;
                                                      [self.navigationController popViewControllerAnimated:YES];
                                                  }
                                              }

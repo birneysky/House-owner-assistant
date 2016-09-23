@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M1u-N2-GTn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M1u-N2-GTn">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,20 +15,30 @@
                         <viewControllerLayoutGuide type="bottom" id="t8h-z6-fAi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pvx-zH-MPH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入房东id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4fs-or-GJu">
-                                <rect key="frame" x="20" y="285" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgo-3A-bxM">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="Fa5-IX-jbd"/>
+                                    <constraint firstAttribute="height" constant="21" id="lr4-02-MpH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4fs-or-GJu" firstAttribute="leading" secondItem="pvx-zH-MPH" secondAttribute="leading" constant="20" id="Db8-6f-bi6"/>
+                            <constraint firstItem="jgo-3A-bxM" firstAttribute="centerX" secondItem="pvx-zH-MPH" secondAttribute="centerX" id="N52-qv-33F"/>
                             <constraint firstItem="4fs-or-GJu" firstAttribute="centerX" secondItem="pvx-zH-MPH" secondAttribute="centerX" id="emk-Xa-HaQ"/>
                             <constraint firstAttribute="trailing" secondItem="4fs-or-GJu" secondAttribute="trailing" constant="20" id="nrF-Xo-Whk"/>
+                            <constraint firstItem="t8h-z6-fAi" firstAttribute="top" secondItem="jgo-3A-bxM" secondAttribute="bottom" constant="20" id="raD-Tf-Hh9"/>
                             <constraint firstItem="4fs-or-GJu" firstAttribute="centerY" secondItem="pvx-zH-MPH" secondAttribute="centerY" id="ywa-H8-E26"/>
                         </constraints>
                     </view>
@@ -45,11 +56,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="userIdTextField" destination="4fs-or-GJu" id="d0p-f5-tGt"/>
+                        <outlet property="versionLabel" destination="jgo-3A-bxM" id="bz2-Nw-8kA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2U9-MR-ogZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="325"/>
+            <point key="canvasLocation" x="1135.2" y="324.28785607196403"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O2d-fm-IDT">

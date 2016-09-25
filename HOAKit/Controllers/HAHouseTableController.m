@@ -69,6 +69,7 @@
     self.coverView.frame = CGRectMake(0, 0, size.width, size.height);
     [self.view addSubview:self.coverView];
     NSString* stogagePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseFirstImages"];
+    NSString* netPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
     [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在载入";
     [[HARESTfulEngine defaultEngine] fetchHouseItemsWithHouseOwnerID:[HOAKit defaultInstance].userId completion:^(NSArray<HAHouse*> *objects) {
         [self.coverView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0];
@@ -76,8 +77,11 @@
         
         [self.dataSource enumerateObjectsUsingBlock:^(HAHouse * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString* firstImagePath = [stogagePath stringByAppendingPathComponent:[obj.firstImage lastPathComponent]];
+            NSString* firstImageNetPath = [netPath stringByAppendingPathComponent:[obj.firstImage lastPathComponent]];
             if ([[NSFileManager defaultManager] fileExistsAtPath:firstImagePath]) {
                 obj.firstImageLocalPath = firstImagePath;
+            }else if([[NSFileManager defaultManager] fileExistsAtPath:firstImageNetPath]){
+                obj.firstImageLocalPath = firstImageNetPath;
             }
         }];
         
@@ -163,7 +167,7 @@
     HAHouseInfoBaseCell* itemcell = (HAHouseInfoBaseCell*)cell;
     [itemcell setCheckText:checkText];
     [itemcell setPrice:item.price];
-    [itemcell setAddress:item.address];
+    [itemcell setAddress:item.title];
     [itemcell setHouseType:item.houseType roomCount:item.roomNumber];
     if (item.firstImageLocalPath.length > 0) {
         [itemcell setHeadImage:[UIImage imageWithContentsOfFile:item.firstImageLocalPath]];
@@ -264,7 +268,7 @@
             obj.roomNumber = house.roomNumber;
             if (![obj.firstImage isEqualToString:house.firstImage]) {
                 obj.firstImage = house.firstImage;
-                obj.firstImageLocalPath = nil;
+                obj.firstImageLocalPath = house.firstImageLocalPath;
             }
             
             *stop = YES;

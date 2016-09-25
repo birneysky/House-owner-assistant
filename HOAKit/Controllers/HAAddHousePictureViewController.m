@@ -617,7 +617,8 @@ static  HAAddHousePictureViewController* strongSelf = nil;
         self.house.firstImage = house.firstImage;
         HAHouseImage* imageItem = self.photosArray[indexPath.row];
         imageItem.isFirstImage = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:HAHouseModifyInformationNotification object:house];
+        self.house.firstImageLocalPath = imageItem.localPath;
+        [[NSNotificationCenter defaultCenter] postNotificationName:HAHouseModifyInformationNotification object:self.house];
         if (0 == indexPath.row) {
             [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
             return;

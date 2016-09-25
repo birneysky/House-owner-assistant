@@ -130,7 +130,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
         if (2 == self.houseFullInfo.house.checkStatus || 1 == self.houseFullInfo.house.checkStatus) {
             self.navigationItem.rightBarButtonItem.enabled = YES;
             self.submitBtn.hidden = YES;
-            self.protocolView.hidden = YES;
+            //self.protocolView.hidden = YES;
         }
         NSArray* viewControllers = self.navigationController.viewControllers;
         self.navigationController.viewControllers = @[viewControllers.firstObject,self];
@@ -392,7 +392,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
                                                  [HAActiveWheel dismissForView:self.navigationController.view delay:1];
                                                  if (1 == house.checkStatus) {
                                                      self.submitBtn.hidden = YES;
-                                                     self.protocolView.hidden = YES;
+                                                     //self.protocolView.hidden = YES;
                                                      [self.navigationController popViewControllerAnimated:YES];
                                                  }
                                              }

@@ -455,7 +455,7 @@ static  HAAddHousePictureViewController* strongSelf = nil;
     pictureCell.delegate = self;
     pictureCell.uploadProgress = item.progress;
     pictureCell.mainImageIconHidden = YES;
-    if (item.isFirstImage){
+    if (item.isFirstImage && !self.edited){
         pictureCell.mainImageIconHidden = NO;
     }
     if (HAPhotoUploadOrDownloadStateBegin == item.stauts) {

@@ -59,7 +59,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.title = @"";
+    //self.title = @"";
 }
 
 #pragma mark - *** Helper ***
@@ -188,12 +188,14 @@
             break;
         case 2://通过
             [self performSegueWithIdentifier:@"push_publish_house" sender:[indexPath copy]];
+            self.title=@"";
             break;
         case 3://已拒绝
             // show toast;
             break;
         case 4://补充材料
             [self performSegueWithIdentifier:@"push_publish_house" sender:[indexPath copy]];
+            self.title = @"";
             break;
     }
 }

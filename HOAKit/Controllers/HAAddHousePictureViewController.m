@@ -188,6 +188,7 @@ static  HAAddHousePictureViewController* strongSelf = nil;
 {
     [super viewWillDisappear:animated];
     [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
+    [self.delegate houseDidChangned:self.house];
 }
 
 
@@ -203,15 +204,24 @@ static  HAAddHousePictureViewController* strongSelf = nil;
         HAHouseImage* houseImageObj = weakSelf.photosArray[index];
         houseImageObj.imageId = obj.imageId;
         houseImageObj.stauts = HAPhotoUploadOrDownloadStateFinsish;
-        
+
         NSString* targetPath = [downloadsBasePath stringByAppendingPathComponent:[obj.imagePath lastPathComponent]];
         [[NSFileManager defaultManager] moveItemAtPath:path toPath:targetPath error:nil];
         houseImageObj.localPath = targetPath;
+        
+        if (0 == index) {
+            weakSelf.house.firstImage = obj.imagePath;
+            weakSelf.house.firstImageLocalPath = targetPath;
+            [[NSNotificationCenter defaultCenter] postNotificationName:HAHouseModifyInformationNotification object:weakSelf.house];
+            houseImageObj.isFirstImage = YES;
+        }
+        
         [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
         [weakSelf.netOperationDic removeObjectForKey:certificate];
         obj.userId = weakSelf.house.landlordId;
         obj.houseId = weakSelf.house.houseId;
         
+
         if (weakSelf.photosArray.count >= PHOTO_COUNT_MAX) {
             weakSelf.addPhotoBtn.enabled = NO;
             weakSelf.addPhotoBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -599,6 +609,11 @@ static  HAAddHousePictureViewController* strongSelf = nil;
         self.addPhotoBtn.enabled = YES;
         self.addPhotoBtn.layer.borderColor = [UIColor colorWithRed:245/255.0f green:2/255.0f blue:63/255.0f alpha:1].CGColor;
         [self.delegate imagesOfHouseDidChange:[self.photosArray copy]];
+        if (0 ==indexPath.row && item.isFirstImage) {
+            self.house.firstImage = nil;
+            self.house.firstImageLocalPath = nil;
+             [[NSNotificationCenter defaultCenter] postNotificationName:HAHouseModifyInformationNotification object:self.house];
+        }
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"删除失败，请检查网络"];
     }];

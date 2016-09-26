@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *locationPromptView;
 @property (weak, nonatomic) IBOutlet UIImageView *locationPointImgView;
 @property (strong, nonatomic) IBOutlet UILabel *textViewInputingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stupidLabel;
 
 @property(nonatomic,strong) UIDynamicAnimator* animator;
 @property(nonatomic,strong) HALeapBehavior* behavior;
@@ -123,6 +124,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
 #pragma mark - *** Init ***
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.mapView layoutIfNeeded];
     if([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
         [self.locationManager requestWhenInUseAuthorization];
     self.cityAddressTextfield.locationPickerDelegate = self;
@@ -155,7 +157,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
         self.newHouse = YES;
     }
     
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    //self.navigationItem.rightBarButtonItem.enabled = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
 
 }
@@ -178,6 +180,13 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
 }
 
 - (IBAction)nextBtnclicked:(UIBarButtonItem *)sender {
+    
+    [self.view endEditing:YES];
+    BOOL flag = [self checkAdressValidity];
+    if (!flag) {
+        return;
+    }
+    
     if ([sender.title isEqualToString:@"下一步"]) {
         [self performSegueWithIdentifier:@"push_house_type" sender:nil];
     }
@@ -214,6 +223,26 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
 {
     self.locationPromptView.hidden = YES;
     [self.behavior addItem:self.locationPointImgView];
+    CLLocationCoordinate2D mapCenterCoordinate =
+        [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView];
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:mapCenterCoordinate.latitude longitude:mapCenterCoordinate.longitude];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *array, NSError *error){
+        if (array.count > 0){
+            CLPlacemark *placemark = [array objectAtIndex:0];
+            self.stupidLabel.text = placemark.name;
+        }
+        else if (error == nil && [array count] == 0)
+        {
+             NSLog(@"No results were returned.");
+             self.stupidLabel.text = @"拖动地图标记房源位置";
+        }
+        else if (error != nil)
+        {
+            NSLog(@"An error occurred = %@", error);
+            self.stupidLabel.text = @"拖动地图标记房源位置";
+        }
+    }];
 }
 
 
@@ -320,7 +349,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
                 }
                 
                 self.latAndLngValidityFlag = YES;
-                [self checkAdressValidity];
+                //[self checkAdressValidity];
             }
 
             CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
@@ -406,20 +435,33 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
         }
     }
     
-    [self checkAdressValidity];
+    //[self checkAdressValidity];
 }
 
 #pragma mark - *** Helper ***
-- (void)checkAdressValidity
+- (BOOL)checkAdressValidity
 {
     BOOL change = ![self.house isEqualToHouse:self.houseCopy];
     BOOL validTest = (self.validFlag & HAValueValidStateNormal) == HAValueValidStateNormal;
+    if(self.cityAddressTextfield.text.length <= 0)
+    {
+         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"请选择城市"];
+    }
+    else if (self.house.address.length <= 0) {
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"请先填写详细位置"];
+        
+    }else if (self.house.houseNumber.length <=0)
+    {
+         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"请先填写门牌号"];
+    }
     BOOL complete = self.newHouse ? self.house.address.length > 0 && self.house.houseNumber > 0 :  self.houseCopy.address.length > 0 && self.houseCopy.houseNumber > 0;
     if (change && validTest && complete && self.latAndLngValidityFlag) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+        //self.navigationItem.rightBarButtonItem.enabled = YES;
+        return YES;
     }
     else{
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        //self.navigationItem.rightBarButtonItem.enabled = NO;
+        return NO;
     }
 }
 

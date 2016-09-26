@@ -268,6 +268,7 @@
             obj.price       =  house.price;
             obj.checkStatus = house.checkStatus;
             obj.roomNumber = house.roomNumber;
+            obj.title = house.title;
             if (![obj.firstImage isEqualToString:house.firstImage]) {
                 obj.firstImage = house.firstImage;
                 obj.firstImageLocalPath = house.firstImageLocalPath;

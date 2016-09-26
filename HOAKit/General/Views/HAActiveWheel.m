@@ -70,7 +70,7 @@
     hud.customView = [[UIImageView alloc] initWithImage:image];
     // Optional label text.
     hud.label.text = text;
-    hud.label.textColor = [UIColor redColor];
+    //hud.label.textColor = [UIColor redColor];
     
     [hud hideAnimated:YES afterDelay:3.f];
 }
@@ -87,7 +87,7 @@
     hud.customView = [[UIImageView alloc] initWithImage:image];
     // Optional label text.
     hud.label.text = text;
-    hud.label.textColor = [UIColor redColor];
+    //hud.label.textColor = [UIColor redColor];
     
     [hud hideAnimated:YES afterDelay:3.f];
 }
@@ -133,7 +133,7 @@
 
 - (void)setWarningString:(NSString *)warningString
 {
-    self.label.textColor = [UIColor redColor];
+    //self.label.textColor = [UIColor redColor];
     self.label.text = warningString;
 }
 

@@ -201,7 +201,7 @@
     if ([segue.identifier isEqualToString:@"push_publish_house"]) {
         HAPublishHouseInfoTableViewController* vc = segue.destinationViewController;
         vc.houseId = self.house.houseId;
-        vc.firstEnter = YES;
+        //vc.firstEnter = YES;
     }
 }
 
@@ -256,7 +256,7 @@
 }
 
 - (IBAction)okBtnClicked:(id)sender {
-    self.house.landlordId = 1;
+    self.house.landlordId = [HOAKit defaultInstance].userId;
 
     if (self.isNewHouse) {
         [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在新建房源";

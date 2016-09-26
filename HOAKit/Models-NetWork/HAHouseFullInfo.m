@@ -12,7 +12,7 @@
 
 - (BOOL) houseImageComplete
 {
-    return self.images.count >= 5;
+    return self.images.count >= 5 ;
 }
 
 - (BOOL) houseGeneralInfoComplete
@@ -32,13 +32,35 @@
 
 - (BOOL) facilityInfoComplete
 {
-    if (self.facility) {
-        return YES;
-    }
-    else{
+//    if (self.facility) {
+//        return YES;
+//    }
+//    else{
+//        return NO;
+//    }
+
+    if( self.facility.hotShower &&
+       self.facility.sofa &&
+       self.facility.showerGel &&
+       self.facility.tv &&
+       self.facility.microwaveOven &&
+       self.facility.computer &&
+       self.facility.airCondition &&
+       self.facility.drinkingFountain &&
+       self.facility.refrigerator &&
+       self.facility.washer &&
+       self.facility.wifi &&
+       self.facility.wiredNetwork &&
+       self.facility.parkingSpace &&
+       self.facility.smokingAllowed &&
+       self.facility.cookAllowed &&
+       self.facility.petsAllowed &&
+       self.facility.partyAllowed){
         return NO;
     }
-     /*self.facility.hotShower && self.facility.wifi && self.facility.tv && self.facility.airCondition;*/
+    else{
+        return YES;
+    }
 }
 
 - (BOOL) priceInfoComplete

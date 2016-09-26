@@ -303,7 +303,7 @@
                             <state key="normal" title="加载失败，点击重试">
                                 <color key="titleColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="highlighted" image="HA_HOAKit_Icon_HighLight">
+                            <state key="highlighted">
                                 <color key="titleColor" red="0.96078431369999995" green="0.0078431372550000003" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -407,15 +407,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Bg-AX-KMn">
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nCY-Jj-6OV">
-                                                <frame key="frameInset" width="144" height="44"/>
+                                                <frame key="frameInset" width="184" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HA_Bubble" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-zE-ZIY">
-                                                        <frame key="frameInset" minY="-2" width="144" height="44"/>
+                                                        <frame key="frameInset" minY="-2" width="186" height="57"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="拖动地图标记房源位置" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eq-yt-f31">
-                                                        <frame key="frameInset" minY="8" width="144" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="拖动地图标记房源位置" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eq-yt-f31">
+                                                        <frame key="frameInset" minX="8" minY="3" width="168" height="41"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -425,14 +425,14 @@
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HA_Location_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="NJK-CO-oVQ">
-                                                <frame key="frameInset" minX="47" minY="47" width="50" height="50"/>
+                                                <frame key="frameInset" minX="67" minY="56" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="96" id="VpM-JH-3XH"/>
-                                            <constraint firstAttribute="width" constant="144" id="uSb-gs-odh"/>
+                                            <constraint firstAttribute="height" constant="106" id="VpM-JH-3XH"/>
+                                            <constraint firstAttribute="width" constant="184" id="uSb-gs-odh"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-3s-81j">
@@ -486,6 +486,7 @@
                         <outlet property="locationPromptView" destination="nCY-Jj-6OV" id="dfT-c3-WGF"/>
                         <outlet property="locationView" destination="8Bg-AX-KMn" id="CQU-F4-iQP"/>
                         <outlet property="mapView" destination="PmT-oK-NPe" id="QZF-iI-KRR"/>
+                        <outlet property="stupidLabel" destination="2eq-yt-f31" id="Dhp-QK-ZIA"/>
                         <outlet property="textViewInputingLabel" destination="NYE-ZU-5sX" id="7Q9-r2-LTX"/>
                         <segue destination="uOt-M8-ctJ" kind="show" identifier="push_house_type" id="b8F-wb-8Bk"/>
                     </connections>
@@ -499,7 +500,7 @@
                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </label>
             </objects>
-            <point key="canvasLocation" x="3230" y="706"/>
+            <point key="canvasLocation" x="3229.5999999999999" y="705.69715142428788"/>
         </scene>
         <!--House Facilities View Controller-->
         <scene sceneID="itq-tn-AAn">
@@ -514,7 +515,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2pm-sk-v7C" id="zgS-RL-57f">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -645,7 +646,7 @@
                                 <rect key="frame" x="0.0" y="266" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yJ6-gU-tEj" id="Lje-2R-Mbj">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -724,7 +725,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gHQ-IH-I17" id="RjL-1e-m1W">
-                                    <frame key="frameInset" width="342" height="55"/>
+                                    <frame key="frameInset" width="342" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAA-b9-4cq">
@@ -804,7 +805,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EZp-S9-Tu8" id="8wI-Ll-6lf">
-                                    <frame key="frameInset" width="375" height="55"/>
+                                    <frame key="frameInset" width="375" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -812,7 +813,7 @@
                                 <rect key="frame" x="0.0" y="176" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XZD-EW-RnS" id="tNZ-jW-oGJ">
-                                    <frame key="frameInset" width="375" height="55"/>
+                                    <frame key="frameInset" width="375" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -888,6 +889,7 @@
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HA_Room_Default_Picture" translatesAutoresizingMaskIntoConstraints="NO" id="Fey-Di-g1C">
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <gestureRecognizers/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leX-lG-Uva">
                                     <constraints>
@@ -902,7 +904,7 @@
                                         <action selector="addBtnClicked:" destination="KLx-va-RGR" eventType="touchUpInside" id="Msj-dU-dcf"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uns-Dq-07L">
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uns-Dq-07L">
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="AUp-Uf-PjH"/>
@@ -931,7 +933,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="lNQ-MD-jrA">
-                            <rect key="frame" x="0.0" y="383" width="375" height="110"/>
+                            <rect key="frame" x="0.0" y="382.5" width="375" height="110"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT8-w9-Pz0">
@@ -998,7 +1000,7 @@
                                 <rect key="frame" x="0.0" y="321" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HF9-Q7-4I2" id="uR1-dc-qEX">
-                                    <frame key="frameInset" width="342" height="43"/>
+                                    <frame key="frameInset" width="342" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R86-BO-m3x">
@@ -1016,7 +1018,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="未完成" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywt-qy-ID3">
-                                            <frame key="frameInset" minY="11" width="110" height="21" maxX="8"/>
+                                            <frame key="frameInset" minY="11" width="108" height="21" maxX="10"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
@@ -1072,7 +1074,7 @@
                             <state key="normal" title="加载失败，点击重试">
                                 <color key="titleColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="highlighted" image="HA_HOAKit_Icon_HighLight">
+                            <state key="highlighted">
                                 <color key="titleColor" red="0.96078431369999995" green="0.0078431372550000003" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -1299,7 +1301,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X3c-x3-hG6" id="qgf-cV-WKM">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1307,7 +1309,7 @@
                                 <rect key="frame" x="0.0" y="164" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3UG-LQ-JsS" id="r35-Ah-ohc">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1315,7 +1317,7 @@
                                 <rect key="frame" x="0.0" y="208" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZvH-DZ-6Gy" id="uQh-Se-3Rf">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1323,7 +1325,7 @@
                                 <rect key="frame" x="0.0" y="252" width="375" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jO9-f9-5sQ" id="oyF-QD-5OE">
-                                    <frame key="frameInset" width="375" height="299"/>
+                                    <frame key="frameInset" width="375" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmN-sr-0QO">
@@ -1508,7 +1510,7 @@
                             <state key="normal" title="加载失败，点击重试">
                                 <color key="titleColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="highlighted" image="HA_HOAKit_Icon_HighLight">
+                            <state key="highlighted">
                                 <color key="titleColor" red="0.96078431369999995" green="0.0078431372550000003" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -1790,7 +1792,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHD-gM-mf2" id="zhn-0N-Emu">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1798,7 +1800,7 @@
                                 <rect key="frame" x="0.0" y="164" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qbP-HV-mJs" id="9P9-Xm-wJz">
-                                    <frame key="frameInset" width="342" height="43"/>
+                                    <frame key="frameInset" width="342" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1862,7 +1864,6 @@
         <image name="HA_Entire_Rent" width="50" height="50"/>
         <image name="HA_Gray_Icon" width="14" height="14"/>
         <image name="HA_Green_Icon" width="14" height="14"/>
-        <image name="HA_HOAKit_Icon_HighLight" width="78" height="78"/>
         <image name="HA_Location_Icon" width="40" height="40"/>
         <image name="HA_Main_Image" width="56" height="56"/>
         <image name="HA_Red_Icon" width="14" height="14"/>
@@ -1872,10 +1873,10 @@
         <image name="HA_selected_Icon" width="15" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WNT-mR-AND"/>
         <segue reference="FiJ-Aa-niN"/>
-        <segue reference="07F-D8-dhg"/>
+        <segue reference="WNT-mR-AND"/>
         <segue reference="yMh-cr-Tlz"/>
+        <segue reference="07F-D8-dhg"/>
         <segue reference="efl-mY-tkK"/>
     </inferredMetricsTieBreakers>
 </document>

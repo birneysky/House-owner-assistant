@@ -69,7 +69,7 @@
     NSString* text = self.dataSource[indexPath.row];
     cell.textLabel.text = text;
     
-    cell.accessoryViewSelected = [self.factilities boolValueOfChineseName:text];
+    cell.accessoryViewSelected = ![self.factilities boolValueOfChineseName:text];
     
     cell.delegate = self;
     
@@ -87,7 +87,7 @@
     
     NSString* text = self.dataSource[indexPath.row];
 
-    [self.factilities setValue:cell.accessoryViewSelected forChineseName:text];
+    [self.factilities setValue:!cell.accessoryViewSelected forChineseName:text];
 
 
 }
@@ -116,7 +116,7 @@
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     NSString* text = self.dataSource[indexPath.row];
     HAOffOnCell* offCell = (HAOffOnCell*)cell;
-    [self.factilities setValue:offCell.accessoryViewSelected forChineseName:text];
+    [self.factilities setValue:!offCell.accessoryViewSelected forChineseName:text];
 }
 
 @end

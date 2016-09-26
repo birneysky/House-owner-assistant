@@ -73,6 +73,13 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
 
     [self fetchHouseInfo];
     [self configProtocolLabel];
+    
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headImageTapped:)];
+    //设置点击次数和点击手指数
+    tapGesture.numberOfTapsRequired = 1; //点击次数
+    tapGesture.numberOfTouchesRequired = 1; //点击手指数
+    [self.headerImageview addGestureRecognizer:tapGesture];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -348,7 +355,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
         //cell.textLabel.textColor = color;
         infoCell.statusText = @"已完成";
     }
-    else if([text isEqualToString:@"设施列表"] && self.houseFullInfo.facilityInfoComplete && !self.firstEnter){
+    else if([text isEqualToString:@"设施列表"] && self.houseFullInfo.facilityInfoComplete && self.houseFullInfo.facilityInfoComplete){
         //cell.textLabel.textColor = color;
         infoCell.statusText = @"已完成";
     }
@@ -372,6 +379,10 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
     }
  
 }
+- (IBAction)headImageTapped:(UITapGestureRecognizer *)sender {
+    
+    [self addBtnClicked:nil];
+}
 
 - (IBAction)submitBtnClicked:(id)sender {
     if (self.houseFullInfo.houseDescriptionComplete &&
@@ -394,6 +405,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
                                                      self.submitBtn.hidden = YES;
                                                      //self.protocolView.hidden = YES;
                                                      [self.navigationController popViewControllerAnimated:YES];
+                                                     [[NSNotificationCenter defaultCenter] postNotificationName:HAHouseModifyInformationNotification object:self.houseFullInfo.house];
                                                  }
                                              }
                                                 onError:^(NSError *engineError) {
@@ -401,6 +413,9 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
             
         }];
         
+    }
+    else if( self.houseFullInfo.house.firstImage.length > 0){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"未设置主图"];
     }
     else if (!self.houseFullInfo.houseImageComplete){
         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"图片少于5张"];
@@ -414,8 +429,8 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
     else if(!self.houseFullInfo.houseGeneralInfoComplete){
         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"房源信息未完善"];
     }
-    else if (!!self.firstEnter){
-        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"设施列表未完善"];
+    else if (!self.houseFullInfo.facilityInfoComplete){
+        [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"请选择设施"];
     }
     else if(!self.houseFullInfo.bedInfoComplete){
         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"床铺信息未完善"];
@@ -423,6 +438,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
     else if(!self.houseFullInfo.regionInfoComplete){
         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"位置区域未完善"];
     }
+
 
     
 }
@@ -450,7 +466,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
         vc.houseId = self.houseId;
         vc.factilities = self.houseFullInfo.facility;
         vc.delegate = self;
-        self.firstEnter = NO;
+        //self.firstEnter = NO;
     }
     
     if ([segue.identifier isEqualToString:@"push_house_area"]) {
@@ -553,6 +569,9 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
         CIContext *context = [CIContext contextWithOptions:nil];
         CGImageRef resultImage =[context createCGImage:outputimage fromRect:CGRectMake(0, 0, image.size.width, image.size.height)];
         self.headerImageview.image = [UIImage imageWithCGImage:resultImage];
+    }
+    else{
+        self.headerImageview.image = [UIImage imageNamed:@"HOAKit.bundle/HA_Room_Default_Picture"];
     }
    
 }

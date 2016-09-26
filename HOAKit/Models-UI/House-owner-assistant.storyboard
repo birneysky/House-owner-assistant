@@ -294,19 +294,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-7S-yhz">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-7S-yhz">
                             <constraints>
                                 <constraint firstAttribute="width" constant="117" id="PCa-og-Stf"/>
                                 <constraint firstAttribute="height" constant="80" id="ama-BE-pyC"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="-60" minY="65" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="21" minY="-20" maxX="8" maxY="0.0"/>
-                            <state key="normal" title="加载失败，点击重试" image="HA_HOAKit_Icon_Normal">
+                            <state key="normal" title="加载失败，点击重试">
                                 <color key="titleColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="highlighted" image="HA_HOAKit_Icon_HighLight">
-                                <color key="titleColor" red="0.42745098040000001" green="0.72941176470000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.96078431369999995" green="0.0078431372550000003" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="refreshBtnClicked:" destination="pd0-tQ-jb0" eventType="touchUpInside" id="2Vd-8p-jfF"/>
@@ -1071,13 +1069,11 @@
                                 <constraint firstAttribute="width" constant="117" id="UWf-fE-OHJ"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="-60" minY="65" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="21" minY="-20" maxX="8" maxY="0.0"/>
-                            <state key="normal" title="加载失败，点击重试" image="HA_HOAKit_Icon_Normal">
+                            <state key="normal" title="加载失败，点击重试">
                                 <color key="titleColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="highlighted" image="HA_HOAKit_Icon_HighLight">
-                                <color key="titleColor" red="0.42745098039215684" green="0.72941176470588232" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.96078431369999995" green="0.0078431372550000003" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="reloadBtnClicked:" destination="KLx-va-RGR" eventType="touchUpInside" id="bVh-ah-p5S"/>
@@ -1509,13 +1505,11 @@
                                 <constraint firstAttribute="width" constant="117" id="OQy-D3-HqH"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="-60" minY="65" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="21" minY="-20" maxX="8" maxY="0.0"/>
-                            <state key="normal" title="加载失败，点击重试" image="HA_HOAKit_Icon_Normal">
+                            <state key="normal" title="加载失败，点击重试">
                                 <color key="titleColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="highlighted" image="HA_HOAKit_Icon_HighLight">
-                                <color key="titleColor" red="0.42745098040000001" green="0.72941176470000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.96078431369999995" green="0.0078431372550000003" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="refreshBtnClicked:" destination="1zs-ci-zDz" eventType="touchUpInside" id="E8r-TZ-c7D"/>
@@ -1869,7 +1863,6 @@
         <image name="HA_Gray_Icon" width="14" height="14"/>
         <image name="HA_Green_Icon" width="14" height="14"/>
         <image name="HA_HOAKit_Icon_HighLight" width="78" height="78"/>
-        <image name="HA_HOAKit_Icon_Normal" width="63" height="60"/>
         <image name="HA_Location_Icon" width="40" height="40"/>
         <image name="HA_Main_Image" width="56" height="56"/>
         <image name="HA_Red_Icon" width="14" height="14"/>
@@ -1879,8 +1872,8 @@
         <image name="HA_selected_Icon" width="15" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FiJ-Aa-niN"/>
         <segue reference="WNT-mR-AND"/>
+        <segue reference="FiJ-Aa-niN"/>
         <segue reference="07F-D8-dhg"/>
         <segue reference="yMh-cr-Tlz"/>
         <segue reference="efl-mY-tkK"/>

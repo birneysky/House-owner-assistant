@@ -360,7 +360,6 @@ static HARESTfulEngine* defaultEngine;
     
     [op onUploadProgressChanged:^(double progress) {
         progressBlock(weakOp.clientCertificate,progress);
-       // DLog(@"Upload file progress: %.2f", progress*100.0);
     }];
     return op;
 }

@@ -181,7 +181,7 @@
         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"户型未填写"];
         return;
     }
-    else if (self.houseCopy.toiletNumber <= 0 || self.houseCopy.publicToiletNumber){
+    else if (self.houseCopy.toiletNumber == 0 && self.houseCopy.publicToiletNumber ==  0){
         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"卫生间未填写"];
         return;
     }

@@ -414,7 +414,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
         }];
         
     }
-    else if( self.houseFullInfo.house.firstImage.length > 0){
+    else if( self.houseFullInfo.house.firstImage.length <= 0){
         [HAActiveWheel showPromptHUDAddedTo:self.navigationController.view text:@"未设置主图"];
     }
     else if (!self.houseFullInfo.houseImageComplete){

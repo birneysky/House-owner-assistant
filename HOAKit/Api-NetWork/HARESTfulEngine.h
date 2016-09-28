@@ -116,6 +116,19 @@ typedef void (^ErrorBlock)(NSError* engineError);
           completion:(void(^)(HAHouseBed* bed))completion
              onError:(ErrorBlock)errBlock;
 
+/**
+ * 修改床铺信息
+ *
+ *  @param bed            床铺对象
+ *  @param completion     网络请求结束 block
+ *  @param errorBlcok     调用出错 block
+ */
+
+- (void) modifyHouseBed:(HAHouseBed*)bed
+             completion:(void(^)(HAHouseBed* bed))completion
+                onError:(ErrorBlock)errBlock;
+
+
 
 /**
  *  删除床铺信息

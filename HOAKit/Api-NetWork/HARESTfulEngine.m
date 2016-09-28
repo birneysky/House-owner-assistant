@@ -272,6 +272,21 @@ static HARESTfulEngine* defaultEngine;
     }];
 }
 
+- (void) modifyHouseBed:(HAHouseBed*)bed
+             completion:(void(^)(HAHouseBed* bed))completion
+                onError:(ErrorBlock)errBlock
+{
+    NSString* path = [NSString stringWithFormat:@"api/house_beds/%ld",(long)bed.houseId];
+    [self httpRequestWithPath:path generalParams:[bed toFullDictionary] httpMethod:@"PUT" completion:^(NSDictionary *object) {
+        NSDictionary* dic = [(NSDictionary*)object objectForKey:@"data"];
+        HAHouseBed* bedresult = [[HAHouseBed alloc] initWithDictionary:dic];
+        completion(bedresult);
+    } onError:^(NSError *engineError) {
+        errBlock(engineError);
+    }];
+}
+
+
 - (void) removeHouseBedWithID:(NSInteger)bedId
                    completion:(void(^)(void))completion
                       onError:(ErrorBlock)errBlock

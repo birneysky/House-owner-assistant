@@ -30,6 +30,7 @@
 {
     [super viewWillAppear:animated];
     self.title = @"添加床铺";
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

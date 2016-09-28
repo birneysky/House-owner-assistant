@@ -137,7 +137,7 @@
 #pragma mark - *** Helper ***
 - (void) checkBedInfoCompleteness
 {
-    if (self.isNewBed&&self.bed.bedTypeId > 0 && self.bed.width > 0 && self.bed.length > 0 && self.bed.number > 0) {
+    if (self.bed.bedTypeId > 0 && self.bed.width > 0 && self.bed.length > 0 && self.bed.number > 0) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else{
@@ -148,9 +148,9 @@
 #pragma mark - *** HAHouseBedTypeSelectDetailResult ***
 - (void)didSelectBedType:(NSInteger)type
 {
-    if (!self.isNewBed) {
-        return;
-    }
+//    if (!self.isNewBed) {
+//        return;
+//    }
     self.bed.bedTypeId = type;
     [self checkBedInfoCompleteness];
 }
@@ -159,9 +159,9 @@
 - (void)selectItemDoneForPickerTextField:(UITextField*)textfield
                                 fromCell:(UITableViewCell*) cell
 {
-    if (!self.isNewBed) {
-        return;
-    }
+//    if (!self.isNewBed) {
+//        return;
+//    }
     NSString* text = cell.textLabel.text;
     if ([text isEqualToString:@"床型"]) {
         self.bed.bedTypeId = [HAAppDataHelper typeForBedName:textfield.text];
@@ -170,40 +170,38 @@
     [self checkBedInfoCompleteness];
 }
 
-- (void) textFieldDidEndEditing:(UITextField*)textfield
-                       fromCell:(UITableViewCell*) cell
-{
-    if (!self.isNewBed) {
-        return;
-    }
-    NSString* text = cell.textLabel.text;
-    if ([text isEqualToString:@"长度"]) {
-        self.bed.length = [textfield.text floatValue];
-    }
-    else if ([text isEqualToString:@"宽度"]){
-        self.bed.width = [textfield.text floatValue];
-    }
-    else if ([text isEqualToString:@"数量"]){
-        self.bed.number = [textfield.text integerValue];
-    }
-}
-
 #pragma mark - ***Target Action  ***
 - (IBAction)saveBtnClicked:(id)sender {
     
     [self.view endEditing:YES];
     self.bed.houseId = self.houseId;
-    [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在添加";
-    [[HARESTfulEngine defaultEngine] addHouseBed:self.bed completion:^(HAHouseBed *object) {
-        [HAActiveWheel dismissForView:self.navigationController.view];
-        if ([self.delegate respondsToSelector:@selector(houseBedInfoDidEndEditing:)]) {
-            [self.delegate houseBedInfoDidEndEditing:object];
-        }
-        [self.navigationController popViewControllerAnimated:YES];
+    if (self.isNewBed) {
+        [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在添加";
+        [[HARESTfulEngine defaultEngine] addHouseBed:self.bed completion:^(HAHouseBed *object) {
+            [HAActiveWheel dismissForView:self.navigationController.view];
+            if ([self.delegate respondsToSelector:@selector(houseBedInfoDidEndEditing:)]) {
+                [self.delegate houseBedInfoDidEndEditing:object];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } onError:^(NSError *engineError) {
+            [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"添加失败，请检查网络"];
+        }];
+    }
+    else{
+         [HAActiveWheel showHUDAddedTo:self.navigationController.view].processString = @"正在添加";
+        [NETWORKENGINE modifyHouseBed:self.bed completion:^(HAHouseBed *bed) {
+            self.bed.length = bed.length;
+            self.bed.width = bed.width;
+            self.bed.number = bed.number;
+            self.bed.bedTypeId = bed.bedTypeId;
+             [HAActiveWheel dismissForView:self.navigationController.view];
+            [self.navigationController popViewControllerAnimated:YES];
+        } onError:^(NSError *engineError) {
+             [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"添加失败，请检查网络"];
+        }];
+    }
 
-    } onError:^(NSError *engineError) {
-        [HAActiveWheel dismissViewDelay:2 forView:self.navigationController.view warningText:@"添加失败，请检查网络"];
-    }];
 }
 
 #pragma mark - *** HAEditorNumberCellDelegate ***
@@ -211,9 +209,9 @@
                      changeText:(NSString*)text
                        fromCell:(UITableViewCell*) cell{
     
-    if (!self.isNewBed) {
-        return;
-    }
+//    if (!self.isNewBed) {
+//        return;
+//    }
     NSString* textTitle = cell.textLabel.text;
     if ([textTitle isEqualToString:@"长度"]) {
         self.bed.length = [text floatValue];

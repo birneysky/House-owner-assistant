@@ -336,13 +336,13 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
     if (self.selectedAssets.count == 0)
         return nil;
     
-    NSPredicate *photoPredicate = [self predicateOfAssetType:ALAssetTypePhoto];
-    NSPredicate *videoPredicate = [self predicateOfAssetType:ALAssetTypeVideo];
+//    NSPredicate *photoPredicate = [self predicateOfAssetType:ALAssetTypePhoto];
+//    NSPredicate *videoPredicate = [self predicateOfAssetType:ALAssetTypeVideo];
     
-    BOOL photoSelected = ([self.selectedAssets filteredArrayUsingPredicate:photoPredicate].count > 0);
-    BOOL videoSelected = ([self.selectedAssets filteredArrayUsingPredicate:videoPredicate].count > 0);
-    
-    NSString *format;
+//    BOOL photoSelected = ([self.selectedAssets filteredArrayUsingPredicate:photoPredicate].count > 0);
+//    BOOL videoSelected = ([self.selectedAssets filteredArrayUsingPredicate:videoPredicate].count > 0);
+//    
+//    NSString *format;
     
 //    if (photoSelected && videoSelected)
 //        format = NSLocalizedString(@"已选择%ld项", nil);
@@ -355,7 +355,7 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
     
     
     //return [NSString stringWithFormat:format, (long)self.selectedAssets.count];
-    return [NSString stringWithFormat:@"%ld/%ld",self.selectedAssets.count,self.totalNumberOfChoices];
+    return [NSString stringWithFormat:@"%ld/%ld",(long)self.selectedAssets.count,(long)self.totalNumberOfChoices];
 }
 
 

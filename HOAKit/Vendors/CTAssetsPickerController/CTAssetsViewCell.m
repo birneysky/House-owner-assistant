@@ -75,8 +75,8 @@
     self.type   = [asset valueForProperty:ALAssetPropertyType];
     self.image  = (asset.thumbnail == NULL) ? [UIImage imageNamed:@"HOAKit.bundle/CTAssetsPickerEmpty"] : [UIImage imageWithCGImage:asset.thumbnail];
     
-    if ([self.type isEqual:ALAssetTypeVideo])
-        self.title = [NSDate timeDescriptionOfTimeInterval:[[asset valueForProperty:ALAssetPropertyDuration] doubleValue]];
+//    if ([self.type isEqual:ALAssetTypeVideo])
+//        self.title = [NSDate timeDescriptionOfTimeInterval:[[asset valueForProperty:ALAssetPropertyDuration] doubleValue]];
 }
 
 - (void)setSelected:(BOOL)selected

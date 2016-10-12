@@ -224,7 +224,7 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
     self.locationPromptView.hidden = YES;
     [self.behavior addItem:self.locationPointImgView];
     CLLocationCoordinate2D mapCenterCoordinate =
-        [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView];
+    [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView];
     CLLocation *location = [[CLLocation alloc]initWithLatitude:mapCenterCoordinate.latitude longitude:mapCenterCoordinate.longitude];
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *array, NSError *error){
@@ -393,7 +393,6 @@ void BD09FromGCJ02(double gg_lat, double gg_lon, double* bd_lat, double* bd_lon)
     UITextField* textField = notification.object;
     
     BOOL valid = YES;
-    BOOL change = NO;
     if (textField == self.fullAddressTextfield) {
         valid = [self limitTextViewTextLengthMin:1 max:60 textField:textField warningText:@"请输1-60个字"];
         if (self.newHouse) {

@@ -89,7 +89,7 @@ const NSInteger MAXLEVEL =  3;
 
     //加载该房源已选的位置区域信息
     [self.positionArray enumerateObjectsUsingBlock:^(HAHousePosition * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString* key = [NSString stringWithFormat:@"%ld-%ld",obj.positionTypeId,obj.positionId];
+        NSString* key = [NSString stringWithFormat:@"%ld-%ld",(long)obj.positionTypeId,(long)obj.positionId];
         [self.positionDic setObject:obj forKey:key];
     }];
     
@@ -184,7 +184,7 @@ const NSInteger MAXLEVEL =  3;
         postionId = self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems[index].positionId;
     }
     
-    NSString* key = [NSString stringWithFormat:@"%ld-%ld",type,postionId];
+    NSString* key = [NSString stringWithFormat:@"%ld-%ld",(long)type,(long)postionId];
 
     if ([self.positionDic objectForKey:key]){
         return YES;
@@ -208,7 +208,7 @@ const NSInteger MAXLEVEL =  3;
         postionId = self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems[selectedIndex[level]].positionId;
     }
     
-    NSString* key = [NSString stringWithFormat:@"%d-%d",type,postionId];
+    NSString* key = [NSString stringWithFormat:@"%ld-%ld",(long)type,(long)postionId];
     if ([self.positionDic objectForKey:key]) {
         [self.positionDic removeObjectForKey:key];
     }

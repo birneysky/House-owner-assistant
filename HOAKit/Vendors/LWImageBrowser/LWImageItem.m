@@ -104,7 +104,6 @@ const CGFloat kDuration = 0.3f;
 }
 
 - (void)downloadImageWithDestinationRect:(CGRect)destinationRect {
-    __weak typeof(self) weakSelf = self;
 
 }
 

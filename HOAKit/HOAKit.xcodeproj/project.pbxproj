@@ -66,8 +66,6 @@
 		742B91CF1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B919E1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.m */; };
 		742B91D01D4FB731000FF5A1 /* CALayer+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91A11D4FB731000FF5A1 /* CALayer+Additions.h */; };
 		742B91D11D4FB731000FF5A1 /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91A21D4FB731000FF5A1 /* CALayer+Additions.m */; };
-		742B91D21D4FB731000FF5A1 /* Toast+UIView.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91A31D4FB731000FF5A1 /* Toast+UIView.h */; };
-		742B91D31D4FB731000FF5A1 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91A41D4FB731000FF5A1 /* Toast+UIView.m */; };
 		742B91D41D4FB731000FF5A1 /* HALeapBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91A61D4FB731000FF5A1 /* HALeapBehavior.h */; };
 		742B91D51D4FB731000FF5A1 /* HALeapBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B91A71D4FB731000FF5A1 /* HALeapBehavior.m */; };
 		742B91DD1D4FB731000FF5A1 /* ALAssetsGroup+isEqual.h in Headers */ = {isa = PBXBuildFile; fileRef = 742B91B31D4FB731000FF5A1 /* ALAssetsGroup+isEqual.h */; };
@@ -272,8 +270,6 @@
 		742B919E1D4FB731000FF5A1 /* HAPublishHouseInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAPublishHouseInfoTableViewController.m; sourceTree = "<group>"; };
 		742B91A11D4FB731000FF5A1 /* CALayer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		742B91A21D4FB731000FF5A1 /* CALayer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
-		742B91A31D4FB731000FF5A1 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
-		742B91A41D4FB731000FF5A1 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
 		742B91A61D4FB731000FF5A1 /* HALeapBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HALeapBehavior.h; sourceTree = "<group>"; };
 		742B91A71D4FB731000FF5A1 /* HALeapBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HALeapBehavior.m; sourceTree = "<group>"; };
 		742B91B31D4FB731000FF5A1 /* ALAssetsGroup+isEqual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsGroup+isEqual.h"; sourceTree = "<group>"; };
@@ -603,8 +599,6 @@
 			children = (
 				742B91A11D4FB731000FF5A1 /* CALayer+Additions.h */,
 				742B91A21D4FB731000FF5A1 /* CALayer+Additions.m */,
-				742B91A31D4FB731000FF5A1 /* Toast+UIView.h */,
-				742B91A41D4FB731000FF5A1 /* Toast+UIView.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -837,7 +831,6 @@
 				74266F751D5DF85E00A7E4BF /* HAHouseFacility.h in Headers */,
 				742B91EE1D4FB731000FF5A1 /* NSDate+timeDescription.h in Headers */,
 				DB13FCAD1D63007F003A8F58 /* HARegion.h in Headers */,
-				742B91D21D4FB731000FF5A1 /* Toast+UIView.h in Headers */,
 				DB13FCA91D62EE63003A8F58 /* HASubWay.h in Headers */,
 				74A50C981D840A68004F8FF6 /* LWImageBrowserCell.h in Headers */,
 				DBE880901D6EF55300A72248 /* HALocationPoint.h in Headers */,
@@ -946,7 +939,7 @@
 		742B91711D4FA836000FF5A1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = birneysky;
 				TargetAttributes = {
 					742B91791D4FA836000FF5A1 = {
@@ -1043,7 +1036,6 @@
 				DBAE09251D504A4F008A85C4 /* HOAKit.m in Sources */,
 				743F434F1D55F81500D06D19 /* HADiscountPickerTextField.m in Sources */,
 				742B91EC1D4FB731000FF5A1 /* CTAssetsViewController.m in Sources */,
-				742B91D31D4FB731000FF5A1 /* Toast+UIView.m in Sources */,
 				DBE880821D6EF55300A72248 /* HAAddPhotoViewLayout.m in Sources */,
 				742B91E81D4FB731000FF5A1 /* CTAssetsSupplementaryView.m in Sources */,
 				742B91C91D4FB731000FF5A1 /* HAHouseTableController.m in Sources */,
@@ -1121,8 +1113,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1169,8 +1163,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1200,6 +1196,7 @@
 		742B91831D4FA836000FF5A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../HOAKit$(EFFECTIVE_PLATFORM_NAME)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1224,6 +1221,7 @@
 		742B91841D4FA836000FF5A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../HOAKit$(EFFECTIVE_PLATFORM_NAME)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

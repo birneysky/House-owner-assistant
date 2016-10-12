@@ -116,7 +116,7 @@
         text = [NSString stringWithFormat:@"%@%@",self.otherDataSource[row],self.nameArray[component]];
     }
     if ([view isKindOfClass:[UILabel class]]) {
-        UILabel* label = view;
+        UILabel* label = (UILabel*)view;
         label.text = text;
         return view;
     }

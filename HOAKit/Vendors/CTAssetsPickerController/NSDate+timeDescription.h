@@ -31,7 +31,7 @@
 
 @interface NSDate (timeDescription)
 
-+ (NSString *)timeDescriptionOfTimeInterval:(NSTimeInterval)timeInterva;
-+ (NSDateComponents *)componetsWithTimeInterval:(NSTimeInterval)timeInterval;
+//+ (NSString *)timeDescriptionOfTimeInterval:(NSTimeInterval)timeInterva;
+//+ (NSDateComponents *)componetsWithTimeInterval:(NSTimeInterval)timeInterval;
 
 @end

@@ -158,7 +158,6 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
         NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
         NSString* headerImgPath = [basePath stringByAppendingPathComponent:[self.houseFullInfo.images.firstObject.imagePath lastPathComponent]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:headerImgPath]) {
-            UIImage* headerImg = [UIImage imageWithContentsOfFile:headerImgPath];
 
             self.houseFullInfo.images.firstObject.localPath = headerImgPath;
             [self configHeaderImage];
@@ -167,7 +166,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
         else{
             [self downloadHeaderImage];
         }
-        self.pictureCountLabel.text = [NSString stringWithFormat:@"%d",self.houseFullInfo.images.count];
+        self.pictureCountLabel.text = [NSString stringWithFormat:@"%ld",(long)self.houseFullInfo.images.count];
     } onError:^(NSError *engineError) {
         [HAActiveWheel dismissViewDelay:3 forView:self.navigationController.view warningText:@"载入失败，请检查网络"];
         self.refreshBtn.hidden = NO;
@@ -329,7 +328,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
 {
     NSString* text = self.dataSource[indexPath.row];
     cell.textLabel.textColor = [UIColor blackColor];
-    UIColor* color = [UIColor colorWithRed:245 / 255.0f green:2 / 255.0f blue:63 / 255.0f alpha:1];
+
     HAHouseInfoCell* infoCell = (HAHouseInfoCell*)cell;
     if ([text isEqualToString:@"房屋标题与介绍"] && self.houseFullInfo.houseDescriptionComplete) {
         //cell.textLabel.textColor = color;
@@ -557,7 +556,7 @@ static NSString* const baseUrlDoc =  @"http://120.76.28.47:8080/yisu/doc/";
 - (void) imagesOfHouseDidChange:(NSArray<HAHouseImage*>*) images
 {
     self.houseFullInfo.images = images;
-    self.pictureCountLabel.text = [NSString stringWithFormat:@"%d",images.count];
+    self.pictureCountLabel.text = [NSString stringWithFormat:@"%ld",(long)images.count];
     HAHouseImage* imageItem = images.firstObject;
     UIImage* image = [UIImage imageWithContentsOfFile:imageItem.localPath];
     if (image) {

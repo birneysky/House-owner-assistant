@@ -13,7 +13,7 @@
 #import "HARESTfulEngine.h"
 #import "HAPosition.h"
 
-@interface HASelectHousePositionViewController ()
+@interface HASelectHousePositionViewController ()<ArealocationViewDelegate>
 
 
 @property (nonatomic, strong) RTArealocationView *arealocationView;
@@ -167,9 +167,9 @@
         postionId = self.allRegions[selectedIndex[0]].subItems[selectedIndex[1]].subItems[index].positionId;
     }
     
-    NSString* key = [NSString stringWithFormat:@"%ld-%ld",type,postionId];
+    NSString* key = [NSString stringWithFormat:@"%ld-%ld",(long)type,(long)postionId];
     
-    NSString* selectKey =  [NSString stringWithFormat:@"%ld-%ld",self.positionTypeSelected,self.positionIdSelected];
+    NSString* selectKey =  [NSString stringWithFormat:@"%ld-%ld",(long)self.positionTypeSelected,(long)self.positionIdSelected];
     if ([key isEqualToString:selectKey]){
         return YES;
     }

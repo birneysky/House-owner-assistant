@@ -153,7 +153,9 @@
         NSDictionary* province = provinces[provinceIndex];
         NSArray* citys = province[@"child"];
         if (row >= citys.count) {
-            return title;
+            UILabel* label = (UILabel*)view;
+            label.text = title;
+            return label;
         }
         NSDictionary* city =citys[row];
         title = city[@"Name"];
@@ -164,19 +166,23 @@
         NSArray* citys = province[@"child"];
         NSInteger cityIndex = [pickerView selectedRowInComponent:1];
         if (cityIndex >= citys.count) {
-            return title;
+            UILabel* label = (UILabel*)view;
+            label.text = title;
+            return label;
         }
         NSDictionary* city = citys[cityIndex];
         NSArray* towns = city[@"child"];
         if (row >= towns.count) {
-            return title;
+            UILabel* label = (UILabel*)view;
+            label.text = title;
+            return label;
         }
         NSDictionary* town = towns[row];
         title = town[@"Name"];
     }
     
     if ([view isKindOfClass:[UILabel class]]) {
-        UILabel* label = view;
+        UILabel* label = (UILabel*)view;
         label.text = title;
         return view;
     }

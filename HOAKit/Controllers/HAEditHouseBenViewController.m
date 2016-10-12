@@ -102,7 +102,7 @@
         editCell.unitName = @"m";
         if([text isEqualToString:@"数量"]){
             editCell.unitName = @"张";
-            NSString* value = self.bed.number <= 0 ? @"" : [NSString stringWithFormat:@"%ld",self.bed.number];
+            NSString* value = self.bed.number <= 0 ? @"" : [NSString stringWithFormat:@"%ld",(long)self.bed.number];
             editCell.textField.text = value;
             editCell.textField.placeholder = @"请输入数量";
         }

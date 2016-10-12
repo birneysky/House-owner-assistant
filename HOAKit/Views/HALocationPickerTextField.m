@@ -55,12 +55,7 @@
     return CGRectMake(bounds.origin.x + 38, bounds.origin.y, bounds.size.width, bounds.size.height);
 }
 
-- (void)awakeFromNib
-{
-//    [self.picker selectRow:1 inComponent:0 animated:YES];
-//    [self.picker selectRow:1 inComponent:1 animated:YES];
-//    [self.picker selectRow:1 inComponent:2 animated:YES];
-}
+
 
 #pragma mark - *** HAPickerTextFieldDelegate ***
 - (void)selectedObjectDoneForPickerTextField:(HAPickerTextField*)pickerTF 

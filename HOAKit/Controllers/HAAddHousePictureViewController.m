@@ -20,7 +20,7 @@
 #define PHOTO_COUNT_MAX 20
 
 
-@interface HAAddHousePictureViewController ()
+@interface HAAddHousePictureViewController ()<HAImagePictureCellDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoBtn;
@@ -349,15 +349,12 @@ static  HAAddHousePictureViewController* strongSelf = nil;
     dispatch_async(self.uploadQueue, ^{
         for (ALAsset * asset in assets)
         {
-            CGImageRef fullimg = [[asset defaultRepresentation] fullScreenImage];
             CGImageRef thumbnailImg = asset.aspectRatioThumbnail;
             NSString * fileID = gen_uuid_ha();
-            const char* guid = [fileID cStringUsingEncoding:NSUTF8StringEncoding];
             
             NSData* thumbnailJPGData = UIImageJPEGRepresentation([UIImage imageWithCGImage:thumbnailImg], 1);
             
-            
-            NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
+        
             NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",fileID,@"thumbnail"];
             NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
             
@@ -393,7 +390,6 @@ static  HAAddHousePictureViewController* strongSelf = nil;
         
         NSString * fileID = gen_uuid_ha();
         
-        NSString* fullImgfilePath = [filePath stringByAppendingPathComponent:fileID];
         NSString* fileThumbnailName = [NSString stringWithFormat:@"%@_%@.jpg",fileID,@"thumbnail"];
         NSString* thumbnailImgPath = [filePath stringByAppendingPathComponent:fileThumbnailName];
         
@@ -531,12 +527,12 @@ static  HAAddHousePictureViewController* strongSelf = nil;
     else if (HAPhotoUploadOrDownloadStateFinsish == item.stauts ||
              HAPhotoUploadOrDownloadStateDownloaded == item.stauts){
         NSMutableArray* imageItemArray = [[NSMutableArray alloc] initWithCapacity:self.photosArray.count];
-        NSString* basePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/HouseImagesNet"];
+
         for (NSInteger i = 0; i < self.photosArray.count; i ++) {
             HAHouseImage* imageItem = self.photosArray[i];
             UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             CGRect rect = [self.view convertRect:cell.frame fromView:collectionView];
-            NSString* itemPath = [basePath stringByAppendingPathComponent:[imageItem.imagePath lastPathComponent]];
+
             LWImageBrowserModel* imageModel = [[LWImageBrowserModel alloc] initWithplaceholder:nil
                                                                                   thumbnailURL:[NSURL URLWithString:imageItem.localPath]
                                                                                          HDURL:[NSURL URLWithString:imageItem.localPath]

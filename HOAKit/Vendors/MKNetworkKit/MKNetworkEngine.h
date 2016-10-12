@@ -178,9 +178,9 @@
  *  @seealso
  *  prepareHeaders:
  */
--(MKNetworkOperation*) operationWithURLString:(NSString*) urlString
-                              params:(NSDictionary*) body
-                        httpMethod:(NSString*) method;
+//-(MKNetworkOperation*) operationWithURLString:(NSString*) urlString
+//                              params:(NSDictionary*) body
+//                        httpMethod:(NSString*) method;
 
 /*!
  *  @abstract adds the custom default headers

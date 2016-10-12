@@ -1112,7 +1112,7 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,        // 5
           
           [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
         }
-        else if(result == kSecTrustResultConfirm) {
+        else if(result == 2) {
           
           if(self.shouldContinueWithInvalidCertificate) {
             

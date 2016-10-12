@@ -10,7 +10,7 @@
 #import "HAJSONModel.h"
 #import "HAGeneralPosition.h"
 
-@interface HARegion : NSObject <HAGeneralPosition>
+@interface HARegion : NSObject 
 
 - (instancetype) initWithName:(NSString*)name;
 

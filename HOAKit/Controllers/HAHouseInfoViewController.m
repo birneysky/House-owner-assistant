@@ -16,7 +16,7 @@
 #import "HAActiveWheel.h"
 #import "HOAKit.h"
 
-@interface HAHouseInfoViewController ()<HAHouseTypeSelectDetailResult,HAHouseBathrommSelectDetailResult,HAEditorNumberCellDelegate>
+@interface HAHouseInfoViewController ()<HAHouseTypeSelectDetailResult,HAHouseBathrommSelectDetailResult,HAEditorNumberCellDelegate,HAEditPickerCellDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *textViewInputingLabel;
 @property(nonatomic,strong) NSArray* dataSource;
@@ -111,7 +111,7 @@
         pickerCell.delegate = self;
         [pickerCell.textField setDefultText:@"1室0厅0厨0阳台"];
         if (self.house) {
-            pickerCell.textField.text = [NSString stringWithFormat:@"%ld室%ld厅%ld厨%ld阳台",self.house.roomNumber,self.house.hallNumber,self.house.kitchenNumber,self.house.balconyNumber];
+            pickerCell.textField.text = [NSString stringWithFormat:@"%ld室%ld厅%ld厨%ld阳台",(long)self.house.roomNumber,(long)(long)self.house.hallNumber,(long)self.house.kitchenNumber,(long)self.house.balconyNumber];
         }
        
         cell = pickerCell;
@@ -124,7 +124,7 @@
         [pickerCell.textField setDefultText:@"公共0独立0"];
         
         if (self.house) {
-            pickerCell.textField.text = [NSString stringWithFormat:@"公共%ld独立%ld",self.house.publicToiletNumber,self.house.toiletNumber];
+            pickerCell.textField.text = [NSString stringWithFormat:@"公共%ld独立%ld",(long)self.house.publicToiletNumber,(long)self.house.toiletNumber];
         }
         cell = pickerCell;
     }
@@ -141,7 +141,7 @@
         else if([text isEqualToString:@"可住人数"]){
             editorCell.unitName = @"人";
             if (self.house) {
-                editorCell.textField.text = self.house.toliveinNumber > 0 ? [NSString stringWithFormat:@"%ld",self.house.toliveinNumber] : @"";
+                editorCell.textField.text = self.house.toliveinNumber > 0 ? [NSString stringWithFormat:@"%ld",(long)self.house.toliveinNumber] : @"";
                 editorCell.textField.placeholder = @"请输入人数";
             }
         }

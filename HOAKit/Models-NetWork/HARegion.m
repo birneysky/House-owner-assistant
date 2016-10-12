@@ -38,7 +38,7 @@
     if (!_items) {
         _items = [[NSMutableArray alloc] initWithCapacity:100];
     }
-    return _items;
+    return (NSMutableArray<HAGeneralPosition>*)_items;
 }
 
 
@@ -54,7 +54,7 @@
 {
     if([item respondsToSelector:@selector(subwayId)])
     {
-        [self.indexDic setObject:@(self.items.count) forKey:[NSString stringWithFormat:@"%ld",[(HASubWay*)item subwayId]]];
+        [self.indexDic setObject:@(self.items.count) forKey:[NSString stringWithFormat:@"%ld",(long)[(HASubWay*)item subwayId]]];
     }
     
     [self.items addObject:item];
@@ -72,7 +72,7 @@
 
 - (id<HAGeneralPosition>)subItemWithID:(NSInteger)Id
 {
-    NSString* strId = [NSString stringWithFormat:@"%ld",Id];
+    NSString* strId = [NSString stringWithFormat:@"%ld",(long)Id];
     NSNumber* index = self.indexDic[strId];
     
     if (index) {
@@ -80,5 +80,7 @@
     }
     return nil;
 }
+
+
 
 @end

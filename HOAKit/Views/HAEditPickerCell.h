@@ -12,6 +12,7 @@
 
 @protocol HAEditPickerCellDelegate <NSObject>
 
+@optional
 - (void)selectItemDoneForPickerTextField:(UITextField*)textfield
                                 fromCell:(UITableViewCell*) cell;
 

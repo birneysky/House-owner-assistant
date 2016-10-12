@@ -12,6 +12,7 @@
 #import "HAActiveWheel.h"
 #import "HARESTfulEngine.h"
 #import "HAPosition.h"
+#import "HAAppDataHelper.h"
 
 @interface HASelectHousePositionViewController ()<ArealocationViewDelegate>
 
@@ -41,7 +42,7 @@
 - (NSArray*) regionNames
 {
     if (!_regionNames) {
-        _regionNames = @[@"景点",@"车站/机场",@"地铁线路",@"商圈",@"医院",@"学校"];
+        _regionNames = @[@"景点",@"车站/机场",@"地铁线路",@"商圈",@"行政区",@"医院",@"学校"];
     }
     return _regionNames;
 }
@@ -60,10 +61,11 @@
 
 
 #pragma mark - *** Init ***
-- (instancetype) initWithCityID:(NSInteger)cityID
+- (instancetype) initWithProvinceId:(NSInteger)pid cityId:(NSInteger)cid
 {
     if (self = [super init]) {
-        self.cityId = cityID;
+        self.cityId = cid;
+        self.provinceId = pid;
         self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
@@ -83,12 +85,22 @@
      6:医院
      7:学校
      */
+    
+    NSInteger distictId = [self.regionNames indexOfObject:@"行政区"];
+    NSArray* positions = [HAAppDataHelper positionsFromProvince:self.provinceId city:self.cityId house:0];
+    HARegion* region = self.allRegions[distictId];
+    [region addItems:positions];
+    
+    
+
+    
     self.title = @"选择位置";
     [HAActiveWheel showHUDAddedTo:self.view].processString = @"正在载入";
     [[HARESTfulEngine defaultEngine] fetchPositionInfoWithCityID:self.cityId completion:^(NSArray<HAPosition *> *postions, NSArray<HASubWay *> *subways) {
         [postions enumerateObjectsUsingBlock:^(HAPosition * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSInteger offset = obj.typeId >=5 ? 2 : 1;
-            HARegion* region = self.allRegions[obj.typeId - offset];
+//            NSInteger offset = obj.typeId >=5 ? 2 : 1;
+//            HARegion* region = self.allRegions[obj.typeId - offset];
+            HARegion* region = self.allRegions[obj.typeId - 1];
             [region addSubItem:obj];
         }];
         
@@ -104,7 +116,9 @@
             }
         }];
         if (self.positionTypeSelected > 0) {
-            NSInteger offset = self.positionTypeSelected >=5 ? self.positionTypeSelected -2 : self.positionTypeSelected - 1;
+            //NSInteger offset = self.positionTypeSelected >=5 ? self.positionTypeSelected -2 : self.positionTypeSelected - 1;
+            NSInteger offset = self.positionTypeSelected - 1;
+
             NSInteger select[3] = {offset,-1,-1};
             [self.arealocationView selectRowWithSelectedIndex:select];
         }

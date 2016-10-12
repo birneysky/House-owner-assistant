@@ -20,13 +20,15 @@
 
 @interface HASelectHousePositionViewController : UIViewController
 
-- (instancetype) initWithCityID:(NSInteger)cityID;
+- (instancetype) initWithProvinceId:(NSInteger)pid cityId:(NSInteger)cid;
 
 @property (nonatomic,assign) NSInteger positionTypeSelected;
 
 @property (nonatomic,assign) NSInteger positionIdSelected;
 
 @property (nonatomic,assign) NSInteger cityId;
+
+@property (nonatomic,assign) NSInteger provinceId;
 
 @property (nonatomic,weak) id<HASelectHousePositionDelegate> delegate;
 

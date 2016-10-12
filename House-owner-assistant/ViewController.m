@@ -22,6 +22,8 @@
     // Do any additional setup after loading the view.
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
     self.versionLabel.text = version;
+    
+    [HOAKit defaultInstance].token = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6IjMy56ys5LiJ5LujIiwiZXhwIjowLCJ1c2VySWQiOjEsImlhdCI6MTQ3NDI3Mzc0MCwiaXNzdWVyIjoiaHR0cHM6Ly93d3cueWltZWkuY29tLyJ9._IM9uqdUnlVcE0P7YMxAfYYK0ahEVpODrs_RFuVmkxg";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,13 +39,13 @@
        [HOAKit defaultInstance].userId = 1;
     }
     
-    [HOAKit defaultInstance].token = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6IjMy56ys5LiJ5LujIiwiZXhwIjowLCJ1c2VySWQiOjEsImlhdCI6MTQ3NDI3Mzc0MCwiaXNzdWVyIjoiaHR0cHM6Ly93d3cueWltZWkuY29tLyJ9._IM9uqdUnlVcE0P7YMxAfYYK0ahEVpODrs_RFuVmkxg";
+
     UINavigationController* hoaRoot = [HOAKit defaultInstance].rootViewController;
     [self presentViewController:hoaRoot animated:YES completion:nil];
 }
 - (IBAction)testPostionAction:(id)sender {
     //110100
-   HASelectHousePositionViewController* pvc = [[HASelectHousePositionViewController alloc] initWithCityID:110100];
+    HASelectHousePositionViewController* pvc = [[HASelectHousePositionViewController alloc] initWithProvinceId:110000 cityId:110100];
     pvc.delegate = self;
     pvc.positionTypeSelected = 1;
     pvc.positionIdSelected = 586;

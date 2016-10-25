@@ -429,7 +429,7 @@ static HARESTfulEngine* defaultEngine;
     }];
     
     [self enqueueOperation:op];
-    
+    [op freezable];
     [op onDownloadProgressChanged:^(double progress) {
         progressBlock(weakOp.clientCertificate,progress);
         // DLog(@"Upload file progress: %.2f", progress*100.0);

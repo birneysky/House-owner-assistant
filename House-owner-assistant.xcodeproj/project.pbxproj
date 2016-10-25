@@ -240,6 +240,11 @@
 					DB32CE691D48893000F6FDA0 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = M7R5TQ8AQY;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					DB32CE851D48893000F6FDA0 = {
 						CreatedOnToolsVersion = 7.3;
